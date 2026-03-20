@@ -6,7 +6,7 @@
 	<dict>
 		<key>ios-arm64-simulator/CArdk.framework/CArdk</key>
 		<data>
-		Z9vuRVs+ZAMu/f6Hd6kPMg3BvKM=
+		JZoAVL9f6Oc4p6swKfzBzQVeEw8=
 		</data>
 		<key>ios-arm64-simulator/CArdk.framework/Headers/ardk_age_level.h</key>
 		<data>
@@ -26,7 +26,7 @@
 		</data>
 		<key>ios-arm64-simulator/CArdk.framework/Headers/ardk_auth_manager_api.h</key>
 		<data>
-		PwZOMS7MZd9DKdiRAPr6TIP5YFk=
+		i7bLh6T811iOr1Oco+Er08C+QgI=
 		</data>
 		<key>ios-arm64-simulator/CArdk.framework/Headers/ardk_auth_manager_types.h</key>
 		<data>
@@ -526,11 +526,11 @@
 		</data>
 		<key>ios-arm64-simulator/CArdk.framework/_CodeSignature/CodeResources</key>
 		<data>
-		iHUT+6vlw3DK2UuTQ6oIrkDt1sc=
+		6V3nouvSth8bUPdSpWiCbiLiE9k=
 		</data>
 		<key>ios-arm64/CArdk.framework/CArdk</key>
 		<data>
-		bBTKFBCVrorQJrDNHrcxqn4Npuk=
+		ZNqgj/PHyJhVwf61aubW63WnHVA=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_age_level.h</key>
 		<data>
@@ -550,7 +550,7 @@
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_auth_manager_api.h</key>
 		<data>
-		PwZOMS7MZd9DKdiRAPr6TIP5YFk=
+		i7bLh6T811iOr1Oco+Er08C+QgI=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_auth_manager_types.h</key>
 		<data>
@@ -1050,7 +1050,7 @@
 		</data>
 		<key>ios-arm64/CArdk.framework/_CodeSignature/CodeResources</key>
 		<data>
-		iHUT+6vlw3DK2UuTQ6oIrkDt1sc=
+		6V3nouvSth8bUPdSpWiCbiLiE9k=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -1059,11 +1059,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			Z9vuRVs+ZAMu/f6Hd6kPMg3BvKM=
+			JZoAVL9f6Oc4p6swKfzBzQVeEw8=
 			</data>
 			<key>hash2</key>
 			<data>
-			UENx8JLWpbZR4325h8ltNKTBffxUii0gKJQnhp+fHD0=
+			t0jVowVFhNE4DpjSX8G2Lp9Vu/EJ4sTlvTxrHmXj0XU=
 			</data>
 		</dict>
 		<key>ios-arm64-simulator/CArdk.framework/Headers/ardk_age_level.h</key>
@@ -1114,11 +1114,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			PwZOMS7MZd9DKdiRAPr6TIP5YFk=
+			i7bLh6T811iOr1Oco+Er08C+QgI=
 			</data>
 			<key>hash2</key>
 			<data>
-			TYe2TfnL4FXXp9Ua3mLmUK8Xczi/4b29uBH2fpa/UYo=
+			trE50v2CdKcYMjImbdBLsfStMDIkFAL+i8K9f+Kk7Cc=
 			</data>
 		</dict>
 		<key>ios-arm64-simulator/CArdk.framework/Headers/ardk_auth_manager_types.h</key>
@@ -2489,22 +2489,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			iHUT+6vlw3DK2UuTQ6oIrkDt1sc=
+			6V3nouvSth8bUPdSpWiCbiLiE9k=
 			</data>
 			<key>hash2</key>
 			<data>
-			flGskxqHkCRAFp4bsLLtTND98Kyr56mCevc6eO0wJHg=
+			2yH/SS9YKzsd+kmpKBOFTs7tlCMu6NobenXyrcBlN78=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/CArdk</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			bBTKFBCVrorQJrDNHrcxqn4Npuk=
+			ZNqgj/PHyJhVwf61aubW63WnHVA=
 			</data>
 			<key>hash2</key>
 			<data>
-			D3bzZtQYNfqkcQEbCY4CXv4/fPNd2T6R30dYiyMuQ14=
+			0OG7JjvvdGkuSf+QwWlVQGSlBI9gffcgW0G3x4C/eOw=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_age_level.h</key>
@@ -2555,11 +2555,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			PwZOMS7MZd9DKdiRAPr6TIP5YFk=
+			i7bLh6T811iOr1Oco+Er08C+QgI=
 			</data>
 			<key>hash2</key>
 			<data>
-			TYe2TfnL4FXXp9Ua3mLmUK8Xczi/4b29uBH2fpa/UYo=
+			trE50v2CdKcYMjImbdBLsfStMDIkFAL+i8K9f+Kk7Cc=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_auth_manager_types.h</key>
@@ -3930,11 +3930,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			iHUT+6vlw3DK2UuTQ6oIrkDt1sc=
+			6V3nouvSth8bUPdSpWiCbiLiE9k=
 			</data>
 			<key>hash2</key>
 			<data>
-			flGskxqHkCRAFp4bsLLtTND98Kyr56mCevc6eO0wJHg=
+			2yH/SS9YKzsd+kmpKBOFTs7tlCMu6NobenXyrcBlN78=
 			</data>
 		</dict>
 	</dict>

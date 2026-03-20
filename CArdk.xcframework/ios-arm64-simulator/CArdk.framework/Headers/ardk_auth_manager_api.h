@@ -13,23 +13,29 @@ extern "C" {
 #include <stdint.h>
 #endif
 
-typedef void *ARDK_Handle;
+typedef void* ARDK_Handle;
 
 /// @brief        Set the access token for the ARDK object via AuthManager.
 /// @param        handle        Handle to the ARDK object.
-/// @param        access_token  The access token to set. Empty strings (null data or data_size 0) are allowed and will be persisted.
+/// @param        access_token  The access token to set. Empty strings (null data or data_size 0)
+/// are allowed and will be persisted.
 /// @return       ARDK_Status_OK if the token was forwarded successfully.
 /// @return       ARDK_Status_NullArdkHandle if \p handle was null.
-/// @return       ARDK_Status_NullArgument if \p access_token data was null but data_size > 0 (invalid state).
-ARDK_CAPI_VISIBLE ARDK_Status ARDK_AuthManager_SetAccessToken(ARDK_Handle handle, ARDK_String access_token);
+/// @return       ARDK_Status_NullArgument if \p access_token data was null but data_size > 0
+/// (invalid state).
+ARDK_CAPI_VISIBLE ARDK_Status ARDK_AuthManager_SetAccessToken(ARDK_Handle handle,
+                                                              ARDK_String access_token);
 
 /// @brief        Set the refresh token for the ARDK object via AuthManager.
 /// @param        handle         Handle to the ARDK object.
-/// @param        refresh_token  The refresh token to set. Empty strings (null data or data_size 0) are allowed and will be persisted.
+/// @param        refresh_token  The refresh token to set. Empty strings (null data or data_size 0)
+/// are allowed and will be persisted.
 /// @return       ARDK_Status_OK if the token was forwarded successfully.
 /// @return       ARDK_Status_NullArdkHandle if \p handle was null.
-/// @return       ARDK_Status_NullArgument if \p refresh_token data was null but data_size > 0 (invalid state).
-ARDK_CAPI_VISIBLE ARDK_Status ARDK_AuthManager_SetRefreshToken(ARDK_Handle handle, ARDK_String refresh_token);
+/// @return       ARDK_Status_NullArgument if \p refresh_token data was null but data_size > 0
+/// (invalid state).
+ARDK_CAPI_VISIBLE ARDK_Status ARDK_AuthManager_SetRefreshToken(ARDK_Handle handle,
+                                                               ARDK_String refresh_token);
 
 /// @brief        Check if auth tokens are valid and ready for use.
 /// @details      Returns true if a valid, non-expired access token is available.
@@ -38,11 +44,12 @@ ARDK_CAPI_VISIBLE ARDK_Status ARDK_AuthManager_SetRefreshToken(ARDK_Handle handl
 /// @return       ARDK_Status_OK if the operation was successful.
 /// @return       ARDK_Status_NullArdkHandle if \p handle was null.
 /// @return       ARDK_Status_NullArgument if \p is_authorized_out was null.
-ARDK_CAPI_VISIBLE ARDK_Status ARDK_AuthManager_IsAuthorized(
-    ARDK_Handle handle, bool* is_authorized_out);
+ARDK_CAPI_VISIBLE ARDK_Status ARDK_AuthManager_IsAuthorized(ARDK_Handle handle,
+                                                            bool* is_authorized_out);
 
 /// @brief        Get access token authentication information.
-/// @details      Returns authentication information containing information about the current access token.
+/// @details      Returns authentication information containing information about the current access
+/// token.
 ///               The returned struct contains string data that must be copied immediately as
 ///               it may be invalidated on the next API call. The allocated memory must be freed
 ///               using \c ARDK_Release_Resource.
@@ -51,11 +58,12 @@ ARDK_CAPI_VISIBLE ARDK_Status ARDK_AuthManager_IsAuthorized(
 /// @return       ARDK_Status_OK if the operation was successful.
 /// @return       ARDK_Status_NullArdkHandle if \p handle was null.
 /// @return       ARDK_Status_NullArgument if \p auth_info_out was null.
-ARDK_CAPI_VISIBLE ARDK_Status ARDK_AuthManager_GetAccessAuthInfo(
-    ARDK_Handle handle, ARDK_AuthManager_AuthInfo* auth_info_out);
+ARDK_CAPI_VISIBLE ARDK_Status
+ARDK_AuthManager_GetAccessAuthInfo(ARDK_Handle handle, ARDK_AuthManager_AuthInfo* auth_info_out);
 
 /// @brief        Get refresh token authentication information.
-/// @details      Returns authentication information containing information about the current refresh token.
+/// @details      Returns authentication information containing information about the current
+/// refresh token.
 ///               The returned struct contains string data that must be copied immediately as
 ///               it may be invalidated on the next API call. The allocated memory must be freed
 ///               using \c ARDK_Release_Resource.
@@ -64,8 +72,18 @@ ARDK_CAPI_VISIBLE ARDK_Status ARDK_AuthManager_GetAccessAuthInfo(
 /// @return       ARDK_Status_OK if the operation was successful.
 /// @return       ARDK_Status_NullArdkHandle if \p handle was null.
 /// @return       ARDK_Status_NullArgument if \p auth_info_out was null.
-ARDK_CAPI_VISIBLE ARDK_Status ARDK_AuthManager_GetRefreshAuthInfo(
-    ARDK_Handle handle, ARDK_AuthManager_AuthInfo* auth_info_out);
+ARDK_CAPI_VISIBLE ARDK_Status
+ARDK_AuthManager_GetRefreshAuthInfo(ARDK_Handle handle, ARDK_AuthManager_AuthInfo* auth_info_out);
+
+/// @brief        Clear cached auth tokens from persistent storage without requiring an ARDK
+/// context.
+/// @details      Writes empty access and refresh tokens to the on-disk token store. This is the
+///               preferred logout path when no ARDK context is available (e.g. before ARDK is
+///               initialized, or after it has been destroyed). Any running AuthManager will pick up
+///               the cleared tokens on its next reconciliation cycle.
+/// @return       ARDK_Status_OK if the tokens were cleared successfully.
+/// @return       ARDK_Status_InvalidOperation if the token store could not be written.
+ARDK_CAPI_VISIBLE ARDK_Status ARDK_AuthManager_StaticLogout();
 
 #ifdef __cplusplus
 }

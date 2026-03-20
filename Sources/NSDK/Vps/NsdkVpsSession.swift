@@ -60,16 +60,14 @@ extension NSDKSession {
 /// if let update = vpsSession.anchorUpdate(anchorId: anchorId) {
 ///     // 6. Check tracking state before placing content
 ///     switch update.trackingState {
-///     case .notTracked:
-///         print("Anchor not tracked - waiting for localization")
-///     case .limited:
-///         print("Limited tracking - pose may be unreliable")
-///     case .tracked:
+///     case .notTracked(let reason):
+///         print("Anchor not tracked - waiting for localization (reason: \(reason))")
+///     case .limited(let data, let reason):
+///         print("Limited tracking - pose may be unreliable (reason: \(reason))")
+///         anchorEntity.transform = Transform(matrix: data.transform)
+///     case .tracked(let data):
 ///         // Anchor is fully tracked - safe to place content
-///         if let transform = update.anchorToLocalTransform {
-///             // Update your AR content with the anchor's transform
-///             anchorEntity.transform = Transform(matrix: transform)
-///         }
+///         anchorEntity.transform = Transform(matrix: data.transform)
 ///     }
 /// }
 ///

@@ -15,6 +15,7 @@ internal protocol NSDKApi: NSDKApiBase {
     func getAccessAuthInfo(handle: ARDK_Handle, authInfoOut: UnsafeMutablePointer<ARDK_AuthManager_AuthInfo>) -> ARDK_Status
     func getRefreshAuthInfo(handle: ARDK_Handle, authInfoOut: UnsafeMutablePointer<ARDK_AuthManager_AuthInfo>) -> ARDK_Status
     func setAgeLevel(handle: ARDK_Handle, ageLevel: ARDK_AgeLevel) -> ARDK_Status
+    func staticLogout() -> ARDK_Status
 }
 
 internal class CArdkApi: CArdkApiBase, NSDKApi {
@@ -76,5 +77,9 @@ internal class CArdkApi: CArdkApiBase, NSDKApi {
 
     func setAgeLevel(handle: ARDK_Handle, ageLevel: ARDK_AgeLevel) -> ARDK_Status {
         return ARDK_SetAgeLevel(handle, ageLevel)
+    }
+
+    func staticLogout() -> ARDK_Status {
+        return ARDK_AuthManager_StaticLogout()
     }
 }

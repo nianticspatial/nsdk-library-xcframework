@@ -394,6 +394,15 @@ public final class NSDKSession {
         return CArdkApi().getVersion()
     }
 
+    /// Clears cached auth tokens from persistent storage without requiring an NSDK session.
+    ///
+    /// This is the preferred logout path. It can be called before NSDK is initialized or after
+    /// it has been destroyed. Any running session will pick up the cleared tokens on its next
+    /// reconciliation cycle.
+    public static func logout() {
+        _ = CArdkApi().staticLogout()
+    }
+
     /// Sets the access token on native (routed through AuthManagerApi via C-ABI).
     /// Empty or whitespace-only tokens are ignored by native.
     /// - Important: Must be called from the main thread. The native ComponentManager enforces
