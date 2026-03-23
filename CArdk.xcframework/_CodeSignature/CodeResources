@@ -6,7 +6,7 @@
 	<dict>
 		<key>ios-arm64-simulator/CArdk.framework/CArdk</key>
 		<data>
-		cqBacwGe5+WRhkT8XG2KRtFR7dM=
+		jVnCf3t1VBWtRMwyAvk9Z4R1P98=
 		</data>
 		<key>ios-arm64-simulator/CArdk.framework/Headers/ardk_age_level.h</key>
 		<data>
@@ -530,7 +530,7 @@
 		</data>
 		<key>ios-arm64/CArdk.framework/CArdk</key>
 		<data>
-		9whKVf6IdFp1UzAQuiEicm88sy4=
+		UE9T/xJSBx3TlrUPhf1KHqVlFAc=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_age_level.h</key>
 		<data>
@@ -1059,11 +1059,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			cqBacwGe5+WRhkT8XG2KRtFR7dM=
+			jVnCf3t1VBWtRMwyAvk9Z4R1P98=
 			</data>
 			<key>hash2</key>
 			<data>
-			jic8WvxN6hLHrikR8W9W30B3uUd+/8TH2gpOXwqxKws=
+			jJ6k8dzBR8tg9M+bHHzuKge8yRRuTiz9hkJ2vnFrZWY=
 			</data>
 		</dict>
 		<key>ios-arm64-simulator/CArdk.framework/Headers/ardk_age_level.h</key>
@@ -2500,11 +2500,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			9whKVf6IdFp1UzAQuiEicm88sy4=
+			UE9T/xJSBx3TlrUPhf1KHqVlFAc=
 			</data>
 			<key>hash2</key>
 			<data>
-			SAGlfIW4eEuRZT76UAk57bxT4gbzNPFddeMyPEHYtls=
+			mBh0w06vXzcBxTD6mxrfa3Csbbq936tDwE1z9drp7+o=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_age_level.h</key>
