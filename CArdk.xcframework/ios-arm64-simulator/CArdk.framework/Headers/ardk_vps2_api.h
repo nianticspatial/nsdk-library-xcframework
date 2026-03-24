@@ -156,6 +156,8 @@ ARDK_CAPI_VISIBLE ARDK_Status ARDK_VPS2_GetPose(ARDK_VPS2_Transformer transforme
 ///               - \c ARDK_Status_NullArdkHandle - The \p ardk_handle parameter was null.
 ///               - \c ARDK_Status_FeatureDoesNotExist - The VPS2 feature is not initialized.
 ///               - \c ARDK_Status_NullArgument - The \p anchor_id_out parameter was null.
+///               - \c ARDK_Status_InvalidOperation - The current transformer tracking state
+///                 is not \c ARDK_VPS2_TrackingState_Precise.
 ARDK_CAPI_VISIBLE ARDK_Status ARDK_VPS2_CreateAnchor(ARDK_Handle ardk_handle,
                                                      const ARDK_Transform pose,
                                                      char anchor_id_out[32]);
@@ -171,10 +173,11 @@ ARDK_CAPI_VISIBLE ARDK_Status ARDK_VPS2_CreateAnchor(ARDK_Handle ardk_handle,
 ///               - \c ARDK_Status_OK (0) means the function executed successfully.
 ///               - \c ARDK_Status_NullArdkHandle - The \p ardk_handle parameter was null.
 ///               - \c ARDK_Status_FeatureDoesNotExist - The VPS2 feature is not initialized.
-///               - \c ARDK_Status_NullArgument - The \p anchor_payload parameter was null.
-///               - \c ARDK_Status_NullArgument - The \p anchor_id_out parameter was null.
-///               - \c ARDK_Status_InvalidArgument - The \p anchor_payload's \c data_size field is
-///               0.
+///               - \c ARDK_Status_NullArgument - The \p anchor_payload parameter was null, or
+///                 the \p anchor_id_out parameter was null. Check the logs for more information.
+///               - \c ARDK_Status_InvalidArgument - The \p anchor_payload's was invalid,
+///                 because it was empty, not base64-encoded, or not a valid anchor payload.
+///                 Check the logs for more information.
 ARDK_CAPI_VISIBLE ARDK_Status ARDK_VPS2_TrackAnchor(ARDK_Handle handle, ARDK_String anchor_payload,
                                                     char anchor_id_out[32]);
 
@@ -203,9 +206,12 @@ ARDK_CAPI_VISIBLE ARDK_CAPI_VISIBLE ARDK_Status ARDK_VPS2_RemoveAnchor(ARDK_Hand
 /// @param        anchor_id           The identifier of the anchor to get the update for.
 /// @param[out]   anchor_update_out   The anchor update.
 ///
-/// @return       \c ARDK_Status value indicating success or failure.
-///               \c ARDK_Status_OK (0) means the function executed successfully. A non-zero value
-///               means an error occurred, see \c ARDK_Status for details.
+/// @return       \c ARDK_Status value indicating success or failure:
+///               - \c ARDK_Status_OK (0) means the function executed successfully.
+///               - \c ARDK_Status_NullArdkHandle - The \p ardk_handle parameter was null.
+///               - \c ARDK_Status_FeatureDoesNotExist - The VPS2 feature is not initialized.
+///               - \c ARDK_Status_InvalidArgument - \p anchor_id is not a valid anchor identifier,
+///                 or no anchor with that identifier has been created or tracked
 ARDK_CAPI_VISIBLE ARDK_CAPI_VISIBLE ARDK_Status ARDK_VPS2_GetAnchorUpdate(
     ARDK_Handle ardk_handle, const char anchor_id[32], ARDK_VPS_AnchorUpdate *anchor_update_out);
 
@@ -213,38 +219,42 @@ ARDK_CAPI_VISIBLE ARDK_CAPI_VISIBLE ARDK_Status ARDK_VPS2_GetAnchorUpdate(
 /// @details      The payload encodes the data needed to localize an anchor across multiple devices
 ///               or sessions. It can be shared or stored for later use with
 ///               \c ARDK_VPS_TrackAnchor. Payloads are only available after an anchor is tracked.
-///                Use \c ARDK_VPS_GetAnchorUpdate to check if the anchor is tracked.
+///               Use \c ARDK_VPS_GetAnchorUpdate to check if the anchor is tracked.
 ///
 /// @param        ardk_handle     Handle to the ARDK object.
 /// @param        anchor_id       The identifier of the anchor to get the payload of.
 /// @param[out]   payload_out     The payload of the anchor, encoded as a base64 string.
 ///                               Make sure to release the handle once it's no longer needed.
 ///
-/// @return       \c ARDK_Status value indicating success or failure.
-///               \c ARDK_Status_OK (0) means the function executed successfully. A non-zero value
-///               means an error occurred, see \c ARDK_Status for details.
+/// @return       \c ARDK_Status value indicating success or failure:
+///               - \c ARDK_Status_OK (0) means the function executed successfully.
+///               - \c ARDK_Status_NullArdkHandle - The \p ardk_handle parameter was null.
+///               - \c ARDK_Status_FeatureDoesNotExist - The VPS2 feature is not initialized.
+///               - \c ARDK_Status_InvalidArgument - \p anchor_id is not a valid anchor identifier,
+///                 or no anchor with that identifier is being tracked.
 ARDK_CAPI_VISIBLE ARDK_CAPI_VISIBLE ARDK_Status ARDK_VPS2_GetAnchorPayload(
     ARDK_Handle ardk_handle, const char anchor_id[32], ARDK_ExternalBuffer *payload_out);
 
 /// @brief        Get the latest network request records from the VPS2 feature.
 ///
-/// @param[out]   states_out   The network request state changes that have occurred
-///                            since the last call to this function.
+/// @param[out]   records_out       The network request records that have been added since the last
+///                                 call to this function. Make sure to release the handle once
+///                                 it's no longer needed.
 ///
 /// @return       \c ARDK_Status value indicating success or failure:
 ///               - \c ARDK_Status_OK (0) means the function executed successfully.
 ///               - \c ARDK_Status_NullArdkHandle - The \p ardk_handle parameter was null.
 ///               - \c ARDK_Status_FeatureDoesNotExist - The VPS2 feature is not initialized.
-///               - \c ARDK_Status_NullArgument - The \p states_out parameter was null.
+///               - \c ARDK_Status_NullArgument - The \p records_out parameter was null.
 ARDK_CAPI_VISIBLE ARDK_Status ARDK_VPS2_GetLatestNetworkRequestRecords(
     ARDK_Handle handle, ARDK_VPS2_NetworkRequestRecords *records_out);
 
-/// @brief        Get the latest VPS debugger events.
+/// @brief        Get the latest debugger events.
 ///
-/// @param        ardk_handle         Handle to the ARDK object.
-/// @param[out]   logs_out            Multiple lines of JSON string, where each line represents a
-/// VPS
-///                                  debug event since the last time this function was called.
+/// @param        ardk_handle       Handle to the ARDK object.
+/// @param[out]   logs_out          Multiple lines of JSON string, where each line represents a
+///                                 debug event since the last time this function was called.
+///                                 Make sure to release the handle once it's no longer needed.
 ///
 /// @return       \c ARDK_Status value indicating success or failure:
 ///               - \c ARDK_Status_OK (0) means the function executed successfully.
@@ -260,6 +270,9 @@ ARDK_CAPI_VISIBLE ARDK_Status ARDK_VPS2_GetVpsDebuggerLogs(ARDK_Handle ardk_hand
 /// @param[out]   session_id_out    32-character hexadecimal session ID (not null-terminated).
 ///
 /// @return       \c ARDK_Status value indicating success or failure.
+///               - \c ARDK_Status_OK (0) means the function executed successfully.
+///               - \c ARDK_Status_NullArdkHandle - The \p ardk_handle parameter was null.
+///               - \c ARDK_Status_FeatureDoesNotExist - The VPS2 feature is not initialized.
 ARDK_CAPI_VISIBLE ARDK_Status ARDK_VPS2_GetSessionId(ARDK_Handle ardk_handle,
                                                      char session_id_out[32]);
 

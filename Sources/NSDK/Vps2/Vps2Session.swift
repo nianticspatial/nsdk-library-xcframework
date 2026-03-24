@@ -101,10 +101,13 @@ public final class NSDKVps2Session: NSDKSession.IDisposable, NSDKFeatureSession 
     
     /// Requests to create an anchor at the specified pose. This will create an anchor relative
     /// to the currently tracked location that can be used to localize in future sessions.
-    ///
+    /// - Attention: Anchors can only be created when the current transformer
+    ///   (from `getLatestTransformer()`) is in `.precise` tracking state.
+    ///   This is to ensure that new anchors are accurately posed on the VPS2 map.
     /// - Parameter pose: The 4x4 transformation matrix representing the anchor's position and
     ///     orientation
     /// - Returns: A unique identifier for the created anchor
+    /// - Throws: ``ArdkError.invalidOperation`` if an anchor could not be created.
     public func createAnchor(at pose: simd_float4x4) throws -> NSDKVpsAnchorId {
         let anchorIdOut = UnsafeMutableBufferPointer<CChar>.allocate(capacity: anchorIdSize)
         defer {
