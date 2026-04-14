@@ -69,7 +69,7 @@ public struct TextureUtils {
     /// - Returns: A matching Metal pixel format.
     private static func pixelFormatIfSupported(for type: NSDKImage.ImageType) -> MTLPixelFormat? {
         switch type {
-        case .depthRawFloat, .semanticsConfidence:
+        case .depthRawFloat, .sceneSegmentationConfidence:
             return .r32Float
         case .RGBX, .raycastNormals:
             return .rgba8Unorm
@@ -85,7 +85,7 @@ public struct TextureUtils {
         precondition(width >= 0)
         
         switch type {
-        case .depthRawFloat, .semanticsConfidence:
+        case .depthRawFloat, .sceneSegmentationConfidence:
             return width * MemoryLayout<Float>.size
         case .RGBX, .raycastNormals:
             return width * 4

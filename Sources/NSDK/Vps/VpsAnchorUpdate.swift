@@ -17,6 +17,10 @@ public struct VpsAnchorUpdate: CustomDebugStringConvertible {
 
         /// Reliability of the pose estimate, between 0.0 (unreliable) and 1.0 (highly reliable).
         public let confidence: Float
+
+        /// Geolocation data of the anchor, if available.
+        /// TODO: Does this need to be optional?
+        public let geolocation: GeolocationData?
     }
     
     /// The unique identifier of the anchor.
@@ -60,10 +64,14 @@ public struct VpsAnchorUpdate: CustomDebugStringConvertible {
         if case .notTracked(_) = trackingState {
             trackingData = nil
         } else {
+            let geolocation: GeolocationData? = cUpdate.has_geolocation != 0
+                ? GeolocationData(fromC: cUpdate.geolocation_data)
+                : nil
             trackingData = VpsAnchorUpdate.TrackingData(
                 targetAnchorTransform: nsdkTransform.fromNSDKToARKit(),
                 timestampMs: cUpdate.timestamp_ms,
-                confidence: cUpdate.tracking_confidence
+                confidence: cUpdate.tracking_confidence,
+                geolocation: geolocation
             )
         }
     }
@@ -81,6 +89,11 @@ VpsAnchorUpdate:
                 String(format: "%.3f", trackingData.targetAnchorTransform[row, col])
             }.joined(separator: " ")}.joined(separator: "\n    ")
 
+        var geoStr = "nil"
+        if let geo = trackingData.geolocation {
+            geoStr = "(lat: \(geo.latitude), lon: \(geo.longitude), alt: \(geo.altitude), heading: \(geo.heading))"
+        }
+
         return
 """
 VpsAnchorUpdate:
@@ -89,6 +102,7 @@ VpsAnchorUpdate:
       \(matrixRows)
     trackingState: \(trackingState)
     timestampMs: \(trackingData.timestampMs)
+    geolocation: \(geoStr)
 """
     }
 }

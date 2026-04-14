@@ -26,7 +26,9 @@ extension NSDKSession {
     /// the export workflow from scan selection through format conversion and output.
     ///
     /// - Returns: A new Recording Exporter session attached to this NSDK session
-    public func createRecordingExporter() -> NSDKRecordingExporter {
+    /// - Important: Must be called from the main thread.
+    @MainActor
+    public func acquireRecordingExporter() -> NSDKRecordingExporter {
         let key = ObjectIdentifier(NSDKRecordingExporter.self)
         if let existing = disposables[key] as? NSDKRecordingExporter {
             return existing

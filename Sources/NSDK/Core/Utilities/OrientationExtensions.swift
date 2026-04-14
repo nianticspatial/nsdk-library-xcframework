@@ -1,5 +1,6 @@
 import CArdk
 import UIKit
+import CoreLocation
 
 extension UIInterfaceOrientation {
     init(fromC nsdkOrientation: ARDK_Orientation) {

@@ -17,8 +17,8 @@ public extension NSDKImage {
         case I420
         case depthRawFloat
         case depthConfidence
-        case semanticsConfidence
-        case semanticsBoolMask
+        case sceneSegmentationConfidence
+        case sceneSegmentationBoolMask
         case raycastNormals
         case raycastPositionAndConfidence
 
@@ -51,9 +51,9 @@ public extension NSDKImage {
             case ARDK_ImageType_DepthConfidence:
                 self = .depthConfidence
             case ARDK_ImageType_SemanticsConfidence:
-                self = .semanticsConfidence
+                self = .sceneSegmentationConfidence
             case ARDK_ImageType_SemanticsBoolMask:
-                self = .semanticsBoolMask
+                self = .sceneSegmentationBoolMask
             case ARDK_ImageType_RaycastNormals:
                 self = .raycastNormals
             case ARDK_ImageType_RaycastPositionAndConfidence:
@@ -97,10 +97,10 @@ extension NSDKImage.ImageType {
         case .RGBX, .BGRX, .raycastNormals:
             return calculateSize(4)
 
-        case .Gray, .semanticsBoolMask:
+        case .Gray, .sceneSegmentationBoolMask:
             return pixelCount
 
-        case .depthRawFloat, .depthConfidence, .semanticsConfidence:
+        case .depthRawFloat, .depthConfidence, .sceneSegmentationConfidence:
             return calculateSize(MemoryLayout<Float>.size)
 
         case .raycastPositionAndConfidence:

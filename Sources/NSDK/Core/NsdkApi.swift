@@ -3,14 +3,12 @@ import CArdk
 internal protocol NSDKApi: NSDKApiBase {
     func create(config: UnsafePointer<ARDK_Config>) -> ARDK_Handle?
     func createFromFile(configFilePath: ARDK_String, sinkCallback: ARDK_SinkCallbackFunctionPtr?) -> ARDK_Handle?
-    func createWithDefaults(accessToken: ARDK_String, refreshToken: ARDK_String, usePlatformDepths: Bool, sinkCallback: ARDK_SinkCallbackFunctionPtr?, pathConfig: UnsafePointer<ARDK_PathConfig>?) -> ARDK_Handle
     func destroy(handle: ARDK_Handle) -> ARDK_Status
     func sendFrame(handle: ARDK_Handle, frameData: UnsafePointer<ARDK_FrameData>) -> ARDK_Status
     func getRequestedDataFormats(handle: ARDK_Handle, dataFormatsOut: UnsafeMutablePointer<ARDK_InputDataFlags>) -> ARDK_Status
     func getVersion() -> String
     // Preferred: accept ARDK_String so callers can pass pre-built C strings
     func setAccessToken(handle: ARDK_Handle, token: ARDK_String)
-    func setRefreshToken(handle: ARDK_Handle, token: ARDK_String)
     func isAuthorized(handle: ARDK_Handle, isAuthorizedOut: UnsafeMutablePointer<Bool>) -> ARDK_Status
     func getAccessAuthInfo(handle: ARDK_Handle, authInfoOut: UnsafeMutablePointer<ARDK_AuthManager_AuthInfo>) -> ARDK_Status
     func getRefreshAuthInfo(handle: ARDK_Handle, authInfoOut: UnsafeMutablePointer<ARDK_AuthManager_AuthInfo>) -> ARDK_Status
@@ -25,13 +23,6 @@ internal class CArdkApi: CArdkApiBase, NSDKApi {
     
     func createFromFile(configFilePath: ARDK_String, sinkCallback: ARDK_SinkCallbackFunctionPtr?) -> ARDK_Handle? {
         return ARDK_CreateFromFile(configFilePath, sinkCallback)
-    }
-    
-    func createWithDefaults(accessToken: ARDK_String, refreshToken: ARDK_String, usePlatformDepths: Bool, sinkCallback: ARDK_SinkCallbackFunctionPtr?, pathConfig: UnsafePointer<ARDK_PathConfig>?) -> ARDK_Handle {
-        // TODO: ARDK-7769 Remove emptyApiKey when it is removed from underlying C API
-        let emptyApiKey = ARDK_String()
-        return ARDK_CreateWithDefaults(emptyApiKey, accessToken, refreshToken, usePlatformDepths, sinkCallback, pathConfig)
-
     }
     
     func destroy(handle: ARDK_Handle) -> ARDK_Status {
@@ -57,10 +48,6 @@ internal class CArdkApi: CArdkApiBase, NSDKApi {
 
     func setAccessToken(handle: ARDK_Handle, token: ARDK_String) {
         _ = ARDK_AuthManager_SetAccessToken(handle, token)
-    }
-
-    func setRefreshToken(handle: ARDK_Handle, token: ARDK_String) {
-        _ = ARDK_AuthManager_SetRefreshToken(handle, token)
     }
 
     func isAuthorized(handle: ARDK_Handle, isAuthorizedOut: UnsafeMutablePointer<Bool>) -> ARDK_Status {

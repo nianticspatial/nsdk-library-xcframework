@@ -1,27 +1,51 @@
 import CArdk
+import Combine
 import Foundation
 
 extension NSDKSession {
-    public func createDepthSession() -> NSDKDepthSession {
+    /// Returns the shared depth session, creating it on first call.
+    ///
+    /// Subsequent calls return the same instance. The session is inactive until `start()` is
+    /// called. `NSDKSession.update()` will call `update()` on it automatically each frame once
+    /// it is started.
+    /// - Important: Must be called from the main thread.
+    @MainActor
+    public func acquireDepthSession() -> NSDKDepthSession {
         let key = ObjectIdentifier(NSDKDepthSession.self)
         if let existing = disposables[key] as? NSDKDepthSession {
             return existing
         }
         let session = NSDKDepthSession(nsdkHandle: nativeHandle, api: CDepthApi())
-        disposables[key] = (session)
+        disposables[key] = session
         return session
     }
 }
 
-/// Depth feature session for NSDK. Provides control over depth sensing capabilities.
-/// 
+/// Depth feature session for NSDK with Combine publisher support.
+///
 /// Upon starting the depth session, NSDK will begin processing AR frames to generate depth data.
 /// The latest depth data can be retrieved using `latestDepth()`, and `latestImageParams()`
 /// provides information to synchronize the depth image with camera frame.
-public final class NSDKDepthSession: NSDKSession.IDisposable, NSDKFeatureSession {
-    private let api: DepthApi
+///
+/// `$result` is refreshed automatically each frame by `NSDKSession.update()` while the session
+/// is active. Subscribe to it with Combine:
+///
+/// ```swift
+/// depthSession.$result
+///     .compactMap { if case .success(let result) = $0 { return result } else { return nil } }
+///     .sink { result in ... }
+///     .store(in: &cancellables)
+/// ```
+public final class NSDKDepthSession: NSDKSession.IDisposable, NSDKUpdatableSession {
 
+    // MARK: - Combine Publishers
+
+    /// The current depth result. Updated each frame by `NSDKSession` while active.
+    @Published public var result: NSDKAsyncState<DepthResult, AwarenessError> = .inProgress(nil)
+
+    private let api: DepthApi
     private let nsdkHandle: NSDKHandle
+    private var isActive = false
 
     init(nsdkHandle: NSDKHandle, api: DepthApi) {
         self.nsdkHandle = nsdkHandle
@@ -30,10 +54,11 @@ public final class NSDKDepthSession: NSDKSession.IDisposable, NSDKFeatureSession
     }
 
     internal func destroy() {
+        stop()
         _ = api.destroy(nsdkHandle: nsdkHandle)
     }
 
-    /// The current feature status of the depth session.    
+    /// The current feature status of the depth session.
     public func featureStatus() -> NSDKFeatureStatus {
         let flags = api.getFeatureStatus(nsdkHandle: nsdkHandle)
         return NSDKFeatureStatus(rawValue: flags.rawValue)
@@ -55,7 +80,7 @@ public final class NSDKDepthSession: NSDKSession.IDisposable, NSDKFeatureSession
             api.configure(nsdkHandle: nsdkHandle, config: ptr)
         }
 
-        if cStatus.isError { throw NSDKError(fromC: cStatus)}
+        if cStatus.isError { throw NSDKError(fromC: cStatus) }
     }
 
     /// Starts the depth session, enabling depth data processing with the current configuration.
@@ -64,15 +89,31 @@ public final class NSDKDepthSession: NSDKSession.IDisposable, NSDKFeatureSession
         if cStatus.isError {
             fatalError("Unexpected non-ok ARDK_Status: \(cStatus)")
         }
+        isActive = true
     }
 
-    /// Stops the depth session, halting depth data processing. 
+    /// Stops the depth session, halting depth data processing.
     public func stop() {
         let cStatus = api.stop(nsdkHandle: nsdkHandle)
         if cStatus.isError {
             fatalError("Unexpected non-ok ARDK_Status: \(cStatus)")
         }
+        isActive = false
+        result = .inProgress(nil)
     }
+
+    // MARK: - NSDKUpdatableSession
+
+    /// Polls the native SDK for the latest depth result and publishes it on `$result`.
+    ///
+    /// Called automatically by `NSDKSession` each frame — you do not need to call this directly.
+    /// No-op when the session is not active.
+    func update() {
+        guard isActive else { return }
+        result = latestDepth()
+    }
+
+    // MARK: - Polling
 
     /// Retrieves the latest depth result from the depth session.
     /// - Returns: An `NSDKAsyncState` containing either the latest `DepthResult`,

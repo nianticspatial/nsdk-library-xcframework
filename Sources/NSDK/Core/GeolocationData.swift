@@ -3,14 +3,14 @@ import simd
 
 /// Struct representing geolocation data including latitude, longitude, altitude,
 /// heading, and orientation.
-public struct GeolocationData {
+public struct GeolocationData: Equatable {
     /// Geographical device location latitude.
     public let latitude: Double
     
     /// Geographical device location longitude.
     public let longitude: Double
     
-    /// Geographical device location altitude in meters.
+    /// Ellipsoidal device location altitude, measured in meters.
     public let altitude: Double
     
     /// Heading in degrees relative to true north.
@@ -19,6 +19,15 @@ public struct GeolocationData {
     /// Orientation in East-Down-North (EDN) frame.
     private let orientationEDN: simd_quatf
     
+    /// Creates geolocation data from a latitude, longitude, and altitude.
+    public init(latitude: Double, longitude: Double, altitude: Double) {
+        self.latitude = latitude
+        self.longitude = longitude
+        self.altitude = altitude
+        self.heading = 0
+        self.orientationEDN = simd_quatf(ix: 0, iy: 0, iz: 0, r: 1)
+    }
+
     internal init(fromC: ARDK_GeolocationData) {
         latitude = fromC.latitude
         longitude = fromC.longitude
@@ -50,6 +59,14 @@ public struct GeolocationData {
 }
 
 extension GeolocationData {
+    public static func == (lhs: GeolocationData, rhs: GeolocationData) -> Bool {
+        return lhs.latitude == rhs.latitude
+            && lhs.longitude == rhs.longitude
+            && lhs.altitude == rhs.altitude
+            && lhs.heading == rhs.heading
+            && lhs.orientationEDN.vector == rhs.orientationEDN.vector
+    }
+
     /// Returns the orientation in East-Down-North (EDN) frame.
     public func getEastDownNorthQuaternion() -> simd_quatf {
         return orientationEDN

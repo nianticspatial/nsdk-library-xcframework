@@ -3,6 +3,7 @@
 #pragma once
 
 #include "capi_common.h"
+#include "ardk_recording_export_resolution.h"
 #include "ardk_scanning_config.h"
 #include "ardk_scanning_export.h"
 #include "ardk_scanning_raycast_buffer.h"
@@ -150,11 +151,14 @@ ARDK_CAPI_VISIBLE ARDK_Status ARDK_Scanning_GetSaveInfo(ARDK_Handle ardk_handle,
 /// @param        ardk_handle     Handle to the ARDK object.
 /// @param        metadata_json   Optional json object string to be included in the archive as
 ///                               metadata. Pass an empty ARDK_String if not used.
-/// @param        export_as_video If true, the RGB frames in the scan will be exported as an
-///                               .mp4 video. If false, they will be individual image files.
-/// @param[out]   export_out      Information about the exported scan. Make sure
-///                               to release this object  with \c ARDK_Release_Resource once
-///                               it's no longer needed.
+/// @param        export_as_video   If true, the RGB frames in the scan will be exported as an
+///                                 .mp4 video. If false, they will be individual image files.
+/// @param        export_resolution Resolution option for exported images. See
+///                                 \c NSDK_ExportResolution. Defaults to
+///                                 \c NSDK_ExportResolution_High.
+/// @param[out]   export_out        Information about the exported scan. Make sure
+///                                 to release this object with \c ARDK_Release_Resource once
+///                                 it's no longer needed.
 ///
 /// @return       \c ARDK_Status value indicating success or failure.
 ///               \c ARDK_Status_OK (0) means the function executed successfully. A non-zero
@@ -162,6 +166,7 @@ ARDK_CAPI_VISIBLE ARDK_Status ARDK_Scanning_GetSaveInfo(ARDK_Handle ardk_handle,
 ARDK_CAPI_VISIBLE ARDK_Status ARDK_Scanning_ExportArchive(ARDK_Handle ardk_handle,
                                                           const ARDK_String metadata_json,
                                                           bool export_as_video,
+                                                          NSDK_ExportResolution export_resolution,
                                                           ARDK_Scanning_Export *export_out);
 
 /// @brief        Exports the scan data as multiple archive files.
@@ -176,6 +181,9 @@ ARDK_CAPI_VISIBLE ARDK_Status ARDK_Scanning_ExportArchive(ARDK_Handle ardk_handl
 /// @param        max_frames_per_archive  Maximum number of frames per archive file.
 /// @param        export_as_video         If true, the RGB frames in the scan will be exported as an
 ///                                       .mp4 video. If false, they will be individual image files.
+/// @param        export_resolution       Resolution option for exported images. See
+///                                       \c NSDK_ExportResolution. Defaults to
+///                                       \c NSDK_ExportResolution_High.
 /// @param[out]   export_out              Information about the exported scan archives. Make sure
 ///                                       to release this object with \c ARDK_Release_Resource once
 ///                                       it's no longer needed.
@@ -185,7 +193,8 @@ ARDK_CAPI_VISIBLE ARDK_Status ARDK_Scanning_ExportArchive(ARDK_Handle ardk_handl
 ///               value means an error occurred, see \c ARDK_Status for details.
 ARDK_CAPI_VISIBLE ARDK_Status ARDK_Scanning_ExportSplitArchive(
     ARDK_Handle ardk_handle, const ARDK_String metadata_json, int max_frames_per_archive,
-    bool export_as_video, ARDK_Scanning_Split_Export *export_out);
+    bool export_as_video, NSDK_ExportResolution export_resolution,
+    ARDK_Scanning_Split_Export *export_out);
 
 /// @brief        Get the most recently computed raycast buffers.
 ///

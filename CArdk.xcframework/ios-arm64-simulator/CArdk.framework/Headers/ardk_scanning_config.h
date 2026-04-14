@@ -130,16 +130,10 @@ typedef struct ARDK_Scanning_Config {
   /// @note       If set to 0, this is configured to 2 FPS in the default configuration.
   int full_resolution_framerate;
 
-  /// @brief      Optional field to set sensor names for multi-camera recording.
-  /// @details    When non-empty, one recorder is created per sensor. Frames are routed to the
-  ///             recorder whose key matches Frame::camera_sensor_name().
-  /// @note       If set to nullptr, this is configured to a single camera recorder.
-  ARDK_String *sensor_names;
-
-  /// @brief      Number of sensor names for multi-camera recording.
-  /// @details    This parameter controls the number of sensor names for multi-camera recording.
-  /// @note       If set to 0, this is configured to a single camera recorder by default.
-  int sensor_names_count;
+  /// @brief      Whether to record all sensors.
+  /// @details    If true, all camera frames will be checked in the passing Frame list.
+  ///             If false, only the first camera frame will be checked.
+  bool record_all_sensors;
 } ARDK_Scanning_Config;
 
 #ifdef __cplusplus

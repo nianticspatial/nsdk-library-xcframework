@@ -2,7 +2,9 @@ import CArdk
 import Foundation
 
 extension NSDKSession {
-    public func createMapStorage() -> NSDKMapStorage {
+    /// - Important: Must be called from the main thread.
+    @MainActor
+    public func acquireMapStorage() -> NSDKMapStorage {
         let key = ObjectIdentifier(NSDKMapStorage.self)
         if let existing = disposables[key] as? NSDKMapStorage {
             return existing

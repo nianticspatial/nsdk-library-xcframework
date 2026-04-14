@@ -5,7 +5,9 @@ extension NSDKSession {
     /// Creates a new Mesh Downloader instance.
     ///
     /// - Returns: A new ``NSDKMeshDownloader`` attached to this NSDK session.
-    public func createMeshDownloader() -> NSDKMeshDownloader {
+    /// - Important: Must be called from the main thread.
+    @MainActor
+    public func acquireMeshDownloader() -> NSDKMeshDownloader {
         let key = ObjectIdentifier(NSDKMeshDownloader.self)
         if let existing = disposables[key] as? NSDKMeshDownloader {
             return existing

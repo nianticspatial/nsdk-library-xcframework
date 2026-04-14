@@ -12,11 +12,11 @@ internal protocol Vps2Api: NSDKApiBase {
     func removeAnchor(ardkHandle: ARDK_Handle, anchorId: UnsafePointer<CChar>) -> ARDK_Status
     func getAnchorUpdate(ardkHandle: ARDK_Handle, anchorId: UnsafePointer<CChar>, anchorUpdateOut: UnsafeMutablePointer<ARDK_VPS_AnchorUpdate>) -> ARDK_Status
     func getAnchorPayload(ardkHandle: ARDK_Handle, anchorId: UnsafePointer<CChar>, payloadOut: UnsafeMutablePointer<ARDK_ExternalBuffer>) -> ARDK_Status
-    func getLatestTransformer(ardkHandle: ARDK_Handle, transformerOut: UnsafeMutablePointer<ARDK_VPS2_Transformer>) -> ARDK_Status
-    func getGeolocation(transformer: ARDK_VPS2_Transformer, pose: ARDK_Transform, locationOut: UnsafeMutablePointer<ARDK_VPS2_GeolocationData>) -> ARDK_Status
-    func getPose(transformer: ARDK_VPS2_Transformer, location: ARDK_GeolocationData, poseOut: UnsafeMutablePointer<ARDK_VPS2_Pose>) -> ARDK_Status
-    func getLatestNetworkRequestRecords(ardkHandle: ARDK_Handle,
-                                       recordsOut: UnsafeMutablePointer<ARDK_VPS2_NetworkRequestRecords>) -> ARDK_Status
+    func getLatestLocalization(ardkHandle: ARDK_Handle, localizationOut: UnsafeMutablePointer<ARDK_VPS2_Localization>) -> ARDK_Status
+    func getDeviceGeolocation(ardkHandle: ARDK_Handle, headingMode: ARDK_HeadingMode, locationOut: UnsafeMutablePointer<ARDK_VPS2_GeolocationData>) -> ARDK_Status
+    func getPose(localization: ARDK_VPS2_Localization, location: ARDK_GeolocationData, poseOut: UnsafeMutablePointer<ARDK_VPS2_Pose>) -> ARDK_Status
+    func getLatestLocalizationRequestRecords(ardkHandle: ARDK_Handle,
+                                       recordsOut: UnsafeMutablePointer<ARDK_VPS2_LocalizationRequestRecords>) -> ARDK_Status
 }
 
 internal class CVps2Api: CArdkApiBase, Vps2Api {
@@ -53,20 +53,20 @@ internal class CVps2Api: CArdkApiBase, Vps2Api {
     func removeAnchor(ardkHandle: ARDK_Handle, anchorId: UnsafePointer<CChar>) -> ARDK_Status {
         return ARDK_VPS2_RemoveAnchor(ardkHandle, anchorId)
     }
-    func getLatestTransformer(ardkHandle: ARDK_Handle, transformerOut: UnsafeMutablePointer<ARDK_VPS2_Transformer>) -> ARDK_Status {
-        return ARDK_VPS2_GetLatestTransformer(ardkHandle, transformerOut)
+    func getLatestLocalization(ardkHandle: ARDK_Handle, localizationOut: UnsafeMutablePointer<ARDK_VPS2_Localization>) -> ARDK_Status {
+        return ARDK_VPS2_GetLatestLocalization(ardkHandle, localizationOut)
     }
-    func getGeolocation(transformer: ARDK_VPS2_Transformer, pose: ARDK_Transform, locationOut: UnsafeMutablePointer<ARDK_VPS2_GeolocationData>) -> ARDK_Status {
-        return ARDK_VPS2_GetGeolocation(transformer, pose, locationOut)
+    func getDeviceGeolocation(ardkHandle: ARDK_Handle, headingMode: ARDK_HeadingMode, locationOut: UnsafeMutablePointer<ARDK_VPS2_GeolocationData>) -> ARDK_Status {
+        return ARDK_VPS2_GetDeviceGeolocation(ardkHandle, headingMode, locationOut)
     }
-    func getPose(transformer: ARDK_VPS2_Transformer, location: ARDK_GeolocationData, poseOut: UnsafeMutablePointer<ARDK_VPS2_Pose>) -> ARDK_Status {
-        return ARDK_VPS2_GetPose(transformer, location, poseOut)
+    func getPose(localization: ARDK_VPS2_Localization, location: ARDK_GeolocationData, poseOut: UnsafeMutablePointer<ARDK_VPS2_Pose>) -> ARDK_Status {
+        return ARDK_VPS2_GetPose(localization, location, poseOut)
     }
-    func getLatestNetworkRequestRecords(
+    func getLatestLocalizationRequestRecords(
             ardkHandle: ARDK_Handle,
-            recordsOut: UnsafeMutablePointer<ARDK_VPS2_NetworkRequestRecords>
+            recordsOut: UnsafeMutablePointer<ARDK_VPS2_LocalizationRequestRecords>
     ) -> ARDK_Status {
-        return ARDK_VPS2_GetLatestNetworkRequestRecords(ardkHandle, recordsOut)
+        return ARDK_VPS2_GetLatestLocalizationRequestRecords(ardkHandle, recordsOut)
     }
 }
 

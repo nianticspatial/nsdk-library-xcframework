@@ -36,30 +36,6 @@ ARDK_CAPI_VISIBLE ARDK_Handle ARDK_Create(const ARDK_Config *config);
 ARDK_CAPI_VISIBLE ARDK_Handle ARDK_CreateFromFile(const ARDK_String config_file_path,
                                                   ARDK_SinkCallbackFunctionPtr sink_callback);
 
-/// @brief        Create the ARDK object, initializing all associated systems and resources
-///               with default values and optional auth tokens.
-/// @details      If non-empty, access/refresh tokens are forwarded to the native AuthManagerApi
-///               immediately after creation for validation, reconciliation, and persistence.
-///               Passing both API key and tokens is allowed; token-based auth will be active
-///               once tokens are set.
-/// @param        api_key                Your project's API key (may be empty if using tokens only).
-/// @param        access_token           Optional access token used for token-based authentication.
-/// @param        refresh_token          Optional refresh token used to obtain new access tokens.
-/// @param        use_platform_depths    Whether ARDK should use depths provided by the platform.
-/// @param        sink_callback          Optional callback function to receive logs from ARDK.
-///                                      If null, default logging behavior is used.
-/// @param        path_config            Optionally set the path configuration to override the
-///                                      public, private and temporary directories. When
-///                                      this value is null, ARDK will infer the paths based
-///                                      on the device.
-/// @return       A handle to the ARDK object.
-ARDK_CAPI_VISIBLE ARDK_Handle ARDK_CreateWithDefaults(const ARDK_String api_key,
-                                                      const ARDK_String access_token,
-                                                      const ARDK_String refresh_token,
-                                                      bool use_platform_depths,
-                                                      ARDK_SinkCallbackFunctionPtr sink_callback,
-                                                      const ARDK_PathConfig *config);
-
 /// @brief        Destroy handle to ARDK, deinitializing all associated systems and resources.
 /// @param        handle  Handle to the ARDK object.
 /// @note         There are no safety checks in this method. Make sure that the value of \p handle

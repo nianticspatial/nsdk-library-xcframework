@@ -2,13 +2,14 @@
 
 #pragma once
 
+#include "ardk_heading_mode.h"
 #include "capi_common.h"
 #include "ardk_vps_anchor_update.h"
 #include "ardk_vps2_config.h"
 #include "ardk_vps2_geolocation.h"
-#include "ardk_vps2_network_request_records.h"
+#include "ardk_vps2_localization.h"
+#include "ardk_vps2_localization_request_records.h"
 #include "ardk_vps2_pose.h"
-#include "ardk_vps2_transformer.h"
 #include "ardk_external_buffer.h"
 #include "ardk_feature_status.h"
 #include "ardk_status.h"
@@ -101,36 +102,40 @@ ARDK_CAPI_VISIBLE ARDK_Status ARDK_VPS2_Start(ARDK_Handle ardk_handle);
 ///               - \c ARDK_Status_FeatureDoesNotExist - The VPS2 feature is not initialized.
 ARDK_CAPI_VISIBLE ARDK_Status ARDK_VPS2_Stop(ARDK_Handle ardk_handle);
 
-/// @brief        Get a copy of the latest transformer, which contains all the data needed to
-///               convert between AR space and geolocation based on the latest VPS2 localization.
+/// @brief        Gets the most recent VPS2 localization result.
 ///
-/// @param[out]   transformer_out   The latest transformer.
+/// @details      The returned localization contains the spatial mapping between
+///               the device's AR coordinate space and real-world geolocation.
+///               Use it with \c ARDK_VPS2_GetPose to convert geolocations to
+///               AR poses.
+///
+/// @param        handle             Handle to the ARDK object.
+/// @param[out]   localization_out   Populated with the latest localization data
+///                                  on success. Unchanged on failure.
 ///
 /// @return       \c ARDK_Status value indicating success or failure:
 ///               - \c ARDK_Status_OK (0) means the function executed successfully.
-///               - \c ARDK_Status_NullArdkHandle - The \p ardk_handle parameter was null.
+///               - \c ARDK_Status_NullArdkHandle - The \p handle parameter was null.
 ///               - \c ARDK_Status_FeatureDoesNotExist - The VPS2 feature is not initialized.
-///               - \c ARDK_Status_NullArgument - The \p transformer_out parameter was null.
+///               - \c ARDK_Status_NullArgument - The \p localization_out parameter was null.
 ARDK_CAPI_VISIBLE ARDK_Status
-ARDK_VPS2_GetLatestTransformer(ARDK_Handle handle, ARDK_VPS2_Transformer *transformer_out);
+ARDK_VPS2_GetLatestLocalization(ARDK_Handle handle, ARDK_VPS2_Localization *localization_out);
 
-/// @brief        Get the geolocation of a pose based on the given \c ARDK_VPS2_Transformer.
-///
-/// @param[in]    transformer    The transformer to use for the geolocation calculation.
-/// @param[in]    pose           The pose in the device's AR coordinate space,
-///                              expressed in the OpenCV coordinate system.
+/// @brief        Get the geolocation of last known camera pose.
+/// @note         For the most accurate results, ensure the latest camera poses are being fed
+///               into the system via the ARDK_SendFrame
+/// @param[in]    heading_mode   Which heading mode to use for heading computation.
 /// @param[out]   location_out   Geolocation data of the pose.
 ///
 /// @return       \c ARDK_Status value indicating success or failure:
 ///               - \c ARDK_Status_OK (0) means the function executed successfully.
 ///               - \c ARDK_Status_NullArgument - The \p location_out parameter was null.
-ARDK_CAPI_VISIBLE ARDK_Status ARDK_VPS2_GetGeolocation(ARDK_VPS2_Transformer transformer,
-                                                       ARDK_Transform pose,
-                                                       ARDK_VPS2_GeolocationData *location_out);
+ARDK_CAPI_VISIBLE ARDK_Status ARDK_VPS2_GetDeviceGeolocation(
+    ARDK_Handle handle, ARDK_HeadingMode heading_mode, ARDK_VPS2_GeolocationData *location_out);
 
-/// @brief        Get the AR pose of a geolocation based on the given \c ARDK_VPS2_Transformer.
+/// @brief        Get the AR pose of a geolocation based on the given \c ARDK_VPS2_Localization.
 ///
-/// @param[in]    transformer    The transformer to use for the pose calculation.
+/// @param[in]    localization   The localization to use for the pose calculation.
 /// @param[in]    location       The geolocation to use for the pose calculation.
 /// @param[out]   pose_out       The pose in the device's AR coordinate space,
 ///                              expressed in the OpenCV coordinate system.
@@ -138,7 +143,7 @@ ARDK_CAPI_VISIBLE ARDK_Status ARDK_VPS2_GetGeolocation(ARDK_VPS2_Transformer tra
 /// @return       \c ARDK_Status value indicating success or failure:
 ///               - \c ARDK_Status_OK (0) means the function executed successfully.
 ///               - \c ARDK_Status_NullArgument - The \p pose_out parameter was null.
-ARDK_CAPI_VISIBLE ARDK_Status ARDK_VPS2_GetPose(ARDK_VPS2_Transformer transformer,
+ARDK_CAPI_VISIBLE ARDK_Status ARDK_VPS2_GetPose(ARDK_VPS2_Localization localization,
                                                 ARDK_GeolocationData location,
                                                 ARDK_VPS2_Pose *pose_out);
 
@@ -156,7 +161,7 @@ ARDK_CAPI_VISIBLE ARDK_Status ARDK_VPS2_GetPose(ARDK_VPS2_Transformer transforme
 ///               - \c ARDK_Status_NullArdkHandle - The \p ardk_handle parameter was null.
 ///               - \c ARDK_Status_FeatureDoesNotExist - The VPS2 feature is not initialized.
 ///               - \c ARDK_Status_NullArgument - The \p anchor_id_out parameter was null.
-///               - \c ARDK_Status_InvalidOperation - The current transformer tracking state
+///               - \c ARDK_Status_InvalidOperation - The current localization tracking state
 ///                 is not \c ARDK_VPS2_TrackingState_Precise.
 ARDK_CAPI_VISIBLE ARDK_Status ARDK_VPS2_CreateAnchor(ARDK_Handle ardk_handle,
                                                      const ARDK_Transform pose,
@@ -246,8 +251,8 @@ ARDK_CAPI_VISIBLE ARDK_CAPI_VISIBLE ARDK_Status ARDK_VPS2_GetAnchorPayload(
 ///               - \c ARDK_Status_NullArdkHandle - The \p ardk_handle parameter was null.
 ///               - \c ARDK_Status_FeatureDoesNotExist - The VPS2 feature is not initialized.
 ///               - \c ARDK_Status_NullArgument - The \p records_out parameter was null.
-ARDK_CAPI_VISIBLE ARDK_Status ARDK_VPS2_GetLatestNetworkRequestRecords(
-    ARDK_Handle handle, ARDK_VPS2_NetworkRequestRecords *records_out);
+ARDK_CAPI_VISIBLE ARDK_Status ARDK_VPS2_GetLatestLocalizationRequestRecords(
+    ARDK_Handle handle, ARDK_VPS2_LocalizationRequestRecords *records_out);
 
 /// @brief        Get the latest debugger events.
 ///

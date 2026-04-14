@@ -1,20 +1,21 @@
 // Copyright 2022-2025 Niantic.
 #pragma once
 
-#ifdef __cplusplus
-
-#include <cstdint>
-
 #include "ardk_geolocation_data.h"
+#include "ardk_vps2_tracking_state.h"
 
+#ifdef __cplusplus
 extern "C" {
 #else
-#include <stdint.h>
 #endif
 
 /// @brief     GPS and heading data calculated by VPS2.
 typedef struct ARDK_VPS2_GeolocationData {
-  /// @brief      GPS and heading data
+  /// @brief The state of VPS2 tracking. The other fields in this struct are
+  ///        only valid if the tracking state is **not** ARDK_VPS2_TrackingState_Unavailable.
+  ARDK_VPS2_TrackingState tracking_state;
+
+  /// @brief GPS and heading data calculated by VPS2.
   ARDK_GeolocationData geolocation_data;
 
   /// @brief      Horizontal accuracy in metres

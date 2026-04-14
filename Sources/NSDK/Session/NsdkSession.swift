@@ -73,6 +73,7 @@ public final class NSDKSession {
     ///     // Failed to load configuration
     /// }
     /// ```
+    @MainActor
     public convenience init?(withJson configFilePath: String, logCallback: NSDKLogCallback? = nil) {
         self.init(api: CArdkApi(), withJson: configFilePath, logCallback: logCallback)
     }
@@ -93,66 +94,62 @@ public final class NSDKSession {
     ///     // Session created successfully
     /// }
     /// ```
+    @MainActor
     public convenience init?(withConfig config: Configuration) {
         self.init(api: CArdkApi(), withConfig: config)
     }
     
-    /// Convenience initializer that accepts access and refresh tokens instead of an API key.
-    /// Tokens are sanitized and passed to native AuthManagerApi immediately via creation call.
-    public convenience init(accessToken: String, refreshToken: String, useLidar: Bool = true, pathConfig: NSDKPathConfig? = nil, logCallback: NSDKLogCallback? = nil) {
-        self.init(api: CArdkApi(), accessToken: accessToken, refreshToken: refreshToken, useLidar: useLidar, pathConfig: pathConfig, logCallback: logCallback)
+    /// Convenience initializer that accepts an access token.
+    /// The token is sanitized and passed to native AuthManagerApi immediately via creation call.
+    @MainActor
+    public convenience init(accessToken: String, useLidar: Bool = true, pathConfig: NSDKPathConfig? = nil, logCallback: NSDKLogCallback? = nil) {
+        self.init(api: CArdkApi(), accessToken: accessToken, useLidar: useLidar, pathConfig: pathConfig, logCallback: logCallback)
     }
 
     // Hold onto the log callback and callback bridge to ensure they persists for the lifetime of the session
     private var logCallback: NSDKLogCallback?
     private var logCallbackBridge: NSDKLogCallbackBridge?
     
-    /// Internal initializer that accepts auth tokens and sets them immediately during creation.
-    internal init(api: NSDKApi, accessToken: String, refreshToken: String, useLidar: Bool = true, pathConfig: NSDKPathConfig? = nil, logCallback: NSDKLogCallback? = nil) {
+    /// Internal initializer that accepts an access token and sets it immediately during creation.
+    @MainActor
+    internal init(api: NSDKApi, accessToken: String, useLidar: Bool = true, pathConfig: NSDKPathConfig? = nil, logCallback: NSDKLogCallback? = nil) {
         self.api = api
-        
+
         // Store the callback and create callback bridge if callback is provided
         self.logCallback = logCallback
         let callbackBridge = logCallback.map { NSDKLogCallbackBridge(callback: $0) }
         self.logCallbackBridge = callbackBridge
         let sinkCallback = callbackBridge?.makeCFunctionPointer()
-        
+
         nativeHandle = NSDKSession.createHandle(api: api,
                                                 accessToken: accessToken,
-                                                refreshToken: refreshToken,
                                                 useLidar: useLidar,
                                                 pathConfig: pathConfig,
                                                 sinkCallback: sinkCallback)
+
+        // TODO: Extract environment from config when we handle auth environment in Swift.
+        TelemetryPublishing.start(environment: .prod)
     }
 
     private static func createHandle(api: NSDKApi,
                                      accessToken: String?,
-                                     refreshToken: String?,
                                      useLidar: Bool,
                                      pathConfig: NSDKPathConfig?,
                                      sinkCallback: ARDK_SinkCallbackFunctionPtr?) -> NSDKHandle {
         let sanitizedAccess = (accessToken ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
-        let sanitizedRefresh = (refreshToken ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
         let isLidarProvided = useLidar && ARUtils.isLidarAvailable()
         return sanitizedAccess.withCString { accessC in
-            return sanitizedRefresh.withCString { refreshC in
-                let atStr = ARDK_String(data: accessC, data_size: UInt32(strlen(accessC)))
-                let rtStr = ARDK_String(data: refreshC, data_size: UInt32(strlen(refreshC)))
-                if (pathConfig == nil) {
-                    return api.createWithDefaults(accessToken: atStr,
-                                                  refreshToken: rtStr,
-                                                  usePlatformDepths: isLidarProvided,
-                                                  sinkCallback: sinkCallback,
-                                                  pathConfig: nil)
-                }
-                return pathConfig!.withCStruct { configPtr in
-                    return api.createWithDefaults(accessToken: atStr,
-                                                  refreshToken: rtStr,
-                                                  usePlatformDepths: isLidarProvided,
-                                                  sinkCallback: sinkCallback,
-                                                  pathConfig: configPtr)
+            var config = ARDK_Config()
+            config.user_config.access_token = ARDK_String(data: accessC, data_size: UInt32(strlen(accessC)))
+            config.use_platform_depths = isLidarProvided
+            config.sink_callback = sinkCallback
+            if let pathConfig {
+                return pathConfig.withCStruct { pathPtr in
+                    config.path_config = pathPtr.pointee
+                    return withUnsafePointer(to: config) { api.create(config: $0)! }
                 }
             }
+            return withUnsafePointer(to: config) { api.create(config: $0)! }
         }
     }
 
@@ -160,6 +157,7 @@ public final class NSDKSession {
         return s.withCString { c in ARDK_String(data: c, data_size: UInt32(strlen(c))) }
     }
     
+    @MainActor
     internal init?(api: NSDKApi, withJson configFilePath: String, logCallback: NSDKLogCallback? = nil) {
         self.api = api
         
@@ -179,8 +177,12 @@ public final class NSDKSession {
         } else {
             return nil
         }
+
+        // TODO: Extract environment from config when we handle auth environment in Swift.
+        TelemetryPublishing.start(environment: .prod)
     }
     
+    @MainActor
     internal init?(api: NSDKApi, withConfig config: Configuration) {
         self.api = api
         
@@ -200,6 +202,9 @@ public final class NSDKSession {
         } else {
             return nil
         }
+
+        // TODO: Extract environment from config when we handle auth environment in Swift.
+        TelemetryPublishing.start(environment: .prod)
     }
     
     deinit {
@@ -268,23 +273,40 @@ public final class NSDKSession {
             frameData.gpsData = source.latestGpsSample()
         }
         
-        // Camera image
-        if requestedData.contains(.cameraImage) {
+        // Do we require the latest camera sample?
+        if requestedData.contains(.cameraImage) ||
+            requestedData.contains(.pose) ||
+            requestedData.contains(.deviceOrientation) {
+            
             if let sample = source.latestCameraSample() {
-                frameData.cameraImageFormat = sample.image.nsdkImageFormat
-                frameData.cameraIntrinsics = sample.intrinsics
-                frameData.cameraTransform = sample.pose
+                
+                // Send timestamp by default
                 frameData.cameraTimestampMs = sample.timestamp
-                frameData.screenOrientation = sample.orientation
                 
-                // Prepare the buffer for data access
-                openCVPixelBuffer(sample.image)
+                // Camera pose
+                if requestedData.contains(.pose) {
+                    frameData.cameraTransform = sample.pose
+                }
                 
-                // Extract image data
-                frameData.cameraImageWidth = UInt32(CVPixelBufferGetWidth(sample.image))
-                frameData.cameraImageHeight = UInt32(CVPixelBufferGetHeight(sample.image))
-                frameData.cameraPlane0 = sample.image.extractFrameData(for: 0)
-                frameData.cameraPlane1 = sample.image.extractFrameData(for: 1)
+                // Camera image
+                if requestedData.contains(.cameraImage) {
+                    frameData.cameraImageFormat = sample.image.nsdkImageFormat
+                    frameData.cameraIntrinsics = sample.intrinsics
+                    
+                    // Prepare the buffer for data access
+                    openCVPixelBuffer(sample.image)
+                    
+                    // Extract image data
+                    frameData.cameraImageWidth = UInt32(CVPixelBufferGetWidth(sample.image))
+                    frameData.cameraImageHeight = UInt32(CVPixelBufferGetHeight(sample.image))
+                    frameData.cameraPlane0 = sample.image.extractFrameData(for: 0)
+                    frameData.cameraPlane1 = sample.image.extractFrameData(for: 1)
+                }
+                
+                // Device orientation
+                if requestedData.contains(.deviceOrientation) {
+                    frameData.screenOrientation = sample.orientation
+                }
             }
         }
         
@@ -313,8 +335,47 @@ public final class NSDKSession {
         
         // Send a frame of data to NSDK for processing
         sendFrame(frameData)
+
+        // Refresh all active feature sessions
+        for (_, disposable) in disposables {
+            if let featureSession = disposable as? any NSDKUpdatableSession {
+                featureSession.update()
+            }
+        }
     }
-    
+
+    /// Destroys a specific session, stopping it and releasing its native resources.
+    ///
+    /// After this call the session is removed from `disposables` and must not be used again.
+    /// - Parameter session: The session to destroy. Must have been created by this `NSDKSession`.
+    /// - Important: Must be called from the main thread.
+    @MainActor
+    public func destroy(_ session: AnyObject) {
+        let key = ObjectIdentifier(type(of: session))
+        guard let disposable = disposables[key] else { return }
+        if let featureSession = disposable as? any NSDKFeatureSession {
+            featureSession.stop()
+        }
+        disposable.destroy()
+        disposables.removeValue(forKey: key)
+    }
+
+    /// Destroys all sessions at once, releasing all native resources.
+    ///
+    /// Use this on reset or when the `NSDKSession` is no longer needed.
+    /// - Important: Must be called from the main thread.
+    @MainActor
+    public func destroyAll() {
+        let snapshot = disposables
+        disposables.removeAll()
+        for (_, disposable) in snapshot {
+            if let featureSession = disposable as? any NSDKFeatureSession {
+                featureSession.stop()
+            }
+            disposable.destroy()
+        }
+    }
+
     /// Sends a frame of data to NSDK for processing.
     ///
     /// - Parameter frameData: The frame data captured from the AR session
@@ -405,8 +466,8 @@ public final class NSDKSession {
 
     /// Sets the access token on native (routed through AuthManagerApi via C-ABI).
     /// Empty or whitespace-only tokens are ignored by native.
-    /// - Important: Must be called from the main thread. The native ComponentManager enforces
-    ///   main-thread access and will abort if called from a background thread.
+    /// - Important: Must be called from the main thread.
+    @MainActor
     public func setAccessToken(_ token: String) {
         let sanitized = token.trimmingCharacters(in: .whitespacesAndNewlines)
         sanitized.withCString { c in
@@ -415,18 +476,6 @@ public final class NSDKSession {
         }
     }
 
-    /// Sets the refresh token on native (routed through AuthManagerApi via C-ABI).
-    /// Empty or whitespace-only tokens are ignored by native.
-    /// - Important: Must be called from the main thread. The native ComponentManager enforces
-    ///   main-thread access and will abort if called from a background thread.
-    public func setRefreshToken(_ token: String) {
-        let sanitized = token.trimmingCharacters(in: .whitespacesAndNewlines)
-        sanitized.withCString { c in
-            let s = ARDK_String(data: c, data_size: UInt32(strlen(c)))
-            api.setRefreshToken(handle: nativeHandle, token: s)
-        }
-    }
-    
     /// Sets the age level for the NSDK session.
     ///
     /// This method sets the age classification for the user

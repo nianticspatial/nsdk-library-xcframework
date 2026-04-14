@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "ardk_geolocation_data.h"
 #include "ardk_vps_tracking_state.h"
 
 #ifdef __cplusplus
@@ -34,6 +35,13 @@ typedef struct ARDK_VPS_AnchorUpdate {
 
   /// @brief   Timestamp of this anchor update in milliseconds since epoch.
   uint64_t timestamp_ms;
+
+  /// @brief   Geolocation data of the anchor (lat/lon/alt/heading/orientation).
+  ///          Only valid if has_geolocation is non-zero.
+  ARDK_GeolocationData geolocation_data;
+
+  /// @brief   Whether geolocation_data contains valid data.
+  uint8_t has_geolocation;
 } ARDK_VPS_AnchorUpdate;
 
 #ifdef __cplusplus

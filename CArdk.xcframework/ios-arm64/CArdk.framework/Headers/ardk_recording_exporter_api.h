@@ -127,36 +127,6 @@ ARDK_CAPI_VISIBLE ARDK_Status ARDK_RecordingExporter_GetExportProgress(ARDK_Hand
                                                                        const ARDK_String scan_id,
                                                                        float *progress);
 
-/// @brief        Get the output path of an exported scan.
-/// @details      Use \c ARDK_RecordingExporter_IsComplete to check if the scan'sexport is
-///               complete before calling this function.
-///
-/// @param        ardk_handle       Handle to the ARDK object.
-/// @param        scan_id           The ID of the scan to get the exported path for.
-/// @param        exported_path     Path of the exported scan. Make sure to release this object
-///                                 with \c ARDK_Release_Resource once it's no longer needed.
-///
-/// @return       \c ARDK_Status value indicating success or failure:
-///               - \c ARDK_Status_OK (0) means the function executed successfully.
-///               - \c ARDK_Status_NullArgument - Various arguments could have caused this error.
-///                 Check the log for the error message with more detail.
-///                 - The \p scan_id \c data field was null.
-///                 - The \p exported_path argument was null.
-///               - \c ARDK_Status_InvalidArgument - Various arguments could have caused this error.
-///                 caused this error. Check the log for the error message with more detail.
-///                 - The \p scan_id \c data_size field was 0.
-///                 - No export with the given \p scan_id was found.
-///               - \c ARDK_Status_InvalidOperation - Various arguments could have caused this
-///                 error. Check the log for the error message with more detail.
-///                 - The export is not yet complete. Use \c ARDK_RecordingExporter_IsComplete to
-///                   check if the export is complete before calling this function.
-///                 - There was no data to export.
-///               - \c ARDK_Status_NullArdkHandle - The \p ardk_handle argument was null.
-///               - \c ARDK_Status_FeatureDoesNotExist - The RecordingExporter has never been
-///                 created or was already destroyed.
-ARDK_CAPI_VISIBLE ARDK_Status ARDK_RecordingExporter_GetExportedPath(
-    ARDK_Handle ardk_handle, const ARDK_String scan_id, ARDK_ExternalBuffer *exported_path);
-
 /// @brief        Get all output paths of an exported scan.
 /// @details      Use \c ARDK_RecordingExporter_IsComplete to check if the scan's export is
 ///               complete before calling this function. This function returns all exported
@@ -191,9 +161,9 @@ ARDK_CAPI_VISIBLE ARDK_Status ARDK_RecordingExporter_GetExportedPaths(
 /// @brief        Close the exporter for the given scan, releasing associated resources.
 ///
 /// @details      If the export is not complete, this will cancel the export. Calls to
-///               \c ARDK_RecordingExporter_IsComplete, \c ARDK_RecordingExporter_GetExportedPath,
-///               and \c ARDK_RecordingExporter_GetExportedPaths with this \p scan_id will become
-///               invalid after this call.
+///               \c ARDK_RecordingExporter_IsComplete and \c
+///               ARDK_RecordingExporter_GetExportedPaths with this \p scan_id will become invalid
+///               after this call.
 ///
 /// @param        ardk_handle       Handle to the ARDK object.
 /// @param        scan_id           The ID of the scan to close the export of.

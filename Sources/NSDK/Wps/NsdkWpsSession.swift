@@ -7,7 +7,9 @@ extension NSDKSession {
     /// Creates a new World Positioning System (WPS) session.
     ///
     /// - Returns: A new WPS session attached to this NSDK session
-    public func createWpsSession() -> NSDKWpsSession {
+    /// - Important: Must be called from the main thread.
+    @MainActor
+    public func acquireWpsSession() -> NSDKWpsSession {
         let key = ObjectIdentifier(NSDKWpsSession.self)
         if let existing = disposables[key] as? NSDKWpsSession {
             return existing

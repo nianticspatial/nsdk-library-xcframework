@@ -183,6 +183,25 @@ ARDK_CAPI_VISIBLE ARDK_Status ARDK_SitesManager_RequestUserInfo(
 ARDK_CAPI_VISIBLE ARDK_Status ARDK_SitesManager_RequestSelfUserInfo(
     ARDK_Handle ardk_handle, ARDK_NetworkRequestId* request_id_out);
 
+/// @brief        Requests sites and assets near a GPS coordinate.
+/// @details      This initiates a network request. Poll \c ARDK_SitesManager_GetSiteAssetsResult
+///               to check the status of this request.
+/// @param        ardk_handle       Handle to the ARDK object.
+/// @param        lat               Latitude of the query coordinate, in degrees.
+/// @param        lng               Longitude of the query coordinate, in degrees.
+/// @param        radius_meters     Search radius around the coordinate, in meters.
+/// @param        asset_type        The type of assets to filter results by.
+/// @param[out]   request_id_out    The identifier for this request.
+/// @return       \c ARDK_Status value indicating success or failure:
+///               - \c ARDK_Status_OK (0) means the function executed successfully.
+///               - \c ARDK_Status_NullArgument - \p request_id_out was null.
+///               - \c ARDK_Status_NullArdkHandle - \p ardk_handle was null.
+///               - \c ARDK_Status_FeatureDoesNotExist - The sites manager was never created or
+///                 was already destroyed.
+ARDK_CAPI_VISIBLE ARDK_Status ARDK_SitesManager_RequestSiteAssetsByLocation(
+    ARDK_Handle ardk_handle, double lat, double lng, double radius_meters,
+    ARDK_SitesManager_AssetType asset_type, ARDK_NetworkRequestId* request_id_out);
+
 // API Methods - Result polling functions
 
 /// @brief        Retrieve the result of an organizations request.
@@ -252,6 +271,23 @@ ARDK_SitesManager_GetAssetResult(ARDK_Handle ardk_handle, ARDK_NetworkRequestId 
 ARDK_CAPI_VISIBLE ARDK_Status
 ARDK_SitesManager_GetUserResult(ARDK_Handle ardk_handle, ARDK_NetworkRequestId request_id,
                                 ARDK_SitesManager_UserResult* result_out);
+
+/// @brief        Retrieve the result of a site-assets location query.
+/// @details      After calling \c ARDK_SitesManager_RequestSiteAssetsByLocation, poll this until
+///               the result's status indicates success or failure.
+/// @param        ardk_handle       Handle to the ARDK object.
+/// @param        request_id        The identifier returned by the request call.
+/// @param[out]   result_out        The query result. Must be released using \c
+///               ARDK_Release_Resource.
+/// @return       \c ARDK_Status value indicating success or failure:
+///               - \c ARDK_Status_OK (0) means the function executed successfully.
+///               - \c ARDK_Status_InvalidArgument - No request with id \p request_id found.
+///               - \c ARDK_Status_NullArdkHandle - \p ardk_handle was null.
+///               - \c ARDK_Status_FeatureDoesNotExist - The sites manager was never created or
+///                 was already destroyed.
+ARDK_CAPI_VISIBLE ARDK_Status
+ARDK_SitesManager_GetSiteAssetsResult(ARDK_Handle ardk_handle, ARDK_NetworkRequestId request_id,
+                                      ARDK_SitesManager_SiteAssetsResult* result_out);
 
 #ifdef __cplusplus
 }

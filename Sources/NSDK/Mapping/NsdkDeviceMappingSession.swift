@@ -1,33 +1,68 @@
 import CArdk
+import Combine
 import Foundation
 
 extension NSDKSession {
-    /// Creates a new Mapping session.
+    /// Returns the shared device mapping session, creating it on first call.
     ///
-    /// - Returns: A new Device Mapping session attached to this NSDK session
-    public func createDeviceMappingSession() -> NSDKDeviceMappingSession {
+    /// Subsequent calls return the same instance. The session is inactive until `start()` is
+    /// called. `NSDKSession.update()` will call `update()` on it automatically each frame once
+    /// it is started.
+    ///
+    /// The session holds a reference to the shared ``NSDKMapStorage``, which is also
+    /// created on first call and reused on subsequent calls.
+    /// - Important: Must be called from the main thread.
+    @MainActor
+    public func acquireDeviceMappingSession() -> NSDKDeviceMappingSession {
         let key = ObjectIdentifier(NSDKDeviceMappingSession.self)
         if let existing = disposables[key] as? NSDKDeviceMappingSession {
             return existing
         }
-        let session = NSDKDeviceMappingSession(nsdkHandle: nativeHandle, mappingApi: CDeviceMappingApi())
+        let mapStorage = acquireMapStorage()
+        let session = NSDKDeviceMappingSession(nsdkHandle: nativeHandle, mappingApi: CDeviceMappingApi(), mapStorage: mapStorage)
         disposables[key] = session
         return session
     }
 }
 
-/// A session for creating VPS maps from AR data on the local device.
+/// A session for creating VPS maps from AR data on the local device, with Combine publisher support.
 ///
 /// The device mapping feature provides capabilities for locally building persistent maps that
 /// can be used for Visual Positioning System (VPS) localization. These maps capture the visual
 /// features and spatial structure of an environment.
-public final class NSDKDeviceMappingSession: NSDKSession.IDisposable, NSDKFeatureSession {
+///
+/// `$latestMapUpdate` is refreshed automatically each frame by `NSDKSession.update()` while the
+/// session is active. Subscribe to it with Combine:
+///
+/// ```swift
+/// mappingSession.$latestMapUpdate
+///     .compactMap { $0 }
+///     .sink { mapUpdate in ... }
+///     .store(in: &cancellables)
+/// ```
+public final class NSDKDeviceMappingSession: NSDKSession.IDisposable, NSDKUpdatableSession {
+
+    // MARK: - Combine Publishers
+
+    /// The latest incremental map update from the mapping session. Updated each frame by `NSDKSession` while active.
+    ///
+    /// `nil` until the first map update becomes available after mapping starts.
+    /// Each non-nil value represents new nodes and edges added to the map since the last update.
+    @Published public private(set) var latestMapUpdate: NSDKBuffer?
+
+    // MARK: - Private
+
     internal let nsdkHandle: NSDKHandle
     private let api: DeviceMappingApi
+    private let mapStorage: NSDKMapStorage
+    private var isActive = false
 
-    init(nsdkHandle: NSDKHandle, mappingApi: DeviceMappingApi) {
+    // MARK: - Init
+
+    init(nsdkHandle: NSDKHandle, mappingApi: DeviceMappingApi, mapStorage: NSDKMapStorage) {
         self.nsdkHandle = nsdkHandle
         self.api = mappingApi
+        self.mapStorage = mapStorage
         let cStatus = mappingApi.create(nsdkHandle: nsdkHandle)
         if cStatus.isError {
             unexpectedNSDKStatus(cStatus)
@@ -40,6 +75,21 @@ public final class NSDKDeviceMappingSession: NSDKSession.IDisposable, NSDKFeatur
             unexpectedNSDKStatus(cStatus)
         }
     }
+
+    // MARK: - NSDKUpdatableSession
+
+    /// Polls the map storage for the latest map update and publishes it on `$latestMapUpdate`.
+    ///
+    /// Called automatically by `NSDKSession` each frame — you do not need to call this directly.
+    /// No-op when the session is not active.
+    func update() {
+        guard isActive else { return }
+        if let update = mapStorage.mapUpdate() {
+            latestMapUpdate = update
+        }
+    }
+
+    // MARK: - Lifecycle
 
     /// Reports the current status of the mapping session.
     ///
@@ -86,6 +136,7 @@ public final class NSDKDeviceMappingSession: NSDKSession.IDisposable, NSDKFeatur
         if cStatus.isError {
             unexpectedNSDKStatus(cStatus)
         }
+        isActive = true
     }
 
     /// Stop all mapping processes.
@@ -96,13 +147,15 @@ public final class NSDKDeviceMappingSession: NSDKSession.IDisposable, NSDKFeatur
         if cStatus.isError {
             unexpectedNSDKStatus(cStatus)
         }
+        isActive = false
+        latestMapUpdate = nil
     }
 
     /// Begin a mapping sequence.
     ///
     /// This begins building an on-device map that can be used for VPS. Map data is accumulated
-    /// in ``NSDKMapStorage`` while mapping is running. Poll ``NSDKMapStorage.mapUpdate()``
-    /// periodically to retrieve incremental map updates, or call ``NSDKMapStorage.mapData()``
+    /// in the session's ``NSDKMapStorage`` while mapping is running. Subscribe to ``$latestMapUpdate``
+    /// to retrieve incremental map updates reactively, or call ``NSDKMapStorage.mapData()``
     /// after mapping completes to get the full map.
     ///
     /// - Attention: This method must be called after ``start()`` and before ``stop()``.

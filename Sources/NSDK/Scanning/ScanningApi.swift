@@ -9,8 +9,8 @@ internal protocol ScanningApi: NSDKApiBase {
     func stop(nsdkHandle: ARDK_Handle) -> ARDK_Status
     func saveRecording(nsdkHandle: ARDK_Handle) -> ARDK_Status
     func getSaveInfo(nsdkHandle: ARDK_Handle, saveOut: UnsafeMutablePointer<ARDK_Scanning_SaveInfo>) -> ARDK_Status
-    func exportArchive(nsdkHandle: ARDK_Handle, metadataJson: ARDK_String, exportAsVideo: Bool, exportOut: UnsafeMutablePointer<ARDK_Scanning_Export>) -> ARDK_Status
-    func exportSplitArchive(nsdkHandle: ARDK_Handle, metadataJson: ARDK_String, maxFramesPerArchive: Int32, exportAsVideo: Bool, exportOut: UnsafeMutablePointer<ARDK_Scanning_Split_Export>) -> ARDK_Status
+    func exportArchive(nsdkHandle: ARDK_Handle, metadataJson: ARDK_String, exportAsVideo: Bool, exportResolution: NSDK_ExportResolution, exportOut: UnsafeMutablePointer<ARDK_Scanning_Export>) -> ARDK_Status
+    func exportSplitArchive(nsdkHandle: ARDK_Handle, metadataJson: ARDK_String, maxFramesPerArchive: Int32, exportAsVideo: Bool, exportResolution: NSDK_ExportResolution, exportOut: UnsafeMutablePointer<ARDK_Scanning_Split_Export>) -> ARDK_Status
     func getRaycastBuffer(nsdkHandle: ARDK_Handle, raycastBufferOut: UnsafeMutablePointer<ARDK_Scanning_RaycastBuffer>) -> ARDK_Status
     func computeVoxels(nsdkHandle: ARDK_Handle) -> ARDK_Status
     func getVoxelBuffer(nsdkHandle: ARDK_Handle, voxelBufferOut: UnsafeMutablePointer<ARDK_Scanning_VoxelBuffer>) -> ARDK_Status
@@ -46,11 +46,11 @@ internal class CScanningApi: CArdkApiBase, ScanningApi {
     func getSaveInfo(nsdkHandle: ARDK_Handle, saveOut: UnsafeMutablePointer<ARDK_Scanning_SaveInfo>) -> ARDK_Status {
         return ARDK_Scanning_GetSaveInfo(nsdkHandle, saveOut)
     }
-    func exportArchive(nsdkHandle: ARDK_Handle, metadataJson: ARDK_String, exportAsVideo: Bool, exportOut: UnsafeMutablePointer<ARDK_Scanning_Export>) -> ARDK_Status {
-        return ARDK_Scanning_ExportArchive(nsdkHandle, metadataJson, exportAsVideo, exportOut)
+    func exportArchive(nsdkHandle: ARDK_Handle, metadataJson: ARDK_String, exportAsVideo: Bool, exportResolution: NSDK_ExportResolution, exportOut: UnsafeMutablePointer<ARDK_Scanning_Export>) -> ARDK_Status {
+        return ARDK_Scanning_ExportArchive(nsdkHandle, metadataJson, exportAsVideo, exportResolution, exportOut)
     }
-    func exportSplitArchive(nsdkHandle: ARDK_Handle, metadataJson: ARDK_String, maxFramesPerArchive: Int32, exportAsVideo: Bool, exportOut: UnsafeMutablePointer<ARDK_Scanning_Split_Export>) -> ARDK_Status {
-        return ARDK_Scanning_ExportSplitArchive(nsdkHandle, metadataJson, maxFramesPerArchive, exportAsVideo, exportOut)
+    func exportSplitArchive(nsdkHandle: ARDK_Handle, metadataJson: ARDK_String, maxFramesPerArchive: Int32, exportAsVideo: Bool, exportResolution: NSDK_ExportResolution, exportOut: UnsafeMutablePointer<ARDK_Scanning_Split_Export>) -> ARDK_Status {
+        return ARDK_Scanning_ExportSplitArchive(nsdkHandle, metadataJson, maxFramesPerArchive, exportAsVideo, exportResolution, exportOut)
     }
     func getRaycastBuffer(nsdkHandle: ARDK_Handle, raycastBufferOut: UnsafeMutablePointer<ARDK_Scanning_RaycastBuffer>) -> ARDK_Status {
         return ARDK_Scanning_GetRaycastBuffer(nsdkHandle, raycastBufferOut)

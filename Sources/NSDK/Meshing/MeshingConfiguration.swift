@@ -4,7 +4,7 @@ import Darwin
 public extension NSDKMeshingSession {
     struct Configuration {
         /// Target frame rate for the meshing feature
-        public var frameRate: Int
+        public var frameRate: UInt32
 
         /// If true, only high-quality frames will be integrated into the mesh,
         /// but updates will be less frequent
@@ -24,7 +24,7 @@ public extension NSDKMeshingSession {
         /// By default, this is 0.
         /// Setting this to a value greater than 1 will allow lower detail levels to be used
         /// in areas with less thorough coverage.
-        public var numVoxelLevels: Int
+        public var numVoxelLevels: Int32
 
         /// The size of the mesh blocks, in meters
         public var meshBlockSize: Float
@@ -38,37 +38,37 @@ public extension NSDKMeshingSession {
         public var enableMeshDecimation: Bool
 
         /// If true, the mesh will be filtered according to the packedAllowlist and/or packedBlocklist.
-        public var filterMeshWithSemantics: Bool
+        public var filterMeshWithSceneSegmentation: Bool
 
         /// If true, packedAllowlist will be used to filter the mesh.
-        /// Requires filterMeshWithSemantics to be true.
+        /// Requires filterMeshWithSceneSegmentation to be true.
         public var enableAllowlist: Bool
 
-        /// Semantic channels to include in the mesh (e.g. `[.ground, .building]`).
-        public var packedAllowlist: SemanticsChannels
+        /// Semantic channels to include in the mesh (e.g. `[.ground, .grass]`).
+        public var packedAllowlist: SceneSegmentationChannels
 
         /// If true, packedBlocklist will be used to filter the mesh.
-        /// Requires filterMeshWithSemantics to be true.
+        /// Requires filterMeshWithSceneSegmentation to be true.
         public var enableBlocklist: Bool
 
-        /// Semantic channels to exclude from the mesh (e.g. `[.sky, .person]`).
-        public var packedBlocklist: SemanticsChannels
+        /// Semantic channels to exclude from the mesh (e.g. `[.sky]`).
+        public var packedBlocklist: SceneSegmentationChannels
 
         public init(
-            frameRate: Int = 0,
+            frameRate: UInt32 = 0,
             fuseKeyframesOnly: Bool = false,
             maximumIntegrationDistance: Float = 0,
             voxelSize: Float = 0,
             enableDistanceBasedVolumetricCleanup: Bool = false,
-            numVoxelLevels: Int = 0,
+            numVoxelLevels: Int32 = 0,
             meshBlockSize: Float = 0,
             meshCullingDistance: Float = 0,
             enableMeshDecimation: Bool = true,
-            filterMeshWithSemantics: Bool = false,
+            filterMeshWithSceneSegmentation: Bool = false,
             enableAllowlist: Bool = false,
-            packedAllowlist: SemanticsChannels = SemanticsChannels(),
+            packedAllowlist: SceneSegmentationChannels = SceneSegmentationChannels(),
             enableBlocklist: Bool = false,
-            packedBlocklist: SemanticsChannels = SemanticsChannels()
+            packedBlocklist: SceneSegmentationChannels = SceneSegmentationChannels()
         ) {
             self.frameRate = frameRate
             self.fuseKeyframesOnly = fuseKeyframesOnly
@@ -79,7 +79,7 @@ public extension NSDKMeshingSession {
             self.meshBlockSize = meshBlockSize
             self.meshCullingDistance = meshCullingDistance
             self.enableMeshDecimation = enableMeshDecimation
-            self.filterMeshWithSemantics = filterMeshWithSemantics
+            self.filterMeshWithSceneSegmentation = filterMeshWithSceneSegmentation
             self.enableAllowlist = enableAllowlist
             self.packedAllowlist = packedAllowlist
             self.enableBlocklist = enableBlocklist
@@ -88,16 +88,16 @@ public extension NSDKMeshingSession {
 
         func convertToC() -> ARDK_Meshing_Configuration {
             var config = ARDK_Meshing_Configuration()
-            config.frame_rate = UInt32(frameRate)
+            config.frame_rate = frameRate
             config.fuse_keyframes_only = fuseKeyframesOnly
             config.maximum_integration_distance = maximumIntegrationDistance
             config.voxel_size = voxelSize
             config.enable_distance_based_volumetric_cleanup = enableDistanceBasedVolumetricCleanup
-            config.num_voxel_levels = Int32(numVoxelLevels)
+            config.num_voxel_levels = numVoxelLevels
             config.mesh_block_size = meshBlockSize
             config.mesh_culling_distance = meshCullingDistance
             config.disable_mesh_decimation = !enableMeshDecimation
-            config.filter_mesh_with_semantics = filterMeshWithSemantics
+            config.filter_mesh_with_semantics = filterMeshWithSceneSegmentation
             config.enable_allowlist = enableAllowlist
             config.packed_allowlist = packedAllowlist.rawValueForPackedImageLayout
             config.enable_blocklist = enableBlocklist

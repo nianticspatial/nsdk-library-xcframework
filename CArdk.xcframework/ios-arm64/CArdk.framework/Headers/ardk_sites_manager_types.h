@@ -9,8 +9,8 @@
 #include <cstdint>
 extern "C" {
 #else
-#include <stdint.h>
 #include <stdbool.h>
+#include <stdint.h>
 #endif
 
 // ============================================================================
@@ -93,22 +93,22 @@ typedef struct ARDK_SitesManager_AssetVpsData {
 
 /// @brief   Organization information.
 typedef struct ARDK_SitesManager_OrganizationInfo {
-  const char* id;                    // organization_key.organization_id
-  const char* name;                  // organization_data.name
-  const char* status;                // organization_metadata.status
-  int64_t created_timestamp;         // organization_metadata.created_timestamp.seconds
+  const char* id;             // organization_key.organization_id
+  const char* name;           // organization_data.name
+  const char* status;         // organization_metadata.status
+  int64_t created_timestamp;  // organization_metadata.created_timestamp.seconds
 } ARDK_SitesManager_OrganizationInfo;
 
 /// @brief   Site information.
 typedef struct ARDK_SitesManager_SiteInfo {
-  const char* id;                    // site_key.site_id
-  const char* name;                  // site_data.name
-  const char* status;                // site_data.site_status
-  const char* organization_id;      // organization_id
-  double latitude;                   // site_data.map_point.latitude (0.0 if not present)
-  double longitude;                  // site_data.map_point.longitude (0.0 if not present)
-  bool has_location;                 // indicates if lat/lng are valid
-  const char* parent_site_id;        // parent_site_id (nullptr if empty)
+  const char* id;               // site_key.site_id
+  const char* name;             // site_data.name
+  const char* status;           // site_data.site_status
+  const char* organization_id;  // organization_id
+  double latitude;              // site_data.map_point.latitude (0.0 if not present)
+  double longitude;             // site_data.map_point.longitude (0.0 if not present)
+  bool has_location;            // indicates if lat/lng are valid
+  const char* parent_site_id;   // parent_site_id (nullptr if empty)
 } ARDK_SitesManager_SiteInfo;
 
 /// @brief   Asset information.
@@ -158,13 +158,25 @@ typedef struct ARDK_SitesManager_AssetInfo {
 
 /// @brief   User information.
 typedef struct ARDK_SitesManager_UserInfo {
-  const char* id;                    // user_key.user_id
-  const char* first_name;            // user_data.first_name
-  const char* last_name;              // user_data.last_name
-  const char* email;                  // user_data.email
-  const char* status;                 // user_metadata.status
-  int64_t created_timestamp;          // user_metadata.created_timestamp.seconds
+  const char* id;             // user_key.user_id
+  const char* first_name;     // user_data.first_name
+  const char* last_name;      // user_data.last_name
+  const char* email;          // user_data.email
+  const char* status;         // user_metadata.status
+  int64_t created_timestamp;  // user_metadata.created_timestamp.seconds
 } ARDK_SitesManager_UserInfo;
+
+/// @brief   Information about a site and its assets, returned by a location-based query.
+typedef struct ARDK_SitesManager_SiteAssetsInfo {
+  /// @brief   Site information.
+  ARDK_SitesManager_SiteInfo site;
+  /// @brief   Assets belonging to this site (array).
+  ARDK_SitesManager_AssetInfo* assets;
+  /// @brief   Number of elements in the \c assets array.
+  int assets_size;
+  /// @brief   Distance from the query coordinate to the site, in meters.
+  double distance;
+} ARDK_SitesManager_SiteAssetsInfo;
 
 /// @brief   Result of an organization request (single or collection).
 typedef struct ARDK_SitesManager_OrganizationResult {
@@ -232,6 +244,24 @@ typedef struct ARDK_SitesManager_AssetResult {
   ARDK_ResourceHandle handle;
 } ARDK_SitesManager_AssetResult;
 
+/// @brief   Result of a site-assets location query.
+typedef struct ARDK_SitesManager_SiteAssetsResult {
+  /// @brief   The last known status of the server request.
+  ARDK_SitesManager_RequestStatus status;
+  /// @brief   Error code describing why the request did not complete successfully,
+  ///          if applicable.
+  ARDK_SitesManager_Error error;
+  /// @brief   Array of site-assets info, ordered by distance from the query coordinate.
+  ARDK_SitesManager_SiteAssetsInfo* site_assets;
+  /// @brief   Number of elements in the \c site_assets array.
+  int site_assets_size;
+  /// @brief   Resource handle.
+  /// @details To avoid memory leaks, release this handle using the
+  ///          \p ARDK_Release_Resource function once the contents of the struct
+  ///          are no longer needed.
+  ARDK_ResourceHandle handle;
+} ARDK_SitesManager_SiteAssetsResult;
+
 /// @brief   Result of a user request.
 typedef struct ARDK_SitesManager_UserResult {
   /// @brief   The last known status of the server request.
@@ -254,4 +284,3 @@ typedef struct ARDK_SitesManager_UserResult {
 #ifdef __cplusplus
 }
 #endif
-

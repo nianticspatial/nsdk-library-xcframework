@@ -10,7 +10,7 @@ public extension NSDKVps2Session {
         public var universalLocalizationEnabled: Bool = true
         
         /// Number of requests per second to send the cloud for universal localization.
-        public var universalLocalizationRequestsPerSecond: Float = 4.0
+        public var universalLocalizationRequestsPerSecond: Float = 1.0
         
         /// If true, VPS map localization is enabled.
         ///

@@ -10,7 +10,9 @@ extension NSDKSession {
     /// Creates a new VPS Coverage session.
     ///
     /// - Returns: A new ``NSDKVpsCoverageSession`` instance attached to this NSDK session.
-    public func createVpsCoverageSession() -> NSDKVpsCoverageSession {
+    /// - Important: Must be called from the main thread.
+    @MainActor
+    public func acquireVpsCoverageSession() -> NSDKVpsCoverageSession {
         let key = ObjectIdentifier(NSDKVpsCoverageSession.self)
         if let existing = disposables[key] as? NSDKVpsCoverageSession {
             return existing

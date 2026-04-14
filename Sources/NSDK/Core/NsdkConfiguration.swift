@@ -148,12 +148,11 @@ public extension NSDKSession {
         public var fastDepthEndpoint: String?
         public var mediumDepthEndpoint: String?
         public var smoothDepthEndpoint: String?
-        public var fastSemanticsEndpoint: String?
-        public var mediumSemanticsEndpoint: String?
-        public var smoothSemanticsEndpoint: String?
+        public var fastSceneSegmentationEndpoint: String?
+        public var mediumSceneSegmentationEndpoint: String?
+        public var smoothSceneSegmentationEndpoint: String?
         public var scanningEndpoint: String?
         public var scanningSqcEndpoint: String?
-        public var objectDetectionEndpoint: String?
         public var telemetryEndpoint: String?
         public var telemetryKey: String?
         public var geographiclibGeoidEndpoint: String?
@@ -167,12 +166,11 @@ public extension NSDKSession {
             fastDepthEndpoint: String? = nil,
             mediumDepthEndpoint: String? = nil,
             smoothDepthEndpoint: String? = nil,
-            fastSemanticsEndpoint: String? = nil,
-            mediumSemanticsEndpoint: String? = nil,
-            smoothSemanticsEndpoint: String? = nil,
+            fastSceneSegmentationEndpoint: String? = nil,
+            mediumSceneSegmentationEndpoint: String? = nil,
+            smoothSceneSegmentationEndpoint: String? = nil,
             scanningEndpoint: String? = nil,
             scanningSqcEndpoint: String? = nil,
-            objectDetectionEndpoint: String? = nil,
             telemetryEndpoint: String? = nil,
             telemetryKey: String? = nil,
             geographiclibGeoidEndpoint: String? = nil
@@ -185,12 +183,11 @@ public extension NSDKSession {
             self.fastDepthEndpoint = fastDepthEndpoint
             self.mediumDepthEndpoint = mediumDepthEndpoint
             self.smoothDepthEndpoint = smoothDepthEndpoint
-            self.fastSemanticsEndpoint = fastSemanticsEndpoint
-            self.mediumSemanticsEndpoint = mediumSemanticsEndpoint
-            self.smoothSemanticsEndpoint = smoothSemanticsEndpoint
+            self.fastSceneSegmentationEndpoint = fastSceneSegmentationEndpoint
+            self.mediumSceneSegmentationEndpoint = mediumSceneSegmentationEndpoint
+            self.smoothSceneSegmentationEndpoint = smoothSceneSegmentationEndpoint
             self.scanningEndpoint = scanningEndpoint
             self.scanningSqcEndpoint = scanningSqcEndpoint
-            self.objectDetectionEndpoint = objectDetectionEndpoint
             self.telemetryEndpoint = telemetryEndpoint
             self.telemetryKey = telemetryKey
             self.geographiclibGeoidEndpoint = geographiclibGeoidEndpoint
@@ -208,12 +205,11 @@ public extension NSDKSession {
                 config.fast_depth_endpoint = createString(fastDepthEndpoint)
                 config.medium_depth_endpoint = createString(mediumDepthEndpoint)
                 config.smooth_depth_endpoint = createString(smoothDepthEndpoint)
-                config.fast_semantics_endpoint = createString(fastSemanticsEndpoint)
-                config.medium_semantics_endpoint = createString(mediumSemanticsEndpoint)
-                config.smooth_semantics_endpoint = createString(smoothSemanticsEndpoint)
+                config.fast_semantics_endpoint = createString(fastSceneSegmentationEndpoint)
+                config.medium_semantics_endpoint = createString(mediumSceneSegmentationEndpoint)
+                config.smooth_semantics_endpoint = createString(smoothSceneSegmentationEndpoint)
                 config.scanning_endpoint = createString(scanningEndpoint)
                 config.scanning_sqc_endpoint = createString(scanningSqcEndpoint)
-                config.object_detection_endpoint = createString(objectDetectionEndpoint)
                 config.telemetry_endpoint = createString(telemetryEndpoint)
                 config.telemetry_key = createString(telemetryKey)
                 config.geographiclib_geoid_endpoint = createString(geographiclibGeoidEndpoint)

@@ -3,7 +3,8 @@ import CArdk
 import Foundation
 
 extension NSDKSession {
-    public func createSitesSession() -> NSDKSitesSession {
+    @MainActor
+    public func acquireSitesSession() -> NSDKSitesSession {
         let key = ObjectIdentifier(NSDKSitesSession.self)
         if let existing = disposables[key] as? NSDKSitesSession {
             return existing
@@ -143,6 +144,33 @@ public final class NSDKSitesSession: NSDKSession.IDisposable {
         }
     }
     
+    // Polling function for site-assets location query
+    private func getSiteAssetsResult(requestId: NetworkRequestId) -> NSDKAsyncState<SiteAssetsResult, SitesResult.Error> {
+        var cResult = ARDK_SitesManager_SiteAssetsResult()
+
+        let cStatus = sitesApi.getSiteAssetsResult(
+            nsdkHandle: nsdkHandle,
+            requestId: requestId,
+            resultOut: &cResult
+        )
+
+        if cStatus.isInvalidArgument {
+            preconditionFailure("Request id `\(requestId)` is invalid.")
+        } else if cStatus.isError {
+            unexpectedNSDKStatus(cStatus)
+        }
+
+        if cResult.status == ARDK_SitesManager_RequestStatus_Success {
+            let result = SiteAssetsResult(fromC: cResult)
+            sitesApi.releaseResource(handle: cResult.handle)
+            return .success(result)
+        } else if cResult.status == ARDK_SitesManager_RequestStatus_InProgress {
+            return .inProgress(nil)
+        } else {
+            return .failure(SitesResult.Error(fromC: cResult.error))
+        }
+    }
+
     // MARK: - Helper Functions
     
     /// Generic polling helper that waits for a request to complete.
@@ -462,6 +490,53 @@ public final class NSDKSitesSession: NSDKSession.IDisposable {
         )
     }
     
+    /// Requests sites and their assets near a GPS coordinate and waits for the result.
+    ///
+    /// Results are ordered by distance from the query coordinate.
+    ///
+    /// - Parameters:
+    ///   - lat: Latitude of the query coordinate.
+    ///   - lng: Longitude of the query coordinate.
+    ///   - radiusMeters: Search radius in meters.
+    ///   - assetType: The type of assets to fetch (default: `.vpsInfo`).
+    ///   - pollingInterval: The interval between status checks (default: 0.5 seconds).
+    ///   - timeout: Maximum time to wait for completion (default: 60 seconds).
+    /// - Returns: A `SiteAssetsResult` containing site-assets entries ordered by distance.
+    /// - Throws:
+    ///   - ``CancellationError`` if the Task running this function was cancelled.
+    ///   - ``TimeoutError`` if the function timed out before it could complete execution.
+    ///   - ``SitesResult.Error`` if there was an error specific to the network query.
+    public func requestSiteAssetsByLocation(
+        lat: Double,
+        lng: Double,
+        radiusMeters: Double,
+        assetType: AssetType = .vpsInfo,
+        pollingInterval: TimeInterval = 0.5,
+        timeout: TimeInterval = 60.0
+    ) async throws -> SiteAssetsResult {
+        var requestIdOut: NetworkRequestId = 0
+        let cAssetType = ARDK_SitesManager_AssetType(rawValue: UInt32(assetType.rawValue))
+        let cStatus = sitesApi.requestSiteAssetsByLocation(
+            nsdkHandle: nsdkHandle,
+            lat: lat,
+            lng: lng,
+            radiusMeters: radiusMeters,
+            assetType: cAssetType,
+            requestIdOut: &requestIdOut
+        )
+
+        if cStatus.isError {
+            unexpectedNSDKStatus(cStatus)
+        }
+
+        return try await pollForResult(
+            requestId: requestIdOut,
+            getResult: getSiteAssetsResult,
+            pollingInterval: pollingInterval,
+            timeout: timeout
+        )
+    }
+
     /// Requests self user info and waits for the result.
     ///
     /// Uses the user ID from the authenticated session's metadata.

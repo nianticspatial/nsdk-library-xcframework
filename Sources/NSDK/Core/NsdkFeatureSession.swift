@@ -27,3 +27,14 @@ public protocol NSDKFeatureSession {
     /// This halts all processing. The session can be reconfigured and restarted after stopping.
     func stop()
 }
+
+/// Internal protocol for feature sessions that receive per-frame updates driven by `NSDKSession`.
+///
+/// `NSDKSession.update()` calls `update()` on every registered session conforming to this protocol.
+/// Implementations should poll the native SDK for the latest results and publish them.
+/// This is a no-op when the session is not active (i.e., between `stop()` and `start()`).
+///
+/// SDK consumers should not call `update()` directly.
+protocol NSDKUpdatableSession: NSDKFeatureSession {
+    func update()
+}

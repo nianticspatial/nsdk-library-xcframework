@@ -125,6 +125,13 @@ public extension NSDKScanningSession {
         ///         lower recording FPS than the target framerate.
         public var fullResolutionFramerate: Int32
 
+        /// Whether to record all sensors.
+        ///
+        /// When `true`, all sensors will be recorded. When `false`, only the first sensor will be recorded.
+        ///
+        /// **Default:** `false`
+        public var recordAllSensors: Bool
+
         /// Initializes a new scanning session configuration with provided settings.
         public init(
             framerate: Int = 0,
@@ -139,7 +146,8 @@ public extension NSDKScanningSession {
             scanTargetId: String? = nil,
             generateDepthsIfLidarUnavailable: Bool = false,
             enableFullResolution: Bool = false,
-            fullResolutionFramerate: Int = 0
+            fullResolutionFramerate: Int = 0,
+            recordAllSensors: Bool = false
         ) {
             self.framerate = Int32(framerate)
             self.enableRaycastVisualization = enableRaycastVisualization
@@ -154,6 +162,7 @@ public extension NSDKScanningSession {
             self.generateDepthsIfLidarUnavailable = generateDepthsIfLidarUnavailable
             self.enableFullResolution = enableFullResolution
             self.fullResolutionFramerate = Int32(fullResolutionFramerate)
+            self.recordAllSensors = recordAllSensors
         }
 
         func withCStruct<Result>(_ body: (UnsafePointer<ARDK_Scanning_Config>) throws -> Result) rethrows -> Result {
@@ -169,7 +178,8 @@ public extension NSDKScanningSession {
             config.use_ardk_depths_if_platform_unavailable = generateDepthsIfLidarUnavailable
             config.enable_full_resolution = enableFullResolution
             config.full_resolution_framerate = fullResolutionFramerate
-
+            config.record_all_sensors = recordAllSensors
+            
             return try NSDKUtils.withNSDKStrings { createString in
                 config.base_path = createString(path)
                 config.scan_target_id = createString(scanTargetId)
