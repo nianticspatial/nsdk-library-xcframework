@@ -135,21 +135,25 @@ public final class NSDKSession {
                                      accessToken: String?,
                                      useLidar: Bool,
                                      pathConfig: NSDKPathConfig?,
-                                     sinkCallback: ARDK_SinkCallbackFunctionPtr?) -> NSDKHandle {
+                                     sinkCallback: ARDK_SinkCallbackFunctionPtr?,
+                                     deviceInfo: DeviceInfo = DeviceInfo()) -> NSDKHandle {
         let sanitizedAccess = (accessToken ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
         let isLidarProvided = useLidar && ARUtils.isLidarAvailable()
         return sanitizedAccess.withCString { accessC in
-            var config = ARDK_Config()
-            config.user_config.access_token = ARDK_String(data: accessC, data_size: UInt32(strlen(accessC)))
-            config.use_platform_depths = isLidarProvided
-            config.sink_callback = sinkCallback
-            if let pathConfig {
-                return pathConfig.withCStruct { pathPtr in
-                    config.path_config = pathPtr.pointee
-                    return withUnsafePointer(to: config) { api.create(config: $0)! }
+            deviceInfo.withCStruct { devicePtr in
+                var config = ARDK_Config()
+                config.user_config.access_token = ARDK_String(data: accessC, data_size: UInt32(strlen(accessC)))
+                config.use_platform_depths = isLidarProvided
+                config.sink_callback = sinkCallback
+                config.device_info = devicePtr.pointee
+                if let pathConfig {
+                    return pathConfig.withCStruct { pathPtr in
+                        config.path_config = pathPtr.pointee
+                        return withUnsafePointer(to: config) { api.create(config: $0)! }
+                    }
                 }
+                return withUnsafePointer(to: config) { api.create(config: $0)! }
             }
-            return withUnsafePointer(to: config) { api.create(config: $0)! }
         }
     }
 
