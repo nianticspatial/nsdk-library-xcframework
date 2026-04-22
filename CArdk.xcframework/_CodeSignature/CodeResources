@@ -6,7 +6,7 @@
 	<dict>
 		<key>ios-arm64-simulator/CArdk.framework/CArdk</key>
 		<data>
-		arMe3Ed68qRT78Px9agQS2ePB+k=
+		tuQVQMK4N2qdkx2LWdRXv9T4ufI=
 		</data>
 		<key>ios-arm64-simulator/CArdk.framework/Headers/ardk_age_level.h</key>
 		<data>
@@ -402,7 +402,7 @@
 		</data>
 		<key>ios-arm64-simulator/CArdk.framework/Headers/ardk_vps2_config.h</key>
 		<data>
-		uLnzjLaXOmuod167H3IbEIc8mSQ=
+		fHX7yKidz1F8j+QAJWwW7toTQB0=
 		</data>
 		<key>ios-arm64-simulator/CArdk.framework/Headers/ardk_vps2_geolocation.h</key>
 		<data>
@@ -526,7 +526,7 @@
 		</data>
 		<key>ios-arm64-simulator/CArdk.framework/Info.plist</key>
 		<data>
-		nz7lDLTTWqSrPMej/8tjD5poEAU=
+		UStCkK+RxmKXvSmHeA6NStBfCi0=
 		</data>
 		<key>ios-arm64-simulator/CArdk.framework/Modules/module.modulemap</key>
 		<data>
@@ -538,11 +538,11 @@
 		</data>
 		<key>ios-arm64-simulator/CArdk.framework/_CodeSignature/CodeResources</key>
 		<data>
-		5DYE7GaLQMdqM7AK8IaZ4Opbh+c=
+		AlFjFbV+vfy2EJcSO1Aq/qFV0Lk=
 		</data>
 		<key>ios-arm64/CArdk.framework/CArdk</key>
 		<data>
-		iU+UHZ6kB5nS2UlASBVKOpSYeck=
+		S2j1bxBbunV89UD68iV9NDTcWVU=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_age_level.h</key>
 		<data>
@@ -938,7 +938,7 @@
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_vps2_config.h</key>
 		<data>
-		uLnzjLaXOmuod167H3IbEIc8mSQ=
+		fHX7yKidz1F8j+QAJWwW7toTQB0=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_vps2_geolocation.h</key>
 		<data>
@@ -1062,7 +1062,7 @@
 		</data>
 		<key>ios-arm64/CArdk.framework/Info.plist</key>
 		<data>
-		nz7lDLTTWqSrPMej/8tjD5poEAU=
+		UStCkK+RxmKXvSmHeA6NStBfCi0=
 		</data>
 		<key>ios-arm64/CArdk.framework/Modules/module.modulemap</key>
 		<data>
@@ -1074,7 +1074,7 @@
 		</data>
 		<key>ios-arm64/CArdk.framework/_CodeSignature/CodeResources</key>
 		<data>
-		5DYE7GaLQMdqM7AK8IaZ4Opbh+c=
+		AlFjFbV+vfy2EJcSO1Aq/qFV0Lk=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -1083,11 +1083,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			arMe3Ed68qRT78Px9agQS2ePB+k=
+			tuQVQMK4N2qdkx2LWdRXv9T4ufI=
 			</data>
 			<key>hash2</key>
 			<data>
-			FAlvqDEOadT2YgIJtprkBhkw+pQsFBHHA25n6Srm+QM=
+			O6ECmMEdb3hxHonptpnkQbmsn2pUHCJt+8yzJ8v8DYI=
 			</data>
 		</dict>
 		<key>ios-arm64-simulator/CArdk.framework/Headers/ardk_age_level.h</key>
@@ -2172,11 +2172,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			uLnzjLaXOmuod167H3IbEIc8mSQ=
+			fHX7yKidz1F8j+QAJWwW7toTQB0=
 			</data>
 			<key>hash2</key>
 			<data>
-			aWoOm7Reh3k3EsmF8vOmzPUKJdczFCWeHBCzf7zl62A=
+			Hp7RiYZkonSPWkMdvq4n17aCZ/FHJhYy6gSmqNyiRnA=
 			</data>
 		</dict>
 		<key>ios-arm64-simulator/CArdk.framework/Headers/ardk_vps2_geolocation.h</key>
@@ -2513,11 +2513,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			nz7lDLTTWqSrPMej/8tjD5poEAU=
+			UStCkK+RxmKXvSmHeA6NStBfCi0=
 			</data>
 			<key>hash2</key>
 			<data>
-			MpkM7uBIsXnEp7AGqMhGuhUEZuPIhX1RyEQz8OjJxpo=
+			aXGhsODW7Hzfhr9TPqVY+UOE5K4sPqxm7xKj2TClBFA=
 			</data>
 		</dict>
 		<key>ios-arm64-simulator/CArdk.framework/Modules/module.modulemap</key>
@@ -2546,22 +2546,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			5DYE7GaLQMdqM7AK8IaZ4Opbh+c=
+			AlFjFbV+vfy2EJcSO1Aq/qFV0Lk=
 			</data>
 			<key>hash2</key>
 			<data>
-			+/8z6gNqLsOupeoBIJAU4s4ueSIBg2tGTnOIFr6Hrbk=
+			WyAnrLg8NKMqhclQRB/t/6Lbj3tOIL8K/nvyoIqSyA8=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/CArdk</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			iU+UHZ6kB5nS2UlASBVKOpSYeck=
+			S2j1bxBbunV89UD68iV9NDTcWVU=
 			</data>
 			<key>hash2</key>
 			<data>
-			7c+jmH9P9EuP7+r7nE8FacvCsdvJaKpgLo9p66fFOV8=
+			08CqzJKAXouLjV5w9Uy2ok/wKQndP6mYu/pNwCFsUA4=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_age_level.h</key>
@@ -3646,11 +3646,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			uLnzjLaXOmuod167H3IbEIc8mSQ=
+			fHX7yKidz1F8j+QAJWwW7toTQB0=
 			</data>
 			<key>hash2</key>
 			<data>
-			aWoOm7Reh3k3EsmF8vOmzPUKJdczFCWeHBCzf7zl62A=
+			Hp7RiYZkonSPWkMdvq4n17aCZ/FHJhYy6gSmqNyiRnA=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_vps2_geolocation.h</key>
@@ -3987,11 +3987,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			nz7lDLTTWqSrPMej/8tjD5poEAU=
+			UStCkK+RxmKXvSmHeA6NStBfCi0=
 			</data>
 			<key>hash2</key>
 			<data>
-			MpkM7uBIsXnEp7AGqMhGuhUEZuPIhX1RyEQz8OjJxpo=
+			aXGhsODW7Hzfhr9TPqVY+UOE5K4sPqxm7xKj2TClBFA=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Modules/module.modulemap</key>
@@ -4020,11 +4020,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			5DYE7GaLQMdqM7AK8IaZ4Opbh+c=
+			AlFjFbV+vfy2EJcSO1Aq/qFV0Lk=
 			</data>
 			<key>hash2</key>
 			<data>
-			+/8z6gNqLsOupeoBIJAU4s4ueSIBg2tGTnOIFr6Hrbk=
+			WyAnrLg8NKMqhclQRB/t/6Lbj3tOIL8K/nvyoIqSyA8=
 			</data>
 		</dict>
 	</dict>

@@ -109,10 +109,10 @@ public extension NSDKSession {
             deviceLidarSupported: Bool = false,
             altitudeIsMeanSeaLevel: Bool = false)
         {
-            self.appId = appId
+            self.appId = appId ?? DeviceMetadata.applicationId
             self.platform = platform
-            self.manufacturer = manufacturer
-            self.deviceModel = deviceModel
+            self.manufacturer = manufacturer ?? DeviceMetadata.manufacturer
+            self.deviceModel = deviceModel ?? DeviceMetadata.deviceModel
             self.clientId = clientId
             self.appInstanceId = appInstanceId
             self.deviceLidarSupported = deviceLidarSupported
