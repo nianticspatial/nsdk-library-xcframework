@@ -32,8 +32,9 @@ public typealias NSDKHandle = ARDK_Handle
 /// let status = session.sendFrame(frameData)
 /// ```
 public final class NSDKSession {
-    // TODO: this should be a singleton
-    
+    /// Tracks the currently active session to prevent double initialization.
+    @MainActor internal static weak var activeSession: NSDKSession?
+
     /// The native handle to the underlying NSDK C API instance.
     ///
     /// This handle is used internally to communicate with the native NSDK library
@@ -75,7 +76,11 @@ public final class NSDKSession {
     /// ```
     @MainActor
     public convenience init?(withJson configFilePath: String, logCallback: NSDKLogCallback? = nil) {
+        guard NSDKSession.activeSession == nil else {
+            fatalError("An NSDKSession is already active. Destroy it before creating a new one.")
+        }
         self.init(api: CArdkApi(), withJson: configFilePath, logCallback: logCallback)
+        NSDKSession.activeSession = self
     }
     
     /// Creates a new NSDK session with a Configuration object.
@@ -96,14 +101,22 @@ public final class NSDKSession {
     /// ```
     @MainActor
     public convenience init?(withConfig config: Configuration) {
+        guard NSDKSession.activeSession == nil else {
+            fatalError("An NSDKSession is already active. Destroy it before creating a new one.")
+        }
         self.init(api: CArdkApi(), withConfig: config)
+        NSDKSession.activeSession = self
     }
     
     /// Convenience initializer that accepts an access token.
     /// The token is sanitized and passed to native AuthManagerApi immediately via creation call.
     @MainActor
     public convenience init(accessToken: String, useLidar: Bool = true, pathConfig: NSDKPathConfig? = nil, logCallback: NSDKLogCallback? = nil) {
+        guard NSDKSession.activeSession == nil else {
+            fatalError("An NSDKSession is already active. Destroy it before creating a new one.")
+        }
         self.init(api: CArdkApi(), accessToken: accessToken, useLidar: useLidar, pathConfig: pathConfig, logCallback: logCallback)
+        NSDKSession.activeSession = self
     }
 
     // Hold onto the log callback and callback bridge to ensure they persists for the lifetime of the session
@@ -135,21 +148,25 @@ public final class NSDKSession {
                                      accessToken: String?,
                                      useLidar: Bool,
                                      pathConfig: NSDKPathConfig?,
-                                     sinkCallback: ARDK_SinkCallbackFunctionPtr?) -> NSDKHandle {
+                                     sinkCallback: ARDK_SinkCallbackFunctionPtr?,
+                                     deviceInfo: DeviceInfo = DeviceInfo()) -> NSDKHandle {
         let sanitizedAccess = (accessToken ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
         let isLidarProvided = useLidar && ARUtils.isLidarAvailable()
         return sanitizedAccess.withCString { accessC in
-            var config = ARDK_Config()
-            config.user_config.access_token = ARDK_String(data: accessC, data_size: UInt32(strlen(accessC)))
-            config.use_platform_depths = isLidarProvided
-            config.sink_callback = sinkCallback
-            if let pathConfig {
-                return pathConfig.withCStruct { pathPtr in
-                    config.path_config = pathPtr.pointee
-                    return withUnsafePointer(to: config) { api.create(config: $0)! }
+            deviceInfo.withCStruct { devicePtr in
+                var config = ARDK_Config()
+                config.user_config.access_token = ARDK_String(data: accessC, data_size: UInt32(strlen(accessC)))
+                config.use_platform_depths = isLidarProvided
+                config.sink_callback = sinkCallback
+                config.device_info = devicePtr.pointee
+                if let pathConfig {
+                    return pathConfig.withCStruct { pathPtr in
+                        config.path_config = pathPtr.pointee
+                        return withUnsafePointer(to: config) { api.create(config: $0)! }
+                    }
                 }
+                return withUnsafePointer(to: config) { api.create(config: $0)! }
             }
-            return withUnsafePointer(to: config) { api.create(config: $0)! }
         }
     }
 

@@ -21,7 +21,7 @@ typedef struct ARDK_VPS2_Config {
   bool universal_localization_enabled;
 
   /// @brief      Number of requests per second to send the cloud for universal localization.
-  /// @details    This is 4.0f in the default configuration.
+  /// @details    This is 1.0f in the default configuration.
   float universal_localization_requests_per_second;
 
   /// @brief      If true, multi-camera input is enabled for universal localization.
