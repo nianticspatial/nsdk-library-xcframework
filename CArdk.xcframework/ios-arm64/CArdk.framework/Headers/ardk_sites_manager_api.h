@@ -183,6 +183,23 @@ ARDK_CAPI_VISIBLE ARDK_Status ARDK_SitesManager_RequestUserInfo(
 ARDK_CAPI_VISIBLE ARDK_Status ARDK_SitesManager_RequestSelfUserInfo(
     ARDK_Handle ardk_handle, ARDK_NetworkRequestId* request_id_out);
 
+/// @brief        Requests organizations for the current authenticated token.
+/// @details      For user tokens: uses user_id from token to fetch organizations.
+///               For org-scoped tokens: uses organization_id from token directly.
+///               Poll \c ARDK_SitesManager_GetOrganizationResult to check the status.
+/// @param        ardk_handle       Handle to the ARDK object.
+/// @param[out]   request_id_out    The identifier for this request.
+/// @return       \c ARDK_Status value indicating success or failure:
+///               - \c ARDK_Status_OK (0) means the function executed successfully.
+///               - \c ARDK_Status_NullArgument - \p request_id_out was null.
+///               - \c ARDK_Status_InvalidOperation - Authentication via an access token was
+///                 not possible.
+///               - \c ARDK_Status_NullArdkHandle - \p ardk_handle was null.
+///               - \c ARDK_Status_FeatureDoesNotExist - The sites manager was never created or
+///                 was already destroyed.
+ARDK_CAPI_VISIBLE ARDK_Status ARDK_SitesManager_RequestSelfOrganizationInfo(
+    ARDK_Handle ardk_handle, ARDK_NetworkRequestId* request_id_out);
+
 /// @brief        Requests sites and assets near a GPS coordinate.
 /// @details      This initiates a network request. Poll \c ARDK_SitesManager_GetSiteAssetsResult
 ///               to check the status of this request.

@@ -6,7 +6,7 @@
 	<dict>
 		<key>ios-arm64-simulator/CArdk.framework/CArdk</key>
 		<data>
-		arMe3Ed68qRT78Px9agQS2ePB+k=
+		pw+tTstG/M3bLj8nCubCezfwlvI=
 		</data>
 		<key>ios-arm64-simulator/CArdk.framework/Headers/ardk_age_level.h</key>
 		<data>
@@ -98,7 +98,7 @@
 		</data>
 		<key>ios-arm64-simulator/CArdk.framework/Headers/ardk_device_info.h</key>
 		<data>
-		NiOkRhdBnmUFWcMn407DTE4PTQA=
+		0y+xbUOuHULNeYonZUYLTtwjXYg=
 		</data>
 		<key>ios-arm64-simulator/CArdk.framework/Headers/ardk_external_buffer.h</key>
 		<data>
@@ -358,7 +358,7 @@
 		</data>
 		<key>ios-arm64-simulator/CArdk.framework/Headers/ardk_sites_manager_api.h</key>
 		<data>
-		eCifZfgzZnoNVdYPp6CqW/Bgsfg=
+		JPGktqUlszVr04J0EUxGg9LpyJY=
 		</data>
 		<key>ios-arm64-simulator/CArdk.framework/Headers/ardk_sites_manager_error_code.h</key>
 		<data>
@@ -518,7 +518,7 @@
 		</data>
 		<key>ios-arm64-simulator/CArdk.framework/Headers/telemetry_publishing_api.h</key>
 		<data>
-		4RYMMGQmhm7/b4Q/D6sJbWoifdc=
+		ph9cLxBA/aaV5dEJuTSxGQOBC98=
 		</data>
 		<key>ios-arm64-simulator/CArdk.framework/Headers/telemetry_sink_api.h</key>
 		<data>
@@ -526,7 +526,7 @@
 		</data>
 		<key>ios-arm64-simulator/CArdk.framework/Info.plist</key>
 		<data>
-		nz7lDLTTWqSrPMej/8tjD5poEAU=
+		0FjDMxLlKyc0qNJ9oL282Ol6ZOs=
 		</data>
 		<key>ios-arm64-simulator/CArdk.framework/Modules/module.modulemap</key>
 		<data>
@@ -538,11 +538,11 @@
 		</data>
 		<key>ios-arm64-simulator/CArdk.framework/_CodeSignature/CodeResources</key>
 		<data>
-		5DYE7GaLQMdqM7AK8IaZ4Opbh+c=
+		g2iVyWEdkosZQ6/idZCLkSGgKJ0=
 		</data>
 		<key>ios-arm64/CArdk.framework/CArdk</key>
 		<data>
-		iU+UHZ6kB5nS2UlASBVKOpSYeck=
+		N4/DoH/fJg/AfdCvwGdwolGGqCw=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_age_level.h</key>
 		<data>
@@ -634,7 +634,7 @@
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_device_info.h</key>
 		<data>
-		NiOkRhdBnmUFWcMn407DTE4PTQA=
+		0y+xbUOuHULNeYonZUYLTtwjXYg=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_external_buffer.h</key>
 		<data>
@@ -894,7 +894,7 @@
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_sites_manager_api.h</key>
 		<data>
-		eCifZfgzZnoNVdYPp6CqW/Bgsfg=
+		JPGktqUlszVr04J0EUxGg9LpyJY=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_sites_manager_error_code.h</key>
 		<data>
@@ -1054,7 +1054,7 @@
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/telemetry_publishing_api.h</key>
 		<data>
-		4RYMMGQmhm7/b4Q/D6sJbWoifdc=
+		ph9cLxBA/aaV5dEJuTSxGQOBC98=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/telemetry_sink_api.h</key>
 		<data>
@@ -1062,7 +1062,7 @@
 		</data>
 		<key>ios-arm64/CArdk.framework/Info.plist</key>
 		<data>
-		nz7lDLTTWqSrPMej/8tjD5poEAU=
+		0FjDMxLlKyc0qNJ9oL282Ol6ZOs=
 		</data>
 		<key>ios-arm64/CArdk.framework/Modules/module.modulemap</key>
 		<data>
@@ -1074,7 +1074,7 @@
 		</data>
 		<key>ios-arm64/CArdk.framework/_CodeSignature/CodeResources</key>
 		<data>
-		5DYE7GaLQMdqM7AK8IaZ4Opbh+c=
+		g2iVyWEdkosZQ6/idZCLkSGgKJ0=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -1083,11 +1083,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			arMe3Ed68qRT78Px9agQS2ePB+k=
+			pw+tTstG/M3bLj8nCubCezfwlvI=
 			</data>
 			<key>hash2</key>
 			<data>
-			FAlvqDEOadT2YgIJtprkBhkw+pQsFBHHA25n6Srm+QM=
+			t9BBv8E/Yh93wH9qkN5GDM0rzKNWHHQP6vQbK4KWF0A=
 			</data>
 		</dict>
 		<key>ios-arm64-simulator/CArdk.framework/Headers/ardk_age_level.h</key>
@@ -1336,11 +1336,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			NiOkRhdBnmUFWcMn407DTE4PTQA=
+			0y+xbUOuHULNeYonZUYLTtwjXYg=
 			</data>
 			<key>hash2</key>
 			<data>
-			qfD2uVUsJ6HC+JK7oo01DoHBBRLS8jvx5a/t9cPbBIM=
+			lguvsWgp39l2eZjiYrgixZiRh86xm5uhImgz98T08ug=
 			</data>
 		</dict>
 		<key>ios-arm64-simulator/CArdk.framework/Headers/ardk_external_buffer.h</key>
@@ -2051,11 +2051,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			eCifZfgzZnoNVdYPp6CqW/Bgsfg=
+			JPGktqUlszVr04J0EUxGg9LpyJY=
 			</data>
 			<key>hash2</key>
 			<data>
-			raK7+eaSW6veF2F7dXf2KAO2agD/YkWNFhNunB3a5s0=
+			JELjlf9+nqjVkD3ktpJR72K2h5PxTKgUcsjJxIE8R0A=
 			</data>
 		</dict>
 		<key>ios-arm64-simulator/CArdk.framework/Headers/ardk_sites_manager_error_code.h</key>
@@ -2491,11 +2491,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			4RYMMGQmhm7/b4Q/D6sJbWoifdc=
+			ph9cLxBA/aaV5dEJuTSxGQOBC98=
 			</data>
 			<key>hash2</key>
 			<data>
-			ryw0c4hrtIOaKPeqmTjE2d/Z+/gq+annTp/OPH7ClM0=
+			tnNfx8exF+M/DzfMCA0OGYj2YRMACdApKIsiuKoUgpQ=
 			</data>
 		</dict>
 		<key>ios-arm64-simulator/CArdk.framework/Headers/telemetry_sink_api.h</key>
@@ -2513,11 +2513,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			nz7lDLTTWqSrPMej/8tjD5poEAU=
+			0FjDMxLlKyc0qNJ9oL282Ol6ZOs=
 			</data>
 			<key>hash2</key>
 			<data>
-			MpkM7uBIsXnEp7AGqMhGuhUEZuPIhX1RyEQz8OjJxpo=
+			+W/+w6JMEvvC/4vALkKTKVviQQbMrm9KVMKqHWAhj/U=
 			</data>
 		</dict>
 		<key>ios-arm64-simulator/CArdk.framework/Modules/module.modulemap</key>
@@ -2546,22 +2546,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			5DYE7GaLQMdqM7AK8IaZ4Opbh+c=
+			g2iVyWEdkosZQ6/idZCLkSGgKJ0=
 			</data>
 			<key>hash2</key>
 			<data>
-			+/8z6gNqLsOupeoBIJAU4s4ueSIBg2tGTnOIFr6Hrbk=
+			Zr1PrbL2ecHEweoyQpwCvdfitHARPv6UnJh8jAbiBgM=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/CArdk</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			iU+UHZ6kB5nS2UlASBVKOpSYeck=
+			N4/DoH/fJg/AfdCvwGdwolGGqCw=
 			</data>
 			<key>hash2</key>
 			<data>
-			7c+jmH9P9EuP7+r7nE8FacvCsdvJaKpgLo9p66fFOV8=
+			8V8F5rTQD9YzsNCafe/8oS6ZPVkIgjfqKq6xre3C0yw=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_age_level.h</key>
@@ -2810,11 +2810,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			NiOkRhdBnmUFWcMn407DTE4PTQA=
+			0y+xbUOuHULNeYonZUYLTtwjXYg=
 			</data>
 			<key>hash2</key>
 			<data>
-			qfD2uVUsJ6HC+JK7oo01DoHBBRLS8jvx5a/t9cPbBIM=
+			lguvsWgp39l2eZjiYrgixZiRh86xm5uhImgz98T08ug=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_external_buffer.h</key>
@@ -3525,11 +3525,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			eCifZfgzZnoNVdYPp6CqW/Bgsfg=
+			JPGktqUlszVr04J0EUxGg9LpyJY=
 			</data>
 			<key>hash2</key>
 			<data>
-			raK7+eaSW6veF2F7dXf2KAO2agD/YkWNFhNunB3a5s0=
+			JELjlf9+nqjVkD3ktpJR72K2h5PxTKgUcsjJxIE8R0A=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_sites_manager_error_code.h</key>
@@ -3965,11 +3965,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			4RYMMGQmhm7/b4Q/D6sJbWoifdc=
+			ph9cLxBA/aaV5dEJuTSxGQOBC98=
 			</data>
 			<key>hash2</key>
 			<data>
-			ryw0c4hrtIOaKPeqmTjE2d/Z+/gq+annTp/OPH7ClM0=
+			tnNfx8exF+M/DzfMCA0OGYj2YRMACdApKIsiuKoUgpQ=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/telemetry_sink_api.h</key>
@@ -3987,11 +3987,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			nz7lDLTTWqSrPMej/8tjD5poEAU=
+			0FjDMxLlKyc0qNJ9oL282Ol6ZOs=
 			</data>
 			<key>hash2</key>
 			<data>
-			MpkM7uBIsXnEp7AGqMhGuhUEZuPIhX1RyEQz8OjJxpo=
+			+W/+w6JMEvvC/4vALkKTKVviQQbMrm9KVMKqHWAhj/U=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Modules/module.modulemap</key>
@@ -4020,11 +4020,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			5DYE7GaLQMdqM7AK8IaZ4Opbh+c=
+			g2iVyWEdkosZQ6/idZCLkSGgKJ0=
 			</data>
 			<key>hash2</key>
 			<data>
-			+/8z6gNqLsOupeoBIJAU4s4ueSIBg2tGTnOIFr6Hrbk=
+			Zr1PrbL2ecHEweoyQpwCvdfitHARPv6UnJh8jAbiBgM=
 			</data>
 		</dict>
 	</dict>

@@ -220,6 +220,8 @@ public final class NSDKSitesSession: NSDKSession.IDisposable {
     /// This is an async wrapper that combines request initiation and polling.
     /// It automatically handles polling until the request completes or times out.
     ///
+    /// - Note: Consider using ``requestSelfOrganizationInfo(pollingInterval:timeout:)`` instead.
+    ///
     /// - Parameters:
     ///   - userId: The user ID to fetch organizations for.
     ///   - pollingInterval: The interval between status checks (default: 0.5 seconds).
@@ -540,6 +542,8 @@ public final class NSDKSitesSession: NSDKSession.IDisposable {
     /// Requests self user info and waits for the result.
     ///
     /// Uses the user ID from the authenticated session's metadata.
+    /// To fetch organizations, consider using
+    /// ``requestSelfOrganizationInfo(pollingInterval:timeout:)`` instead.
     ///
     /// - Parameters:
     ///   - pollingInterval: The interval between status checks (default: 0.5 seconds).
@@ -570,6 +574,41 @@ public final class NSDKSitesSession: NSDKSession.IDisposable {
         return try await pollForResult(
             requestId: requestIdOut,
             getResult: getUserResult,
+            pollingInterval: pollingInterval,
+            timeout: timeout
+        )
+    }
+
+    /// Requests organizations for the current authenticated session and waits for the result.
+    ///
+    /// - Parameters:
+    ///   - pollingInterval: The interval between status checks (default: 0.5 seconds).
+    ///   - timeout: Maximum time to wait for completion (default: 60 seconds).
+    /// - Returns: An `OrganizationResult` containing the organizations.
+    /// - Throws:
+    ///   - ``CancellationError`` if the Task running this function was cancelled.
+    ///   - ``TimeoutError`` if the function timed out before it could complete execution.
+    ///   - ``SitesResult.Error`` if there was an error specific to the network query.
+    ///   - ``NSDKError.invalidOperation`` if no access token was available.
+    public func requestSelfOrganizationInfo(
+        pollingInterval: TimeInterval = 0.5,
+        timeout: TimeInterval = 60.0
+    ) async throws -> OrganizationResult {
+        var requestIdOut: NetworkRequestId = 0
+        let cStatus = sitesApi.requestSelfOrganizationInfo(
+            nsdkHandle: nsdkHandle,
+            requestIdOut: &requestIdOut
+        )
+
+        if cStatus.isInvalidOperation {
+            throw NSDKError.invalidOperation
+        } else if cStatus.isError {
+            unexpectedNSDKStatus(cStatus)
+        }
+
+        return try await pollForResult(
+            requestId: requestIdOut,
+            getResult: getOrganizationResult,
             pollingInterval: pollingInterval,
             timeout: timeout
         )

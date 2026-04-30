@@ -28,6 +28,7 @@ typedef struct ARDK_DeviceInfo {
   ///             such as scanning and VPS2 that require altitude data will be stalled until the
   ///             geoid model download is complete.
   bool altitude_is_mean_sea_level;
+  ARDK_String dev_environment;
 } ARDK_DeviceInfo;
 
 #ifdef __cplusplus

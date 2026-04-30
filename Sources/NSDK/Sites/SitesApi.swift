@@ -53,7 +53,12 @@ internal protocol SitesApi: NSDKApiBase {
         nsdkHandle: ARDK_Handle,
         requestIdOut: UnsafeMutablePointer<ARDK_NetworkRequestId>
     ) -> ARDK_Status
-    
+
+    func requestSelfOrganizationInfo(
+        nsdkHandle: ARDK_Handle,
+        requestIdOut: UnsafeMutablePointer<ARDK_NetworkRequestId>
+    ) -> ARDK_Status
+
     // Polling functions
     func getOrganizationResult(
         nsdkHandle: ARDK_Handle,
@@ -167,7 +172,14 @@ internal class CSitesApi: CArdkApiBase, SitesApi {
     ) -> ARDK_Status {
         return ARDK_SitesManager_RequestSelfUserInfo(nsdkHandle, requestIdOut)
     }
-    
+
+    func requestSelfOrganizationInfo(
+        nsdkHandle: ARDK_Handle,
+        requestIdOut: UnsafeMutablePointer<ARDK_NetworkRequestId>
+    ) -> ARDK_Status {
+        return ARDK_SitesManager_RequestSelfOrganizationInfo(nsdkHandle, requestIdOut)
+    }
+
     // Polling functions
     func getOrganizationResult(
         nsdkHandle: ARDK_Handle,
