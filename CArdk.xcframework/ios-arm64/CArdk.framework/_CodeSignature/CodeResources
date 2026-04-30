@@ -94,7 +94,7 @@
 		</data>
 		<key>Headers/ardk_device_info.h</key>
 		<data>
-		NiOkRhdBnmUFWcMn407DTE4PTQA=
+		0y+xbUOuHULNeYonZUYLTtwjXYg=
 		</data>
 		<key>Headers/ardk_external_buffer.h</key>
 		<data>
@@ -354,7 +354,7 @@
 		</data>
 		<key>Headers/ardk_sites_manager_api.h</key>
 		<data>
-		eCifZfgzZnoNVdYPp6CqW/Bgsfg=
+		JPGktqUlszVr04J0EUxGg9LpyJY=
 		</data>
 		<key>Headers/ardk_sites_manager_error_code.h</key>
 		<data>
@@ -514,7 +514,7 @@
 		</data>
 		<key>Headers/telemetry_publishing_api.h</key>
 		<data>
-		4RYMMGQmhm7/b4Q/D6sJbWoifdc=
+		ph9cLxBA/aaV5dEJuTSxGQOBC98=
 		</data>
 		<key>Headers/telemetry_sink_api.h</key>
 		<data>
@@ -522,7 +522,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		nz7lDLTTWqSrPMej/8tjD5poEAU=
+		0FjDMxLlKyc0qNJ9oL282Ol6ZOs=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -693,7 +693,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			qfD2uVUsJ6HC+JK7oo01DoHBBRLS8jvx5a/t9cPbBIM=
+			lguvsWgp39l2eZjiYrgixZiRh86xm5uhImgz98T08ug=
 			</data>
 		</dict>
 		<key>Headers/ardk_external_buffer.h</key>
@@ -1148,7 +1148,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			raK7+eaSW6veF2F7dXf2KAO2agD/YkWNFhNunB3a5s0=
+			JELjlf9+nqjVkD3ktpJR72K2h5PxTKgUcsjJxIE8R0A=
 			</data>
 		</dict>
 		<key>Headers/ardk_sites_manager_error_code.h</key>
@@ -1428,7 +1428,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ryw0c4hrtIOaKPeqmTjE2d/Z+/gq+annTp/OPH7ClM0=
+			tnNfx8exF+M/DzfMCA0OGYj2YRMACdApKIsiuKoUgpQ=
 			</data>
 		</dict>
 		<key>Headers/telemetry_sink_api.h</key>
