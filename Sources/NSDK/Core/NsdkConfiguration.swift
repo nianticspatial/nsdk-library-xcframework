@@ -9,22 +9,21 @@ public extension NSDKSession {
     /// and logging preferences.
     struct Configuration {
         public var forceDisableCTrace: Bool
-        public var deviceInfo: DeviceInfo
+        var deviceInfo: DeviceInfo
         public var envConfig: CloudEnvConfig
         public var userConfig: UserConfig
         public var useLidar: Bool
         public var logCallback: NSDKLogCallback?
-        
+
         public init(
             forceDisableCTrace: Bool = false,
-            deviceInfo: DeviceInfo = DeviceInfo(),
             envConfig: CloudEnvConfig = CloudEnvConfig(),
             userConfig: UserConfig = UserConfig(),
             useLidar: Bool = true,
             logCallback: NSDKLogCallback? = nil
         ) {
             self.forceDisableCTrace = forceDisableCTrace
-            self.deviceInfo = deviceInfo
+            self.deviceInfo = DeviceInfo()
             self.envConfig = envConfig
             self.userConfig = userConfig
             self.useLidar = useLidar
@@ -90,29 +89,42 @@ public extension NSDKSession {
     }
     
     struct DeviceInfo {
-        public var appId: String?
-        public var platform: String?
-        public var manufacturer: String?
-        public var deviceModel: String?
-        public var clientId: String?
-        public var appInstanceId: String?
-        public var deviceLidarSupported: Bool
-        public var altitudeIsMeanSeaLevel: Bool
-        
-        public init(
-            appId: String? = nil,
-            platform: String? = nil,
-            manufacturer: String? = nil,
-            deviceModel: String? = nil,
-            clientId: String? = nil,
-            appInstanceId: String? = nil,
-            deviceLidarSupported: Bool = false,
+        private(set) var appId: String?
+        private(set) var platform: String?
+        private(set) var manufacturer: String?
+        private(set) var deviceModel: String?
+        private(set) var clientId: String?
+        private(set) var appInstanceId: String?
+        private(set) var deviceLidarSupported: Bool
+        private(set) var altitudeIsMeanSeaLevel: Bool
+
+        init() {
+            let altitudeIsMeanSeaLevel = false
+            self.appId = DeviceMetadata.applicationId
+            self.platform = DeviceMetadata.platform
+            self.manufacturer = DeviceMetadata.manufacturer
+            self.deviceModel = DeviceMetadata.deviceModel
+            self.clientId = nil
+            self.appInstanceId = DeviceMetadata.appInstanceId
+            self.deviceLidarSupported = DeviceMetadata.deviceLidarSupported
+            self.altitudeIsMeanSeaLevel = altitudeIsMeanSeaLevel
+        }
+
+        /// Internal initializer for testing. Allows overriding auto-detected values.
+        internal init(
+            appId: String?,
+            platform: String?,
+            manufacturer: String?,
+            deviceModel: String?,
+            clientId: String?,
+            appInstanceId: String?,
+            deviceLidarSupported: Bool,
             altitudeIsMeanSeaLevel: Bool = false)
         {
-            self.appId = appId ?? DeviceMetadata.applicationId
-            self.platform = platform ?? DeviceMetadata.platform
-            self.manufacturer = manufacturer ?? DeviceMetadata.manufacturer
-            self.deviceModel = deviceModel ?? DeviceMetadata.deviceModel
+            self.appId = appId
+            self.platform = platform
+            self.manufacturer = manufacturer
+            self.deviceModel = deviceModel
             self.clientId = clientId
             self.appInstanceId = appInstanceId
             self.deviceLidarSupported = deviceLidarSupported
@@ -154,7 +166,6 @@ public extension NSDKSession {
         public var scanningEndpoint: String?
         public var scanningSqcEndpoint: String?
         public var telemetryEndpoint: String?
-        public var telemetryKey: String?
         public var geographiclibGeoidEndpoint: String?
         
         public init(
@@ -172,7 +183,6 @@ public extension NSDKSession {
             scanningEndpoint: String? = nil,
             scanningSqcEndpoint: String? = nil,
             telemetryEndpoint: String? = nil,
-            telemetryKey: String? = nil,
             geographiclibGeoidEndpoint: String? = nil
         ) {
             self.vpsEndpoint = vpsEndpoint
@@ -189,7 +199,6 @@ public extension NSDKSession {
             self.scanningEndpoint = scanningEndpoint
             self.scanningSqcEndpoint = scanningSqcEndpoint
             self.telemetryEndpoint = telemetryEndpoint
-            self.telemetryKey = telemetryKey
             self.geographiclibGeoidEndpoint = geographiclibGeoidEndpoint
         }
         
@@ -211,7 +220,6 @@ public extension NSDKSession {
                 config.scanning_endpoint = createString(scanningEndpoint)
                 config.scanning_sqc_endpoint = createString(scanningSqcEndpoint)
                 config.telemetry_endpoint = createString(telemetryEndpoint)
-                config.telemetry_key = createString(telemetryKey)
                 config.geographiclib_geoid_endpoint = createString(geographiclibGeoidEndpoint)
                 
                 return try withUnsafePointer(to: config) { pointer in

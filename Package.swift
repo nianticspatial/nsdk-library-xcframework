@@ -19,7 +19,10 @@ let package = Package(
     targets: [
         .target(
             name: "NSDK",
-            dependencies: ["CArdk"]
+            dependencies: ["CArdk"],
+            resources: [
+                .process("Playback/PlaybackShaders.metal")
+            ]
         ),
         // MARK: - Binary dependency
         .binaryTarget(

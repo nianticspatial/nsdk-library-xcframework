@@ -64,7 +64,6 @@ typedef struct ARDK_CloudEnvConfig {
   ARDK_String object_detection_endpoint;
 
   ARDK_String telemetry_endpoint;
-  ARDK_String telemetry_key;
 
   ARDK_String bev_endpoint;
 

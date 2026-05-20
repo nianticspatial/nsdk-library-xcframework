@@ -93,6 +93,19 @@ typedef struct ARDK_VPS_Config {
   /// @details    When enabled, the VPS feature will use also attempt to localize from the device
   /// map.
   bool device_map_localization_enabled;
+
+  /// @brief      Maximum number of concurrent localization requests per target.
+  /// @details    Limits how many in-flight cloud localization requests can be active
+  ///             for a single target simultaneously. Zero uses the default value (2).
+  uint32_t max_requests_in_transit_per_target;
+
+  /// @brief      Distance gate in meters for anchor candidate filtering when geo-corrected.
+  /// @details    Nodes farther than this distance from the device are skipped during
+  ///             anchor localization. When only GPS is available (no geo-correction), the
+  ///             effective gate is 2x this value. Zero uses the default value (50m
+  ///             geo-corrected, 100m GPS-only). A negative value (e.g. -1) disables the
+  ///             distance check entirely.
+  float anchor_distance_gate_meters;
 } ARDK_VPS_Config;
 
 #ifdef __cplusplus

@@ -58,6 +58,13 @@ ARDK_CAPI_VISIBLE ARDK_Status ARDK_Logging_SetFileLogLevel(ARDK_Handle ardk_hand
 ARDK_CAPI_VISIBLE ARDK_Status ARDK_Logging_SetCallbackLogLevel(ARDK_Handle ardk_handle,
                                                                ARDK_LogLevel level);
 
+/// @brief        Enables or disables log throttling globally.
+/// @details      When disabled, all ARDKLOG_THROTTLE_* callsites log unconditionally, equivalent
+///               to their non-throttled counterparts. Useful for debugging noisy per-frame logs.
+///               Throttling is enabled by default.
+/// @param        enabled   Pass true to enable throttling (default), false to disable.
+ARDK_CAPI_VISIBLE void ARDK_Logging_SetThrottleEnabled(bool enabled);
+
 #ifdef __cplusplus
 }
 #endif

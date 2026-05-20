@@ -21,7 +21,7 @@ typedef struct ARDK_VPS2_Config {
   bool universal_localization_enabled;
 
   /// @brief      Number of requests per second to send the cloud for universal localization.
-  /// @details    This is 4.0f in the default configuration.
+  /// @details    This is 1.0f in the default configuration.
   float universal_localization_requests_per_second;
 
   /// @brief      If true, multi-camera input is enabled for universal localization.
@@ -59,6 +59,29 @@ typedef struct ARDK_VPS2_Config {
   /// @brief      Number of times per second to attempt localization on available device maps.
   /// @details    This is 10 times per second in the default configuration.
   int device_map_localization_framerate;
+
+  /// @brief      If true, aerial localization is enabled.
+  /// @details    Aerial localization provides visual positioning from aerial imagery.
+  ///             This is false in the default configuration.
+  bool aerial_localization_enabled;
+
+  /// @brief      Timeout in milliseconds for universal localization requests.
+  /// @details    Responses in uncached areas may take 60+ seconds; subsequent requests are
+  ///             typically under 1 second. Zero uses the default value (90000 ms).
+  int32_t universal_localization_request_timeout_ms;
+
+  /// @brief      Maximum number of concurrent localization requests per target.
+  /// @details    Limits how many in-flight cloud localization requests can be active
+  ///             for a single target simultaneously. Zero uses the default value (2).
+  uint32_t max_requests_in_transit_per_target;
+
+  /// @brief      Distance gate in meters for anchor candidate filtering when geo-corrected.
+  /// @details    Nodes farther than this distance from the device are skipped during
+  ///             anchor localization. When only GPS is available (no geo-correction), the
+  ///             effective gate is 2x this value. Zero uses the default value (50m
+  ///             geo-corrected, 100m GPS-only). A negative value (e.g. -1) disables the
+  ///             distance check entirely.
+  float anchor_distance_gate_meters;
 
 } ARDK_VPS2_Config;
 
