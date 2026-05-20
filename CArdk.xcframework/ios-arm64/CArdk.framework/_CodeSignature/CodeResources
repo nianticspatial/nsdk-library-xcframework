@@ -58,7 +58,7 @@
 		</data>
 		<key>Headers/ardk_cloud_env_config.h</key>
 		<data>
-		alt49tb4xtC2H0Zlib2Ft+Qgw1Q=
+		pehR1gdRGOweadL80ndMjp3KSec=
 		</data>
 		<key>Headers/ardk_compass_data.h</key>
 		<data>
@@ -174,7 +174,7 @@
 		</data>
 		<key>Headers/ardk_logging_api.h</key>
 		<data>
-		+0S6IPWP1DXN39jdsIEJfbwZXZk=
+		wZuCjKlHw6iLetDOt2lbknBnoSQ=
 		</data>
 		<key>Headers/ardk_map_metadata.h</key>
 		<data>
@@ -398,7 +398,7 @@
 		</data>
 		<key>Headers/ardk_vps2_config.h</key>
 		<data>
-		uLnzjLaXOmuod167H3IbEIc8mSQ=
+		ZrHbLDMHlq7teYBGwEGY9e6RWXg=
 		</data>
 		<key>Headers/ardk_vps2_geolocation.h</key>
 		<data>
@@ -446,7 +446,7 @@
 		</data>
 		<key>Headers/ardk_vps_config.h</key>
 		<data>
-		a8WqRbe/oMLYisBUgJxgBM6ckuc=
+		q/bvtTN8IOymN/7HZeUr+AN+fcc=
 		</data>
 		<key>Headers/ardk_vps_coverage_api.h</key>
 		<data>
@@ -522,7 +522,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		0FjDMxLlKyc0qNJ9oL282Ol6ZOs=
+		UStCkK+RxmKXvSmHeA6NStBfCi0=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -630,7 +630,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			mO/CmWI4H1qN0kE6qfq9CjTWWZWxJF1uc82sOIDoLNo=
+			PW7XfE+wMdadPII/emYDleB8GMyqzIo6WCS3lfMW+6E=
 			</data>
 		</dict>
 		<key>Headers/ardk_compass_data.h</key>
@@ -833,7 +833,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			IRb7QpkS1q8jK8y6gsQj+g+gtWpu53eX7YzZpLXR8z4=
+			i7rrnSuMWtn68UEKsYR1N50aXsHtwdyvbBkZ5v5JnMo=
 			</data>
 		</dict>
 		<key>Headers/ardk_map_metadata.h</key>
@@ -1225,7 +1225,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			aWoOm7Reh3k3EsmF8vOmzPUKJdczFCWeHBCzf7zl62A=
+			q8EoHm2wiy5vFOg3wbIeSgJHt72HtEBfKMf3hIoKT8E=
 			</data>
 		</dict>
 		<key>Headers/ardk_vps2_geolocation.h</key>
@@ -1309,7 +1309,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			sE29S/ewOwI+tx3HF13+aisn7k/FZ7dv4o38lMLt360=
+			Z2EMzcyVxj9u0TedvwLPUsM2KlssNxMdcsSOG23yjZY=
 			</data>
 		</dict>
 		<key>Headers/ardk_vps_coverage_api.h</key>

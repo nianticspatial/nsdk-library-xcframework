@@ -34,11 +34,31 @@ public extension NSDKVps2Session {
         /// Device maps are created by the on-device mapping feature. They do not provide
         /// a georeference.
         public var deviceMapLocalizationEnabled: Bool = false
-        
+
         /// Number of times per second to attempt localization on available device maps.
         public var deviceMapLocalizationFramerate: Int32 = 10
-        
-        
+
+        /// Timeout in milliseconds for universal localization requests.
+        ///
+        /// Responses in uncached areas may take 60+ seconds; subsequent requests are typically
+        /// under 1 second. Use 0 to apply the default value (90000 ms).
+        public var universalLocalizationRequestTimeoutMs: Int32 = 90000
+
+        /// Maximum number of concurrent localization requests per target.
+        ///
+        /// Limits how many in-flight cloud localization requests can be active for a single target
+        /// simultaneously. Use 0 to apply the default value (2).
+        public var maxRequestsInTransitPerTarget: UInt32 = 0
+
+        /// Distance gate in meters for anchor candidate filtering when geo-corrected.
+        ///
+        /// Nodes farther than this distance from the device are skipped during anchor localization.
+        /// When only GPS is available (no geo-correction), the effective gate is 2x this value.
+        /// Use 0 to apply the default value (50 meters geo-corrected, 100 meters GPS-only).
+        /// Use -1 to disable the distance check entirely.
+        public var anchorDistanceGateMeters: Float = 0
+
+
         public init(
             universalLocalizationEnabled: Bool? = nil,
             universalLocalizationRequestsPerSecond: Float? = nil,
@@ -47,7 +67,10 @@ public extension NSDKVps2Session {
             continuousVpsRequestsPerSecond: Float? = nil,
             geolocationSmoothingEnabled: Bool? = nil,
             deviceMapLocalizationEnabled: Bool? = nil,
-            deviceMapLocalizationFramerate: Int32? = nil
+            deviceMapLocalizationFramerate: Int32? = nil,
+            universalLocalizationRequestTimeoutMs: Int32? = nil,
+            maxRequestsInTransitPerTarget: UInt32? = nil,
+            anchorDistanceGateMeters: Float? = nil
         ) {
             self.universalLocalizationEnabled = universalLocalizationEnabled ?? self.universalLocalizationEnabled
             self.universalLocalizationRequestsPerSecond = universalLocalizationRequestsPerSecond ?? self.universalLocalizationRequestsPerSecond
@@ -57,11 +80,14 @@ public extension NSDKVps2Session {
             self.geolocationSmoothingEnabled = geolocationSmoothingEnabled ?? self.geolocationSmoothingEnabled
             self.deviceMapLocalizationEnabled = deviceMapLocalizationEnabled ?? self.deviceMapLocalizationEnabled
             self.deviceMapLocalizationFramerate = deviceMapLocalizationFramerate ?? self.deviceMapLocalizationFramerate
+            self.universalLocalizationRequestTimeoutMs = universalLocalizationRequestTimeoutMs ?? self.universalLocalizationRequestTimeoutMs
+            self.maxRequestsInTransitPerTarget = maxRequestsInTransitPerTarget ?? self.maxRequestsInTransitPerTarget
+            self.anchorDistanceGateMeters = anchorDistanceGateMeters ?? self.anchorDistanceGateMeters
         }
-        
+
         internal func convertToC() -> ARDK_VPS2_Config {
             var cValue = ARDK_VPS2_Config()
-            
+
             cValue.universal_localization_enabled = universalLocalizationEnabled
             cValue.universal_localization_requests_per_second = universalLocalizationRequestsPerSecond
             cValue.vps_map_localization_enabled = vpsMapLocalizationEnabled
@@ -70,6 +96,9 @@ public extension NSDKVps2Session {
             cValue.geolocation_smoothing_enabled = geolocationSmoothingEnabled
             cValue.device_map_localization_enabled = deviceMapLocalizationEnabled
             cValue.device_map_localization_framerate = deviceMapLocalizationFramerate
+            cValue.universal_localization_request_timeout_ms = universalLocalizationRequestTimeoutMs
+            cValue.max_requests_in_transit_per_target = maxRequestsInTransitPerTarget
+            cValue.anchor_distance_gate_meters = anchorDistanceGateMeters
             return cValue
         }
     }

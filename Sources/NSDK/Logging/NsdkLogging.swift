@@ -129,4 +129,16 @@ internal class LoggingApi {
         let cStatus = ARDK_Logging_SetCallbackLogLevel(nsdkHandle, logLevel.cValue)
         if cStatus.isError { unexpectedNSDKStatus(cStatus) }
     }
+
+    /// Enables or disables log throttling globally.
+    ///
+    /// When disabled, all throttled log callsites log unconditionally regardless of their
+    /// configured interval. Useful for debugging noisy per-frame logs. Throttling is enabled
+    /// by default.
+    ///
+    /// - Parameters:
+    ///   - enabled: Pass `true` to enable throttling (default), `false` to disable.
+    static public func setThrottleEnabled(enabled: Bool) {
+        ARDK_Logging_SetThrottleEnabled(enabled)
+    }
 }

@@ -1,5 +1,0 @@
-framework module CArdk {
-  umbrella header "cardk.h"
-  export *
-  module * { export * }
-}

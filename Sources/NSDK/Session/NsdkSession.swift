@@ -32,8 +32,9 @@ public typealias NSDKHandle = ARDK_Handle
 /// let status = session.sendFrame(frameData)
 /// ```
 public final class NSDKSession {
-    // TODO: this should be a singleton
-    
+    /// Tracks the currently active session to prevent double initialization.
+    @MainActor internal static weak var activeSession: NSDKSession?
+
     /// The native handle to the underlying NSDK C API instance.
     ///
     /// This handle is used internally to communicate with the native NSDK library
@@ -75,7 +76,11 @@ public final class NSDKSession {
     /// ```
     @MainActor
     public convenience init?(withJson configFilePath: String, logCallback: NSDKLogCallback? = nil) {
+        guard NSDKSession.activeSession == nil else {
+            fatalError("An NSDKSession is already active. Destroy it before creating a new one.")
+        }
         self.init(api: CArdkApi(), withJson: configFilePath, logCallback: logCallback)
+        NSDKSession.activeSession = self
     }
     
     /// Creates a new NSDK session with a Configuration object.
@@ -96,14 +101,22 @@ public final class NSDKSession {
     /// ```
     @MainActor
     public convenience init?(withConfig config: Configuration) {
+        guard NSDKSession.activeSession == nil else {
+            fatalError("An NSDKSession is already active. Destroy it before creating a new one.")
+        }
         self.init(api: CArdkApi(), withConfig: config)
+        NSDKSession.activeSession = self
     }
     
     /// Convenience initializer that accepts an access token.
     /// The token is sanitized and passed to native AuthManagerApi immediately via creation call.
     @MainActor
     public convenience init(accessToken: String, useLidar: Bool = true, pathConfig: NSDKPathConfig? = nil, logCallback: NSDKLogCallback? = nil) {
+        guard NSDKSession.activeSession == nil else {
+            fatalError("An NSDKSession is already active. Destroy it before creating a new one.")
+        }
         self.init(api: CArdkApi(), accessToken: accessToken, useLidar: useLidar, pathConfig: pathConfig, logCallback: logCallback)
+        NSDKSession.activeSession = self
     }
 
     // Hold onto the log callback and callback bridge to ensure they persists for the lifetime of the session
@@ -165,18 +178,18 @@ public final class NSDKSession {
     @MainActor
     internal init?(api: NSDKApi, withJson configFilePath: String, logCallback: NSDKLogCallback? = nil) {
         self.api = api
-        
+
         // Store the callback and create callback bridge if callback is provided
         self.logCallback = logCallback
         let callbackBridge = logCallback.map { NSDKLogCallbackBridge(callback: $0) }
         self.logCallbackBridge = callbackBridge
         let sinkCallback = callbackBridge?.makeCFunctionPointer()
-        
+
         let handle = configFilePath.withCString { cstr in
             let nsdkStr = ARDK_String(data: cstr, data_size: UInt32(strlen(cstr)))
             return api.createFromFile(configFilePath: nsdkStr, sinkCallback: sinkCallback)
         }
-        
+
         if (handle != nil) {
             self.nativeHandle = handle!
         } else {
@@ -191,18 +204,18 @@ public final class NSDKSession {
     @MainActor
     internal init?(api: NSDKApi, withConfig config: Configuration) {
         self.api = api
-        
+
         // Store the callback to ensure it persists for the lifetime of the session
         self.logCallback = config.logCallback
-        
+
         // withCStruct creates the callback bridge from config.logCallback and returns it
         let (handle, callbackBridge) = config.withCStruct { configPtr in
             return api.create(config: configPtr)
         }
-        
+
         // Store the callback bridge to keep it alive
         self.logCallbackBridge = callbackBridge
-        
+
         if (handle != nil) {
             self.nativeHandle = handle!
         } else {
@@ -215,14 +228,34 @@ public final class NSDKSession {
     }
     
     deinit {
-        for (_, item) in disposables {
-            item.destroy()
+        // Dispatch all blocking C API calls to a background thread so that releasing an
+        // NSDKSession never stalls the main thread while the native layer winds down.
+        // @unchecked Sendable is required because IDisposable, NSDKLogCallbackBridge, and
+        // NSDKApi are not declared Sendable, so the compiler rejects capturing them directly
+        // in a @Sendable DispatchQueue closure. This is safe because SessionContent is
+        // created once, handed to the background queue, and never accessed concurrently.
+        struct SessionContent: @unchecked Sendable {
+            let disposables: [ObjectIdentifier: IDisposable]
+            let logBridge: NSDKLogCallbackBridge?
+            let handle: NSDKHandle
+            let api: any NSDKApi
         }
-        
-        // Release the callback bridge if it exists
-        logCallbackBridge?.release()
-        
-        _ = api.destroy(handle: nativeHandle)
+        let content = SessionContent(
+            disposables: disposables,
+            logBridge: logCallbackBridge,
+            handle: nativeHandle,
+            api: api
+        )
+        DispatchQueue.global(qos: .userInitiated).async {
+            for (_, disposable) in content.disposables {
+                if let featureSession = disposable as? any NSDKFeatureSession {
+                    featureSession.stop()
+                }
+                disposable.destroy()
+            }
+            content.logBridge?.release()
+            _ = content.api.destroy(handle: content.handle)
+        }
     }
     
     /// Collects the latest requested sensor inputs from the assigned

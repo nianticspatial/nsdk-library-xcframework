@@ -57,7 +57,8 @@ public class PlaybackSession : ARSession, @unchecked Sendable {
                 let trackingStateChanged = trackingValue != self.lastTrackingValue
                 self.lastTrackingValue = trackingValue
 
-                DispatchQueue.main.async {
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self, self.isPlaying else { return }
                     self.currentPlaybackFrame = frame
                     if trackingStateChanged {
                         delegate?.playbackSession(self, cameraDidChangeTrackingState: frame.camera)

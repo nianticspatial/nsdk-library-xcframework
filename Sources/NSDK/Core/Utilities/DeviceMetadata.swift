@@ -1,12 +1,13 @@
 // Copyright 2022-2026 Niantic Spatial.
 
+import ARKit
 import Foundation
 
 /// Internal utility that auto-detects device metadata for telemetry.
 ///
 /// Used as default values for `NSDKSession.DeviceInfo` so that
-/// `application_id`, `manufacturer`, `device_model`, and `platform` are
-/// populated without requiring the developer to set them explicitly.
+/// device metadata fields are populated without requiring the developer
+/// to set them explicitly.
 enum DeviceMetadata {
     /// The application's bundle identifier (e.g. `"com.niantic.myapp"`).
     static var applicationId: String? {
@@ -31,5 +32,19 @@ enum DeviceMetadata {
     static var platform: String {
         let version = ProcessInfo.processInfo.operatingSystemVersion
         return "iOS \(version.majorVersion).\(version.minorVersion).\(version.patchVersion)"
+    }
+
+    /// Per-launch application instance identifier.
+    ///
+    /// A new UUID is generated once per process lifetime, matching the Unity
+    /// SDK's `AppInstanceId = Guid.NewGuid().ToString()` pattern.
+    static let appInstanceId: String = UUID().uuidString
+
+    /// Whether the device has a LiDAR sensor.
+    static var deviceLidarSupported: Bool {
+        if #available(iOS 14.0, *) {
+            return ARWorldTrackingConfiguration.supportsFrameSemantics(.sceneDepth)
+        }
+        return false
     }
 }
