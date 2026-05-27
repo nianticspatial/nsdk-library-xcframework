@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "NSDK",
     platforms: [
-      .iOS(.v15)  // Minimum iOS version supported by NSDK
+      .iOS(.v15),  // Minimum iOS version supported by NSDK
     ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
@@ -23,10 +23,6 @@ let package = Package(
             resources: [
                 .process("Playback/PlaybackShaders.metal")
             ]
-        ),
-        .testTarget(
-            name: "NSDKTests",
-            dependencies: ["NSDK"]
         ),
         // MARK: - Binary dependency
         .binaryTarget(

@@ -2,6 +2,7 @@ import Foundation
 import CoreLocation
 import CoreVideo
 import ARKit
+import NSDK
 
 // Proxy for acquiring the UI orientation
 public protocol UIOrientationReporter: AnyObject {
@@ -64,8 +65,7 @@ public final class DefaultSessionDataSource: NSObject {
 
         // Request permission first.
         locationManager.requestWhenInUseAuthorization()
-
-        // If already authorized, start right away.
+        // If already authorized, start right away
         startUpdatesIfAuthorized()
     }
     
