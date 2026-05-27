@@ -2,7 +2,6 @@ import Foundation
 import CoreLocation
 import CoreVideo
 import ARKit
-import NSDK
 
 // Proxy for acquiring the UI orientation
 public protocol UIOrientationReporter: AnyObject {
@@ -54,16 +53,27 @@ public final class DefaultSessionDataSource: NSObject {
         locationManager.delegate = self
         locationManager.headingFilter = kCLHeadingFilterNone
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        
-        // Request permission first
+
+        guard NSDKLocationAccessEvaluator.hasLocationUsageDescription() else {
+            return
+        }
+
+        guard CLLocationManager.locationServicesEnabled() else {
+            return
+        }
+
+        // Request permission first.
         locationManager.requestWhenInUseAuthorization()
-        
-        // If already authorized, start right away
+
+        // If already authorized, start right away.
         startUpdatesIfAuthorized()
     }
     
     /// Starts location and heading updates if authorization permits.
     private func startUpdatesIfAuthorized() {
+        guard NSDKLocationAccessEvaluator.hasLocationUsageDescription() else { return }
+        guard CLLocationManager.locationServicesEnabled() else { return }
+
         let status = locationManager.authorizationStatus
         guard status == .authorizedWhenInUse || status == .authorizedAlways else { return }
         
@@ -86,6 +96,13 @@ public final class DefaultSessionDataSource: NSObject {
         lock.lock()
         defer { lock.unlock() }
         return _latestHeading
+    }
+
+    private func clearCachedLocationReadings() {
+        lock.lock()
+        defer { lock.unlock() }
+        _latestLocation = nil
+        _latestHeading = nil
     }
 }
 
@@ -190,10 +207,29 @@ extension DefaultSessionDataSource : NSDKSessionDataSource {
     }
 }
 
+extension DefaultSessionDataSource: NSDKLocationAccessReporting {
+    public var locationAccessError: NSDKLocationAccessError? {
+        NSDKLocationAccessEvaluator.error(
+            hasUsageDescription: NSDKLocationAccessEvaluator.hasLocationUsageDescription(),
+            servicesEnabled: CLLocationManager.locationServicesEnabled(),
+            authorizationStatus: locationManager.authorizationStatus
+        )
+    }
+}
+
 // MARK: - CLLocationManagerDelegate
 
 extension DefaultSessionDataSource : CLLocationManagerDelegate {
     public func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        let status = manager.authorizationStatus
+        if status != .authorizedWhenInUse && status != .authorizedAlways {
+            manager.stopUpdatingLocation()
+            if CLLocationManager.headingAvailable() {
+                manager.stopUpdatingHeading()
+            }
+            clearCachedLocationReadings()
+        }
+
         startUpdatesIfAuthorized()
     }
     
@@ -209,5 +245,17 @@ extension DefaultSessionDataSource : CLLocationManagerDelegate {
         lock.lock()
         _latestHeading = newHeading
         lock.unlock()
+    }
+
+    public func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {
+        guard let locationError = error as? CLError, locationError.code == .denied else {
+            return
+        }
+
+        manager.stopUpdatingLocation()
+        if CLLocationManager.headingAvailable() {
+            manager.stopUpdatingHeading()
+        }
+        clearCachedLocationReadings()
     }
 }

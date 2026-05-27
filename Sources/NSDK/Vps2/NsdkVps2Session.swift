@@ -36,7 +36,11 @@ extension NSDKSession {
         if let existing = disposables[key] as? NSDKVps2Session {
             return existing
         }
-        let session = NSDKVps2Session(ardkHandle: nativeHandle, api: CVps2Api())
+        let session = NSDKVps2Session(
+            ardkHandle: nativeHandle,
+            api: CVps2Api(),
+            dataSourceProvider: { [weak self] in self?.dataSource }
+        )
         disposables[key] = session
         return session
     }
@@ -122,15 +126,22 @@ public final class NSDKVps2Session: NSDKSession.IDisposable, NSDKUpdatableSessio
 
     private let api: Vps2Api
     private let ardkHandle: NSDKHandle
+    private let dataSourceProvider: () -> (any NSDKSessionDataSource)?
     private var isActive = false
     private var trackedAnchorIds: Set<NSDKVpsAnchorId> = []
     private var anchorsWaitingForPayload: Set<NSDKVpsAnchorId> = []
+    private var currentConfiguration = Configuration()
 
     let anchorIdSize = Int(32)
 
-    init(ardkHandle: NSDKHandle, api: Vps2Api) {
+    init(
+        ardkHandle: NSDKHandle,
+        api: Vps2Api,
+        dataSourceProvider: @escaping () -> (any NSDKSessionDataSource)?
+    ) {
         self.ardkHandle = ardkHandle
         self.api = api
+        self.dataSourceProvider = dataSourceProvider
         let cStatus = api.create(ardkHandle: ardkHandle)
         if cStatus.isError {
             fatalError("Unexpected non-ok ARDK_Status: \(cStatus)")
@@ -176,6 +187,7 @@ public final class NSDKVps2Session: NSDKSession.IDisposable, NSDKUpdatableSessio
             api.configure(ardkHandle: ardkHandle, config: ptr)
         }
         if cStatus.isError { throw NSDKError(fromC: cStatus) }
+        currentConfiguration = config
     }
 
     /// Starts the VPS2 session.
@@ -252,7 +264,11 @@ public final class NSDKVps2Session: NSDKSession.IDisposable, NSDKUpdatableSessio
     /// - Parameter payload: Base64-encoded anchor payload.
     /// - Returns: The unique identifier of the anchor encoded in the payload.
     /// - Throws: ``NSDKError.invalidArgument`` if the payload is not valid.
+    /// - Throws: ``NSDKLocationAccessError`` when device-map relocalization is enabled and
+    ///   location access is unavailable while using ``DefaultSessionDataSource``.
     public func trackAnchor(payload: String) throws -> NSDKVpsAnchorId {
+        try validateRelocalizationPrerequisites()
+
         let anchorIdOut = UnsafeMutableBufferPointer<CChar>.allocate(capacity: anchorIdSize)
         defer { anchorIdOut.deallocate() }
 
@@ -278,6 +294,20 @@ public final class NSDKVps2Session: NSDKSession.IDisposable, NSDKUpdatableSessio
 
         trackedAnchorIds.insert(id)
         return id
+    }
+
+    private func validateRelocalizationPrerequisites() throws {
+        guard currentConfiguration.deviceMapLocalizationEnabled else {
+            return
+        }
+
+        guard let locationAccessReporter = dataSourceProvider() as? any NSDKLocationAccessReporting else {
+            return
+        }
+
+        if let error = locationAccessReporter.locationAccessError {
+            throw error
+        }
     }
 
     /// Requests to create an anchor at the specified pose.
