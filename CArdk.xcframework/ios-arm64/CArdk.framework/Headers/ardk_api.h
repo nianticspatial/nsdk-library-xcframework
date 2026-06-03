@@ -7,7 +7,6 @@
 #include "capi_common.h"
 #include "ardk_frame_data.h"
 #include "ardk_status.h"
-#include "ardk_age_level.h"
 #include "ardk_config.h"
 #include "ardk_path_config.h"
 
@@ -86,12 +85,18 @@ ARDK_GetRequestedDataFormats(ARDK_Handle handle, enum ARDK_InputDataFlags *data_
 /// @return       ARDK_Status_NullArgument if \p user_id data was null.
 ARDK_CAPI_VISIBLE ARDK_Status ARDK_SetUserId(ARDK_Handle handle, ARDK_String user_id);
 
-/// @brief        Set the user Id and age level for the ARDK object.
-/// @param        handle              Handle to the ARDK object.
-/// @param        age_level           The age level of the user.
-/// @return       ARDK_Status_OK if the age level was successfully set.
-/// @return       ARDK_Status_NullArdkHandle if \p ardk_handle was null.
-ARDK_CAPI_VISIBLE ARDK_Status ARDK_SetAgeLevel(ARDK_Handle handle, ARDK_AgeLevel age_level);
+/// @brief        Set the folder for diagnostic output files without destroying ARDK.
+/// @details      Redirects log.txt and ardk_trace.log immediately. VPS debugger output uses
+///               the new folder on the next VPS session; the active session keeps its file.
+///               Does not change public, private, or temporary application paths. Default log
+///               folder at ARDK_Create is the public application path. No-op if
+///               \p log_folder_path is empty or unchanged.
+/// @param        handle            Handle to the ARDK object.
+/// @param        log_folder_path   Directory for diagnostic output files.
+/// @return       ARDK_Status_OK on success.
+/// @return       ARDK_Status_NullArdkHandle if \p handle was null.
+ARDK_CAPI_VISIBLE ARDK_Status ARDK_SetLogOutputPath(ARDK_Handle handle,
+                                                    ARDK_String log_folder_path);
 
 #ifdef __cplusplus
 }

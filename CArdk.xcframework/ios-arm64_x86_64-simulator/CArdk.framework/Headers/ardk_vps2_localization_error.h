@@ -59,6 +59,12 @@ typedef enum ARDK_VPS2_LocalizationError : uint8_t {
   /// @brief    Code returned when a frame was rejected because the camera is
   ///           pointing at the ground or sky (no horizon crossing).
   ARDK_VPS2_LocalizationError_BadCameraAngle,
+
+  /// @brief    Code returned when a frame was rejected before dispatch because
+  ///           no valid geolocation prior was available — the GPS reading was
+  ///           NaN or a placeholder and no other valid prior (e.g. a WPS
+  ///           estimate) could be substituted.
+  ARDK_VPS2_LocalizationError_NoValidPrior,
 } ARDK_VPS2_LocalizationError;
 
 #ifdef __cplusplus

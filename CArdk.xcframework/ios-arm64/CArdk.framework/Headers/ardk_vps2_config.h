@@ -11,6 +11,40 @@ extern "C" {
 #include <stdint.h>
 #endif
 
+/// @internal
+/// @brief        Internal-only experimental configuration nested inside ARDK_VPS2_Config.
+/// @details      Not part of the stable public API. Only the Python and ROS2 SDKs mirror
+///               these fields; the Unity / Kotlin / Swift bindings leave them zero-initialized.
+///               Field names, behavior, and presence may change without notice.
+typedef struct ARDK_VPS2_InternalConfig {
+  /// @brief      WPS prior mode for BEV requests.
+  /// @details    Controls how the WPS geo-referenced position is used as a prior
+  ///             for BEV localization requests:
+  ///             0 = Off (default) — always use raw GPS
+  ///             1 = Replace — WPS replaces GPS when conditions are met
+  ///             2 = Alternate — alternate between GPS and WPS on consecutive requests
+  ///             3 = Dual — send two requests per frame, one with GPS and one with WPS
+  int wps_prior_mode;
+
+  /// @brief      Distance in meters after which WPS position replaces GPS as BEV prior.
+  /// @details    This is 20.0f in the default configuration. Only used when
+  ///             wps_prior_mode is non-zero. Zero falls through to the default.
+  float wps_prior_distance_threshold;
+
+  /// @brief      Frame rate (Hz) for GPS/GNSS data registration in the WPS module.
+  /// @details    Zero uses the default (120 Hz).
+  float wps_gnss_framerate;
+
+  /// @brief      Frame rate (Hz) for pose data registration in the WPS module.
+  /// @details    Zero uses the default (120 Hz).
+  float wps_pose_framerate;
+
+  /// @brief      Minimum BEV confidence (likelihood) to accept an estimate.
+  /// @details    Default 0.0008. Lower values accept weaker candidates.
+  ///             Set to 0 to use the built-in default.
+  float bev_confidence_threshold;
+} ARDK_VPS2_InternalConfig;
+
 /// @brief        Configuration for VPS2
 /// @note         Struct fields left zeroed-out will be internally converted to default
 ///               values.
@@ -82,6 +116,12 @@ typedef struct ARDK_VPS2_Config {
   ///             geo-corrected, 100m GPS-only). A negative value (e.g. -1) disables the
   ///             distance check entirely.
   float anchor_distance_gate_meters;
+
+  /// @internal
+  /// @brief      Internal-only experimental fields. See ARDK_VPS2_InternalConfig.
+  /// @details    Not part of the stable public API; only Python and ROS2 SDKs mirror
+  ///             these. Unity / Kotlin / Swift leave this zero-initialized.
+  ARDK_VPS2_InternalConfig _internal;
 
 } ARDK_VPS2_Config;
 

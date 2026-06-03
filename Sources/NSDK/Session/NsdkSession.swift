@@ -23,7 +23,7 @@ public typealias NSDKHandle = ARDK_Handle
 ///
 /// ```swift
 /// // Initialize with tokens
-/// let session = NSDKSession(accessToken: "access-token", refreshToken: "refresh-token")
+/// let session = NSDKSession(accessToken: "access-token")
 ///
 /// // Create a VPS2 session for localization
 /// let vps2Session = session.createVps2Session()
@@ -139,9 +139,7 @@ public final class NSDKSession {
                                                 useLidar: useLidar,
                                                 pathConfig: pathConfig,
                                                 sinkCallback: sinkCallback)
-
-        // TODO: Extract environment from config when we handle auth environment in Swift.
-        TelemetryPublishing.start(environment: .prod)
+        TelemetryPublishing.start()
         TelemetryPublishing.publishInitializationEvent()
     }
 
@@ -196,8 +194,7 @@ public final class NSDKSession {
             return nil
         }
 
-        // TODO: Extract environment from config when we handle auth environment in Swift.
-        TelemetryPublishing.start(environment: .prod)
+        TelemetryPublishing.start()
         TelemetryPublishing.publishInitializationEvent()
     }
     
@@ -222,8 +219,7 @@ public final class NSDKSession {
             return nil
         }
 
-        // TODO: Extract environment from config when we handle auth environment in Swift.
-        TelemetryPublishing.start(environment: .prod)
+        TelemetryPublishing.start()
         TelemetryPublishing.publishInitializationEvent()
     }
     
@@ -516,22 +512,13 @@ public final class NSDKSession {
         }
     }
 
-    /// Sets the age level for the NSDK session.
-    ///
-    /// This method sets the age classification for the user
-    ///
-    /// - Parameter ageLevel: The age level to set (unknown, minor, teen, or adult)
-    ///
-    /// ## Example
-    ///
-    /// ```swift
-    /// session.setAgeLevel(.adult)
-    /// ```
-    public func setAgeLevel(_ ageLevel: AgeLevel) {
-        let cAgeLevel = ageLevel.cValue
-        let cStatus = api.setAgeLevel(handle: nativeHandle, ageLevel: cAgeLevel)
-        if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+    /// Sets the diagnostic output folder for log.txt, ardk_trace.log, and future VPS debugger files.
+    /// - Parameter logFolderPath: Directory path. No-op if empty or unchanged.
+    @MainActor
+    public func setLogOutputPath(_ logFolderPath: String) {
+        logFolderPath.withCString { c in
+            let s = ARDK_String(data: c, data_size: UInt32(strlen(c)))
+            _ = api.setLogOutputPath(handle: nativeHandle, logFolderPath: s)
         }
     }
 

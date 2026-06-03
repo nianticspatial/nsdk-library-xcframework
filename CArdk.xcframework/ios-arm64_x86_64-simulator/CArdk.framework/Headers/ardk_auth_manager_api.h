@@ -26,17 +26,6 @@ typedef void* ARDK_Handle;
 ARDK_CAPI_VISIBLE ARDK_Status ARDK_AuthManager_SetAccessToken(ARDK_Handle handle,
                                                               ARDK_String access_token);
 
-/// @brief        Set the refresh token for the ARDK object via AuthManager.
-/// @param        handle         Handle to the ARDK object.
-/// @param        refresh_token  The refresh token to set. Empty strings (null data or data_size 0)
-/// are allowed and will be persisted.
-/// @return       ARDK_Status_OK if the token was forwarded successfully.
-/// @return       ARDK_Status_NullArdkHandle if \p handle was null.
-/// @return       ARDK_Status_NullArgument if \p refresh_token data was null but data_size > 0
-/// (invalid state).
-ARDK_CAPI_VISIBLE ARDK_Status ARDK_AuthManager_SetRefreshToken(ARDK_Handle handle,
-                                                               ARDK_String refresh_token);
-
 /// @brief        Check if auth tokens are valid and ready for use.
 /// @details      Returns true if a valid, non-expired access token is available.
 /// @param        handle              Handle to the ARDK object.

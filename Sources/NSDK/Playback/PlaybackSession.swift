@@ -42,14 +42,14 @@ public class PlaybackSession : ARSession, @unchecked Sendable {
                 let image = try playbackDataset.getFrameImageAtIndex(index: currentFrameIndex)
                 let depthData = try playbackDataset.getDepthDataAtIndex(index: currentFrameIndex)
                 let depthConfidence = try playbackDataset.getDepthConfidenceAtIndex(index: currentFrameIndex)
-                
+
                 let frame = PlaybackFrame(
                     metadata: metadata,
                     image: image,
                     depthData: depthData,
                     depthConfidence: depthConfidence
                 )
-                
+
                 // Capture delegate, renderer, and tracking state change before dispatching
                 let delegate = self.playbackDelegate
                 let renderer = self.playbackRenderer

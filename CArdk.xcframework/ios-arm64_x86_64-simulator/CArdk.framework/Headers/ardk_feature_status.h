@@ -38,9 +38,9 @@ typedef enum ARDK_FeatureStatus : uint32_t {
   ///           this error might occur.
   ARDK_FeatureStatus_ConfigurationFailed = 1 << 2,
 
-  /// @brief    The API key that was used to initialize ARDK is invalid for this
-  ///           feature.
-  ARDK_FeatureStatus_BadApiKey = 1 << 3
+  /// @brief    The authentication credentials used to initialize ARDK are invalid
+  ///           for this feature.
+  ARDK_FeatureStatus_BadAuth = 1 << 3
 } ARDK_FeatureStatus;
 
 #ifdef __cplusplus

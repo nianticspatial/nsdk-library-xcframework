@@ -41,6 +41,10 @@ public enum Vps2LocalizationError {
     /// The frame was rejected because the camera is pointing at the ground or sky (no horizon crossing).
     case badCameraAngle
 
+    /// The frame was rejected before dispatch because no valid geolocation prior was available
+    /// (the GPS reading was NaN or a placeholder and no other valid prior could be substituted).
+    case noValidPrior
+
     internal init(fromC cValue: ARDK_VPS2_LocalizationError) {
         switch cValue {
         case ARDK_VPS2_LocalizationError_None:
@@ -67,6 +71,8 @@ public enum Vps2LocalizationError {
             self = .badTracking
         case ARDK_VPS2_LocalizationError_BadCameraAngle:
             self = .badCameraAngle
+        case ARDK_VPS2_LocalizationError_NoValidPrior:
+            self = .noValidPrior
         case ARDK_VPS2_LocalizationError_Unknown:
             fallthrough
         default:

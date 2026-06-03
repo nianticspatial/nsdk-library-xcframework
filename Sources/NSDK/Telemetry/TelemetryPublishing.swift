@@ -9,10 +9,8 @@ internal enum TelemetryPublishing {
     nonisolated(unsafe) private static var _initEventFired = false
 
     @discardableResult
-    static func start(environment: NSDKTelemetryEnvironment) -> Bool {
-        environment.rawValue.withCString { envC in
-            Lightship_ARDK_TelemetryPublishing_Start(envC, "swift")
-        }
+    static func start() -> Bool {
+        Lightship_ARDK_TelemetryPublishing_Start("swift")
     }
 
     static func publishInitializationEvent() {

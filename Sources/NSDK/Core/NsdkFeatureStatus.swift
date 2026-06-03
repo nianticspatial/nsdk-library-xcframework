@@ -11,15 +11,15 @@ import CArdk
 /// Use this to monitor the health and state of NSDK features:
 /// - Check for errors that need attention
 /// - Monitor initialization progress
-/// - Verify configuration and API key validity
+/// - Verify configuration and authentication validity
 /// - Ensure features are ready for operation
 ///
 /// ## Example Usage
 ///
 /// ```swift
 /// let status = vpsSession.getFeatureStatus()
-/// if status.contains(.badApiKey) {
-///     print("Invalid API key - check your credentials")
+/// if status.contains(.badAuth) {
+///     print("Invalid credentials - check your authentication")
 /// } else if status.contains(.configurationFailed) {
 ///     print("Feature configuration failed")
 /// } else if status.contains(.initializing) {
@@ -63,16 +63,16 @@ public struct NSDKFeatureStatus: OptionSet, CustomDebugStringConvertible, @unche
     /// Check configuration parameters and try reconfiguring the feature.
     public static let configurationFailed = NSDKFeatureStatus(fromC: ARDK_FeatureStatus_ConfigurationFailed)
     
-    /// Invalid or expired API key.
+    /// Invalid or expired authentication credentials.
     ///
-    /// The provided API key is not valid or has expired. Verify your API key
-    /// and ensure it has the necessary permissions for the requested features.
-    public static let badApiKey = NSDKFeatureStatus(fromC: ARDK_FeatureStatus_BadApiKey)
+    /// The provided credentials are not valid or have expired. Verify your
+    /// authentication and ensure it has the necessary permissions for the requested features.
+    public static let badAuth = NSDKFeatureStatus(fromC: ARDK_FeatureStatus_BadAuth)
 
     private static let caseDescriptions: [(Self, String)] = [
         (.ok, "ok"),
         (.configurationFailed, "configurationFailed"),
-        (.badApiKey, "badApiKey"),
+        (.badAuth, "badAuth"),
     ]
 
     public var debugDescription: String {
