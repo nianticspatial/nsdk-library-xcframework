@@ -19,10 +19,13 @@ import SceneKit
 /// ## Example Usage
 ///
 /// ```swift
-/// let (status, meshData) = meshDownloader.downloadMesh(meshId: meshId)
-/// if status.isOk() {
-///     print("Mesh vertices: \(meshData.vertices.count)")
-///     print("Mesh triangles: \(meshData.indices.count / 3)")
+/// let meshDownloader = nsdkSession.acquireMeshDownloader()
+/// let chunks = meshDownloader.requestLocationMeshByAsset(
+///     vpsMapAssetId: assetId, latitude: latitude, longitude: longitude, getTexture: true)
+/// for try await chunk in chunks {
+///     let meshData = chunk.meshData
+///     print("Mesh vertices: \(meshData.verticesPtr.count / 3)")
+///     print("Mesh triangles: \(meshData.indicesPtr.count / 3)")
 ///
 ///     // Convert to SceneKit geometry for rendering
 ///     if let geometry = meshData.toSCNGeometry() {
@@ -39,7 +42,11 @@ import SceneKit
 public class MeshData {
     private var resourceOwner: ResourceOwner?
 
-    /// Pointer to the vertices data. Array of 3 floats per vertex.
+    /// Pointer to the vertices data. Array of 3 floats per vertex, in meters. For downloaded
+    /// meshes, positions are in the chunk's local space (see ``MeshDownloaderChunk/transform``)
+    /// and carry no geographic data. Not converted to ARKit axes: positions use the NSDK
+    /// convention (x right, y down, z forward), so negate y and z before applying ARKit-space
+    /// transforms, as ``toSCNGeometry(material:)`` does.
     public let verticesPtr: UnsafeBufferPointer<Float>
     /// Pointer to the UVs data. Array of 2 floats per UV.
     public let uvsPtr: UnsafeBufferPointer<Float>?
@@ -48,7 +55,7 @@ public class MeshData {
     /// Pointer to the normals data. Array of 3 floats per normal. Only available for live meshing.
     public let normalsPtr: UnsafeBufferPointer<Float>?
 
-    // Mesh downloader constructor
+    /// Creates mesh data from a mesh-downloader result.
     public init(fromC cMeshData: ARDK_MeshData, owner: ResourceOwner? = nil) {
         resourceOwner = owner
 
@@ -72,6 +79,10 @@ public class MeshData {
     /// - Parameter material: Optional material to apply to the resulting geometry.
     /// - Returns: `SCNGeometry` representing the mesh.
     public func toSCNGeometry(material: SCNMaterial? = nil) -> SCNGeometry? {
+        guard verticesPtr.count > 0, verticesPtr.baseAddress != nil,
+              indicesPtr.count > 0, indicesPtr.baseAddress != nil else {
+            return nil
+        }
         let numVertices = verticesPtr.count / 3
         let bytesPerFloat = MemoryLayout<Float>.stride
         let floatsPerVector = 3

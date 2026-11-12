@@ -12,6 +12,10 @@ import ARKit
 /// ARView and delegate code don't need to know it's playback.
 public class PlaybackSession : ARSession, @unchecked Sendable {
     private var currentFrameIndex: Int = 0
+    /// Added to every delivered timestamp, so time keeps moving forward after playback wraps to
+    /// frame 0 instead of jumping back to the recording's start.
+    private var loopOffsetMs: UInt64 = 0
+    private lazy var loopDurationMs: UInt64 = playbackDataset.durationMs()
     private let playbackQueue = DispatchQueue(label: "com.nsdk.playback", qos: .userInitiated)
     private var isPlaying: Bool = false
     private var lastTrackingValue: Int? = nil
@@ -33,23 +37,39 @@ public class PlaybackSession : ARSession, @unchecked Sendable {
     }
     
     /// Main playback loop: fetches the current frame from the dataset, builds a PlaybackFrame, and dispatches to the main queue.
-    /// Runs on the playback queue. Between frames it sleeps for the dataset's frame interval. When the last frame is reached,
-    /// the index wraps to 0 so playback loops indefinitely. On error it skips to the next frame and continues.
+    /// Runs on the playback queue. Starts frames on a fixed schedule of one per dataset frame interval, or back to back when
+    /// loading a frame takes longer. When the last frame is reached, the index wraps to 0 so playback loops indefinitely,
+    /// and each later pass has its timestamps moved one recording's length later. On error it skips to the next frame and
+    /// continues.
     private func playbackLoop() {
+        var deadline = ProcessInfo.processInfo.systemUptime
         while isPlaying {
+            defer {
+                deadline += playbackDataset.frameInterval
+                let now = ProcessInfo.processInfo.systemUptime
+                if deadline > now {
+                    Thread.sleep(forTimeInterval: deadline - now)
+                } else {
+                    // Behind schedule: restart the schedule rather than burst to catch up.
+                    deadline = now
+                }
+            }
             do {
                 let metadata = try playbackDataset.getFrameDataAtIndex(index: currentFrameIndex)
                 let image = try playbackDataset.getFrameImageAtIndex(index: currentFrameIndex)
                 let depthData = try playbackDataset.getDepthDataAtIndex(index: currentFrameIndex)
                 let depthConfidence = try playbackDataset.getDepthConfidenceAtIndex(index: currentFrameIndex)
-                
+                let frameMetadata = try playbackDataset.getPlaybackFrameMetadataAtIndex(index: currentFrameIndex)
+                    .shiftingTimestamps(byMs: loopOffsetMs)
+
                 let frame = PlaybackFrame(
                     metadata: metadata,
                     image: image,
                     depthData: depthData,
-                    depthConfidence: depthConfidence
+                    depthConfidence: depthConfidence,
+                    frameMetadata: frameMetadata
                 )
-                
+
                 // Capture delegate, renderer, and tracking state change before dispatching
                 let delegate = self.playbackDelegate
                 let renderer = self.playbackRenderer
@@ -67,15 +87,22 @@ public class PlaybackSession : ARSession, @unchecked Sendable {
                     renderer?.renderFrame(frame)
                 }
 
-                // Move to next frame, looping back to start if needed
-                currentFrameIndex = (currentFrameIndex + 1) % playbackDataset.frameCount
-                Thread.sleep(forTimeInterval: playbackDataset.frameInterval)
+                advanceFrame()
             } catch {
                 print("PlaybackSession: Error retrieving frame at index \(currentFrameIndex): \(error.localizedDescription)")
                 // Skip to next frame on error
-                currentFrameIndex = (currentFrameIndex + 1) % playbackDataset.frameCount
-                Thread.sleep(forTimeInterval: playbackDataset.frameInterval)
+                advanceFrame()
             }
+        }
+    }
+
+    /// Moves to the next frame. Past the last one it wraps to 0 and moves later timestamps one
+    /// recording's length on, so they never go backwards: downstream filters key on them.
+    private func advanceFrame() {
+        currentFrameIndex += 1
+        if currentFrameIndex >= playbackDataset.frameCount {
+            currentFrameIndex = 0
+            loopOffsetMs += loopDurationMs
         }
     }
     
@@ -97,6 +124,12 @@ public class PlaybackSession : ARSession, @unchecked Sendable {
     /// Returns whether the dataset contains LiDAR depth (depthSource == "lidar"). Used by NSDKView.hasDepth and feature checks.
     public func hasDepth() -> Bool {
         return playbackDataset.hasDepth()
+    }
+
+    /// Clock the played-back dataset's compass timestamps are on.
+    @available(*, deprecated, message: "Will be removed in a future release. Use PlaybackFrameMetadata.compassData?.base.")
+    public var compassTimestampBase: ClockBase {
+        return playbackDataset.compassTimestampBase
     }
     
     deinit {

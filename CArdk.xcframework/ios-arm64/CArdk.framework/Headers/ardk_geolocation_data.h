@@ -11,14 +11,17 @@ extern "C" {
 #endif
 
 /// @brief     GPS and heading data calculated by ARDK's geolocation services.
+///
+/// @details   Coordinates use the WGS84 datum. Depending on the API, this describes the
+///            device, a VPS asset's origin, an anchor, or an arbitrary location passed in.
 typedef struct ARDK_GeolocationData {
-  /// @brief      Geographical device location latitude.
+  /// @brief      WGS84 latitude, in degrees.
   double latitude;
 
-  /// @brief      Geographical device location longitude
+  /// @brief      WGS84 longitude, in degrees.
   double longitude;
 
-  /// @brief      Geographical device location altitude in meters.
+  /// @brief      Altitude in meters above the WGS84 ellipsoid (not mean sea level).
   double altitude;
 
   /// @brief      Heading in degrees relative to true north.

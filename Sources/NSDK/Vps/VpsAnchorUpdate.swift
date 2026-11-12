@@ -9,7 +9,9 @@ import Foundation
 /// is a snapshot of the anchor, and the latest anchor update should be used every frame.
 public struct VpsAnchorUpdate: CustomDebugStringConvertible {
     public struct TrackingData: Equatable {
-        /// The 4x4 transformation matrix of the anchor in local ARKit space.
+        /// Transform from the anchor's coordinate space to the local ARKit tracking space (the
+        /// anchor's pose in tracking space), with translation in meters. Independent of the
+        /// current camera pose.
         public let targetAnchorTransform: simd_float4x4
 
         /// Timestamp when this update was generated (in milliseconds since epoch).

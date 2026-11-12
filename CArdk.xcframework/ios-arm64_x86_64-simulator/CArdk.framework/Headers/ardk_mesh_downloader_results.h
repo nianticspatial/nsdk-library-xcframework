@@ -1,10 +1,11 @@
 // Copyright 2022-2025 Niantic.
 #pragma once
 
-#include "ardk_mesh_downloader_error.h"
 #include "ardk_resource_handle.h"
 #include "ardk_mesh_data.h"
+#include "ardk_mesh_downloader_error.h"
 #include "ardk_mesh_downloader_request_status.h"
+#include "ardk_mesh_geo_reference.h"
 #include "ardk_buffer.h"
 #include "ardk_matrix4f.h"
 
@@ -13,11 +14,16 @@
 extern "C" {
 #endif
 
-// Struct containing the data of a mesh download.
+// Struct containing the data of a mesh download. \c transform maps the chunk's local vertex
+// space into the asset's origin space, with translation in meters; see
+// \c ARDK_MeshDownloader_Chunk.
 typedef struct ARDK_MeshDownloader_Data {
   ARDK_MeshData mesh_data;
   ARDK_Buffer image_data;
   ARDK_Matrix4f transform;
+  // Always ARDK_Mesh_GeoReferenceMode_Unavailable on results returned by the deprecated
+  // ARDK_MeshDownloader_GetLocationMeshResults path.
+  ARDK_Mesh_GeoReference geo_reference;
 } ARDK_MeshDownloader_Data;
 
 // Struct pointing to an array of mesh download results.

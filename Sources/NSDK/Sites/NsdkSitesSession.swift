@@ -15,7 +15,11 @@ extension NSDKSession {
     }
 }
 
-public final class NSDKSitesSession: NSDKSession.IDisposable {
+/// Looks up the user's organizations, their sites, and the assets of a site.
+///
+/// Holds only immutable handles into the native layer, so its methods may be called from any
+/// thread or task.
+public final class NSDKSitesSession: NSDKSession.IDisposable, @unchecked Sendable {
     private let nsdkHandle: ARDK_Handle
     private let sitesApi: SitesApi
     
@@ -25,14 +29,15 @@ public final class NSDKSitesSession: NSDKSession.IDisposable {
         
         let cStatus = sitesApi.create(nsdkHandle: nsdkHandle)
         if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            nsdkUnexpected(cStatus, returning: ())
+            return
         }
     }
     
     internal func destroy() {
         let cStatus = sitesApi.destroy(nsdkHandle: nsdkHandle)
         if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            return nsdkUnexpected(cStatus, returning: ())
         }
     }
     
@@ -47,9 +52,12 @@ public final class NSDKSitesSession: NSDKSession.IDisposable {
         )
         
         if cStatus.isInvalidArgument {
-            preconditionFailure("Request id `\(requestId)` is invalid.")
+            return nsdkUnexpected(
+                "request id `\(requestId)` is invalid",
+                returning: .failure(.unexpectedError)
+            )
         } else if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            return nsdkUnexpected(cStatus, returning: .failure(.unexpectedError))
         }
         
         if cResult.status == ARDK_SitesManager_RequestStatus_Success {
@@ -74,9 +82,12 @@ public final class NSDKSitesSession: NSDKSession.IDisposable {
         )
         
         if cStatus.isInvalidArgument {
-            preconditionFailure("Request id `\(requestId)` is invalid.")
+            return nsdkUnexpected(
+                "request id `\(requestId)` is invalid",
+                returning: .failure(.unexpectedError)
+            )
         } else if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            return nsdkUnexpected(cStatus, returning: .failure(.unexpectedError))
         }
         
         if cResult.status == ARDK_SitesManager_RequestStatus_Success {
@@ -101,9 +112,12 @@ public final class NSDKSitesSession: NSDKSession.IDisposable {
         )
         
         if cStatus.isInvalidArgument {
-            preconditionFailure("Request id `\(requestId)` is invalid.")
+            return nsdkUnexpected(
+                "request id `\(requestId)` is invalid",
+                returning: .failure(.unexpectedError)
+            )
         } else if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            return nsdkUnexpected(cStatus, returning: .failure(.unexpectedError))
         }
         
         if cResult.status == ARDK_SitesManager_RequestStatus_Success {
@@ -128,9 +142,12 @@ public final class NSDKSitesSession: NSDKSession.IDisposable {
         )
         
         if cStatus.isInvalidArgument {
-            preconditionFailure("Request id `\(requestId)` is invalid.")
+            return nsdkUnexpected(
+                "request id `\(requestId)` is invalid",
+                returning: .failure(.unexpectedError)
+            )
         } else if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            return nsdkUnexpected(cStatus, returning: .failure(.unexpectedError))
         }
         
         if cResult.status == ARDK_SitesManager_RequestStatus_Success {
@@ -155,9 +172,12 @@ public final class NSDKSitesSession: NSDKSession.IDisposable {
         )
 
         if cStatus.isInvalidArgument {
-            preconditionFailure("Request id `\(requestId)` is invalid.")
+            return nsdkUnexpected(
+                "request id `\(requestId)` is invalid",
+                returning: .failure(.unexpectedError)
+            )
         } else if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            return nsdkUnexpected(cStatus, returning: .failure(.unexpectedError))
         }
 
         if cResult.status == ARDK_SitesManager_RequestStatus_Success {
@@ -169,6 +189,51 @@ public final class NSDKSitesSession: NSDKSession.IDisposable {
         } else {
             return .failure(SitesResult.Error(fromC: cResult.error))
         }
+    }
+
+    // Polling function for scan list and scan info
+    private func getScanResult(requestId: NetworkRequestId) -> NSDKAsyncState<ScanResult, SitesResult.Error> {
+        var cResult = ARDK_SitesManager_ScanResult()
+
+        let cStatus = sitesApi.getScanResult(
+            nsdkHandle: nsdkHandle,
+            requestId: requestId,
+            resultOut: &cResult
+        )
+
+        if cStatus.isInvalidArgument {
+            return nsdkUnexpected(
+                "request id `\(requestId)` is invalid",
+                returning: .failure(.unexpectedError)
+            )
+        } else if cStatus.isError {
+            return nsdkUnexpected(cStatus, returning: .failure(.unexpectedError))
+        }
+
+        if cResult.status == ARDK_SitesManager_RequestStatus_Success {
+            let result = ScanResult(fromC: cResult)
+            sitesApi.releaseResource(handle: cResult.handle)
+            return .success(result)
+        } else if cResult.status == ARDK_SitesManager_RequestStatus_InProgress {
+            return .inProgress(nil)
+        } else {
+            return .failure(SitesResult.Error(fromC: cResult.error))
+        }
+    }
+
+    /// Starts a scan request keyed by one string ID.
+    private func startScanRequest(
+        _ id: String,
+        _ start: (ARDK_Handle, ARDK_String, UnsafeMutablePointer<ARDK_NetworkRequestId>) -> ARDK_Status
+    ) throws -> NetworkRequestId {
+        var requestIdOut: NetworkRequestId = 0
+        let cStatus = id.withCString { cStr in
+            start(nsdkHandle, ARDK_String(data: cStr, data_size: UInt32(strlen(cStr))), &requestIdOut)
+        }
+        if cStatus.isError {
+            throw nsdkUnexpectedError(cStatus)
+        }
+        return requestIdOut
     }
 
     // MARK: - Helper Functions
@@ -247,7 +312,7 @@ public final class NSDKSitesSession: NSDKSession.IDisposable {
             )
         }
         if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            throw nsdkUnexpectedError(cStatus)
         }
         
         return try await pollForResult(
@@ -286,7 +351,7 @@ public final class NSDKSitesSession: NSDKSession.IDisposable {
         }
 
         if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            throw nsdkUnexpectedError(cStatus)
         }
         
         return try await pollForResult(
@@ -325,7 +390,7 @@ public final class NSDKSitesSession: NSDKSession.IDisposable {
         }
         
         if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            throw nsdkUnexpectedError(cStatus)
         }
         
         return try await pollForResult(
@@ -364,7 +429,7 @@ public final class NSDKSitesSession: NSDKSession.IDisposable {
         }
 
         if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            throw nsdkUnexpectedError(cStatus)
         }
         
         return try await pollForResult(
@@ -403,7 +468,7 @@ public final class NSDKSitesSession: NSDKSession.IDisposable {
         }
         
         if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            throw nsdkUnexpectedError(cStatus)
         }
         
         return try await pollForResult(
@@ -442,7 +507,7 @@ public final class NSDKSitesSession: NSDKSession.IDisposable {
         }
         
         if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            throw nsdkUnexpectedError(cStatus)
         }
         
         return try await pollForResult(
@@ -481,7 +546,7 @@ public final class NSDKSitesSession: NSDKSession.IDisposable {
         }
         
         if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            throw nsdkUnexpectedError(cStatus)
         }
         
         return try await pollForResult(
@@ -503,6 +568,7 @@ public final class NSDKSitesSession: NSDKSession.IDisposable {
     ///   - assetType: The type of assets to fetch (default: `.vpsInfo`).
     ///   - pollingInterval: The interval between status checks (default: 0.5 seconds).
     ///   - timeout: Maximum time to wait for completion (default: 60 seconds).
+    ///   - scope: Production assets only (default: `.production`), or every asset (`.all`).
     /// - Returns: A `SiteAssetsResult` containing site-assets entries ordered by distance.
     /// - Throws:
     ///   - ``CancellationError`` if the Task running this function was cancelled.
@@ -514,21 +580,24 @@ public final class NSDKSitesSession: NSDKSession.IDisposable {
         radiusMeters: Double,
         assetType: AssetType = .vpsInfo,
         pollingInterval: TimeInterval = 0.5,
-        timeout: TimeInterval = 60.0
+        timeout: TimeInterval = 60.0,
+        scope: AssetScope = .production
     ) async throws -> SiteAssetsResult {
         var requestIdOut: NetworkRequestId = 0
         let cAssetType = ARDK_SitesManager_AssetType(rawValue: UInt32(assetType.rawValue))
+        let cScope = ARDK_SitesManager_AssetScope(rawValue: UInt32(scope.rawValue))
         let cStatus = sitesApi.requestSiteAssetsByLocation(
             nsdkHandle: nsdkHandle,
             lat: lat,
             lng: lng,
             radiusMeters: radiusMeters,
             assetType: cAssetType,
+            scope: cScope,
             requestIdOut: &requestIdOut
         )
 
         if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            throw nsdkUnexpectedError(cStatus)
         }
 
         return try await pollForResult(
@@ -568,7 +637,7 @@ public final class NSDKSitesSession: NSDKSession.IDisposable {
         if cStatus.isInvalidOperation {
             throw NSDKError.invalidOperation
         } else if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            throw nsdkUnexpectedError(cStatus)
         }
         
         return try await pollForResult(
@@ -603,12 +672,70 @@ public final class NSDKSitesSession: NSDKSession.IDisposable {
         if cStatus.isInvalidOperation {
             throw NSDKError.invalidOperation
         } else if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            throw nsdkUnexpectedError(cStatus)
         }
 
         return try await pollForResult(
             requestId: requestIdOut,
             getResult: getOrganizationResult,
+            pollingInterval: pollingInterval,
+            timeout: timeout
+        )
+    }
+
+    /// Requests every scan of a site, of all types and statuses, and waits for the result.
+    ///
+    /// Filter on ``ScanInfo/scanType`` for ``ScanType/validation`` to find scans that playback
+    /// opens.
+    ///
+    /// - Parameters:
+    ///   - siteId: The site ID to list scans for.
+    ///   - pollingInterval: The interval between status checks (default: 0.5 seconds).
+    ///   - timeout: Maximum time to wait for completion (default: 60 seconds).
+    /// - Returns: A `ScanResult` containing the site's scans.
+    /// - Throws:
+    ///   - ``CancellationError`` if the Task running this function was cancelled.
+    ///   - ``TimeoutError`` if the function timed out before it could complete execution.
+    ///   - ``SitesResult.Error`` if there was an error specific to the network query. A token
+    ///     scoped to `site-assets:read` cannot list scans and gets `.httpForbidden`.
+    public func requestScansForSite(
+        siteId: String,
+        pollingInterval: TimeInterval = 0.5,
+        timeout: TimeInterval = 60.0
+    ) async throws -> ScanResult {
+        let requestId = try startScanRequest(siteId) {
+            sitesApi.requestScansForSite(nsdkHandle: $0, siteId: $1, requestIdOut: $2)
+        }
+        return try await pollForResult(
+            requestId: requestId,
+            getResult: getScanResult,
+            pollingInterval: pollingInterval,
+            timeout: timeout
+        )
+    }
+
+    /// Requests one scan's information and waits for the result.
+    ///
+    /// - Parameters:
+    ///   - scanId: The scan ID to query.
+    ///   - pollingInterval: The interval between status checks (default: 0.5 seconds).
+    ///   - timeout: Maximum time to wait for completion (default: 60 seconds).
+    /// - Returns: A `ScanResult` containing the single scan.
+    /// - Throws:
+    ///   - ``CancellationError`` if the Task running this function was cancelled.
+    ///   - ``TimeoutError`` if the function timed out before it could complete execution.
+    ///   - ``SitesResult.Error`` if there was an error specific to the network query.
+    public func requestScanInfo(
+        scanId: String,
+        pollingInterval: TimeInterval = 0.5,
+        timeout: TimeInterval = 60.0
+    ) async throws -> ScanResult {
+        let requestId = try startScanRequest(scanId) {
+            sitesApi.requestScanInfo(nsdkHandle: $0, scanId: $1, requestIdOut: $2)
+        }
+        return try await pollForResult(
+            requestId: requestId,
+            getResult: getScanResult,
             pollingInterval: pollingInterval,
             timeout: timeout
         )

@@ -1,5 +1,10 @@
 import CArdk
 
+/// Quality of the device's VPS localization.
+///
+/// Note: `precise` can persist while a device is disturbed, such as a covered camera or a dark
+/// room, and persists indefinitely while the device stays still. It changes once confidence
+/// drops low enough.
 public enum Vps2TrackingState {
     case unavailable
     case coarse

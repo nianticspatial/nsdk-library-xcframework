@@ -16,7 +16,7 @@ extern "C" {
 
 /// @brief        A camera frame with pose and intrinsics
 typedef struct NSDK_CameraFrame {
-  /// @brief      The camera image timestamp in milliseconds since epoch.
+  /// @brief      The camera image timestamp in monotonic milliseconds (e.g. since device boot).
   /// @details    This is equivalent to the camera pose timestamp.
   /// @internal   Note, this is not strictly the exact timestamp for all devices as
   ///             of May 2024 (e.g. Magic Leap)

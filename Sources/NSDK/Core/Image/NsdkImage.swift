@@ -86,7 +86,12 @@ public struct NSDKImage {
     public func withUnsafeBytes<R>(_ body: (UnsafeRawBufferPointer) throws -> R) rethrows -> R {
         try withExtendedLifetime(owner) {
             guard let len = dataLength else {
-                preconditionFailure("Byte length is not available for image type \(type).")
+                nsdkUnexpected(
+                    "byte length is not available for image type \(type)",
+                    returning: ()
+                )
+                // Hand `body` an empty buffer rather than reading an unknown length.
+                return try body(UnsafeRawBufferPointer(start: nil, count: 0))
             }
             let buf = UnsafeRawBufferPointer(start: dataPtr, count: len)
             return try body(buf)

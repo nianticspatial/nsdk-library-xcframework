@@ -36,38 +36,46 @@ public struct NSDKFrameData: Equatable {
     /// providing heading information that can be used for location-based
     /// AR experiences and waypoint navigation.
     public struct CompassData: Equatable {
-        /// Timestamp when the compass reading was captured (in milliseconds).
+        /// Timestamp when the compass reading was captured (in milliseconds),
+        /// measured against the clock reported by ``base``.
         public var timestampMs: UInt64
-        
+
         /// Accuracy of the heading measurement (in degrees).
         ///
         /// Lower values indicate more accurate readings. Values above 15-20 degrees
         /// may indicate poor compass calibration or magnetic interference.
         public var headingAccuracy: Float
-        
+
         /// True heading relative to geographic north (in degrees).
         ///
         /// This value is corrected for magnetic declination and represents
         /// the actual direction relative to true north (0-360 degrees).
         public var trueHeading: Float
-        
+
+        /// Clock that ``timestampMs`` is measured against.
+        public var base: ClockBase
+
         /// Creates compass data with the specified parameters.
         ///
         /// - Parameters:
         ///   - timestampMs: Timestamp of the compass reading in milliseconds
         ///   - headingAccuracy: Accuracy of the heading measurement in degrees
         ///   - trueHeading: True heading relative to geographic north in degrees
+        ///   - base: Clock that `timestampMs` is measured against
         public init(timestampMs: UInt64,
                     headingAccuracy: Float,
-                    trueHeading: Float) {
+                    trueHeading: Float,
+                    base: ClockBase = .epoch) {
             self.timestampMs = timestampMs
             self.headingAccuracy = headingAccuracy
             self.trueHeading = trueHeading
+            self.base = base
         }
-        
+
         func convertToC() -> ARDK_CompassData {
             return ARDK_CompassData(
                 timestamp_ms: timestampMs,
+                base: base.convertToC(),
                 heading_accuracy: headingAccuracy,
                 magnetic_heading: 0,
                 raw_data_x: 0,
@@ -99,9 +107,9 @@ public struct NSDKFrameData: Equatable {
         /// negative values represent locations west of the Prime Meridian.
         public var longitude: Double
         
-        /// Altitude above sea level in meters.
+        /// Altitude in meters above the WGS84 ellipsoid (not mean sea level). When
+        /// taking it from a `CLLocation`, use `ellipsoidalAltitude`, not `altitude`.
         ///
-        /// This value may be negative for locations below sea level.
         /// Accuracy depends on GPS signal quality and atmospheric conditions.
         public var altitude: Double
         
@@ -123,7 +131,8 @@ public struct NSDKFrameData: Equatable {
         ///   - timestampMs: Timestamp of the GPS reading in milliseconds
         ///   - latitude: Latitude in decimal degrees
         ///   - longitude: Longitude in decimal degrees
-        ///   - altitude: Altitude above sea level in meters
+        ///   - altitude: Altitude in meters above the WGS84 ellipsoid (use
+        ///     `CLLocation.ellipsoidalAltitude`, not `CLLocation.altitude`)
         ///   - verticalAccuracy: Vertical accuracy in meters
         ///   - horizontalAccuracy: Horizontal accuracy in meters
         public init(timestampMs: UInt64,
@@ -405,7 +414,8 @@ public struct NSDKFrameData: Equatable {
     
     // MARK: - Camera Data
     
-    /// Timestamp when the camera frame was captured (in milliseconds).
+    /// Timestamp when the camera frame was captured, in monotonic milliseconds (e.g. since device
+    /// boot).
     ///
     /// This timestamp is used to synchronize camera data with other sensor data
     /// and maintain temporal consistency across processing stages.
@@ -546,7 +556,7 @@ public struct NSDKFrameData: Equatable {
 
         // Closure for pointer to the sensor name string
         return try defaultCameraName.withCString { cameraNameC in
-            let cameraNameArdk = ARDK_String(data: cameraNameC, data_size: 11)
+            let cameraNameArdk = ARDK_String(data: cameraNameC, data_size: UInt32(strlen(cameraNameC)))
             var cameraFrame = NSDK_CameraFrame()
             cameraFrame.camera_timestamp_ms = cameraTimestampMs
             cameraFrame.camera_pose = cameraTransform.fromARKitToNSDKTransform()
@@ -569,7 +579,7 @@ public struct NSDKFrameData: Equatable {
                 if hasDepth {
                     // Additional closure for pointer to the depth name string
                     return try defaultDepthName.withCString { depthNameC in
-                        let depthNameArdk = ARDK_String(data: depthNameC, data_size: 9)
+                        let depthNameArdk = ARDK_String(data: depthNameC, data_size: UInt32(strlen(depthNameC)))
                         var depthFrame = NSDK_DepthFrame()
                         depthFrame.depth_timestamp_ms = cameraTimestampMs
                         depthFrame.depth_image_data = depthData

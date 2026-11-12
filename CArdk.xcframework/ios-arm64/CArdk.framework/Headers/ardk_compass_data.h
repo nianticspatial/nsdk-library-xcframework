@@ -1,5 +1,7 @@
-// Copyright 2022-2025 Niantic.
+// Copyright 2022-2026 Niantic.
 #pragma once
+
+#include "ardk_clock_base.h"
 
 #ifdef __cplusplus
 
@@ -10,11 +12,15 @@ extern "C" {
 #include <stdint.h>
 #endif
 
-/// @brief        Compass readings 
+/// @brief        Compass readings
 typedef struct ARDK_CompassData {
-  /// @brief      Timestamp of the reading in milliseconds. This may be in either posix
-  ///             or monotonic time.
+  /// @brief      Timestamp of the reading in milliseconds, measured against the clock reported by
+  ///             \c base.
   uint64_t timestamp_ms;
+
+  /// @brief      Clock that \c timestamp_ms is measured against.
+  /// @details    Defaults to \c ARDK_ClockBase_Epoch when the producer does not report a time base.
+  ARDK_ClockBase base;
 
   /// @brief      Accuracy of heading reading in degrees.
   /// @details    If accuracy is not supported or not available, 0 is returned. A negative value

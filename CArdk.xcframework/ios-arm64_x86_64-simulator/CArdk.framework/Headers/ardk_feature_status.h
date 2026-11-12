@@ -38,9 +38,22 @@ typedef enum ARDK_FeatureStatus : uint32_t {
   ///           this error might occur.
   ARDK_FeatureStatus_ConfigurationFailed = 1 << 2,
 
-  /// @brief    The API key that was used to initialize ARDK is invalid for this
-  ///           feature.
-  ARDK_FeatureStatus_BadApiKey = 1 << 3
+  /// @brief    The authentication credentials used to initialize ARDK are invalid
+  ///           for this feature.
+  /// @deprecated Read \c ARDK_VPS2_GetLocalizationRequestRecords instead.
+  /// @details  A single bit cannot describe the authorization state of more than one service,
+  ///           and VPS2 talks to two that authorize independently: the localization gateway and
+  ///           the portal. A token can be entitled to one and not the other, so this bit is
+  ///           forced to report one verdict for two different answers. Each localization request
+  ///           record instead carries both a request type and an error, so a failure can be
+  ///           attributed to the service that produced it.
+  ///
+  ///           For the remainder of its life this bit reports localization failures only; a
+  ///           portal rejection never sets it.
+  /// @note     Value \c 1 << 3 is reserved permanently and must not be reused once this is
+  ///           removed. The Unity and Python bindings mirror this enum by hardcoded value, so
+  ///           renumbering would silently change their meaning with nothing failing to build.
+  ARDK_FeatureStatus_BadAuth = 1 << 3
 } ARDK_FeatureStatus;
 
 #ifdef __cplusplus

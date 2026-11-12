@@ -1,9 +1,9 @@
 import CArdk
 import Foundation
 
-// Indicates that the object is the owner of a resource
-// and is responsible for releasing it when done.
-// When nil, it means the resource needs to be explicitly released, instead of by Swift's ARC.
+/// Indicates that an object owns a resource and releases it when it is no longer needed.
+///
+/// When no owner is present, the resource must be released explicitly rather than through Swift ARC.
 public protocol ResourceOwner: AnyObject {
 }
 

@@ -134,9 +134,31 @@ extension PlaybackDataset.FrameMetadata {
             height: cameraImageHeight
         )
     }
+
+    /// `PlaybackFrameMetadata` for this capture.json frame.
+    internal func playbackFrameMetadata(hasDepth: Bool, compassTimestampBase: ClockBase) -> PlaybackFrameMetadata {
+        var compass = compassData
+        compass?.base = compassTimestampBase
+        let depthSize = depthResolution.flatMap { hasDepth && $0.count >= 2 ? $0 : nil }
+        return PlaybackFrameMetadata(
+            sequence: sequence,
+            timestampMs: cameraTimestampMs,
+            trackingState: trackingState.nsdkTrackingState,
+            transform: cameraTransform,
+            intrinsics: nsdkCameraIntrinsics,
+            imageResolution: SIMD2(cameraImageWidth, cameraImageHeight),
+            orientation: orientation?.nsdkScreenOrientation ?? .unknown,
+            gpsData: gpsData,
+            compassData: compass,
+            depthResolution: depthSize.map { SIMD2(UInt32($0[0]), UInt32($0[1])) }
+        )
+    }
 }
 
 // MARK: - CGImage Extension for CVPixelBuffer Conversion
+
+/// Core Image context shared by every playback frame conversion.
+private let playbackConversionContext = CIContext()
 
 extension CGImage {
     
@@ -167,9 +189,8 @@ extension CGImage {
             return nil
         }
         
-        let ciContext = CIContext()
         let ciImage = CIImage(cgImage: self)
-        ciContext.render(ciImage, to: buffer)
+        playbackConversionContext.render(ciImage, to: buffer)
         
         return buffer
     }

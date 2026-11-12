@@ -8,7 +8,9 @@ import CoreVideo
 /// frame-like data (image, camera, etc.) from the delegate so app code can stay uniform.
 public struct PlaybackFrame: @unchecked Sendable {
     /// Frame metadata from the dataset: pose4x4, intrinsics, resolution, tracking state, orientation, timestamps, location.
-    public let metadata: PlaybackDataset.FrameMetadata
+    @available(*, deprecated, message: "Capture.json schema type, to be removed in a future release. Use frameMetadata.")
+    public var metadata: PlaybackDataset.FrameMetadata { recorded }
+    private let recorded: PlaybackDataset.FrameMetadata
 
     /// Camera representation for this frame (view/projection/viewport). Created once when the frame is built; use without branching on session type.
     public let camera: PlaybackCamera
@@ -22,17 +24,24 @@ public struct PlaybackFrame: @unchecked Sendable {
     /// Per-pixel depth confidence (UInt8) when available; nil if not present in the dataset.
     public let depthConfidence: CVPixelBuffer?
 
+    /// Recorded data for this frame, without its buffers.
+    public let frameMetadata: PlaybackFrameMetadata
+
     /// Creates a playback frame with the given metadata and optional image/depth buffers.
+    /// Without `frameMetadata`, it is derived from `metadata` with compass timestamps on the epoch clock.
     public init(
         metadata: PlaybackDataset.FrameMetadata,
         image: CGImage?,
         depthData: CVPixelBuffer? = nil,
-        depthConfidence: CVPixelBuffer? = nil
+        depthConfidence: CVPixelBuffer? = nil,
+        frameMetadata: PlaybackFrameMetadata? = nil
     ) {
-        self.metadata = metadata
+        self.recorded = metadata
         self.camera = PlaybackCamera(metadata: metadata)
         self.image = image
         self.depthData = depthData
         self.depthConfidence = depthConfidence
+        self.frameMetadata = frameMetadata
+            ?? metadata.playbackFrameMetadata(hasDepth: depthData != nil, compassTimestampBase: .epoch)
     }
 }

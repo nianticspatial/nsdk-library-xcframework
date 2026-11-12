@@ -69,14 +69,31 @@ public class NSDKView : ARView {
         self.session = playbackSession
     }
     
+    /// - Note: The unavailability attribute stops Swift callers at compile time, but a NIB or
+    ///   storyboard still reaches this at runtime. Because the initializer is failable, that
+    ///   case fails the load rather than terminating the app.
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) is not supported")
+        nsdkUnexpected(
+            "NSDKView does not support init(coder:). Use init() or init(dataset:) instead.",
+            returning: ()
+        )
+        return nil
     }
 
+    /// - Note: Callers are stopped at compile time by the unavailability attribute. If this is
+    ///   somehow reached anyway, it reports the misuse and falls back to a live AR session
+    ///   rather than terminating, matching ``init()``.
     @available(*, unavailable)
     required init(frame: CGRect) {
-        fatalError("init(frame:) is not supported. Use init() or init(dataset:) instead.")
+        nsdkUnexpected(
+            "NSDKView does not support init(frame:). Use init() or init(dataset:) instead.",
+            returning: ()
+        )
+        let liveSession = ARSession()
+        internalSessionMode = .live(liveSession)
+        super.init(frame: frame)
+        self.session = liveSession
     }
     
     /// Adds the NSDKView to the given container and sets up playback rendering when in playback mode.

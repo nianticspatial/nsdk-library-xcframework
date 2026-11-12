@@ -44,7 +44,9 @@ extension NSDKSession {
 /// `NSDKRecordingExporter` provides capabilities for converting saved scan data
 /// into recorderV2 format for use in Unity Playback or activating VPS.
 ///
-public final class NSDKRecordingExporter: NSDKSession.IDisposable {
+/// Holds only immutable handles into the native layer, so its methods may be called from any
+/// thread or task.
+public final class NSDKRecordingExporter: NSDKSession.IDisposable, @unchecked Sendable {
 
     private let nsdkHandle: NSDKHandle
     private let api: RecordingExportApi
@@ -75,6 +77,8 @@ public final class NSDKRecordingExporter: NSDKSession.IDisposable {
     ///   - exportResolution: Resolution option for exported images (default: ``ExportResolution/high``).
     ///   - pollingInterval: Time between progress checks (default: 0.5s).
     ///   - timeout: Maximum duration to wait before failing (default: 5 minutes).
+    ///   - progressCallback: Called with export progress in [0, 1]. Called off the main actor;
+    ///     hop to the main actor before updating UI.
     /// - Returns: The file path to the exported recording.
     /// - Throws:
     ///   - ``CancellationError`` if the Task running this function was cancelled.
@@ -87,7 +91,7 @@ public final class NSDKRecordingExporter: NSDKSession.IDisposable {
         exportResolution: ExportResolution = .high,
         pollingInterval: TimeInterval = 0.1,
         timeout: TimeInterval = 300.0,
-        progressCallback: ((Float) -> Void)? = nil
+        progressCallback: (@Sendable (Float) -> Void)? = nil
     ) async throws -> String {
         try startExport(scanDirPath: scanDirPath, scanId: scanId, userData: userData, exportAsVideo: exportAsVideo, maxFramesPerArchive: Int32.max, exportResolution: exportResolution)
 
@@ -147,6 +151,8 @@ public final class NSDKRecordingExporter: NSDKSession.IDisposable {
     ///   - exportResolution: Resolution option for exported images (default: ``ExportResolution/high``).
     ///   - pollingInterval: Time between progress checks (default: 0.5s).
     ///   - timeout: Maximum duration to wait before failing (default: 5 minutes).
+    ///   - progressCallback: Called with export progress in [0, 1]. Called off the main actor;
+    ///     hop to the main actor before updating UI.
     /// - Returns: A list of file paths to the exported recording.
     /// - Throws:
     ///   - ``CancellationError`` if the Task running this function was cancelled.
@@ -160,7 +166,7 @@ public final class NSDKRecordingExporter: NSDKSession.IDisposable {
         exportResolution: ExportResolution = .high,
         pollingInterval: TimeInterval = 0.1,
         timeout: TimeInterval = 300.0,
-        progressCallback: ((Float) -> Void)? = nil
+        progressCallback: (@Sendable (Float) -> Void)? = nil
     ) async throws -> [String] {
         try startExport(scanDirPath: scanDirPath, scanId: scanId, userData: userData, exportAsVideo: exportAsVideo, maxFramesPerArchive: maxFramesPerArchive, exportResolution: exportResolution)
 
@@ -249,7 +255,7 @@ public final class NSDKRecordingExporter: NSDKSession.IDisposable {
         if cStatus.isArgumentError {
             throw NSDKError(fromC: cStatus)
         } else if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            throw nsdkUnexpectedError(cStatus)
         }
     }
 
@@ -275,7 +281,7 @@ public final class NSDKRecordingExporter: NSDKSession.IDisposable {
         if cStatus.isArgumentError {
             throw NSDKError(fromC: cStatus)
         } else if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            throw nsdkUnexpectedError(cStatus)
         }
 
         return isComplete
@@ -303,7 +309,7 @@ public final class NSDKRecordingExporter: NSDKSession.IDisposable {
         if cStatus.isArgumentError {
             throw NSDKError(fromC: cStatus)
         } else if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            throw nsdkUnexpectedError(cStatus)
         }
 
         return progress
@@ -340,7 +346,7 @@ public final class NSDKRecordingExporter: NSDKSession.IDisposable {
         if cStatus.isArgumentError || cStatus.isInvalidOperation {
             throw NSDKError(fromC: cStatus)
         } else if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            throw nsdkUnexpectedError(cStatus)
         }
 
         guard cPaths.paths != nil, cPaths.num_paths > 0 else {
@@ -376,7 +382,7 @@ public final class NSDKRecordingExporter: NSDKSession.IDisposable {
         }
 
         if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            return nsdkUnexpected(cStatus, returning: ())
         }
     }
 }

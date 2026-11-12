@@ -35,9 +35,9 @@ public extension simd_float3x3 {
     }
 }
 
-// World coordinate space in ARKit always follows a right-handed convention,
-// but is oriented based on the session configuration.
-// NSDK coordinates are in OpenCV convention (x-right, y-down, z-away, right-handed).
+/// Converts between NSDK's OpenCV coordinate convention and ARKit world coordinates.
+///
+/// ARKit uses a right-handed world coordinate system oriented by the session configuration.
 public extension simd_float4x4 {
     init(fromNSDKTransform t: ARDK_Transform) {
         // Quaternion to rotation
@@ -138,4 +138,3 @@ public extension simd_float4x4 {
         ]
     }
 }
-

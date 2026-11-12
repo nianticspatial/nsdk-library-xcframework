@@ -36,8 +36,8 @@ typedef enum ARDK_VPS2_LocalizationError : uint8_t {
   ///           due to an internal error, not due to malformed input.
   ARDK_VPS2_LocalizationError_InternalServer,
 
-  /// @brief    Code returned when the server sent a response that could not
-  ///           be parsed by the client.
+  /// @brief    Code returned when the client could not form or issue the request,
+  ///           or when the server sent a response the client could not parse.
   ARDK_VPS2_LocalizationError_InternalClient,
 
   /// @brief    Code returned when the server could not find a map near the
@@ -59,6 +59,37 @@ typedef enum ARDK_VPS2_LocalizationError : uint8_t {
   /// @brief    Code returned when a frame was rejected because the camera is
   ///           pointing at the ground or sky (no horizon crossing).
   ARDK_VPS2_LocalizationError_BadCameraAngle,
+
+  /// @brief    Code returned when a frame was rejected before dispatch because
+  ///           no valid geolocation prior was available — the GPS reading was
+  ///           NaN or a placeholder and no other valid prior (e.g. a WPS
+  ///           estimate) could be substituted.
+  ARDK_VPS2_LocalizationError_NoValidPrior,
+
+  /// @brief    Code returned when a frame was rejected because the device was
+  ///           held upside down (inverted relative to gravity).
+  ARDK_VPS2_LocalizationError_DeviceUpsideDown,
+
+  /// @brief    Code returned when a frame was flagged because the image was too
+  ///           blurry or featureless to localize well. Advisory: the frame is
+  ///           still sent; use this to coach the user, not to explain a drop.
+  ARDK_VPS2_LocalizationError_ImageTooBlurry,
+
+  /// @brief    Code returned when the requested site does not exist or is not
+  ///           accessible to this caller.
+  /// @note     Blocked on NSDK-8830: A missing or invisible site currently comes
+  ///           back as 403, surfacing as
+  ///           \c ARDK_VPS2_LocalizationError_AuthFailure and not this code.
+  ///           For now, the only 404s that reach here are route misses.
+  ARDK_VPS2_LocalizationError_SiteNotFound,
+
+  /// @brief    Code returned when the request found nothing to localize against.
+  ///           For \c ARDK_VPS2_LocalizeToSite the site was found but has no usable
+  ///           assets: either none of them are deployed to production, or the
+  ///           production-deployed ones were not localizable. For
+  ///           \c ARDK_VPS2_LocalizeToNearbySites either no site fell within the
+  ///           radius, or none of the sites that did had a localizable asset.
+  ARDK_VPS2_LocalizationError_VpsAssetsNotFound,
 } ARDK_VPS2_LocalizationError;
 
 #ifdef __cplusplus

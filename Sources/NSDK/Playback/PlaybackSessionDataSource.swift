@@ -25,21 +25,21 @@ extension PlaybackSessionDataSource: NsdkSessionDataSource {
         timestamp: UInt64)?
     {
         guard let frame = playbackSession?.currentPlaybackFrame else { return nil }
-        
-        let metadata = frame.metadata
-        
+
+        let metadata = frame.frameMetadata
+
         let pixelBuffer = frame.image?.toYUV420PixelBuffer(
-            width: Int(frame.metadata.cameraImageWidth),
-            height: Int(frame.metadata.cameraImageHeight)
+            width: Int(metadata.imageResolution.x),
+            height: Int(metadata.imageResolution.y)
         )
-        
+
         guard let pixelBuffer else { return nil }
-        
+
         return (image: pixelBuffer,
-                intrinsics: metadata.nsdkCameraIntrinsics,
-                pose: metadata.cameraTransform,
-                orientation: metadata.orientation?.nsdkScreenOrientation ?? .unknown,
-                timestamp: metadata.cameraTimestampMs)
+                intrinsics: metadata.intrinsics,
+                pose: metadata.transform,
+                orientation: metadata.orientation,
+                timestamp: metadata.timestampMs)
     }
     
     public func latestDepthMapSample()
@@ -53,25 +53,25 @@ extension PlaybackSessionDataSource: NsdkSessionDataSource {
         guard let frame = playbackSession?.currentPlaybackFrame,
               let depthData = frame.depthData else { return nil }
         
-        let metadata = frame.metadata
-        
+        let metadata = frame.frameMetadata
+
         return (image: depthData,
                 confidence: frame.depthConfidence,
-                intrinsics: metadata.nsdkCameraIntrinsics,
-                pose: metadata.cameraTransform,
-                orientation: metadata.orientation?.nsdkScreenOrientation ?? .unknown,
-                timestamp: metadata.cameraTimestampMs)
+                intrinsics: metadata.intrinsics,
+                pose: metadata.transform,
+                orientation: metadata.orientation,
+                timestamp: metadata.timestampMs)
     }
-    
+
     public func latestGpsSample() -> NSDKFrameData.GpsData? {
-        return playbackSession?.currentPlaybackFrame?.metadata.gpsData
+        return playbackSession?.currentPlaybackFrame?.frameMetadata.gpsData
     }
-    
+
     public func latestCompassSample() -> NSDKFrameData.CompassData? {
-        return playbackSession?.currentPlaybackFrame?.metadata.compassData
+        return playbackSession?.currentPlaybackFrame?.frameMetadata.compassData
     }
-    
+
     public func latestTrackingStateSample() -> NsdkTrackingState {
-        return playbackSession?.currentPlaybackFrame?.metadata.trackingState.nsdkTrackingState ?? .unknown
+        return playbackSession?.currentPlaybackFrame?.frameMetadata.trackingState ?? .unknown
     }
 }

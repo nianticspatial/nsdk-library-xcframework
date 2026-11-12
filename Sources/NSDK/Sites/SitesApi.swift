@@ -90,6 +90,7 @@ internal protocol SitesApi: NSDKApiBase {
         lng: Double,
         radiusMeters: Double,
         assetType: ARDK_SitesManager_AssetType,
+        scope: ARDK_SitesManager_AssetScope,
         requestIdOut: UnsafeMutablePointer<ARDK_NetworkRequestId>
     ) -> ARDK_Status
 
@@ -97,6 +98,24 @@ internal protocol SitesApi: NSDKApiBase {
         nsdkHandle: ARDK_Handle,
         requestId: ARDK_NetworkRequestId,
         resultOut: UnsafeMutablePointer<ARDK_SitesManager_SiteAssetsResult>
+    ) -> ARDK_Status
+
+    func requestScansForSite(
+        nsdkHandle: ARDK_Handle,
+        siteId: ARDK_String,
+        requestIdOut: UnsafeMutablePointer<ARDK_NetworkRequestId>
+    ) -> ARDK_Status
+
+    func requestScanInfo(
+        nsdkHandle: ARDK_Handle,
+        scanId: ARDK_String,
+        requestIdOut: UnsafeMutablePointer<ARDK_NetworkRequestId>
+    ) -> ARDK_Status
+
+    func getScanResult(
+        nsdkHandle: ARDK_Handle,
+        requestId: ARDK_NetworkRequestId,
+        resultOut: UnsafeMutablePointer<ARDK_SitesManager_ScanResult>
     ) -> ARDK_Status
 }
 
@@ -219,10 +238,11 @@ internal class CSitesApi: CArdkApiBase, SitesApi {
         lng: Double,
         radiusMeters: Double,
         assetType: ARDK_SitesManager_AssetType,
+        scope: ARDK_SitesManager_AssetScope,
         requestIdOut: UnsafeMutablePointer<ARDK_NetworkRequestId>
     ) -> ARDK_Status {
         return ARDK_SitesManager_RequestSiteAssetsByLocation(
-            nsdkHandle, lat, lng, radiusMeters, assetType, requestIdOut)
+            nsdkHandle, lat, lng, radiusMeters, assetType, scope, requestIdOut)
     }
 
     func getSiteAssetsResult(
@@ -231,5 +251,29 @@ internal class CSitesApi: CArdkApiBase, SitesApi {
         resultOut: UnsafeMutablePointer<ARDK_SitesManager_SiteAssetsResult>
     ) -> ARDK_Status {
         return ARDK_SitesManager_GetSiteAssetsResult(nsdkHandle, requestId, resultOut)
+    }
+
+    func requestScansForSite(
+        nsdkHandle: ARDK_Handle,
+        siteId: ARDK_String,
+        requestIdOut: UnsafeMutablePointer<ARDK_NetworkRequestId>
+    ) -> ARDK_Status {
+        return ARDK_SitesManager_RequestScansForSite(nsdkHandle, siteId, requestIdOut)
+    }
+
+    func requestScanInfo(
+        nsdkHandle: ARDK_Handle,
+        scanId: ARDK_String,
+        requestIdOut: UnsafeMutablePointer<ARDK_NetworkRequestId>
+    ) -> ARDK_Status {
+        return ARDK_SitesManager_RequestScanInfo(nsdkHandle, scanId, requestIdOut)
+    }
+
+    func getScanResult(
+        nsdkHandle: ARDK_Handle,
+        requestId: ARDK_NetworkRequestId,
+        resultOut: UnsafeMutablePointer<ARDK_SitesManager_ScanResult>
+    ) -> ARDK_Status {
+        return ARDK_SitesManager_GetScanResult(nsdkHandle, requestId, resultOut)
     }
 }

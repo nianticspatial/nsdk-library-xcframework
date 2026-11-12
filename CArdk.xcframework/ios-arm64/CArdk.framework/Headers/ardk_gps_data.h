@@ -15,13 +15,15 @@ typedef struct ARDK_GpsData {
   /// @brief      Timestamp of the reading in milliseconds since epoch.
   uint64_t timestamp_ms;
 
-  /// @brief      Geographical device location latitude.
+  /// @brief      WGS84 latitude of the device, in degrees.
   double latitude;
 
-  /// @brief      Geographical device location longitude
+  /// @brief      WGS84 longitude of the device, in degrees.
   double longitude;
 
-  /// @brief      Geographical device location altitude in meters.
+  /// @brief      Altitude of the device in meters above the WGS84 ellipsoid. If the platform
+  ///             only provides mean sea level altitude, set
+  ///             \c ARDK_DeviceInfo::altitude_is_mean_sea_level so that NSDK converts it.
   double altitude;
 
   /// @brief      Vertical accuracy radius of the location in meters.

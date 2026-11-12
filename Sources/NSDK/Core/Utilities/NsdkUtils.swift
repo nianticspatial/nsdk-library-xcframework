@@ -93,7 +93,7 @@ internal extension ARDK_Status {
     var isArgumentError: Bool {
         return self == ARDK_Status_InvalidArgument || self == ARDK_Status_NullArgument
     }
-    
+
     var isOk: Bool {
         return self == ARDK_Status_OK
     }

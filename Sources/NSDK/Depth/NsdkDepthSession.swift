@@ -85,21 +85,33 @@ public final class NSDKDepthSession: NSDKSession.IDisposable, NSDKUpdatableSessi
 
     /// Starts the depth session, enabling depth data processing with the current configuration.
     public func start() {
+        // A second start() without an intervening stop() is not supported.
+        guard !isActive else {
+            return nsdkUnexpected(
+                "session is already started; call stop() before starting it again",
+                returning: ()
+            )
+        }
+
         let cStatus = api.start(nsdkHandle: nsdkHandle)
         if cStatus.isError {
-            fatalError("Unexpected non-ok ARDK_Status: \(cStatus)")
+            // Leave the session inactive: it did not start.
+            return nsdkUnexpected(cStatus, returning: ())
         }
         isActive = true
     }
 
     /// Stops the depth session, halting depth data processing.
     public func stop() {
-        let cStatus = api.stop(nsdkHandle: nsdkHandle)
-        if cStatus.isError {
-            fatalError("Unexpected non-ok ARDK_Status: \(cStatus)")
-        }
+        // Reset state first, so a failed stop cannot leave the session permanently
+        // unable to start again.
         isActive = false
         result = .inProgress(nil)
+
+        let cStatus = api.stop(nsdkHandle: nsdkHandle)
+        if cStatus.isError {
+            return nsdkUnexpected(cStatus, returning: ())
+        }
     }
 
     // MARK: - NSDKUpdatableSession
@@ -123,7 +135,7 @@ public final class NSDKDepthSession: NSDKSession.IDisposable, NSDKUpdatableSessi
         let cStatus = api.getLatestDepth(nsdkHandle: nsdkHandle, resultOut: &cResult)
 
         if cStatus.isError {
-            fatalError("Unexpected non-ok NSDKStatus: \(cStatus)")
+            return nsdkUnexpected(cStatus, returning: .failure(.internalError))
         }
 
         if cResult.status == ARDK_Awareness_Status_Available {
@@ -143,7 +155,7 @@ public final class NSDKDepthSession: NSDKSession.IDisposable, NSDKUpdatableSessi
         let cStatus = api.getLatestImageParams(nsdkHandle: nsdkHandle, paramsOut: &cResult)
 
         if cStatus.isError {
-            fatalError("Unexpected non-ok NSDKStatus: \(cStatus)")
+            return nsdkUnexpected(cStatus, returning: .failure(.internalError))
         }
 
         if cResult.status == ARDK_Awareness_Status_Available {

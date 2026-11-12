@@ -1,65 +1,79 @@
 // Copyright Niantic Spatial.
 import CArdk
 
-/// Represents asset information from the Sites Manager service.
-/// Maps to proto messages AssetRecord, AssetData, and AssetComputedValues.
+/// Represents an asset, and the areas it is split into, from the Sites Manager service.
 public struct AssetInfo: CustomDebugStringConvertible, Sendable {
-    // MARK: - From AssetKey
-    
+    // MARK: - Identity
+
     /// Asset identifier.
     public let id: String
-    
-    // MARK: - From AssetRecord
-    
+
+    /// Asset key timestamp in Unix seconds (0 if unset).
+    public let assetTimestamp: Int64
+
     /// Site identifier that owns this asset.
     public let siteId: String
-    
-    // MARK: - From AssetData
-    
+
+    // MARK: - Details
+
     /// Asset display name.
     public let name: String
-    
+
     /// Asset description (nil if empty).
     public let description: String?
-    
-    /// Asset type - determines which typed asset data is present.
+
+    /// Asset type - determines which fields of `AssetArea` are meaningful.
     public let assetType: AssetType
-    
-    /// Asset status.
+
+    /// DEPRECATED - always `.unspecified`.
     public let assetStatus: AssetStatusType
-    
+
     /// Asset deployment type.
     public let deployment: AssetDeploymentType
-    
-    /// Typed asset data based on asset type.
+
+    /// DEPRECATED - read `areas[0]` instead. Every field here is a copy of one on that area,
+    /// so this describes the first area only and is partial for an asset with multiple areas.
     public let typedData: TypedAssetData
-    
-    // MARK: - From AssetComputedValues
-    
-    /// Pipeline job identifier (nil if not present).
-    public let pipelineJobId: String?
-    
-    /// Pipeline job status.
+
+    /// Every area of this asset.
+    ///
+    /// An asset mapped in a single pass has exactly one. Empty while the asset's job has
+    /// produced no output yet.
+    public let areas: [AssetArea]
+
+    /// DEPRECATED - read ``AssetArea/jobStatus`` on each entry of `areas`. The portal leaves
+    /// the asset-level status unset, since a job belongs to an area, so expect `.unspecified`.
     public let pipelineJobStatus: AssetPipelineJobStatus
-    
-    /// Source scan IDs used to create this asset.
+
+    /// DEPRECATED - always nil. The portal has no source for it; retained so existing
+    /// callers keep compiling.
+    public let pipelineJobId: String?
+
+    /// DEPRECATED - always empty. The portal has no source for it; retained so existing
+    /// callers keep compiling.
     public let sourceScanIds: [String]
-    
-    // MARK: - Convenience accessors for typed data
-    
-    /// Mesh data (nil if asset type is not mesh).
+
+    // MARK: - DEPRECATED: convenience accessors for typed data
+    //
+    // All three are nil unless the first area carries the field this type is read
+    // through: the anchor for vpsInfo, the root node for mesh and splat.
+
+    /// DEPRECATED - read `areas[0]` instead. Nil unless the asset type is mesh and `areas` is
+    /// non-empty.
     public var meshData: AssetMeshData? {
         if case .mesh(let data) = typedData { return data }
         return nil
     }
-    
-    /// Splat data (nil if asset type is not splat).
+
+    /// DEPRECATED - read `areas[0]` instead. Nil unless the asset type is splat and `areas` is
+    /// non-empty.
     public var splatData: AssetSplatData? {
         if case .splat(let data) = typedData { return data }
         return nil
     }
-    
-    /// VPS data (nil if asset type is not vps).
+
+    /// DEPRECATED - read `areas[0]` instead. Nil unless the asset type is vps and `areas` is
+    /// non-empty.
     public var vpsData: AssetVpsData? {
         if case .vps(let data) = typedData { return data }
         return nil
@@ -73,6 +87,7 @@ public struct AssetInfo: CustomDebugStringConvertible, Sendable {
         guard let siteIdPtr = cValue.site_id else { return nil }
         
         self.id = String(cString: idPtr)
+        self.assetTimestamp = cValue.asset_timestamp
         self.name = String(cString: namePtr)
         self.siteId = String(cString: siteIdPtr)
         self.description = cValue.description != nil ? String(cString: cValue.description) : nil
@@ -83,6 +98,13 @@ public struct AssetInfo: CustomDebugStringConvertible, Sendable {
         self.deployment = AssetDeploymentType(fromC: cValue.deployment)
         self.pipelineJobStatus = AssetPipelineJobStatus(fromC: cValue.pipeline_job_status)
         
+        // Areas
+        self.areas = {
+            guard let areasPtr = cValue.areas else { return [] }
+            let buffer = UnsafeBufferPointer(start: areasPtr, count: Int(cValue.areas_size))
+            return buffer.map { AssetArea(fromC: $0) }
+        }()
+
         // Pipeline job ID
         self.pipelineJobId = cValue.pipeline_job_id != nil ? String(cString: cValue.pipeline_job_id) : nil
         
@@ -147,7 +169,13 @@ Asset
         if !sourceScanIds.isEmpty {
             desc += "- Source Scan IDs: \(sourceScanIds.joined(separator: ", "))\n"
         }
-        
+        if !areas.isEmpty {
+            desc += "- Areas (\(areas.count)):\n"
+            for area in areas {
+                desc += "  \(area.debugDescription)"
+            }
+        }
+
         // Typed data
         switch typedData {
         case .mesh(let data):

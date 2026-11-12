@@ -32,10 +32,12 @@ typedef enum ARDK_SitesManager_Error {
   ARDK_SitesManager_Error_ParseError,
 
   /// @brief  An unexpected error occurred.
-  ARDK_SitesManager_Error_UnexpectedError
+  ARDK_SitesManager_Error_UnexpectedError,
+
+  /// @brief  HTTP 401 Unauthorized - the access token is missing, expired or invalid.
+  ARDK_SitesManager_Error_HttpUnauthorized
 } ARDK_SitesManager_Error;
 
 #ifdef __cplusplus
 }
 #endif
-

@@ -16,10 +16,19 @@ let package = Package(
             targets: ["NSDK"]
         )
     ],
+    dependencies: [
+        // Keep in lockstep with protoc-gen-swift in MODULE.bazel
+        // (@com_github_apple_swift_protobuf version). Generated .pb.swift requires
+        // a runtime >= the generator version.
+        .package(url: "https://github.com/apple/swift-protobuf.git", from: "1.38.1"),
+    ],
     targets: [
         .target(
             name: "NSDK",
-            dependencies: ["CArdk"],
+            dependencies: [
+                "CArdk",
+                .product(name: "SwiftProtobuf", package: "swift-protobuf"),
+            ],
             resources: [
                 .process("Playback/PlaybackShaders.metal")
             ]

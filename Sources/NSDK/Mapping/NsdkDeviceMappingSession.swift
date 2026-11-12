@@ -65,14 +65,15 @@ public final class NSDKDeviceMappingSession: NSDKSession.IDisposable, NSDKUpdata
         self.mapStorage = mapStorage
         let cStatus = mappingApi.create(nsdkHandle: nsdkHandle)
         if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            nsdkUnexpected(cStatus, returning: ())
+            return
         }
     }
 
     internal func destroy() {
         let cStatus = api.destroy(nsdkHandle: nsdkHandle)
         if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            return nsdkUnexpected(cStatus, returning: ())
         }
     }
 
@@ -122,7 +123,7 @@ public final class NSDKDeviceMappingSession: NSDKSession.IDisposable, NSDKUpdata
             if cStatus.isInvalidArgument {
                 throw NSDKError.invalidArgument
             } else {
-                unexpectedNSDKStatus(cStatus)
+                throw nsdkUnexpectedError(cStatus)
             }
         }
     }
@@ -132,9 +133,18 @@ public final class NSDKDeviceMappingSession: NSDKSession.IDisposable, NSDKUpdata
     /// Downloads the mapping algorithm model and prepares the session for mapping operations.
     /// Does not begin map building; call ``startMapping()`` to start building a map.
     public func start() {
+        // A second start() without an intervening stop() is not supported.
+        guard !isActive else {
+            return nsdkUnexpected(
+                "session is already started; call stop() before starting it again",
+                returning: ()
+            )
+        }
+
         let cStatus = api.start(nsdkHandle: nsdkHandle)
         if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            // Leave `isActive` false: the session did not start.
+            return nsdkUnexpected(cStatus, returning: ())
         }
         isActive = true
     }
@@ -143,12 +153,15 @@ public final class NSDKDeviceMappingSession: NSDKSession.IDisposable, NSDKUpdata
     ///
     /// - Note: If mapping is in progress, this will stop mapping.
     public func stop() {
-        let cStatus = api.stop(nsdkHandle: nsdkHandle)
-        if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
-        }
+        // Reset state first, so a failed stop cannot leave the session permanently
+        // unable to start again.
         isActive = false
         latestMapUpdate = nil
+
+        let cStatus = api.stop(nsdkHandle: nsdkHandle)
+        if cStatus.isError {
+            return nsdkUnexpected(cStatus, returning: ())
+        }
     }
 
     /// Begin a mapping sequence.
@@ -163,7 +176,7 @@ public final class NSDKDeviceMappingSession: NSDKSession.IDisposable, NSDKUpdata
         let cStatus = api.startMapping(nsdkHandle: nsdkHandle)
 
         if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            return nsdkUnexpected(cStatus, returning: ())
         }
     }
 
@@ -173,7 +186,7 @@ public final class NSDKDeviceMappingSession: NSDKSession.IDisposable, NSDKUpdata
     public func stopMapping() {
         let cStatus = api.stopMapping(nsdkHandle: nsdkHandle)
         if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            return nsdkUnexpected(cStatus, returning: ())
         }
     }
 }

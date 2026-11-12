@@ -26,7 +26,7 @@ public struct MapMetadata {
         self.owner = owner
     }
 
-    // XYZ position in ARKit coordinates, 3 floats per point
+    /// Point positions in ARKit coordinates, stored as three floats per point.
     public var points: [Float] {
         let rawPoints = Array(UnsafeBufferPointer(start: pointsPtr, count: Int(pointsCount * 3)))
         var arkitPoints: [Float] = []
@@ -45,7 +45,7 @@ public struct MapMetadata {
         return arkitPoints
     }
 
-    // 1 float per point, standard deviation in meters
+    /// Per-point standard deviations in meters.
     public var errors: [Float] {
         return Array(UnsafeBufferPointer(start: errorsPtr, count: Int(pointsCount)))
     }
