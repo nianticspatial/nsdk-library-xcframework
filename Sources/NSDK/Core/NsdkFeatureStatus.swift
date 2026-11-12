@@ -10,24 +10,24 @@ import CArdk
 ///
 /// Use this to monitor the health and state of NSDK features:
 /// - Check for errors that need attention
-/// - Monitor initialization progress
-/// - Verify configuration and API key validity
+/// - Verify the feature was configured successfully
 /// - Ensure features are ready for operation
 ///
 /// ## Example Usage
 ///
 /// ```swift
-/// let status = vpsSession.getFeatureStatus()
-/// if status.contains(.badApiKey) {
-///     print("Invalid API key - check your credentials")
-/// } else if status.contains(.configurationFailed) {
+/// let status = vps2Session.featureStatus()
+/// if status.contains(.configurationFailed) {
 ///     print("Feature configuration failed")
-/// } else if status.contains(.initializing) {
-///     print("Feature is still initializing...")
-/// } else if status == .ok {
+/// } else if status.isOk() {
 ///     print("Feature is ready and operational")
 /// }
 /// ```
+///
+/// To find out why a network request failed, including an authentication problem, read the
+/// localization request records instead. Each record names its request type and error, so a
+/// failure can be told apart from one belonging to a different request — see
+/// ``NSDKVps2Session/getLatestLocalizationRequestRecords()``.
 public struct NSDKFeatureStatus: OptionSet, CustomDebugStringConvertible, @unchecked Sendable {
     /// The raw value representing the status flags.
     public let rawValue: UInt32
@@ -63,16 +63,24 @@ public struct NSDKFeatureStatus: OptionSet, CustomDebugStringConvertible, @unche
     /// Check configuration parameters and try reconfiguring the feature.
     public static let configurationFailed = NSDKFeatureStatus(fromC: ARDK_FeatureStatus_ConfigurationFailed)
     
-    /// Invalid or expired API key.
+    /// Invalid or expired authentication credentials.
     ///
-    /// The provided API key is not valid or has expired. Verify your API key
-    /// and ensure it has the necessary permissions for the requested features.
-    public static let badApiKey = NSDKFeatureStatus(fromC: ARDK_FeatureStatus_BadApiKey)
+    /// VPS localization and the portal are authorized separately, so a token can be entitled to
+    /// one and not the other. A single flag cannot say which one rejected the app. While this
+    /// flag remains, it reports VPS localization failures only.
+    @available(*, deprecated, message: "Read the localization request records instead. VPS localization and the portal are authorized separately, so a single flag cannot say which one rejected the app; each record names its request type and error.")
+    public static let badAuth = badAuthFlag
+
+    /// The same flag as ``badAuth``, for use inside this type.
+    ///
+    /// Exists so that our own code can still recognise the flag without warning about a
+    /// deprecation aimed at callers. Remove it along with ``badAuth``.
+    private static let badAuthFlag = NSDKFeatureStatus(fromC: ARDK_FeatureStatus_BadAuth)
 
     private static let caseDescriptions: [(Self, String)] = [
         (.ok, "ok"),
         (.configurationFailed, "configurationFailed"),
-        (.badApiKey, "badApiKey"),
+        (.badAuthFlag, "badAuth"),
     ]
 
     public var debugDescription: String {

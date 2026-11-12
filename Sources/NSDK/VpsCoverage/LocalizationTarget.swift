@@ -21,6 +21,11 @@ public struct LocalizationTarget: Sendable, CustomDebugStringConvertible {
     public let hintImageUrl: String?
     
     /// VPS anchor payload that can be used to localize when near this target.
+    ///
+    /// - Warning: Deprecated. An anchor payload is no longer the preferred method to identify
+    ///   the map to localize against: pass a site ID to
+    ///   `NSDKVps2Session.localize(siteId:)` or a coordinate to
+    ///   `localize(latitude:longitude:radiusMeters:)`.
     public let defaultAnchorPayload: String
 
     public init?(fromC cValue: ARDK_VPSCoverage_LocalizationTarget) {

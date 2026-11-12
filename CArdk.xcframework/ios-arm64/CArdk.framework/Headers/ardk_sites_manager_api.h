@@ -208,16 +208,62 @@ ARDK_CAPI_VISIBLE ARDK_Status ARDK_SitesManager_RequestSelfOrganizationInfo(
 /// @param        lng               Longitude of the query coordinate, in degrees.
 /// @param        radius_meters     Search radius around the coordinate, in meters.
 /// @param        asset_type        The type of assets to filter results by.
+/// @param        scope             Production assets only, or every asset. Production assets
+///                                 are the ones \c ARDK_VPS2_LocalizeToNearbySites can
+///                                 localize to.
 /// @param[out]   request_id_out    The identifier for this request.
 /// @return       \c ARDK_Status value indicating success or failure:
 ///               - \c ARDK_Status_OK (0) means the function executed successfully.
 ///               - \c ARDK_Status_NullArgument - \p request_id_out was null.
+///               - \c ARDK_Status_InvalidArgument - \p asset_type or \p scope is not a
+///                 supported value.
 ///               - \c ARDK_Status_NullArdkHandle - \p ardk_handle was null.
 ///               - \c ARDK_Status_FeatureDoesNotExist - The sites manager was never created or
 ///                 was already destroyed.
 ARDK_CAPI_VISIBLE ARDK_Status ARDK_SitesManager_RequestSiteAssetsByLocation(
     ARDK_Handle ardk_handle, double lat, double lng, double radius_meters,
-    ARDK_SitesManager_AssetType asset_type, ARDK_NetworkRequestId* request_id_out);
+    ARDK_SitesManager_AssetType asset_type, ARDK_SitesManager_AssetScope scope,
+    ARDK_NetworkRequestId* request_id_out);
+
+/// @brief        Requests every scan of a site, of all types and statuses.
+/// @details      This initiates a network request. Poll \c ARDK_SitesManager_GetScanResult
+///               to check the status of this request.
+/// @param        ardk_handle       Handle to the ARDK object.
+/// @param        site_id           The site ID to list scans for.
+/// @param[out]   request_id_out    The identifier for this request.
+/// @return       \c ARDK_Status value indicating success or failure:
+///               - \c ARDK_Status_OK (0) means the function executed successfully.
+///               - \c ARDK_Status_NullArgument - Various arguments could have caused this error.
+///                 Check the log for the error message with more detail.
+///                 - The \p site_id \c data field was null.
+///                 - The \p request_id_out argument was null.
+///               - \c ARDK_Status_InvalidArgument - The \p site_id \c data field was 0.
+///               - \c ARDK_Status_NullArdkHandle - \p ardk_handle was null.
+///               - \c ARDK_Status_FeatureDoesNotExist - The sites manager was never created or
+///                 was already destroyed.
+/// @note         A token scoped to \c site-assets:read cannot list scans; the request fails
+///               with \c ARDK_SitesManager_Error_HttpForbidden.
+ARDK_CAPI_VISIBLE ARDK_Status ARDK_SitesManager_RequestScansForSite(
+    ARDK_Handle ardk_handle, ARDK_String site_id, ARDK_NetworkRequestId* request_id_out);
+
+/// @brief        Requests one scan's information.
+/// @details      This initiates a network request. Poll \c ARDK_SitesManager_GetScanResult
+///               to check the status of this request.
+/// @param        ardk_handle       Handle to the ARDK object.
+/// @param        scan_id           The scan ID to query.
+/// @param[out]   request_id_out    The identifier for this request.
+/// @return       \c ARDK_Status value indicating success or failure:
+///               - \c ARDK_Status_OK (0) means the function executed successfully.
+///               - \c ARDK_Status_NullArgument - Various arguments could have caused this error.
+///                 Check the log for the error message with more detail.
+///                 - The \p scan_id \c data field was null.
+///                 - The \p request_id_out argument was null.
+///               - \c ARDK_Status_InvalidArgument - The \p scan_id \c data field was 0.
+///               - \c ARDK_Status_NullArdkHandle - \p ardk_handle was null.
+///               - \c ARDK_Status_FeatureDoesNotExist - The sites manager was never created or
+///                 was already destroyed.
+ARDK_CAPI_VISIBLE ARDK_Status ARDK_SitesManager_RequestScanInfo(
+    ARDK_Handle ardk_handle, ARDK_String scan_id, ARDK_NetworkRequestId* request_id_out);
 
 // API Methods - Result polling functions
 
@@ -305,6 +351,24 @@ ARDK_SitesManager_GetUserResult(ARDK_Handle ardk_handle, ARDK_NetworkRequestId r
 ARDK_CAPI_VISIBLE ARDK_Status
 ARDK_SitesManager_GetSiteAssetsResult(ARDK_Handle ardk_handle, ARDK_NetworkRequestId request_id,
                                       ARDK_SitesManager_SiteAssetsResult* result_out);
+
+/// @brief        Retrieve the result of a scan list or scan info request.
+/// @details      After calling \c ARDK_SitesManager_RequestScansForSite or
+///               \c ARDK_SitesManager_RequestScanInfo, poll this until the result's status
+///               indicates success or failure.
+/// @param        ardk_handle       Handle to the ARDK object.
+/// @param        request_id        The identifier returned by the request call.
+/// @param[out]   result_out        The query result. Must be released using \c
+///               ARDK_Release_Resource.
+/// @return       \c ARDK_Status value indicating success or failure:
+///               - \c ARDK_Status_OK (0) means the function executed successfully.
+///               - \c ARDK_Status_InvalidArgument - No request with id \p request_id found.
+///               - \c ARDK_Status_NullArdkHandle - \p ardk_handle was null.
+///               - \c ARDK_Status_FeatureDoesNotExist - The sites manager was never created or
+///                 was already destroyed.
+ARDK_CAPI_VISIBLE ARDK_Status
+ARDK_SitesManager_GetScanResult(ARDK_Handle ardk_handle, ARDK_NetworkRequestId request_id,
+                                ARDK_SitesManager_ScanResult* result_out);
 
 #ifdef __cplusplus
 }

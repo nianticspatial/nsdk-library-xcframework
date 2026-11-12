@@ -82,7 +82,9 @@ public struct TextureUtils {
     
     /// Calculates the number of bytes per row in an image buffer based on its type and pixel width.
     private static func bytesPerRowIfSupported(for type: NSDKImage.ImageType, width: Int) -> Int? {
-        precondition(width >= 0)
+        guard width >= 0 else {
+            return nsdkUnexpected("width must not be negative, got \(width)", returning: nil)
+        }
         
         switch type {
         case .depthRawFloat, .sceneSegmentationConfidence:

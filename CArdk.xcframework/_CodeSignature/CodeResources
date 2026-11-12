@@ -6,15 +6,11 @@
 	<dict>
 		<key>ios-arm64/CArdk.framework/CArdk</key>
 		<data>
-		zlGaJ4SP9W5w0smoYwekgdj2IUI=
-		</data>
-		<key>ios-arm64/CArdk.framework/Headers/ardk_age_level.h</key>
-		<data>
-		5MrugtHGdUW/8qvAfiqdK2EDxtg=
+		0OoTe3M7f4xiNXbbeWAeYTlVtm0=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_api.h</key>
 		<data>
-		JUjecTgK0QHgIttsS8fOxdj/ysI=
+		5mH1Qtx6LUkvyd5Kl7LL7bXHFGo=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_area_target.h</key>
 		<data>
@@ -26,7 +22,7 @@
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_auth_manager_api.h</key>
 		<data>
-		i7bLh6T811iOr1Oco+Er08C+QgI=
+		OJjfsWYvzxg2ssTjotfY+/E3oOs=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_auth_manager_types.h</key>
 		<data>
@@ -60,13 +56,17 @@
 		<data>
 		pDrJ2mu4ljInzJ0jakV5O1Gv8HY=
 		</data>
+		<key>ios-arm64/CArdk.framework/Headers/ardk_clock_base.h</key>
+		<data>
+		JlfkwJD+34r3GvJM+GoyJ9Ui9Uw=
+		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_cloud_env_config.h</key>
 		<data>
 		pehR1gdRGOweadL80ndMjp3KSec=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_compass_data.h</key>
 		<data>
-		3EQVc6Q+gETgRgpTgoUimzaF9bA=
+		J+8koemXzt8TQK67nWsvHWDFqpU=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_config.h</key>
 		<data>
@@ -80,9 +80,17 @@
 		<data>
 		P7YNGAjcLg6avsanbXqsX/Giv2E=
 		</data>
+		<key>ios-arm64/CArdk.framework/Headers/ardk_dashcam.h</key>
+		<data>
+		1p1JHvMBo2+P7wnCyqP+ePj0QHc=
+		</data>
+		<key>ios-arm64/CArdk.framework/Headers/ardk_dashcam_config.h</key>
+		<data>
+		DHbwKlHFjrz5aIAk8P7NUrBE1oQ=
+		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_depth_api.h</key>
 		<data>
-		KhDvbd/XV/FRMw25yuWbkh3GLHo=
+		IkoyZ9jF+GUC5aL4hdvR/WwP8Wc=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_depth_buffer.h</key>
 		<data>
@@ -106,7 +114,7 @@
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_feature_status.h</key>
 		<data>
-		+v1h6JceiS8FxpA0NLJP8wmPmE4=
+		2fScI1ljizUEVKelpnGQ5D5JzsU=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_float_image.h</key>
 		<data>
@@ -116,13 +124,17 @@
 		<data>
 		r3D4uZMTb+mZZ0fpOkewm0zKXJ0=
 		</data>
+		<key>ios-arm64/CArdk.framework/Headers/ardk_frame_pacing_clock.h</key>
+		<data>
+		NRd4OoScq64YnOz6RHqYLHXQjTw=
+		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_geolocation_data.h</key>
 		<data>
-		DcwkuNs+zqZGJaxwKj2DifWGxFs=
+		4ENKEMBaAnMVwKoqrA8On30mwjk=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_gps_data.h</key>
 		<data>
-		34+FbmVMJkx1fiCpqs6FrV932kA=
+		20ykqkaJqLhqz1yGuqrnCm071Yk=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_half_image.h</key>
 		<data>
@@ -135,6 +147,10 @@
 		<key>ios-arm64/CArdk.framework/Headers/ardk_hint_image_result.h</key>
 		<data>
 		XExSg6fG8DaeTc37Eo9OUVZlG34=
+		</data>
+		<key>ios-arm64/CArdk.framework/Headers/ardk_id_string.h</key>
+		<data>
+		gzTquvqScW6C/WmwusgvEOcCGLA=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_image.h</key>
 		<data>
@@ -166,7 +182,7 @@
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_localization_target.h</key>
 		<data>
-		PU/sVXivn8Ifp4Sy+0wbOb3dohY=
+		++3e5dCyz+8E+uUnx/RmS42sCos=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_localization_target_result.h</key>
 		<data>
@@ -210,11 +226,19 @@
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_mesh_data.h</key>
 		<data>
-		md71iP/iHYH5vJ2ZcpJRjhiEkkk=
+		o5S/FnIE23of0WRzzWeflpkJQkA=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_mesh_downloader_api.h</key>
 		<data>
-		Lq5z0ufGHFJSdTy0iNZ57IoJPKM=
+		LGzJevKvIao9L0ToTTWyRxcYPK4=
+		</data>
+		<key>ios-arm64/CArdk.framework/Headers/ardk_mesh_downloader_chunk.h</key>
+		<data>
+		9pBdKnJsB54OXhO9ByT84Msk9Lg=
+		</data>
+		<key>ios-arm64/CArdk.framework/Headers/ardk_mesh_downloader_configuration.h</key>
+		<data>
+		77pkFUzn5AXjFXsezAEgM5muEAA=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_mesh_downloader_error.h</key>
 		<data>
@@ -226,7 +250,11 @@
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_mesh_downloader_results.h</key>
 		<data>
-		+ANzESbS13rUHNdYd/kjKUH0R5I=
+		b5BpJdQnSTbeWbmdmkqy9En8zQU=
+		</data>
+		<key>ios-arm64/CArdk.framework/Headers/ardk_mesh_geo_reference.h</key>
+		<data>
+		PyXcu6B97PiWZBIu3UsorT10Mmo=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_meshing_api.h</key>
 		<data>
@@ -275,6 +303,10 @@
 		<key>ios-arm64/CArdk.framework/Headers/ardk_path_config.h</key>
 		<data>
 		OhXQJHNtkixVmASE1+DFi98L8w8=
+		</data>
+		<key>ios-arm64/CArdk.framework/Headers/ardk_playback_api.h</key>
+		<data>
+		oGSzHEvnPUuuCFkICxrlycUUP+Q=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_recording_export_paths.h</key>
 		<data>
@@ -330,7 +362,7 @@
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_semantics_api.h</key>
 		<data>
-		uGG/t6e31K/esCLRmp1uZzVjxXo=
+		l/LfX8fdRJo8l7SyEh383/erGDM=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_semantics_channel.h</key>
 		<data>
@@ -358,11 +390,11 @@
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_sites_manager_api.h</key>
 		<data>
-		JPGktqUlszVr04J0EUxGg9LpyJY=
+		8z0XOqs/vhVdx2+yO5uyed0yyq0=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_sites_manager_error_code.h</key>
 		<data>
-		ur+6c53FEfO1dTvrAJFzKhOyi/s=
+		o1u79mHXBnOHI/inkRQs2Duemto=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_sites_manager_request_status.h</key>
 		<data>
@@ -370,7 +402,7 @@
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_sites_manager_types.h</key>
 		<data>
-		57yiDcPo5RtAHbc9SZDaTny9pWU=
+		sVv+rm3nPW27ONQCMhZgwoP1bD4=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_status.h</key>
 		<data>
@@ -378,7 +410,7 @@
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_string.h</key>
 		<data>
-		7Lzg/MQGeEBaWr3hobled7qgMbs=
+		fWMu63oQ/6VzrA9SGbpKseEw6jg=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_tracking_state.h</key>
 		<data>
@@ -386,11 +418,11 @@
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_transform.h</key>
 		<data>
-		csH+uywh2wuQZM24p/ASwO81mP4=
+		+13a4oQkMar28nT15egzyWNtobk=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_user_config.h</key>
 		<data>
-		WgUXWlWL/vwbeNPEofx/F2Qd4NY=
+		On80UErC+ONMZSO72sppEVL9bm0=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_uuid.h</key>
 		<data>
@@ -398,11 +430,19 @@
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_vps2_api.h</key>
 		<data>
-		0vUGxnkF5opCzMxAbOKQspjPq0Y=
+		Wti75mijnabGFeRdgk77n2ipgWI=
+		</data>
+		<key>ios-arm64/CArdk.framework/Headers/ardk_vps2_asset_identifier.h</key>
+		<data>
+		bmRcmPTckhUevGZUNCB5W/IUcf0=
+		</data>
+		<key>ios-arm64/CArdk.framework/Headers/ardk_vps2_asset_tracking_data.h</key>
+		<data>
+		HIU1pst5iHtuixsVOnz/R3PKqKs=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_vps2_config.h</key>
 		<data>
-		ZrHbLDMHlq7teYBGwEGY9e6RWXg=
+		vrFC8/Z5UcQiipwa3lRe4uFxgpM=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_vps2_geolocation.h</key>
 		<data>
@@ -410,11 +450,11 @@
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_vps2_localization.h</key>
 		<data>
-		frW+jRkVzazdH8Ug+6DVyPRM8Tk=
+		6Eq7Q9Xp/0J/Rw8Eu1po2vgxl1k=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_vps2_localization_error.h</key>
 		<data>
-		qC4p+O8dcOk3AEIC09CoSZj7Yv8=
+		VLJ90qrf02zKtmdNxMGK1M5ht8c=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_vps2_localization_request_record.h</key>
 		<data>
@@ -426,15 +466,15 @@
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_vps2_localization_request_status.h</key>
 		<data>
-		T8zXgfl7GJnbJJ+lfx+BTbqwG34=
+		17oavKXjT2WzUQeEwFa3Efkqvf0=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_vps2_localization_request_type.h</key>
 		<data>
-		YhUzpS/ZqEj9O7CZtDfioxgflRE=
+		A0tpf5gkl7YsvRC+AvFFqXyBvhA=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_vps2_pose.h</key>
 		<data>
-		vkR+5cyCC+LLdeQJUikQ32WWazA=
+		BCj2WxINSzIa+ZkzzbzMV0uU4K4=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_vps2_tracking_state.h</key>
 		<data>
@@ -442,15 +482,7 @@
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_vps_anchor_update.h</key>
 		<data>
-		GB7HawgiTxtZEw6DGLXqjB/dRWs=
-		</data>
-		<key>ios-arm64/CArdk.framework/Headers/ardk_vps_api.h</key>
-		<data>
-		3VRBWVBD9KQQmbg2/Ex/mDZwikg=
-		</data>
-		<key>ios-arm64/CArdk.framework/Headers/ardk_vps_config.h</key>
-		<data>
-		q/bvtTN8IOymN/7HZeUr+AN+fcc=
+		bjdMJNqX8gG8rFzMBX/BBsyhBaM=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_vps_coverage_api.h</key>
 		<data>
@@ -468,37 +500,9 @@
 		<data>
 		rKCNKnk3G/G/GlUua+GAwAt2cJE=
 		</data>
-		<key>ios-arm64/CArdk.framework/Headers/ardk_vps_geolocation_data.h</key>
-		<data>
-		nNSk/wNMurNvEuHmQOZ+qkDL884=
-		</data>
-		<key>ios-arm64/CArdk.framework/Headers/ardk_vps_graph_operation_error.h</key>
-		<data>
-		02CHo+JKjiUpt0YebFSHw4zZuow=
-		</data>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_vps_tracking_state.h</key>
 		<data>
-		nT0rmL8CAFWstks8FwkG9rozSHQ=
-		</data>
-		<key>ios-arm64/CArdk.framework/Headers/ardk_wps_api.h</key>
-		<data>
-		Za1IKBtqqppacpDlYapDsTXDqfk=
-		</data>
-		<key>ios-arm64/CArdk.framework/Headers/ardk_wps_configuration.h</key>
-		<data>
-		jdulhSxw3qjt0H8Oe6+VPVn4Ofc=
-		</data>
-		<key>ios-arm64/CArdk.framework/Headers/ardk_wps_geolocation_data.h</key>
-		<data>
-		c3G/wCwMhhlGh9YJtv3/ywmAv/0=
-		</data>
-		<key>ios-arm64/CArdk.framework/Headers/ardk_wps_location.h</key>
-		<data>
-		CUGHkLwT7rFpTGFwzUK8E0RS0rk=
-		</data>
-		<key>ios-arm64/CArdk.framework/Headers/ardk_wps_status.h</key>
-		<data>
-		5Cfgaz+i6+TSnVKre1bjSW+gDrE=
+		+J/MwVPtyErcWEjcJ44D/dElKe4=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/capi_common.h</key>
 		<data>
@@ -506,19 +510,19 @@
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/cardk.h</key>
 		<data>
-		2zNdsX44mqurXCk2G4AA/TH4ST0=
+		9Se8Fxi0Tp8/yWm4G080Wb3XsSY=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/nsdk_camera_frame.h</key>
 		<data>
-		rNNAryLuca9Knz33Y6Q88b5jUO8=
+		kQ1/AsGzBgDgoSq8ZajjhO3XfAQ=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/nsdk_depth_frame.h</key>
 		<data>
-		XFYoK+ENJSMXgSjOjEmrZPOvBDU=
+		5jn1wOVQg4YbRbuN8gXGe70O2iY=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/telemetry_publishing_api.h</key>
 		<data>
-		ph9cLxBA/aaV5dEJuTSxGQOBC98=
+		5AIHsyMrJb4a746bMqsZjCvTt1k=
 		</data>
 		<key>ios-arm64/CArdk.framework/Headers/telemetry_sink_api.h</key>
 		<data>
@@ -526,7 +530,7 @@
 		</data>
 		<key>ios-arm64/CArdk.framework/Info.plist</key>
 		<data>
-		UStCkK+RxmKXvSmHeA6NStBfCi0=
+		EnexbQNFmaiTpeuRydrnn8l0Rvw=
 		</data>
 		<key>ios-arm64/CArdk.framework/Modules/module.modulemap</key>
 		<data>
@@ -538,19 +542,15 @@
 		</data>
 		<key>ios-arm64/CArdk.framework/_CodeSignature/CodeResources</key>
 		<data>
-		zI8yyikYa5QTCm4iJfUaD8RyYwI=
+		1yyBL3kjk5oPJiW3roOCbk7uqOY=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/CArdk</key>
 		<data>
-		XHjV505M62mnk18IuLB4kgGomgQ=
-		</data>
-		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_age_level.h</key>
-		<data>
-		5MrugtHGdUW/8qvAfiqdK2EDxtg=
+		zt/bsVKEg5EiUfJ2hJ/fCGUlqT8=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_api.h</key>
 		<data>
-		JUjecTgK0QHgIttsS8fOxdj/ysI=
+		5mH1Qtx6LUkvyd5Kl7LL7bXHFGo=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_area_target.h</key>
 		<data>
@@ -562,7 +562,7 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_auth_manager_api.h</key>
 		<data>
-		i7bLh6T811iOr1Oco+Er08C+QgI=
+		OJjfsWYvzxg2ssTjotfY+/E3oOs=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_auth_manager_types.h</key>
 		<data>
@@ -596,13 +596,17 @@
 		<data>
 		pDrJ2mu4ljInzJ0jakV5O1Gv8HY=
 		</data>
+		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_clock_base.h</key>
+		<data>
+		JlfkwJD+34r3GvJM+GoyJ9Ui9Uw=
+		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_cloud_env_config.h</key>
 		<data>
 		pehR1gdRGOweadL80ndMjp3KSec=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_compass_data.h</key>
 		<data>
-		3EQVc6Q+gETgRgpTgoUimzaF9bA=
+		J+8koemXzt8TQK67nWsvHWDFqpU=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_config.h</key>
 		<data>
@@ -616,9 +620,17 @@
 		<data>
 		P7YNGAjcLg6avsanbXqsX/Giv2E=
 		</data>
+		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_dashcam.h</key>
+		<data>
+		1p1JHvMBo2+P7wnCyqP+ePj0QHc=
+		</data>
+		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_dashcam_config.h</key>
+		<data>
+		DHbwKlHFjrz5aIAk8P7NUrBE1oQ=
+		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_depth_api.h</key>
 		<data>
-		KhDvbd/XV/FRMw25yuWbkh3GLHo=
+		IkoyZ9jF+GUC5aL4hdvR/WwP8Wc=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_depth_buffer.h</key>
 		<data>
@@ -642,7 +654,7 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_feature_status.h</key>
 		<data>
-		+v1h6JceiS8FxpA0NLJP8wmPmE4=
+		2fScI1ljizUEVKelpnGQ5D5JzsU=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_float_image.h</key>
 		<data>
@@ -652,13 +664,17 @@
 		<data>
 		r3D4uZMTb+mZZ0fpOkewm0zKXJ0=
 		</data>
+		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_frame_pacing_clock.h</key>
+		<data>
+		NRd4OoScq64YnOz6RHqYLHXQjTw=
+		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_geolocation_data.h</key>
 		<data>
-		DcwkuNs+zqZGJaxwKj2DifWGxFs=
+		4ENKEMBaAnMVwKoqrA8On30mwjk=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_gps_data.h</key>
 		<data>
-		34+FbmVMJkx1fiCpqs6FrV932kA=
+		20ykqkaJqLhqz1yGuqrnCm071Yk=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_half_image.h</key>
 		<data>
@@ -671,6 +687,10 @@
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_hint_image_result.h</key>
 		<data>
 		XExSg6fG8DaeTc37Eo9OUVZlG34=
+		</data>
+		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_id_string.h</key>
+		<data>
+		gzTquvqScW6C/WmwusgvEOcCGLA=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_image.h</key>
 		<data>
@@ -702,7 +722,7 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_localization_target.h</key>
 		<data>
-		PU/sVXivn8Ifp4Sy+0wbOb3dohY=
+		++3e5dCyz+8E+uUnx/RmS42sCos=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_localization_target_result.h</key>
 		<data>
@@ -746,11 +766,19 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_mesh_data.h</key>
 		<data>
-		md71iP/iHYH5vJ2ZcpJRjhiEkkk=
+		o5S/FnIE23of0WRzzWeflpkJQkA=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_mesh_downloader_api.h</key>
 		<data>
-		Lq5z0ufGHFJSdTy0iNZ57IoJPKM=
+		LGzJevKvIao9L0ToTTWyRxcYPK4=
+		</data>
+		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_mesh_downloader_chunk.h</key>
+		<data>
+		9pBdKnJsB54OXhO9ByT84Msk9Lg=
+		</data>
+		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_mesh_downloader_configuration.h</key>
+		<data>
+		77pkFUzn5AXjFXsezAEgM5muEAA=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_mesh_downloader_error.h</key>
 		<data>
@@ -762,7 +790,11 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_mesh_downloader_results.h</key>
 		<data>
-		+ANzESbS13rUHNdYd/kjKUH0R5I=
+		b5BpJdQnSTbeWbmdmkqy9En8zQU=
+		</data>
+		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_mesh_geo_reference.h</key>
+		<data>
+		PyXcu6B97PiWZBIu3UsorT10Mmo=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_meshing_api.h</key>
 		<data>
@@ -811,6 +843,10 @@
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_path_config.h</key>
 		<data>
 		OhXQJHNtkixVmASE1+DFi98L8w8=
+		</data>
+		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_playback_api.h</key>
+		<data>
+		oGSzHEvnPUuuCFkICxrlycUUP+Q=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_recording_export_paths.h</key>
 		<data>
@@ -866,7 +902,7 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_semantics_api.h</key>
 		<data>
-		uGG/t6e31K/esCLRmp1uZzVjxXo=
+		l/LfX8fdRJo8l7SyEh383/erGDM=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_semantics_channel.h</key>
 		<data>
@@ -894,11 +930,11 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_sites_manager_api.h</key>
 		<data>
-		JPGktqUlszVr04J0EUxGg9LpyJY=
+		8z0XOqs/vhVdx2+yO5uyed0yyq0=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_sites_manager_error_code.h</key>
 		<data>
-		ur+6c53FEfO1dTvrAJFzKhOyi/s=
+		o1u79mHXBnOHI/inkRQs2Duemto=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_sites_manager_request_status.h</key>
 		<data>
@@ -906,7 +942,7 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_sites_manager_types.h</key>
 		<data>
-		57yiDcPo5RtAHbc9SZDaTny9pWU=
+		sVv+rm3nPW27ONQCMhZgwoP1bD4=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_status.h</key>
 		<data>
@@ -914,7 +950,7 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_string.h</key>
 		<data>
-		7Lzg/MQGeEBaWr3hobled7qgMbs=
+		fWMu63oQ/6VzrA9SGbpKseEw6jg=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_tracking_state.h</key>
 		<data>
@@ -922,11 +958,11 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_transform.h</key>
 		<data>
-		csH+uywh2wuQZM24p/ASwO81mP4=
+		+13a4oQkMar28nT15egzyWNtobk=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_user_config.h</key>
 		<data>
-		WgUXWlWL/vwbeNPEofx/F2Qd4NY=
+		On80UErC+ONMZSO72sppEVL9bm0=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_uuid.h</key>
 		<data>
@@ -934,11 +970,19 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps2_api.h</key>
 		<data>
-		0vUGxnkF5opCzMxAbOKQspjPq0Y=
+		Wti75mijnabGFeRdgk77n2ipgWI=
+		</data>
+		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps2_asset_identifier.h</key>
+		<data>
+		bmRcmPTckhUevGZUNCB5W/IUcf0=
+		</data>
+		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps2_asset_tracking_data.h</key>
+		<data>
+		HIU1pst5iHtuixsVOnz/R3PKqKs=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps2_config.h</key>
 		<data>
-		ZrHbLDMHlq7teYBGwEGY9e6RWXg=
+		vrFC8/Z5UcQiipwa3lRe4uFxgpM=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps2_geolocation.h</key>
 		<data>
@@ -946,11 +990,11 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps2_localization.h</key>
 		<data>
-		frW+jRkVzazdH8Ug+6DVyPRM8Tk=
+		6Eq7Q9Xp/0J/Rw8Eu1po2vgxl1k=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps2_localization_error.h</key>
 		<data>
-		qC4p+O8dcOk3AEIC09CoSZj7Yv8=
+		VLJ90qrf02zKtmdNxMGK1M5ht8c=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps2_localization_request_record.h</key>
 		<data>
@@ -962,15 +1006,15 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps2_localization_request_status.h</key>
 		<data>
-		T8zXgfl7GJnbJJ+lfx+BTbqwG34=
+		17oavKXjT2WzUQeEwFa3Efkqvf0=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps2_localization_request_type.h</key>
 		<data>
-		YhUzpS/ZqEj9O7CZtDfioxgflRE=
+		A0tpf5gkl7YsvRC+AvFFqXyBvhA=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps2_pose.h</key>
 		<data>
-		vkR+5cyCC+LLdeQJUikQ32WWazA=
+		BCj2WxINSzIa+ZkzzbzMV0uU4K4=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps2_tracking_state.h</key>
 		<data>
@@ -978,15 +1022,7 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps_anchor_update.h</key>
 		<data>
-		GB7HawgiTxtZEw6DGLXqjB/dRWs=
-		</data>
-		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps_api.h</key>
-		<data>
-		3VRBWVBD9KQQmbg2/Ex/mDZwikg=
-		</data>
-		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps_config.h</key>
-		<data>
-		q/bvtTN8IOymN/7HZeUr+AN+fcc=
+		bjdMJNqX8gG8rFzMBX/BBsyhBaM=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps_coverage_api.h</key>
 		<data>
@@ -1004,37 +1040,9 @@
 		<data>
 		rKCNKnk3G/G/GlUua+GAwAt2cJE=
 		</data>
-		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps_geolocation_data.h</key>
-		<data>
-		nNSk/wNMurNvEuHmQOZ+qkDL884=
-		</data>
-		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps_graph_operation_error.h</key>
-		<data>
-		02CHo+JKjiUpt0YebFSHw4zZuow=
-		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps_tracking_state.h</key>
 		<data>
-		nT0rmL8CAFWstks8FwkG9rozSHQ=
-		</data>
-		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_wps_api.h</key>
-		<data>
-		Za1IKBtqqppacpDlYapDsTXDqfk=
-		</data>
-		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_wps_configuration.h</key>
-		<data>
-		jdulhSxw3qjt0H8Oe6+VPVn4Ofc=
-		</data>
-		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_wps_geolocation_data.h</key>
-		<data>
-		c3G/wCwMhhlGh9YJtv3/ywmAv/0=
-		</data>
-		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_wps_location.h</key>
-		<data>
-		CUGHkLwT7rFpTGFwzUK8E0RS0rk=
-		</data>
-		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_wps_status.h</key>
-		<data>
-		5Cfgaz+i6+TSnVKre1bjSW+gDrE=
+		+J/MwVPtyErcWEjcJ44D/dElKe4=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/capi_common.h</key>
 		<data>
@@ -1042,19 +1050,19 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/cardk.h</key>
 		<data>
-		2zNdsX44mqurXCk2G4AA/TH4ST0=
+		9Se8Fxi0Tp8/yWm4G080Wb3XsSY=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/nsdk_camera_frame.h</key>
 		<data>
-		rNNAryLuca9Knz33Y6Q88b5jUO8=
+		kQ1/AsGzBgDgoSq8ZajjhO3XfAQ=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/nsdk_depth_frame.h</key>
 		<data>
-		XFYoK+ENJSMXgSjOjEmrZPOvBDU=
+		5jn1wOVQg4YbRbuN8gXGe70O2iY=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/telemetry_publishing_api.h</key>
 		<data>
-		ph9cLxBA/aaV5dEJuTSxGQOBC98=
+		5AIHsyMrJb4a746bMqsZjCvTt1k=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/telemetry_sink_api.h</key>
 		<data>
@@ -1062,7 +1070,7 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Info.plist</key>
 		<data>
-		UStCkK+RxmKXvSmHeA6NStBfCi0=
+		EnexbQNFmaiTpeuRydrnn8l0Rvw=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Modules/module.modulemap</key>
 		<data>
@@ -1074,50 +1082,27 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/_CodeSignature/CodeResources</key>
 		<data>
-		zI8yyikYa5QTCm4iJfUaD8RyYwI=
+		1yyBL3kjk5oPJiW3roOCbk7uqOY=
 		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
 		<key>ios-arm64/CArdk.framework/CArdk</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			zlGaJ4SP9W5w0smoYwekgdj2IUI=
-			</data>
 			<key>hash2</key>
 			<data>
-			4wnyqXNOVuT0a8OYY6d19VpXkfRbo3/gZ1OIM9uPv2w=
-			</data>
-		</dict>
-		<key>ios-arm64/CArdk.framework/Headers/ardk_age_level.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			5MrugtHGdUW/8qvAfiqdK2EDxtg=
-			</data>
-			<key>hash2</key>
-			<data>
-			80sne6orrku0KFhQhde/qZbn2GzfY1Gaa0fH7Q/PFc0=
+			RZDmxK4T4agmTqlNGYLi2z0rjLC1sOdfu59wcCVmWmg=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_api.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			JUjecTgK0QHgIttsS8fOxdj/ysI=
-			</data>
 			<key>hash2</key>
 			<data>
-			fYMZ0RbGdJRRG50+0E/+UGsq9NwCatQc8upQqiQ59xM=
+			5eh4S3mB7a++B6h0syjGI0U20T8TV3/rlLEl3mOQi9E=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_area_target.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			SUt9No+K/NNpS4WuG98tV9TZe2A=
-			</data>
 			<key>hash2</key>
 			<data>
 			Lpm/87rwnKN9R/96LDxtgQuUpWx8g21sg+BCka6AWLI=
@@ -1125,10 +1110,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_area_target_result.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			SkmlZcbVR3wiYMr7MWAzyo4lGk8=
-			</data>
 			<key>hash2</key>
 			<data>
 			KWfyIds58SeViy5Bi2MGHxlCfQIEK0buuQ72AaO31Tw=
@@ -1136,21 +1117,13 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_auth_manager_api.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			i7bLh6T811iOr1Oco+Er08C+QgI=
-			</data>
 			<key>hash2</key>
 			<data>
-			trE50v2CdKcYMjImbdBLsfStMDIkFAL+i8K9f+Kk7Cc=
+			hBTqxmpp1MGZ/W/XINdYKoum0f53vLRStbU5PcJc8Dg=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_auth_manager_types.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			/kgskgOBI9wOwv1uDwgAz9iAImo=
-			</data>
 			<key>hash2</key>
 			<data>
 			qebh02pi2tora8XGaSdKtMy4lFG4NxHWBQIrERHMnP4=
@@ -1158,10 +1131,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_awareness_feature_mode.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			FRJKxOSGnyOV8Ss2YOzTpJeCM8w=
-			</data>
 			<key>hash2</key>
 			<data>
 			3tFU2vx4XirIgBnJfYSS6xVpWoSA0gafvChjopZ4fIc=
@@ -1169,10 +1138,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_awareness_image_params.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			bETdMNb3JuS1oA8lCGGURE9qE4Q=
-			</data>
 			<key>hash2</key>
 			<data>
 			8Se/oR6se4MAreT7VkCxGPA1g6InmxWVD7ENKEJdMS8=
@@ -1180,10 +1145,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_awareness_result_context.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			Rmu2iJGfkXzhVJPsKtAY3oWRXgk=
-			</data>
 			<key>hash2</key>
 			<data>
 			A0SfGKzK4gbllybD4iuxjaDsYicLFFASe3pUzowxS/I=
@@ -1191,10 +1152,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_awareness_status.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			MEl0J2RmCL4ERd1xsSelC7jM7GM=
-			</data>
 			<key>hash2</key>
 			<data>
 			1qTgLAM06IppQeDUq+hlViTS4XmCBNURBDK1LFvr63Q=
@@ -1202,10 +1159,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_buffer.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			xyMeOcbLVYufzqt6Mk/CC2v0VFs=
-			</data>
 			<key>hash2</key>
 			<data>
 			wq5LKDlcJBY5KZ4IMtWGQHTeDOSFeU545QJ4PoRL7SE=
@@ -1213,10 +1166,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_camera_intrinsics.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			risZqWkZoEufmJDCI/sYi2uzUQc=
-			</data>
 			<key>hash2</key>
 			<data>
 			9AZc/xAW8s4VuBl2FjV5wsgWbRJe8lt6TbNhpDKwZUs=
@@ -1224,21 +1173,20 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_camera_plane.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			pDrJ2mu4ljInzJ0jakV5O1Gv8HY=
-			</data>
 			<key>hash2</key>
 			<data>
 			r3n+jogEREOO2N4cBOUT3L+41kuHz0zSgjyzP+ZuDMs=
 			</data>
 		</dict>
+		<key>ios-arm64/CArdk.framework/Headers/ardk_clock_base.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			1Wt+p+MnFyUUBFSYJZEGWKSjHO3Xk4CHyHaPlDhaiAQ=
+			</data>
+		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_cloud_env_config.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			pehR1gdRGOweadL80ndMjp3KSec=
-			</data>
 			<key>hash2</key>
 			<data>
 			PW7XfE+wMdadPII/emYDleB8GMyqzIo6WCS3lfMW+6E=
@@ -1246,21 +1194,13 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_compass_data.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			3EQVc6Q+gETgRgpTgoUimzaF9bA=
-			</data>
 			<key>hash2</key>
 			<data>
-			Ye9FN+uoXpxFPR4hoycHvdbj/V66JFyqClELtNoSUuc=
+			529wGNs2WX2vtHpvR4HSQj0QEkLmUM3wmrOA3ULN6mU=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_config.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			VvNAsqNk8s+gJFdv6I/IPZ3IXdA=
-			</data>
 			<key>hash2</key>
 			<data>
 			4djKQopG6N9Tyo8pmOydE5hVaaG+rDqW9MAyYmFl34Q=
@@ -1268,10 +1208,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_coverage_area.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			m/p2zwvpuLMq5eC4IHnFKta9ICU=
-			</data>
 			<key>hash2</key>
 			<data>
 			L5SdF0+h0RuktAM8zbwFSZ/ZYi61+r9VWeH2DsrglIM=
@@ -1279,32 +1215,34 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_coverage_area_result.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			P7YNGAjcLg6avsanbXqsX/Giv2E=
-			</data>
 			<key>hash2</key>
 			<data>
 			adByN5olypbzYBBP6PNN9jDhOt4wN8g2lCFbENA5Hz8=
 			</data>
 		</dict>
-		<key>ios-arm64/CArdk.framework/Headers/ardk_depth_api.h</key>
+		<key>ios-arm64/CArdk.framework/Headers/ardk_dashcam.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			KhDvbd/XV/FRMw25yuWbkh3GLHo=
-			</data>
 			<key>hash2</key>
 			<data>
-			ry047eVv/ZKzsWH3CaELurIZh3Jg3fB1GDh1vJrfgJg=
+			V8EFq/iwPBMHkiaw+qJiEW8FonUTkXUk5P1zKqNttH0=
+			</data>
+		</dict>
+		<key>ios-arm64/CArdk.framework/Headers/ardk_dashcam_config.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			+grD9vkO6rtW/qhnXFHefqVog0j0r5aaMn6UtM8CjeM=
+			</data>
+		</dict>
+		<key>ios-arm64/CArdk.framework/Headers/ardk_depth_api.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			PmZZdYkJSfWuR74GEBO7zu1e48UFSzSgz/h5N9Ibn8Y=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_depth_buffer.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			LDvgNgZQz8smrEFsrTWaxjociBc=
-			</data>
 			<key>hash2</key>
 			<data>
 			pnjPGIGkKdsf9GULR1TdVvukjyXDu8C/0PZrn4inDeM=
@@ -1312,10 +1250,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_depth_config.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			dcA3hC8YdbVPo29KT99/IdzypFE=
-			</data>
 			<key>hash2</key>
 			<data>
 			zD1zzYIqZPiL1cHb0JTQv/OWrjzGonuJsZGjK70MpAw=
@@ -1323,10 +1257,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_depth_result.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			9Df3UudeDO7DmX0ln6gfVPVUVBU=
-			</data>
 			<key>hash2</key>
 			<data>
 			CSXqcr0pQsNVB/05PGaDAhNjH6zhuj9NSguV7rbjRB4=
@@ -1334,10 +1264,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_device_info.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			0y+xbUOuHULNeYonZUYLTtwjXYg=
-			</data>
 			<key>hash2</key>
 			<data>
 			lguvsWgp39l2eZjiYrgixZiRh86xm5uhImgz98T08ug=
@@ -1345,10 +1271,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_external_buffer.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			+WxWlIx20gUcfBaVxfKkEM6jKyY=
-			</data>
 			<key>hash2</key>
 			<data>
 			iyEJtXRPGmtGq/HcLU+J3jIlHBe78IoMEtGitOQOjeE=
@@ -1356,21 +1278,13 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_feature_status.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			+v1h6JceiS8FxpA0NLJP8wmPmE4=
-			</data>
 			<key>hash2</key>
 			<data>
-			frKVvSzqyfLqwRPssD11mu7NoaZalrar6aayPJ6DP6Q=
+			ZnT/+PExSurpUIUafqkSqqBnQx0z4e7KlyctuKQp7TA=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_float_image.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			Cb/ncOQ4OA5idmqvJmzSbgq76Js=
-			</data>
 			<key>hash2</key>
 			<data>
 			7PdbXGuJvcUkW0GJE3vUDLP4eU1XW2KLMuRJuxveqt4=
@@ -1378,43 +1292,34 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_frame_data.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			r3D4uZMTb+mZZ0fpOkewm0zKXJ0=
-			</data>
 			<key>hash2</key>
 			<data>
 			lmP8FUm/Qk8q5v/klYkXhJWOKvThfZ1TJnjn8gyVcpM=
 			</data>
 		</dict>
-		<key>ios-arm64/CArdk.framework/Headers/ardk_geolocation_data.h</key>
+		<key>ios-arm64/CArdk.framework/Headers/ardk_frame_pacing_clock.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			DcwkuNs+zqZGJaxwKj2DifWGxFs=
-			</data>
 			<key>hash2</key>
 			<data>
-			MyhxLKs8syzrY7VBRJPfeHsjKVErj7mu0uYwEs6XmNM=
+			WpGHQsLYbbJYpI/ZgXuWe8cl7BlkcrXujevXDlBnjG0=
+			</data>
+		</dict>
+		<key>ios-arm64/CArdk.framework/Headers/ardk_geolocation_data.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			RYCtAlwMzJhv0W3vjykjTeGnciPmFHxaVvoGHCDGFdk=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_gps_data.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			34+FbmVMJkx1fiCpqs6FrV932kA=
-			</data>
 			<key>hash2</key>
 			<data>
-			bDmFCXAoCyKaJHe9AZghVA3CdgTZkn9kdie104w1WkQ=
+			h0wLrwa3DqB2JYC0LciKM2JlMWn1IKJqO/+Z9sWqX3o=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_half_image.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			24WKRegVGVB1Mcx0yQEUkKxXtyk=
-			</data>
 			<key>hash2</key>
 			<data>
 			tX+1VuweNT9UrzDc8PyPdvgKVpjD3lStv9Fbw1/S2FI=
@@ -1422,10 +1327,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_heading_mode.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			oiQSWopM8njsImQPfmhFPWMPtYU=
-			</data>
 			<key>hash2</key>
 			<data>
 			oyPotZWKqdhiSxO9n9KOyPcw6uFP6lmZk3yRrfX7kXo=
@@ -1433,21 +1334,20 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_hint_image_result.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			XExSg6fG8DaeTc37Eo9OUVZlG34=
-			</data>
 			<key>hash2</key>
 			<data>
 			WZLUamIc2FtA7gIN8wyTwSsAlEiLDYo4q9EDlM1e3bw=
 			</data>
 		</dict>
+		<key>ios-arm64/CArdk.framework/Headers/ardk_id_string.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			tZJgUaCDQjFAsks4HdFzUpiJcaxgSQD6sq6hrDCSLEg=
+			</data>
+		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_image.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			R2wUQH4JSeUGDjY+WwqnF7XDvhI=
-			</data>
 			<key>hash2</key>
 			<data>
 			yR4bw/NcR2cGV0/TXivf6htYadgj3/s3itpPsFWZuhA=
@@ -1455,10 +1355,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_image_format.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			+pu0SKbr/xWyrZAaaQLXGX0SNCU=
-			</data>
 			<key>hash2</key>
 			<data>
 			iDoxK3Bad5fEgb7stQF+34sJJjygdfP9Jd+VxNwuAio=
@@ -1466,10 +1362,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_image_math_api.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			qjy99XF/a8Gix05loxY4NwBxYvc=
-			</data>
 			<key>hash2</key>
 			<data>
 			IrsVZCeGrzHwwvT6BNDkkkE52Fs2ayyedKaTg946CyM=
@@ -1477,10 +1369,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_image_type.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			68jfKH06U//HwveE8dZmNLT6hBg=
-			</data>
 			<key>hash2</key>
 			<data>
 			1sXPA3Yh9ctiltUsOiZsjlYPJQ+lbDZ9qMh5k8WCnCc=
@@ -1488,10 +1376,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_input_data_flags.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			uwHibOzzaOydOWZL+05yluvu3Bs=
-			</data>
 			<key>hash2</key>
 			<data>
 			dlbATJI1iIDag+cumQR7h4SrBUIzyMhB/zVSls29Dlk=
@@ -1499,10 +1383,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_int_image.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			JWjqlsHcCp/e6bDfvxEX/iWiE8Y=
-			</data>
 			<key>hash2</key>
 			<data>
 			vPY5DR4d8XrCRMY+FhURXMJfKCtBqWjueHAzlx2Z95Y=
@@ -1510,10 +1390,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_lat_lng.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			kfRXQvsdtYR53llDsFTMNjWJC2o=
-			</data>
 			<key>hash2</key>
 			<data>
 			pKB8JePjlcaP2GatCtbK4w0KSmIb6Jky0iPKhi4dX9U=
@@ -1521,21 +1397,13 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_localization_target.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			PU/sVXivn8Ifp4Sy+0wbOb3dohY=
-			</data>
 			<key>hash2</key>
 			<data>
-			LWLEdTd7WRMZ3FNIL1MeJX8GpySvZUmVoViylie0Fyw=
+			zlAMlQ0YopWuxvxNjr8R9MWwnoMRDdh+agcL7Z3cqPs=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_localization_target_result.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			aozd8vCY8VcPjyMqTi6N78ybndE=
-			</data>
 			<key>hash2</key>
 			<data>
 			D99LqhTdgxJYhPF5GMVmhqX2TDvmI94qdMZT8/DR4L8=
@@ -1543,10 +1411,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_log_level.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			kpcfdgPXObyjnnAxTxgzPsjnNm4=
-			</data>
 			<key>hash2</key>
 			<data>
 			axiaQPnwswfnXct9B+rjKiiVTLNYYd16dC3MOhctGWA=
@@ -1554,10 +1418,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_logging_api.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			wZuCjKlHw6iLetDOt2lbknBnoSQ=
-			</data>
 			<key>hash2</key>
 			<data>
 			i7rrnSuMWtn68UEKsYR1N50aXsHtwdyvbBkZ5v5JnMo=
@@ -1565,10 +1425,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_map_metadata.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			Qjsiq3ECHFI2yimCFqM6FSiRomE=
-			</data>
 			<key>hash2</key>
 			<data>
 			SqMKEXI6sSu/J3ltpVyd9hycNRmpwXufT+MdMA3jdr8=
@@ -1576,10 +1432,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_map_storage_access_api.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			oajKH6AkBNgN/Ixys+i9me6gen0=
-			</data>
 			<key>hash2</key>
 			<data>
 			3AoqY6L1nlDFix45TDfi7kooWUPT5SbjO5hcX9dJKgk=
@@ -1587,10 +1439,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_mapping_api.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			N5r47wTtku8NdzyzZE5M3qHgkMk=
-			</data>
 			<key>hash2</key>
 			<data>
 			go7jyUgP7d/o2erGR7AwR2olA/c7ArlKzxu/uqMNciI=
@@ -1598,10 +1446,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_mapping_configuration.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			lS2gyl8S04IqO+oW+IABkOZU+qE=
-			</data>
 			<key>hash2</key>
 			<data>
 			0xSTHxWoHxNq+2K3+nzydHnJMLwiPAYHm4K0avuI2MQ=
@@ -1609,10 +1453,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_mapping_configuration_deprecated.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			1+QuIgW7Cnz4Vq9LBzjDG4rvojI=
-			</data>
 			<key>hash2</key>
 			<data>
 			WtbnoSi1g16HosJj694ldMBNuWE7cfuaJF+8mOPTQXM=
@@ -1620,10 +1460,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_matrix3f.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			NTt6IDCa1fSitVIzB8ax+Uf9AyM=
-			</data>
 			<key>hash2</key>
 			<data>
 			w03vwqGiPz+DhAiiDd3NLitrpKGKBcmJSA0TyUi+QoA=
@@ -1631,10 +1467,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_matrix4f.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			6OzaVg2hwwN3Ze9CgTrphFeu8hA=
-			</data>
 			<key>hash2</key>
 			<data>
 			jjYjCCiWG/QI33iba16gF2YB8zbz1mrmh2IhmuLXjac=
@@ -1642,32 +1474,34 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_mesh_data.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			md71iP/iHYH5vJ2ZcpJRjhiEkkk=
-			</data>
 			<key>hash2</key>
 			<data>
-			bva9wAYb7uSSryYsqclPgO+ofYOf4q++XG7cypw0Lmk=
+			pFXem4vv2fn2Jq5i24FHluVd++YnTPR5LVcFZ1E6wIQ=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_mesh_downloader_api.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			Lq5z0ufGHFJSdTy0iNZ57IoJPKM=
-			</data>
 			<key>hash2</key>
 			<data>
-			5tX3FkTM2Eox3cGePOVebgBVCjEfEU/wQ0D6tWvTRkU=
+			som0FnyxCZlA6m5RF5N0pAMdM0XTCo38yTlvboK+jno=
+			</data>
+		</dict>
+		<key>ios-arm64/CArdk.framework/Headers/ardk_mesh_downloader_chunk.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			D9MfaKHsg34OUvky7mkRiZKmp1SwLi1kofZyUFakn94=
+			</data>
+		</dict>
+		<key>ios-arm64/CArdk.framework/Headers/ardk_mesh_downloader_configuration.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			Ax+U59lZ4p5lpaxl+300zXIWQwtVXjNI+DIXh376SFw=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_mesh_downloader_error.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			xeHTJ8dQEZxnZ4JJI93p4Yza17c=
-			</data>
 			<key>hash2</key>
 			<data>
 			8vw728qAtZYUfBzTz81NNvan2kUP5fCw9APt6OQh9no=
@@ -1675,10 +1509,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_mesh_downloader_request_status.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			L7jC9GJu+DqEKdb78QIg0nqKefs=
-			</data>
 			<key>hash2</key>
 			<data>
 			iUFtUigm+ckD0QCq62olBAMOxHk3xP09otI7g72nPYw=
@@ -1686,21 +1516,20 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_mesh_downloader_results.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			+ANzESbS13rUHNdYd/kjKUH0R5I=
-			</data>
 			<key>hash2</key>
 			<data>
-			pLeOc2eeDNWZV9l6C28xsHUknSPjyzmArivUADRpRwg=
+			ntltn2+8dG510wtIIQzeYhqm2fwODWIeC2OwUvHJbIs=
+			</data>
+		</dict>
+		<key>ios-arm64/CArdk.framework/Headers/ardk_mesh_geo_reference.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			RpCxYheiB0KNZNJpSWY2zevJf8w65VmRuZTYItPaFoU=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_meshing_api.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			2zXfkLiQrpidaE9ZyFRdjMVjm0I=
-			</data>
 			<key>hash2</key>
 			<data>
 			Ri/AaZU/LFpBa7ZQQOfKXnYNUlsgS2eDksNVkmExYzU=
@@ -1708,10 +1537,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_meshing_configuration.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			mMLzbiYGZ66x4Lz7f9TchamJbz0=
-			</data>
 			<key>hash2</key>
 			<data>
 			jMu2wvjHq/GoM0dFxGeS45L45xuiq9lXVaQtJ8T/lBk=
@@ -1719,10 +1544,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_meshing_data.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			fyX/YgZipr/Rg3hbbAvWBpkVIBs=
-			</data>
 			<key>hash2</key>
 			<data>
 			cCaLqJ56fEY/klM/z0iRX22BORxHQJjr0gP5ChGOHoc=
@@ -1730,10 +1551,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_network_request_id.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			3EOtpVZvYAc9ZYDWPUcMjgJGJJQ=
-			</data>
 			<key>hash2</key>
 			<data>
 			ImRNwE3uZeoDOZFpGPatunkcIF2WuyyXkEQkLH9gRwM=
@@ -1741,10 +1558,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_object_detection_api.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			EZR15kYFIpknT5iaQGVD2fmQ/qE=
-			</data>
 			<key>hash2</key>
 			<data>
 			CAMpYdqd1ObxOpnoNUHcMNAwJEHFnwn0MmpqfocN1Zg=
@@ -1752,10 +1565,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_object_detection_class_name.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			tlbiMljvfdj5LXqNpWQnJqaNQLo=
-			</data>
 			<key>hash2</key>
 			<data>
 			r4uN1VP7GFLmmuHmG2UHTfYF3/6UIzTi5QVMGY17d3U=
@@ -1763,10 +1572,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_object_detection_configuration.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			ELXHvPJN9itpbWTmwMV5rNjgu/E=
-			</data>
 			<key>hash2</key>
 			<data>
 			njktvsp4JlxTE6EXMB05gktOOclxPvvqFR5KIuIQjdA=
@@ -1774,10 +1579,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_object_detection_image_params.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			iOOX5GVCbtIl83aevg8olhb5PfU=
-			</data>
 			<key>hash2</key>
 			<data>
 			iax8yIgHJb+/c7/QtzIlFAtvloZX8+KtHRVVbLsXLvg=
@@ -1785,10 +1586,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_object_detection_metadata.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			SkaOnLwCTW29nKDdl68ONLD8odU=
-			</data>
 			<key>hash2</key>
 			<data>
 			kmAwyJmt6KgMNtpQnKHAEZC54+laL/LwpihA/LBnhag=
@@ -1796,10 +1593,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_object_detection_result.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			dnQM3pyTEWhTzJb48oyLnXR8wXg=
-			</data>
 			<key>hash2</key>
 			<data>
 			roKNWXJFMW5YBwQRYrjaFT8ndeUxA6dC+iL8eedanzw=
@@ -1807,10 +1600,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_orientation.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			ZnOpTpc3mJq88xDRuGbgZYBS960=
-			</data>
 			<key>hash2</key>
 			<data>
 			pbuRpuwclyCbvQZjAalzjsFwHvcsxu/gWSYB6Axcu/0=
@@ -1818,21 +1607,20 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_path_config.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			OhXQJHNtkixVmASE1+DFi98L8w8=
-			</data>
 			<key>hash2</key>
 			<data>
 			31Wlkft22ho4NFjHWqjA4EOywqgraf5LFJi4Cebwp3g=
 			</data>
 		</dict>
+		<key>ios-arm64/CArdk.framework/Headers/ardk_playback_api.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			NCnZrjasy5aKeLhcF7vUCKpIpDEcfN6o2YvqYLWxNfE=
+			</data>
+		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_recording_export_paths.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			6O4eOdFRVEcMNuVVSjctArmxx/4=
-			</data>
 			<key>hash2</key>
 			<data>
 			+64OVuAGNwzX33NLsC81VyFfozvpIpxl/6A7r1bphgs=
@@ -1840,10 +1628,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_recording_export_resolution.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			TM73KT3B/jhLxQbQvHVcxLEk540=
-			</data>
 			<key>hash2</key>
 			<data>
 			/a7vV0z9PB6ot8RyGbr3btAS1/HC3pe3i8vkxvhNSEU=
@@ -1851,10 +1635,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_recording_exporter_api.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			NpmHWTINrszse3zORTSlwFOlj8M=
-			</data>
 			<key>hash2</key>
 			<data>
 			vjnPZ/MnwWwpKpCKUxl+H0N1bGPhiVJ3mK2uEXoHq5g=
@@ -1862,10 +1642,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_resource_api.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			aj1fhnfBGqB6IeT8E74XL0fotvY=
-			</data>
 			<key>hash2</key>
 			<data>
 			oFzzg2+F0D078x3JgqluyOQmiz/bI6NAPnYibjVxoxY=
@@ -1873,10 +1649,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_resource_handle.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			lDNGKeGLkKBtsk4C5825Bdv9zc4=
-			</data>
 			<key>hash2</key>
 			<data>
 			x6t0qz9Ceh+QTuHaqGbefVFUwJGtgeqvYdRDpVzvYUs=
@@ -1884,10 +1656,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_scanning_api.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			Ai9GBXvY5M/m66O8hV0bKklUlkM=
-			</data>
 			<key>hash2</key>
 			<data>
 			tmyfnha821Amkw10a1cCHgfRkDEOZzguPP0CKdRtWsI=
@@ -1895,10 +1663,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_scanning_config.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			IiNaNd+gXN7kNK7eQDmFfu+Ittg=
-			</data>
 			<key>hash2</key>
 			<data>
 			k+oMRqFpsCILdfOhQ1CrJcVo7bRH/N2zTHX81OzaTxs=
@@ -1906,10 +1670,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_scanning_export.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			jHrLSO0zqYLU9Cxmeddml91F14Y=
-			</data>
 			<key>hash2</key>
 			<data>
 			+uG5yBEfDrvP3Kjt2hVkvhcTGPEDsFaxudN7oCU4WQw=
@@ -1917,10 +1677,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_scanning_raycast_buffer.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			2HN45iLly/UMZkN3ZB2nzuNizwM=
-			</data>
 			<key>hash2</key>
 			<data>
 			wfhhTgGKOsa0/VGuvVQSWTZuhmB/tVfrJHxNRx3xR5E=
@@ -1928,10 +1684,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_scanning_recording_info.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			XXKNuhtNu4wfekrJjbx5WKpcPpI=
-			</data>
 			<key>hash2</key>
 			<data>
 			A/fdQ3vDt7WVX+0ODtHjd46yM5wXTAJ4qZuoHl5Fzjc=
@@ -1939,10 +1691,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_scanning_save.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			PX+sjKxWZUU615ZwUd5iGz9ATiw=
-			</data>
 			<key>hash2</key>
 			<data>
 			7eoy8ppGnVHaDnFsm9bi19zBCdK785NM6gKbwTz7jsw=
@@ -1950,10 +1698,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_scanning_split_export.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			y54SrCODFVusyLX7xk7spgnmli0=
-			</data>
 			<key>hash2</key>
 			<data>
 			Ttk/lHquMaqIvdFLzI/NsGjt2+zvLE8+QoAa0hdOU84=
@@ -1961,10 +1705,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_scanning_voxel_buffer.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			dHMZ40gGYjEV9EotKppXiyZeJDU=
-			</data>
 			<key>hash2</key>
 			<data>
 			yurBe1ODIkQMNSmel8yZzYm/qPLf9bdZi/oMz9OLozQ=
@@ -1972,21 +1712,13 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_semantics_api.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			uGG/t6e31K/esCLRmp1uZzVjxXo=
-			</data>
 			<key>hash2</key>
 			<data>
-			PjvqkrKWohDobCHueW34U4CL/cXvYQbT5SGpKY74n+s=
+			kxmcTIG1FDjLrdhToN1w2g9PElhOBaTueIdV6FEhWKI=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_semantics_channel.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			kTBPl6TKioBAopfNDoMeQUNVjFA=
-			</data>
 			<key>hash2</key>
 			<data>
 			1dHiUkp0Q8iQjznpMkdhD37PyOOvQ0X4pGF1e1ZehRE=
@@ -1994,10 +1726,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_semantics_confidence.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			wp3EYpiFFWj5a6CTmXEXjlGTlBI=
-			</data>
 			<key>hash2</key>
 			<data>
 			/GO9SUEPTTRqBenPyWB+65BtL5Q3yKhnIPqieyXwg1A=
@@ -2005,10 +1733,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_semantics_config.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			h5YKs9ksmsD0eMvR32MI7mBzH0Q=
-			</data>
 			<key>hash2</key>
 			<data>
 			pNkoCzE9/zEt/hvWXFQXT1uRSoHb40GXbCRtyLqHzyE=
@@ -2016,10 +1740,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_semantics_packed_channels.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			yAtcSHfye6ylqxnNo38TllI3IYM=
-			</data>
 			<key>hash2</key>
 			<data>
 			BRka4yFHMF1d/dfN1rlZAwx66k63uWu9WwDmrXM1tww=
@@ -2027,10 +1747,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_semantics_suppression_mask.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			RL7Ue2S37AOZMOHXmZkeQySLpPE=
-			</data>
 			<key>hash2</key>
 			<data>
 			aKv52E6iGemYfLFE7ydvkY2nT7clHBkTYeOFa4X5FdY=
@@ -2038,10 +1754,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_sink_callback_function_ptr.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			3Bs6Cj0LQRTYoClzOsTC6OOPpWg=
-			</data>
 			<key>hash2</key>
 			<data>
 			o9GjNUeLuKJRjoW4t/W1vxedqYbt7AGx9B1GicGresA=
@@ -2049,32 +1761,20 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_sites_manager_api.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			JPGktqUlszVr04J0EUxGg9LpyJY=
-			</data>
 			<key>hash2</key>
 			<data>
-			JELjlf9+nqjVkD3ktpJR72K2h5PxTKgUcsjJxIE8R0A=
+			n2G+m2Dsi0QGSfagrNyr0ZbPOIDiGeg4t3sjXCF0o8s=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_sites_manager_error_code.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			ur+6c53FEfO1dTvrAJFzKhOyi/s=
-			</data>
 			<key>hash2</key>
 			<data>
-			Yz3/v4o0Ls/LWFh/8gR1o1Kra6jSaT/ol9F0d0aOIvA=
+			sH/I67SoWZZ7Z9pQ6BTLu+g5yVngG+NtUCZ2BDIi7nE=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_sites_manager_request_status.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			4bWFvBN6GdzMiJcOCVqe4Ca454c=
-			</data>
 			<key>hash2</key>
 			<data>
 			VWBSWb5dfHNiGLoCaISpACg1BFlAaIWrKmp/D4rCvAM=
@@ -2082,21 +1782,13 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_sites_manager_types.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			57yiDcPo5RtAHbc9SZDaTny9pWU=
-			</data>
 			<key>hash2</key>
 			<data>
-			A0q4Mz+IF5Su7t3AnuC0z0ho51VvZEp2/3Jw20Xd8D8=
+			LEgBb1uV2ch0aHDBhiPTnj3oBw1+J2Pu8aZgvFI+Npc=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_status.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			mEvO3Pt0VG4VoUwl5VvnmO7PUHE=
-			</data>
 			<key>hash2</key>
 			<data>
 			m6M/n0C4a0yptYnlPT12Y5UAa5eUDc8ciShP8zY5b5c=
@@ -2104,21 +1796,13 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_string.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			7Lzg/MQGeEBaWr3hobled7qgMbs=
-			</data>
 			<key>hash2</key>
 			<data>
-			CwJJ1fFcFktr9hdWQJ9PithvrhhG+spUCv6y5xO/lM8=
+			wVTXx8efjrZ8L8JEzE28Qs8wecxgz8hclydo0vVgvdo=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_tracking_state.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			0CjeOSinn3rspV4DP6kdGPJ8XEk=
-			</data>
 			<key>hash2</key>
 			<data>
 			ckligQTzgj+If53MLnFd0NPxB0M0y/mPQX7RS5a76ZE=
@@ -2126,32 +1810,20 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_transform.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			csH+uywh2wuQZM24p/ASwO81mP4=
-			</data>
 			<key>hash2</key>
 			<data>
-			OgyZ15/TraGssGGucT+pUjQViTzqwnynxj0LtmQYcvg=
+			PpaLtXiYbamWpg8RbirPhZ08BghJmBEpFQzouqkvXZ0=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_user_config.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			WgUXWlWL/vwbeNPEofx/F2Qd4NY=
-			</data>
 			<key>hash2</key>
 			<data>
-			nphTNwUT+FkAFcPesPAyHVN20+A5dM6qki06pBUjkT0=
+			659T5dQnAvcgJmbBzjXHggZ53m5rH5w+JbKNmlqjVzs=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_uuid.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			/NZpsZsltWSfEuNoMo2SzBXG4vM=
-			</data>
 			<key>hash2</key>
 			<data>
 			ZScrFcETdaexMhJl2VIUB4B1//Uo5edevVdsMz16GeI=
@@ -2159,32 +1831,34 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_vps2_api.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			0vUGxnkF5opCzMxAbOKQspjPq0Y=
-			</data>
 			<key>hash2</key>
 			<data>
-			3fpvLiEjEG91X2KA+llt3XN6EOATTQ5y/OUH1bBFxmQ=
+			O7hf72G2xgb184T2alTkqdyHVKq+uq7HXgtRc4105s4=
+			</data>
+		</dict>
+		<key>ios-arm64/CArdk.framework/Headers/ardk_vps2_asset_identifier.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			puJ1rtUctcT8xuey/EWs+eSR3cT7p9mA8o4pqvteXQI=
+			</data>
+		</dict>
+		<key>ios-arm64/CArdk.framework/Headers/ardk_vps2_asset_tracking_data.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			aeEme/bHZCYsn70dCSLmgJkkLhEFjzEz3Ggn4nhVsc4=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_vps2_config.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			ZrHbLDMHlq7teYBGwEGY9e6RWXg=
-			</data>
 			<key>hash2</key>
 			<data>
-			q8EoHm2wiy5vFOg3wbIeSgJHt72HtEBfKMf3hIoKT8E=
+			5UZar5eEx9eoBCCGqcB2+SqEYXr/sZvuQpDvtVI6Oe8=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_vps2_geolocation.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			xXhI6mvLyIhmefnn/1rYfcZfAVs=
-			</data>
 			<key>hash2</key>
 			<data>
 			HpeZS+sZqv354J88wJKdrC2Fswe7bh5UD0fZtJQedxI=
@@ -2192,32 +1866,20 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_vps2_localization.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			frW+jRkVzazdH8Ug+6DVyPRM8Tk=
-			</data>
 			<key>hash2</key>
 			<data>
-			0rxgHSpIcpYo1b1JyWKJ62EdhFE7ZCw6wWPseon9WF0=
+			mg0VV48Emjsjo9Fxp3tVoyPa2ygsi8H5rhl53pCvCZk=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_vps2_localization_error.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			qC4p+O8dcOk3AEIC09CoSZj7Yv8=
-			</data>
 			<key>hash2</key>
 			<data>
-			TvDPnZD8FmwhepdTyq36FwTkn9Avev3Od9IrZn6bO60=
+			fC95zJGcZjaHYoWCWNhOy0Nc0ctxX55y9dBznv5CzwE=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_vps2_localization_request_record.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			2XqWpOLhZnyHPrkHpx7PyEhrvNU=
-			</data>
 			<key>hash2</key>
 			<data>
 			F7K7YK8eUd/BaTneE25gq1K3iElMI8KVtileaqb7//c=
@@ -2225,10 +1887,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_vps2_localization_request_records.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			P5qoBP84Q7SuGvux8I5IGmJWXKI=
-			</data>
 			<key>hash2</key>
 			<data>
 			76IOt4ptKanWRCGdmau8I90gAQDOeI8ubllO1c4nB6A=
@@ -2236,43 +1894,27 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_vps2_localization_request_status.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			T8zXgfl7GJnbJJ+lfx+BTbqwG34=
-			</data>
 			<key>hash2</key>
 			<data>
-			oXf3AhaAftFx345Sv9cOecwojlnju9nvSz1nteFx6GQ=
+			x/h1kqR3IBYm3Xn7xJDpkYWEdiPaeQ92jAYN4Auo/Io=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_vps2_localization_request_type.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			YhUzpS/ZqEj9O7CZtDfioxgflRE=
-			</data>
 			<key>hash2</key>
 			<data>
-			wDsLmoVADdcTU0dd7eL/u3ALM0NMEpJioeLAlgwgA5A=
+			tVlc+DyHXBjYReYDZHRxKZO6Zbb3Fr1Ga8TKWxn3kEI=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_vps2_pose.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			vkR+5cyCC+LLdeQJUikQ32WWazA=
-			</data>
 			<key>hash2</key>
 			<data>
-			dGcKjf+hfuqY75xp9uZGqagjSUBbh90k7xDhNAwLGcQ=
+			5THs8GBSlIKXFUB2lfrmJZ1OedO/6z2ExSyWr+xfJeA=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_vps2_tracking_state.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			WvD+luFmqpyjzNjyl/XLMOjnylE=
-			</data>
 			<key>hash2</key>
 			<data>
 			rDhmLBwZbNmukNkn144QcKBctLrx6FuL33Ro1madL4k=
@@ -2280,43 +1922,13 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_vps_anchor_update.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			GB7HawgiTxtZEw6DGLXqjB/dRWs=
-			</data>
 			<key>hash2</key>
 			<data>
-			tXQs70H6UJ5uWmjc+cXmwyH2tWkf4GiC52r+1MGC3mc=
-			</data>
-		</dict>
-		<key>ios-arm64/CArdk.framework/Headers/ardk_vps_api.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			3VRBWVBD9KQQmbg2/Ex/mDZwikg=
-			</data>
-			<key>hash2</key>
-			<data>
-			IriNf5NnwIp80zyewBsU199+ul/qh+QJU2BVxIAqLWA=
-			</data>
-		</dict>
-		<key>ios-arm64/CArdk.framework/Headers/ardk_vps_config.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			q/bvtTN8IOymN/7HZeUr+AN+fcc=
-			</data>
-			<key>hash2</key>
-			<data>
-			Z2EMzcyVxj9u0TedvwLPUsM2KlssNxMdcsSOG23yjZY=
+			UlnVT49dEWZtqkfxKaqXeva+xInbEjg+ggQFaCW2lgo=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_vps_coverage_api.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			cFSfO2DmXzTawwQwg1H+9J+Bthk=
-			</data>
 			<key>hash2</key>
 			<data>
 			ZS24GYpwNoE5gbig+vj3VzEWDWdvfXj0NQPdQf4P1MI=
@@ -2324,10 +1936,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_vps_coverage_error_code.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			KNrGpQ6DFDpbLSfr9rewmvc3kAE=
-			</data>
 			<key>hash2</key>
 			<data>
 			Ouhdn35C3gjn6gda+IJj1tKv+cDC6atWj2fAL2y/9u4=
@@ -2335,10 +1943,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_vps_coverage_localizability.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			R8mxUfTBacXbPdaYemhksqyolD8=
-			</data>
 			<key>hash2</key>
 			<data>
 			JohC6HRAVkzojpe9MqwlZ9ZPiPVwWfUDqu3fMjBwba8=
@@ -2346,109 +1950,20 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_vps_coverage_request_status.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			rKCNKnk3G/G/GlUua+GAwAt2cJE=
-			</data>
 			<key>hash2</key>
 			<data>
 			8NI7+y999gwBtx63IkxsjhD9Mcew8NBSYO9bSHoqQy8=
 			</data>
 		</dict>
-		<key>ios-arm64/CArdk.framework/Headers/ardk_vps_geolocation_data.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			nNSk/wNMurNvEuHmQOZ+qkDL884=
-			</data>
-			<key>hash2</key>
-			<data>
-			tIzarJ3FeOlEJ5ExfxWx77H6FSb2wvOJW3fyzo5pESQ=
-			</data>
-		</dict>
-		<key>ios-arm64/CArdk.framework/Headers/ardk_vps_graph_operation_error.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			02CHo+JKjiUpt0YebFSHw4zZuow=
-			</data>
-			<key>hash2</key>
-			<data>
-			fzx0sEUetuYgk/HHoGt6oFmeGjhRIFG8+nYqw0eMw5M=
-			</data>
-		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/ardk_vps_tracking_state.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			nT0rmL8CAFWstks8FwkG9rozSHQ=
-			</data>
 			<key>hash2</key>
 			<data>
-			L99T2juLinnWyUZEcTMSOnGFcmW7P+P/7OcO1xua7X8=
-			</data>
-		</dict>
-		<key>ios-arm64/CArdk.framework/Headers/ardk_wps_api.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			Za1IKBtqqppacpDlYapDsTXDqfk=
-			</data>
-			<key>hash2</key>
-			<data>
-			Z55jSv8YYO+1/KSRdT/gBXt1IQCcEsK25xtcLVSofaA=
-			</data>
-		</dict>
-		<key>ios-arm64/CArdk.framework/Headers/ardk_wps_configuration.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			jdulhSxw3qjt0H8Oe6+VPVn4Ofc=
-			</data>
-			<key>hash2</key>
-			<data>
-			5Gpb34jk47KMLBTjqfQW7Vf+GrUw7+5mjilFB6ouemI=
-			</data>
-		</dict>
-		<key>ios-arm64/CArdk.framework/Headers/ardk_wps_geolocation_data.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			c3G/wCwMhhlGh9YJtv3/ywmAv/0=
-			</data>
-			<key>hash2</key>
-			<data>
-			sb0lMYC4e4Kr8bd9IPoiufuhqBmF/ouvJmI8UAW10ck=
-			</data>
-		</dict>
-		<key>ios-arm64/CArdk.framework/Headers/ardk_wps_location.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			CUGHkLwT7rFpTGFwzUK8E0RS0rk=
-			</data>
-			<key>hash2</key>
-			<data>
-			3T0dFPxC1RW9WywOuM3wvwUpsrhp465gI8Z6ek3U/g4=
-			</data>
-		</dict>
-		<key>ios-arm64/CArdk.framework/Headers/ardk_wps_status.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			5Cfgaz+i6+TSnVKre1bjSW+gDrE=
-			</data>
-			<key>hash2</key>
-			<data>
-			F3iUP9yfsm5XiirHqPOaropA8SrDKRQHGwPkN6e8Oto=
+			u9EPTOffDMHtwQHt8w7oTOyJelvYnDKTtibTL+oMyKI=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/capi_common.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			mkn2k0qzbB96eZ/ZcgPWkoDDato=
-			</data>
 			<key>hash2</key>
 			<data>
 			lhSMgN9FnzhoNOlH96MiW7ICEdCMfzEVTQEMlrKC4uY=
@@ -2456,54 +1971,34 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/cardk.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			2zNdsX44mqurXCk2G4AA/TH4ST0=
-			</data>
 			<key>hash2</key>
 			<data>
-			P31k8tOcOvdsfpugEHIYLuObpmlz7C4EV8L31cIUO9w=
+			z2rq8WWDRMXac1ajpNkyBd4ShQ/gvsUzCyYDkcgZzoE=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/nsdk_camera_frame.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			rNNAryLuca9Knz33Y6Q88b5jUO8=
-			</data>
 			<key>hash2</key>
 			<data>
-			IdfNROc6WrU+fgdcaZKqyZREGSTHd6OK49Bo71NM9bo=
+			t6YlMPqgdTM6qaJQcuglkpYGg/tSqzxBpIZK1ybuHa0=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/nsdk_depth_frame.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			XFYoK+ENJSMXgSjOjEmrZPOvBDU=
-			</data>
 			<key>hash2</key>
 			<data>
-			K3gfPZCWIs/vNxzvo1rPBCGR0PB+z0Dx4V4dtdFmYv0=
+			khQ/vqeIAIrrapTYa6BHYZ3RktpttMKeDfTEPAx2+UE=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/telemetry_publishing_api.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			ph9cLxBA/aaV5dEJuTSxGQOBC98=
-			</data>
 			<key>hash2</key>
 			<data>
-			tnNfx8exF+M/DzfMCA0OGYj2YRMACdApKIsiuKoUgpQ=
+			QESauujw3yUSTVIiF0FbiinJOENtUX7HflidwLXfrBA=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Headers/telemetry_sink_api.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			1Ib+IWAD1uvXtzRaFtxVxTPPVSQ=
-			</data>
 			<key>hash2</key>
 			<data>
 			9ba4xsVPKfuRlHKJUxJu5FjQfwUQ1EFnfwhT0WDscsE=
@@ -2511,21 +2006,13 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/Info.plist</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			UStCkK+RxmKXvSmHeA6NStBfCi0=
-			</data>
 			<key>hash2</key>
 			<data>
-			aXGhsODW7Hzfhr9TPqVY+UOE5K4sPqxm7xKj2TClBFA=
+			/ne5cHkZtiEL2XU9EQNyJcgUB6ZsTAnqI+zoqSN0yU8=
 			</data>
 		</dict>
 		<key>ios-arm64/CArdk.framework/Modules/module.modulemap</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			YYoOPTqi+kN4uquGg8hetAgNxLQ=
-			</data>
 			<key>hash2</key>
 			<data>
 			M014fUtw2HhsmZ0x50o8FYzC5ZHHquzTLFUtUfbfcA8=
@@ -2533,10 +2020,6 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/PrivacyInfo.xcprivacy</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			NRE4H6HgfLj5EFoyNgs1pA22qAY=
-			</data>
 			<key>hash2</key>
 			<data>
 			wobpLarcatMO8yZJEEqldezyygxVFJ6RbTGtv0EIN50=
@@ -2544,54 +2027,27 @@
 		</dict>
 		<key>ios-arm64/CArdk.framework/_CodeSignature/CodeResources</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			zI8yyikYa5QTCm4iJfUaD8RyYwI=
-			</data>
 			<key>hash2</key>
 			<data>
-			s4WmnbNgow1Q0W3z8GPg0j94DwKceFaHOlVNo4b4g8Y=
+			ouTKalsPySIfEPcUSqA+AsfwB+J0CTvGrxdUxMT3yeo=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/CArdk</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			XHjV505M62mnk18IuLB4kgGomgQ=
-			</data>
 			<key>hash2</key>
 			<data>
-			uOmi0ANqIZ1etiirz5mSJIX4fZt7CH0auDoBm+bi0VE=
-			</data>
-		</dict>
-		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_age_level.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			5MrugtHGdUW/8qvAfiqdK2EDxtg=
-			</data>
-			<key>hash2</key>
-			<data>
-			80sne6orrku0KFhQhde/qZbn2GzfY1Gaa0fH7Q/PFc0=
+			aVpb/GB8gqwl9mGXO7djbEfoPmT8xK4M//EjCTcH9Fs=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_api.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			JUjecTgK0QHgIttsS8fOxdj/ysI=
-			</data>
 			<key>hash2</key>
 			<data>
-			fYMZ0RbGdJRRG50+0E/+UGsq9NwCatQc8upQqiQ59xM=
+			5eh4S3mB7a++B6h0syjGI0U20T8TV3/rlLEl3mOQi9E=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_area_target.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			SUt9No+K/NNpS4WuG98tV9TZe2A=
-			</data>
 			<key>hash2</key>
 			<data>
 			Lpm/87rwnKN9R/96LDxtgQuUpWx8g21sg+BCka6AWLI=
@@ -2599,10 +2055,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_area_target_result.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			SkmlZcbVR3wiYMr7MWAzyo4lGk8=
-			</data>
 			<key>hash2</key>
 			<data>
 			KWfyIds58SeViy5Bi2MGHxlCfQIEK0buuQ72AaO31Tw=
@@ -2610,21 +2062,13 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_auth_manager_api.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			i7bLh6T811iOr1Oco+Er08C+QgI=
-			</data>
 			<key>hash2</key>
 			<data>
-			trE50v2CdKcYMjImbdBLsfStMDIkFAL+i8K9f+Kk7Cc=
+			hBTqxmpp1MGZ/W/XINdYKoum0f53vLRStbU5PcJc8Dg=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_auth_manager_types.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			/kgskgOBI9wOwv1uDwgAz9iAImo=
-			</data>
 			<key>hash2</key>
 			<data>
 			qebh02pi2tora8XGaSdKtMy4lFG4NxHWBQIrERHMnP4=
@@ -2632,10 +2076,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_awareness_feature_mode.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			FRJKxOSGnyOV8Ss2YOzTpJeCM8w=
-			</data>
 			<key>hash2</key>
 			<data>
 			3tFU2vx4XirIgBnJfYSS6xVpWoSA0gafvChjopZ4fIc=
@@ -2643,10 +2083,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_awareness_image_params.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			bETdMNb3JuS1oA8lCGGURE9qE4Q=
-			</data>
 			<key>hash2</key>
 			<data>
 			8Se/oR6se4MAreT7VkCxGPA1g6InmxWVD7ENKEJdMS8=
@@ -2654,10 +2090,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_awareness_result_context.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			Rmu2iJGfkXzhVJPsKtAY3oWRXgk=
-			</data>
 			<key>hash2</key>
 			<data>
 			A0SfGKzK4gbllybD4iuxjaDsYicLFFASe3pUzowxS/I=
@@ -2665,10 +2097,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_awareness_status.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			MEl0J2RmCL4ERd1xsSelC7jM7GM=
-			</data>
 			<key>hash2</key>
 			<data>
 			1qTgLAM06IppQeDUq+hlViTS4XmCBNURBDK1LFvr63Q=
@@ -2676,10 +2104,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_buffer.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			xyMeOcbLVYufzqt6Mk/CC2v0VFs=
-			</data>
 			<key>hash2</key>
 			<data>
 			wq5LKDlcJBY5KZ4IMtWGQHTeDOSFeU545QJ4PoRL7SE=
@@ -2687,10 +2111,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_camera_intrinsics.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			risZqWkZoEufmJDCI/sYi2uzUQc=
-			</data>
 			<key>hash2</key>
 			<data>
 			9AZc/xAW8s4VuBl2FjV5wsgWbRJe8lt6TbNhpDKwZUs=
@@ -2698,21 +2118,20 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_camera_plane.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			pDrJ2mu4ljInzJ0jakV5O1Gv8HY=
-			</data>
 			<key>hash2</key>
 			<data>
 			r3n+jogEREOO2N4cBOUT3L+41kuHz0zSgjyzP+ZuDMs=
 			</data>
 		</dict>
+		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_clock_base.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			1Wt+p+MnFyUUBFSYJZEGWKSjHO3Xk4CHyHaPlDhaiAQ=
+			</data>
+		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_cloud_env_config.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			pehR1gdRGOweadL80ndMjp3KSec=
-			</data>
 			<key>hash2</key>
 			<data>
 			PW7XfE+wMdadPII/emYDleB8GMyqzIo6WCS3lfMW+6E=
@@ -2720,21 +2139,13 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_compass_data.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			3EQVc6Q+gETgRgpTgoUimzaF9bA=
-			</data>
 			<key>hash2</key>
 			<data>
-			Ye9FN+uoXpxFPR4hoycHvdbj/V66JFyqClELtNoSUuc=
+			529wGNs2WX2vtHpvR4HSQj0QEkLmUM3wmrOA3ULN6mU=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_config.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			VvNAsqNk8s+gJFdv6I/IPZ3IXdA=
-			</data>
 			<key>hash2</key>
 			<data>
 			4djKQopG6N9Tyo8pmOydE5hVaaG+rDqW9MAyYmFl34Q=
@@ -2742,10 +2153,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_coverage_area.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			m/p2zwvpuLMq5eC4IHnFKta9ICU=
-			</data>
 			<key>hash2</key>
 			<data>
 			L5SdF0+h0RuktAM8zbwFSZ/ZYi61+r9VWeH2DsrglIM=
@@ -2753,32 +2160,34 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_coverage_area_result.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			P7YNGAjcLg6avsanbXqsX/Giv2E=
-			</data>
 			<key>hash2</key>
 			<data>
 			adByN5olypbzYBBP6PNN9jDhOt4wN8g2lCFbENA5Hz8=
 			</data>
 		</dict>
-		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_depth_api.h</key>
+		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_dashcam.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			KhDvbd/XV/FRMw25yuWbkh3GLHo=
-			</data>
 			<key>hash2</key>
 			<data>
-			ry047eVv/ZKzsWH3CaELurIZh3Jg3fB1GDh1vJrfgJg=
+			V8EFq/iwPBMHkiaw+qJiEW8FonUTkXUk5P1zKqNttH0=
+			</data>
+		</dict>
+		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_dashcam_config.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			+grD9vkO6rtW/qhnXFHefqVog0j0r5aaMn6UtM8CjeM=
+			</data>
+		</dict>
+		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_depth_api.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			PmZZdYkJSfWuR74GEBO7zu1e48UFSzSgz/h5N9Ibn8Y=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_depth_buffer.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			LDvgNgZQz8smrEFsrTWaxjociBc=
-			</data>
 			<key>hash2</key>
 			<data>
 			pnjPGIGkKdsf9GULR1TdVvukjyXDu8C/0PZrn4inDeM=
@@ -2786,10 +2195,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_depth_config.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			dcA3hC8YdbVPo29KT99/IdzypFE=
-			</data>
 			<key>hash2</key>
 			<data>
 			zD1zzYIqZPiL1cHb0JTQv/OWrjzGonuJsZGjK70MpAw=
@@ -2797,10 +2202,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_depth_result.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			9Df3UudeDO7DmX0ln6gfVPVUVBU=
-			</data>
 			<key>hash2</key>
 			<data>
 			CSXqcr0pQsNVB/05PGaDAhNjH6zhuj9NSguV7rbjRB4=
@@ -2808,10 +2209,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_device_info.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			0y+xbUOuHULNeYonZUYLTtwjXYg=
-			</data>
 			<key>hash2</key>
 			<data>
 			lguvsWgp39l2eZjiYrgixZiRh86xm5uhImgz98T08ug=
@@ -2819,10 +2216,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_external_buffer.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			+WxWlIx20gUcfBaVxfKkEM6jKyY=
-			</data>
 			<key>hash2</key>
 			<data>
 			iyEJtXRPGmtGq/HcLU+J3jIlHBe78IoMEtGitOQOjeE=
@@ -2830,21 +2223,13 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_feature_status.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			+v1h6JceiS8FxpA0NLJP8wmPmE4=
-			</data>
 			<key>hash2</key>
 			<data>
-			frKVvSzqyfLqwRPssD11mu7NoaZalrar6aayPJ6DP6Q=
+			ZnT/+PExSurpUIUafqkSqqBnQx0z4e7KlyctuKQp7TA=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_float_image.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			Cb/ncOQ4OA5idmqvJmzSbgq76Js=
-			</data>
 			<key>hash2</key>
 			<data>
 			7PdbXGuJvcUkW0GJE3vUDLP4eU1XW2KLMuRJuxveqt4=
@@ -2852,43 +2237,34 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_frame_data.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			r3D4uZMTb+mZZ0fpOkewm0zKXJ0=
-			</data>
 			<key>hash2</key>
 			<data>
 			lmP8FUm/Qk8q5v/klYkXhJWOKvThfZ1TJnjn8gyVcpM=
 			</data>
 		</dict>
-		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_geolocation_data.h</key>
+		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_frame_pacing_clock.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			DcwkuNs+zqZGJaxwKj2DifWGxFs=
-			</data>
 			<key>hash2</key>
 			<data>
-			MyhxLKs8syzrY7VBRJPfeHsjKVErj7mu0uYwEs6XmNM=
+			WpGHQsLYbbJYpI/ZgXuWe8cl7BlkcrXujevXDlBnjG0=
+			</data>
+		</dict>
+		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_geolocation_data.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			RYCtAlwMzJhv0W3vjykjTeGnciPmFHxaVvoGHCDGFdk=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_gps_data.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			34+FbmVMJkx1fiCpqs6FrV932kA=
-			</data>
 			<key>hash2</key>
 			<data>
-			bDmFCXAoCyKaJHe9AZghVA3CdgTZkn9kdie104w1WkQ=
+			h0wLrwa3DqB2JYC0LciKM2JlMWn1IKJqO/+Z9sWqX3o=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_half_image.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			24WKRegVGVB1Mcx0yQEUkKxXtyk=
-			</data>
 			<key>hash2</key>
 			<data>
 			tX+1VuweNT9UrzDc8PyPdvgKVpjD3lStv9Fbw1/S2FI=
@@ -2896,10 +2272,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_heading_mode.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			oiQSWopM8njsImQPfmhFPWMPtYU=
-			</data>
 			<key>hash2</key>
 			<data>
 			oyPotZWKqdhiSxO9n9KOyPcw6uFP6lmZk3yRrfX7kXo=
@@ -2907,21 +2279,20 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_hint_image_result.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			XExSg6fG8DaeTc37Eo9OUVZlG34=
-			</data>
 			<key>hash2</key>
 			<data>
 			WZLUamIc2FtA7gIN8wyTwSsAlEiLDYo4q9EDlM1e3bw=
 			</data>
 		</dict>
+		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_id_string.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			tZJgUaCDQjFAsks4HdFzUpiJcaxgSQD6sq6hrDCSLEg=
+			</data>
+		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_image.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			R2wUQH4JSeUGDjY+WwqnF7XDvhI=
-			</data>
 			<key>hash2</key>
 			<data>
 			yR4bw/NcR2cGV0/TXivf6htYadgj3/s3itpPsFWZuhA=
@@ -2929,10 +2300,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_image_format.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			+pu0SKbr/xWyrZAaaQLXGX0SNCU=
-			</data>
 			<key>hash2</key>
 			<data>
 			iDoxK3Bad5fEgb7stQF+34sJJjygdfP9Jd+VxNwuAio=
@@ -2940,10 +2307,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_image_math_api.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			qjy99XF/a8Gix05loxY4NwBxYvc=
-			</data>
 			<key>hash2</key>
 			<data>
 			IrsVZCeGrzHwwvT6BNDkkkE52Fs2ayyedKaTg946CyM=
@@ -2951,10 +2314,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_image_type.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			68jfKH06U//HwveE8dZmNLT6hBg=
-			</data>
 			<key>hash2</key>
 			<data>
 			1sXPA3Yh9ctiltUsOiZsjlYPJQ+lbDZ9qMh5k8WCnCc=
@@ -2962,10 +2321,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_input_data_flags.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			uwHibOzzaOydOWZL+05yluvu3Bs=
-			</data>
 			<key>hash2</key>
 			<data>
 			dlbATJI1iIDag+cumQR7h4SrBUIzyMhB/zVSls29Dlk=
@@ -2973,10 +2328,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_int_image.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			JWjqlsHcCp/e6bDfvxEX/iWiE8Y=
-			</data>
 			<key>hash2</key>
 			<data>
 			vPY5DR4d8XrCRMY+FhURXMJfKCtBqWjueHAzlx2Z95Y=
@@ -2984,10 +2335,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_lat_lng.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			kfRXQvsdtYR53llDsFTMNjWJC2o=
-			</data>
 			<key>hash2</key>
 			<data>
 			pKB8JePjlcaP2GatCtbK4w0KSmIb6Jky0iPKhi4dX9U=
@@ -2995,21 +2342,13 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_localization_target.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			PU/sVXivn8Ifp4Sy+0wbOb3dohY=
-			</data>
 			<key>hash2</key>
 			<data>
-			LWLEdTd7WRMZ3FNIL1MeJX8GpySvZUmVoViylie0Fyw=
+			zlAMlQ0YopWuxvxNjr8R9MWwnoMRDdh+agcL7Z3cqPs=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_localization_target_result.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			aozd8vCY8VcPjyMqTi6N78ybndE=
-			</data>
 			<key>hash2</key>
 			<data>
 			D99LqhTdgxJYhPF5GMVmhqX2TDvmI94qdMZT8/DR4L8=
@@ -3017,10 +2356,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_log_level.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			kpcfdgPXObyjnnAxTxgzPsjnNm4=
-			</data>
 			<key>hash2</key>
 			<data>
 			axiaQPnwswfnXct9B+rjKiiVTLNYYd16dC3MOhctGWA=
@@ -3028,10 +2363,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_logging_api.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			wZuCjKlHw6iLetDOt2lbknBnoSQ=
-			</data>
 			<key>hash2</key>
 			<data>
 			i7rrnSuMWtn68UEKsYR1N50aXsHtwdyvbBkZ5v5JnMo=
@@ -3039,10 +2370,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_map_metadata.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			Qjsiq3ECHFI2yimCFqM6FSiRomE=
-			</data>
 			<key>hash2</key>
 			<data>
 			SqMKEXI6sSu/J3ltpVyd9hycNRmpwXufT+MdMA3jdr8=
@@ -3050,10 +2377,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_map_storage_access_api.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			oajKH6AkBNgN/Ixys+i9me6gen0=
-			</data>
 			<key>hash2</key>
 			<data>
 			3AoqY6L1nlDFix45TDfi7kooWUPT5SbjO5hcX9dJKgk=
@@ -3061,10 +2384,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_mapping_api.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			N5r47wTtku8NdzyzZE5M3qHgkMk=
-			</data>
 			<key>hash2</key>
 			<data>
 			go7jyUgP7d/o2erGR7AwR2olA/c7ArlKzxu/uqMNciI=
@@ -3072,10 +2391,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_mapping_configuration.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			lS2gyl8S04IqO+oW+IABkOZU+qE=
-			</data>
 			<key>hash2</key>
 			<data>
 			0xSTHxWoHxNq+2K3+nzydHnJMLwiPAYHm4K0avuI2MQ=
@@ -3083,10 +2398,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_mapping_configuration_deprecated.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			1+QuIgW7Cnz4Vq9LBzjDG4rvojI=
-			</data>
 			<key>hash2</key>
 			<data>
 			WtbnoSi1g16HosJj694ldMBNuWE7cfuaJF+8mOPTQXM=
@@ -3094,10 +2405,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_matrix3f.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			NTt6IDCa1fSitVIzB8ax+Uf9AyM=
-			</data>
 			<key>hash2</key>
 			<data>
 			w03vwqGiPz+DhAiiDd3NLitrpKGKBcmJSA0TyUi+QoA=
@@ -3105,10 +2412,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_matrix4f.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			6OzaVg2hwwN3Ze9CgTrphFeu8hA=
-			</data>
 			<key>hash2</key>
 			<data>
 			jjYjCCiWG/QI33iba16gF2YB8zbz1mrmh2IhmuLXjac=
@@ -3116,32 +2419,34 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_mesh_data.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			md71iP/iHYH5vJ2ZcpJRjhiEkkk=
-			</data>
 			<key>hash2</key>
 			<data>
-			bva9wAYb7uSSryYsqclPgO+ofYOf4q++XG7cypw0Lmk=
+			pFXem4vv2fn2Jq5i24FHluVd++YnTPR5LVcFZ1E6wIQ=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_mesh_downloader_api.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			Lq5z0ufGHFJSdTy0iNZ57IoJPKM=
-			</data>
 			<key>hash2</key>
 			<data>
-			5tX3FkTM2Eox3cGePOVebgBVCjEfEU/wQ0D6tWvTRkU=
+			som0FnyxCZlA6m5RF5N0pAMdM0XTCo38yTlvboK+jno=
+			</data>
+		</dict>
+		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_mesh_downloader_chunk.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			D9MfaKHsg34OUvky7mkRiZKmp1SwLi1kofZyUFakn94=
+			</data>
+		</dict>
+		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_mesh_downloader_configuration.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			Ax+U59lZ4p5lpaxl+300zXIWQwtVXjNI+DIXh376SFw=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_mesh_downloader_error.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			xeHTJ8dQEZxnZ4JJI93p4Yza17c=
-			</data>
 			<key>hash2</key>
 			<data>
 			8vw728qAtZYUfBzTz81NNvan2kUP5fCw9APt6OQh9no=
@@ -3149,10 +2454,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_mesh_downloader_request_status.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			L7jC9GJu+DqEKdb78QIg0nqKefs=
-			</data>
 			<key>hash2</key>
 			<data>
 			iUFtUigm+ckD0QCq62olBAMOxHk3xP09otI7g72nPYw=
@@ -3160,21 +2461,20 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_mesh_downloader_results.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			+ANzESbS13rUHNdYd/kjKUH0R5I=
-			</data>
 			<key>hash2</key>
 			<data>
-			pLeOc2eeDNWZV9l6C28xsHUknSPjyzmArivUADRpRwg=
+			ntltn2+8dG510wtIIQzeYhqm2fwODWIeC2OwUvHJbIs=
+			</data>
+		</dict>
+		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_mesh_geo_reference.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			RpCxYheiB0KNZNJpSWY2zevJf8w65VmRuZTYItPaFoU=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_meshing_api.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			2zXfkLiQrpidaE9ZyFRdjMVjm0I=
-			</data>
 			<key>hash2</key>
 			<data>
 			Ri/AaZU/LFpBa7ZQQOfKXnYNUlsgS2eDksNVkmExYzU=
@@ -3182,10 +2482,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_meshing_configuration.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			mMLzbiYGZ66x4Lz7f9TchamJbz0=
-			</data>
 			<key>hash2</key>
 			<data>
 			jMu2wvjHq/GoM0dFxGeS45L45xuiq9lXVaQtJ8T/lBk=
@@ -3193,10 +2489,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_meshing_data.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			fyX/YgZipr/Rg3hbbAvWBpkVIBs=
-			</data>
 			<key>hash2</key>
 			<data>
 			cCaLqJ56fEY/klM/z0iRX22BORxHQJjr0gP5ChGOHoc=
@@ -3204,10 +2496,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_network_request_id.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			3EOtpVZvYAc9ZYDWPUcMjgJGJJQ=
-			</data>
 			<key>hash2</key>
 			<data>
 			ImRNwE3uZeoDOZFpGPatunkcIF2WuyyXkEQkLH9gRwM=
@@ -3215,10 +2503,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_object_detection_api.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			EZR15kYFIpknT5iaQGVD2fmQ/qE=
-			</data>
 			<key>hash2</key>
 			<data>
 			CAMpYdqd1ObxOpnoNUHcMNAwJEHFnwn0MmpqfocN1Zg=
@@ -3226,10 +2510,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_object_detection_class_name.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			tlbiMljvfdj5LXqNpWQnJqaNQLo=
-			</data>
 			<key>hash2</key>
 			<data>
 			r4uN1VP7GFLmmuHmG2UHTfYF3/6UIzTi5QVMGY17d3U=
@@ -3237,10 +2517,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_object_detection_configuration.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			ELXHvPJN9itpbWTmwMV5rNjgu/E=
-			</data>
 			<key>hash2</key>
 			<data>
 			njktvsp4JlxTE6EXMB05gktOOclxPvvqFR5KIuIQjdA=
@@ -3248,10 +2524,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_object_detection_image_params.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			iOOX5GVCbtIl83aevg8olhb5PfU=
-			</data>
 			<key>hash2</key>
 			<data>
 			iax8yIgHJb+/c7/QtzIlFAtvloZX8+KtHRVVbLsXLvg=
@@ -3259,10 +2531,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_object_detection_metadata.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			SkaOnLwCTW29nKDdl68ONLD8odU=
-			</data>
 			<key>hash2</key>
 			<data>
 			kmAwyJmt6KgMNtpQnKHAEZC54+laL/LwpihA/LBnhag=
@@ -3270,10 +2538,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_object_detection_result.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			dnQM3pyTEWhTzJb48oyLnXR8wXg=
-			</data>
 			<key>hash2</key>
 			<data>
 			roKNWXJFMW5YBwQRYrjaFT8ndeUxA6dC+iL8eedanzw=
@@ -3281,10 +2545,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_orientation.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			ZnOpTpc3mJq88xDRuGbgZYBS960=
-			</data>
 			<key>hash2</key>
 			<data>
 			pbuRpuwclyCbvQZjAalzjsFwHvcsxu/gWSYB6Axcu/0=
@@ -3292,21 +2552,20 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_path_config.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			OhXQJHNtkixVmASE1+DFi98L8w8=
-			</data>
 			<key>hash2</key>
 			<data>
 			31Wlkft22ho4NFjHWqjA4EOywqgraf5LFJi4Cebwp3g=
 			</data>
 		</dict>
+		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_playback_api.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			NCnZrjasy5aKeLhcF7vUCKpIpDEcfN6o2YvqYLWxNfE=
+			</data>
+		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_recording_export_paths.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			6O4eOdFRVEcMNuVVSjctArmxx/4=
-			</data>
 			<key>hash2</key>
 			<data>
 			+64OVuAGNwzX33NLsC81VyFfozvpIpxl/6A7r1bphgs=
@@ -3314,10 +2573,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_recording_export_resolution.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			TM73KT3B/jhLxQbQvHVcxLEk540=
-			</data>
 			<key>hash2</key>
 			<data>
 			/a7vV0z9PB6ot8RyGbr3btAS1/HC3pe3i8vkxvhNSEU=
@@ -3325,10 +2580,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_recording_exporter_api.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			NpmHWTINrszse3zORTSlwFOlj8M=
-			</data>
 			<key>hash2</key>
 			<data>
 			vjnPZ/MnwWwpKpCKUxl+H0N1bGPhiVJ3mK2uEXoHq5g=
@@ -3336,10 +2587,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_resource_api.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			aj1fhnfBGqB6IeT8E74XL0fotvY=
-			</data>
 			<key>hash2</key>
 			<data>
 			oFzzg2+F0D078x3JgqluyOQmiz/bI6NAPnYibjVxoxY=
@@ -3347,10 +2594,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_resource_handle.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			lDNGKeGLkKBtsk4C5825Bdv9zc4=
-			</data>
 			<key>hash2</key>
 			<data>
 			x6t0qz9Ceh+QTuHaqGbefVFUwJGtgeqvYdRDpVzvYUs=
@@ -3358,10 +2601,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_scanning_api.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			Ai9GBXvY5M/m66O8hV0bKklUlkM=
-			</data>
 			<key>hash2</key>
 			<data>
 			tmyfnha821Amkw10a1cCHgfRkDEOZzguPP0CKdRtWsI=
@@ -3369,10 +2608,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_scanning_config.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			IiNaNd+gXN7kNK7eQDmFfu+Ittg=
-			</data>
 			<key>hash2</key>
 			<data>
 			k+oMRqFpsCILdfOhQ1CrJcVo7bRH/N2zTHX81OzaTxs=
@@ -3380,10 +2615,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_scanning_export.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			jHrLSO0zqYLU9Cxmeddml91F14Y=
-			</data>
 			<key>hash2</key>
 			<data>
 			+uG5yBEfDrvP3Kjt2hVkvhcTGPEDsFaxudN7oCU4WQw=
@@ -3391,10 +2622,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_scanning_raycast_buffer.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			2HN45iLly/UMZkN3ZB2nzuNizwM=
-			</data>
 			<key>hash2</key>
 			<data>
 			wfhhTgGKOsa0/VGuvVQSWTZuhmB/tVfrJHxNRx3xR5E=
@@ -3402,10 +2629,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_scanning_recording_info.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			XXKNuhtNu4wfekrJjbx5WKpcPpI=
-			</data>
 			<key>hash2</key>
 			<data>
 			A/fdQ3vDt7WVX+0ODtHjd46yM5wXTAJ4qZuoHl5Fzjc=
@@ -3413,10 +2636,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_scanning_save.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			PX+sjKxWZUU615ZwUd5iGz9ATiw=
-			</data>
 			<key>hash2</key>
 			<data>
 			7eoy8ppGnVHaDnFsm9bi19zBCdK785NM6gKbwTz7jsw=
@@ -3424,10 +2643,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_scanning_split_export.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			y54SrCODFVusyLX7xk7spgnmli0=
-			</data>
 			<key>hash2</key>
 			<data>
 			Ttk/lHquMaqIvdFLzI/NsGjt2+zvLE8+QoAa0hdOU84=
@@ -3435,10 +2650,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_scanning_voxel_buffer.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			dHMZ40gGYjEV9EotKppXiyZeJDU=
-			</data>
 			<key>hash2</key>
 			<data>
 			yurBe1ODIkQMNSmel8yZzYm/qPLf9bdZi/oMz9OLozQ=
@@ -3446,21 +2657,13 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_semantics_api.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			uGG/t6e31K/esCLRmp1uZzVjxXo=
-			</data>
 			<key>hash2</key>
 			<data>
-			PjvqkrKWohDobCHueW34U4CL/cXvYQbT5SGpKY74n+s=
+			kxmcTIG1FDjLrdhToN1w2g9PElhOBaTueIdV6FEhWKI=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_semantics_channel.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			kTBPl6TKioBAopfNDoMeQUNVjFA=
-			</data>
 			<key>hash2</key>
 			<data>
 			1dHiUkp0Q8iQjznpMkdhD37PyOOvQ0X4pGF1e1ZehRE=
@@ -3468,10 +2671,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_semantics_confidence.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			wp3EYpiFFWj5a6CTmXEXjlGTlBI=
-			</data>
 			<key>hash2</key>
 			<data>
 			/GO9SUEPTTRqBenPyWB+65BtL5Q3yKhnIPqieyXwg1A=
@@ -3479,10 +2678,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_semantics_config.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			h5YKs9ksmsD0eMvR32MI7mBzH0Q=
-			</data>
 			<key>hash2</key>
 			<data>
 			pNkoCzE9/zEt/hvWXFQXT1uRSoHb40GXbCRtyLqHzyE=
@@ -3490,10 +2685,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_semantics_packed_channels.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			yAtcSHfye6ylqxnNo38TllI3IYM=
-			</data>
 			<key>hash2</key>
 			<data>
 			BRka4yFHMF1d/dfN1rlZAwx66k63uWu9WwDmrXM1tww=
@@ -3501,10 +2692,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_semantics_suppression_mask.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			RL7Ue2S37AOZMOHXmZkeQySLpPE=
-			</data>
 			<key>hash2</key>
 			<data>
 			aKv52E6iGemYfLFE7ydvkY2nT7clHBkTYeOFa4X5FdY=
@@ -3512,10 +2699,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_sink_callback_function_ptr.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			3Bs6Cj0LQRTYoClzOsTC6OOPpWg=
-			</data>
 			<key>hash2</key>
 			<data>
 			o9GjNUeLuKJRjoW4t/W1vxedqYbt7AGx9B1GicGresA=
@@ -3523,32 +2706,20 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_sites_manager_api.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			JPGktqUlszVr04J0EUxGg9LpyJY=
-			</data>
 			<key>hash2</key>
 			<data>
-			JELjlf9+nqjVkD3ktpJR72K2h5PxTKgUcsjJxIE8R0A=
+			n2G+m2Dsi0QGSfagrNyr0ZbPOIDiGeg4t3sjXCF0o8s=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_sites_manager_error_code.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			ur+6c53FEfO1dTvrAJFzKhOyi/s=
-			</data>
 			<key>hash2</key>
 			<data>
-			Yz3/v4o0Ls/LWFh/8gR1o1Kra6jSaT/ol9F0d0aOIvA=
+			sH/I67SoWZZ7Z9pQ6BTLu+g5yVngG+NtUCZ2BDIi7nE=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_sites_manager_request_status.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			4bWFvBN6GdzMiJcOCVqe4Ca454c=
-			</data>
 			<key>hash2</key>
 			<data>
 			VWBSWb5dfHNiGLoCaISpACg1BFlAaIWrKmp/D4rCvAM=
@@ -3556,21 +2727,13 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_sites_manager_types.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			57yiDcPo5RtAHbc9SZDaTny9pWU=
-			</data>
 			<key>hash2</key>
 			<data>
-			A0q4Mz+IF5Su7t3AnuC0z0ho51VvZEp2/3Jw20Xd8D8=
+			LEgBb1uV2ch0aHDBhiPTnj3oBw1+J2Pu8aZgvFI+Npc=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_status.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			mEvO3Pt0VG4VoUwl5VvnmO7PUHE=
-			</data>
 			<key>hash2</key>
 			<data>
 			m6M/n0C4a0yptYnlPT12Y5UAa5eUDc8ciShP8zY5b5c=
@@ -3578,21 +2741,13 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_string.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			7Lzg/MQGeEBaWr3hobled7qgMbs=
-			</data>
 			<key>hash2</key>
 			<data>
-			CwJJ1fFcFktr9hdWQJ9PithvrhhG+spUCv6y5xO/lM8=
+			wVTXx8efjrZ8L8JEzE28Qs8wecxgz8hclydo0vVgvdo=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_tracking_state.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			0CjeOSinn3rspV4DP6kdGPJ8XEk=
-			</data>
 			<key>hash2</key>
 			<data>
 			ckligQTzgj+If53MLnFd0NPxB0M0y/mPQX7RS5a76ZE=
@@ -3600,32 +2755,20 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_transform.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			csH+uywh2wuQZM24p/ASwO81mP4=
-			</data>
 			<key>hash2</key>
 			<data>
-			OgyZ15/TraGssGGucT+pUjQViTzqwnynxj0LtmQYcvg=
+			PpaLtXiYbamWpg8RbirPhZ08BghJmBEpFQzouqkvXZ0=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_user_config.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			WgUXWlWL/vwbeNPEofx/F2Qd4NY=
-			</data>
 			<key>hash2</key>
 			<data>
-			nphTNwUT+FkAFcPesPAyHVN20+A5dM6qki06pBUjkT0=
+			659T5dQnAvcgJmbBzjXHggZ53m5rH5w+JbKNmlqjVzs=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_uuid.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			/NZpsZsltWSfEuNoMo2SzBXG4vM=
-			</data>
 			<key>hash2</key>
 			<data>
 			ZScrFcETdaexMhJl2VIUB4B1//Uo5edevVdsMz16GeI=
@@ -3633,32 +2776,34 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps2_api.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			0vUGxnkF5opCzMxAbOKQspjPq0Y=
-			</data>
 			<key>hash2</key>
 			<data>
-			3fpvLiEjEG91X2KA+llt3XN6EOATTQ5y/OUH1bBFxmQ=
+			O7hf72G2xgb184T2alTkqdyHVKq+uq7HXgtRc4105s4=
+			</data>
+		</dict>
+		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps2_asset_identifier.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			puJ1rtUctcT8xuey/EWs+eSR3cT7p9mA8o4pqvteXQI=
+			</data>
+		</dict>
+		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps2_asset_tracking_data.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			aeEme/bHZCYsn70dCSLmgJkkLhEFjzEz3Ggn4nhVsc4=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps2_config.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			ZrHbLDMHlq7teYBGwEGY9e6RWXg=
-			</data>
 			<key>hash2</key>
 			<data>
-			q8EoHm2wiy5vFOg3wbIeSgJHt72HtEBfKMf3hIoKT8E=
+			5UZar5eEx9eoBCCGqcB2+SqEYXr/sZvuQpDvtVI6Oe8=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps2_geolocation.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			xXhI6mvLyIhmefnn/1rYfcZfAVs=
-			</data>
 			<key>hash2</key>
 			<data>
 			HpeZS+sZqv354J88wJKdrC2Fswe7bh5UD0fZtJQedxI=
@@ -3666,32 +2811,20 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps2_localization.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			frW+jRkVzazdH8Ug+6DVyPRM8Tk=
-			</data>
 			<key>hash2</key>
 			<data>
-			0rxgHSpIcpYo1b1JyWKJ62EdhFE7ZCw6wWPseon9WF0=
+			mg0VV48Emjsjo9Fxp3tVoyPa2ygsi8H5rhl53pCvCZk=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps2_localization_error.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			qC4p+O8dcOk3AEIC09CoSZj7Yv8=
-			</data>
 			<key>hash2</key>
 			<data>
-			TvDPnZD8FmwhepdTyq36FwTkn9Avev3Od9IrZn6bO60=
+			fC95zJGcZjaHYoWCWNhOy0Nc0ctxX55y9dBznv5CzwE=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps2_localization_request_record.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			2XqWpOLhZnyHPrkHpx7PyEhrvNU=
-			</data>
 			<key>hash2</key>
 			<data>
 			F7K7YK8eUd/BaTneE25gq1K3iElMI8KVtileaqb7//c=
@@ -3699,10 +2832,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps2_localization_request_records.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			P5qoBP84Q7SuGvux8I5IGmJWXKI=
-			</data>
 			<key>hash2</key>
 			<data>
 			76IOt4ptKanWRCGdmau8I90gAQDOeI8ubllO1c4nB6A=
@@ -3710,43 +2839,27 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps2_localization_request_status.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			T8zXgfl7GJnbJJ+lfx+BTbqwG34=
-			</data>
 			<key>hash2</key>
 			<data>
-			oXf3AhaAftFx345Sv9cOecwojlnju9nvSz1nteFx6GQ=
+			x/h1kqR3IBYm3Xn7xJDpkYWEdiPaeQ92jAYN4Auo/Io=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps2_localization_request_type.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			YhUzpS/ZqEj9O7CZtDfioxgflRE=
-			</data>
 			<key>hash2</key>
 			<data>
-			wDsLmoVADdcTU0dd7eL/u3ALM0NMEpJioeLAlgwgA5A=
+			tVlc+DyHXBjYReYDZHRxKZO6Zbb3Fr1Ga8TKWxn3kEI=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps2_pose.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			vkR+5cyCC+LLdeQJUikQ32WWazA=
-			</data>
 			<key>hash2</key>
 			<data>
-			dGcKjf+hfuqY75xp9uZGqagjSUBbh90k7xDhNAwLGcQ=
+			5THs8GBSlIKXFUB2lfrmJZ1OedO/6z2ExSyWr+xfJeA=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps2_tracking_state.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			WvD+luFmqpyjzNjyl/XLMOjnylE=
-			</data>
 			<key>hash2</key>
 			<data>
 			rDhmLBwZbNmukNkn144QcKBctLrx6FuL33Ro1madL4k=
@@ -3754,43 +2867,13 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps_anchor_update.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			GB7HawgiTxtZEw6DGLXqjB/dRWs=
-			</data>
 			<key>hash2</key>
 			<data>
-			tXQs70H6UJ5uWmjc+cXmwyH2tWkf4GiC52r+1MGC3mc=
-			</data>
-		</dict>
-		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps_api.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			3VRBWVBD9KQQmbg2/Ex/mDZwikg=
-			</data>
-			<key>hash2</key>
-			<data>
-			IriNf5NnwIp80zyewBsU199+ul/qh+QJU2BVxIAqLWA=
-			</data>
-		</dict>
-		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps_config.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			q/bvtTN8IOymN/7HZeUr+AN+fcc=
-			</data>
-			<key>hash2</key>
-			<data>
-			Z2EMzcyVxj9u0TedvwLPUsM2KlssNxMdcsSOG23yjZY=
+			UlnVT49dEWZtqkfxKaqXeva+xInbEjg+ggQFaCW2lgo=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps_coverage_api.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			cFSfO2DmXzTawwQwg1H+9J+Bthk=
-			</data>
 			<key>hash2</key>
 			<data>
 			ZS24GYpwNoE5gbig+vj3VzEWDWdvfXj0NQPdQf4P1MI=
@@ -3798,10 +2881,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps_coverage_error_code.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			KNrGpQ6DFDpbLSfr9rewmvc3kAE=
-			</data>
 			<key>hash2</key>
 			<data>
 			Ouhdn35C3gjn6gda+IJj1tKv+cDC6atWj2fAL2y/9u4=
@@ -3809,10 +2888,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps_coverage_localizability.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			R8mxUfTBacXbPdaYemhksqyolD8=
-			</data>
 			<key>hash2</key>
 			<data>
 			JohC6HRAVkzojpe9MqwlZ9ZPiPVwWfUDqu3fMjBwba8=
@@ -3820,109 +2895,20 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps_coverage_request_status.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			rKCNKnk3G/G/GlUua+GAwAt2cJE=
-			</data>
 			<key>hash2</key>
 			<data>
 			8NI7+y999gwBtx63IkxsjhD9Mcew8NBSYO9bSHoqQy8=
 			</data>
 		</dict>
-		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps_geolocation_data.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			nNSk/wNMurNvEuHmQOZ+qkDL884=
-			</data>
-			<key>hash2</key>
-			<data>
-			tIzarJ3FeOlEJ5ExfxWx77H6FSb2wvOJW3fyzo5pESQ=
-			</data>
-		</dict>
-		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps_graph_operation_error.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			02CHo+JKjiUpt0YebFSHw4zZuow=
-			</data>
-			<key>hash2</key>
-			<data>
-			fzx0sEUetuYgk/HHoGt6oFmeGjhRIFG8+nYqw0eMw5M=
-			</data>
-		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_vps_tracking_state.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			nT0rmL8CAFWstks8FwkG9rozSHQ=
-			</data>
 			<key>hash2</key>
 			<data>
-			L99T2juLinnWyUZEcTMSOnGFcmW7P+P/7OcO1xua7X8=
-			</data>
-		</dict>
-		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_wps_api.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			Za1IKBtqqppacpDlYapDsTXDqfk=
-			</data>
-			<key>hash2</key>
-			<data>
-			Z55jSv8YYO+1/KSRdT/gBXt1IQCcEsK25xtcLVSofaA=
-			</data>
-		</dict>
-		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_wps_configuration.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			jdulhSxw3qjt0H8Oe6+VPVn4Ofc=
-			</data>
-			<key>hash2</key>
-			<data>
-			5Gpb34jk47KMLBTjqfQW7Vf+GrUw7+5mjilFB6ouemI=
-			</data>
-		</dict>
-		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_wps_geolocation_data.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			c3G/wCwMhhlGh9YJtv3/ywmAv/0=
-			</data>
-			<key>hash2</key>
-			<data>
-			sb0lMYC4e4Kr8bd9IPoiufuhqBmF/ouvJmI8UAW10ck=
-			</data>
-		</dict>
-		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_wps_location.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			CUGHkLwT7rFpTGFwzUK8E0RS0rk=
-			</data>
-			<key>hash2</key>
-			<data>
-			3T0dFPxC1RW9WywOuM3wvwUpsrhp465gI8Z6ek3U/g4=
-			</data>
-		</dict>
-		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/ardk_wps_status.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			5Cfgaz+i6+TSnVKre1bjSW+gDrE=
-			</data>
-			<key>hash2</key>
-			<data>
-			F3iUP9yfsm5XiirHqPOaropA8SrDKRQHGwPkN6e8Oto=
+			u9EPTOffDMHtwQHt8w7oTOyJelvYnDKTtibTL+oMyKI=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/capi_common.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			mkn2k0qzbB96eZ/ZcgPWkoDDato=
-			</data>
 			<key>hash2</key>
 			<data>
 			lhSMgN9FnzhoNOlH96MiW7ICEdCMfzEVTQEMlrKC4uY=
@@ -3930,54 +2916,34 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/cardk.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			2zNdsX44mqurXCk2G4AA/TH4ST0=
-			</data>
 			<key>hash2</key>
 			<data>
-			P31k8tOcOvdsfpugEHIYLuObpmlz7C4EV8L31cIUO9w=
+			z2rq8WWDRMXac1ajpNkyBd4ShQ/gvsUzCyYDkcgZzoE=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/nsdk_camera_frame.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			rNNAryLuca9Knz33Y6Q88b5jUO8=
-			</data>
 			<key>hash2</key>
 			<data>
-			IdfNROc6WrU+fgdcaZKqyZREGSTHd6OK49Bo71NM9bo=
+			t6YlMPqgdTM6qaJQcuglkpYGg/tSqzxBpIZK1ybuHa0=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/nsdk_depth_frame.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			XFYoK+ENJSMXgSjOjEmrZPOvBDU=
-			</data>
 			<key>hash2</key>
 			<data>
-			K3gfPZCWIs/vNxzvo1rPBCGR0PB+z0Dx4V4dtdFmYv0=
+			khQ/vqeIAIrrapTYa6BHYZ3RktpttMKeDfTEPAx2+UE=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/telemetry_publishing_api.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			ph9cLxBA/aaV5dEJuTSxGQOBC98=
-			</data>
 			<key>hash2</key>
 			<data>
-			tnNfx8exF+M/DzfMCA0OGYj2YRMACdApKIsiuKoUgpQ=
+			QESauujw3yUSTVIiF0FbiinJOENtUX7HflidwLXfrBA=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Headers/telemetry_sink_api.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			1Ib+IWAD1uvXtzRaFtxVxTPPVSQ=
-			</data>
 			<key>hash2</key>
 			<data>
 			9ba4xsVPKfuRlHKJUxJu5FjQfwUQ1EFnfwhT0WDscsE=
@@ -3985,21 +2951,13 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Info.plist</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			UStCkK+RxmKXvSmHeA6NStBfCi0=
-			</data>
 			<key>hash2</key>
 			<data>
-			aXGhsODW7Hzfhr9TPqVY+UOE5K4sPqxm7xKj2TClBFA=
+			/ne5cHkZtiEL2XU9EQNyJcgUB6ZsTAnqI+zoqSN0yU8=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/Modules/module.modulemap</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			YYoOPTqi+kN4uquGg8hetAgNxLQ=
-			</data>
 			<key>hash2</key>
 			<data>
 			M014fUtw2HhsmZ0x50o8FYzC5ZHHquzTLFUtUfbfcA8=
@@ -4007,10 +2965,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/PrivacyInfo.xcprivacy</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			NRE4H6HgfLj5EFoyNgs1pA22qAY=
-			</data>
 			<key>hash2</key>
 			<data>
 			wobpLarcatMO8yZJEEqldezyygxVFJ6RbTGtv0EIN50=
@@ -4018,13 +2972,9 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CArdk.framework/_CodeSignature/CodeResources</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			zI8yyikYa5QTCm4iJfUaD8RyYwI=
-			</data>
 			<key>hash2</key>
 			<data>
-			s4WmnbNgow1Q0W3z8GPg0j94DwKceFaHOlVNo4b4g8Y=
+			ouTKalsPySIfEPcUSqA+AsfwB+J0CTvGrxdUxMT3yeo=
 			</data>
 		</dict>
 	</dict>

@@ -18,10 +18,10 @@ public struct ARUtils {
     /// if ARUtils.isLidarAvailable() {
     ///     print("LiDAR is available - enhanced depth sensing enabled")
     ///     // Configure NSDK to use LiDAR data
-    ///     let session = NSDKSession(apiKey: "your-key", useLidar: true)
+    ///     let session = NSDKSession(accessToken: "your-token", useLidar: true)
     /// } else {
     ///     print("LiDAR not available - using alternative depth methods")
-    ///     let session = NSDKSession(apiKey: "your-key", useLidar: false)
+    ///     let session = NSDKSession(accessToken: "your-token", useLidar: false)
     /// }
     /// ```
     ///

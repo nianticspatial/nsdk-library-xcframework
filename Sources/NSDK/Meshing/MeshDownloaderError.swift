@@ -3,7 +3,11 @@ import CArdk
 public extension MeshDownloaderResults {
     /// Possible errors from Mesh Downloader network operations.
     enum Error: Swift.Error {
-        /// The total download size exceeds the limit specified in the request.
+        /// A single mesh's size exceeds the per-mesh limit in a oneshot location mesh request;
+        /// no data was fetched for that mesh.
+        ///
+        /// - Note: This is distinct from ``sizeLimitReached``, which is the cumulative cap for
+        ///   streaming portal mesh requests.
         case sizeExceedsLimit
 
         /// There was a network error on the device.
@@ -16,6 +20,10 @@ public extension MeshDownloaderResults {
 
         /// Downloaded data could not be decompressed or parsed.
         case unexpectedResponse
+
+        /// The cumulative download size cap was hit. All chunks downloaded before the cap was
+        /// reached were delivered; no further chunks will arrive.
+        case sizeLimitReached
 
         /// An unexpected error occurred.
         case internalError

@@ -4,13 +4,9 @@
 <dict>
 	<key>files</key>
 	<dict>
-		<key>Headers/ardk_age_level.h</key>
-		<data>
-		5MrugtHGdUW/8qvAfiqdK2EDxtg=
-		</data>
 		<key>Headers/ardk_api.h</key>
 		<data>
-		JUjecTgK0QHgIttsS8fOxdj/ysI=
+		5mH1Qtx6LUkvyd5Kl7LL7bXHFGo=
 		</data>
 		<key>Headers/ardk_area_target.h</key>
 		<data>
@@ -22,7 +18,7 @@
 		</data>
 		<key>Headers/ardk_auth_manager_api.h</key>
 		<data>
-		i7bLh6T811iOr1Oco+Er08C+QgI=
+		OJjfsWYvzxg2ssTjotfY+/E3oOs=
 		</data>
 		<key>Headers/ardk_auth_manager_types.h</key>
 		<data>
@@ -56,13 +52,17 @@
 		<data>
 		pDrJ2mu4ljInzJ0jakV5O1Gv8HY=
 		</data>
+		<key>Headers/ardk_clock_base.h</key>
+		<data>
+		JlfkwJD+34r3GvJM+GoyJ9Ui9Uw=
+		</data>
 		<key>Headers/ardk_cloud_env_config.h</key>
 		<data>
 		pehR1gdRGOweadL80ndMjp3KSec=
 		</data>
 		<key>Headers/ardk_compass_data.h</key>
 		<data>
-		3EQVc6Q+gETgRgpTgoUimzaF9bA=
+		J+8koemXzt8TQK67nWsvHWDFqpU=
 		</data>
 		<key>Headers/ardk_config.h</key>
 		<data>
@@ -76,9 +76,17 @@
 		<data>
 		P7YNGAjcLg6avsanbXqsX/Giv2E=
 		</data>
+		<key>Headers/ardk_dashcam.h</key>
+		<data>
+		1p1JHvMBo2+P7wnCyqP+ePj0QHc=
+		</data>
+		<key>Headers/ardk_dashcam_config.h</key>
+		<data>
+		DHbwKlHFjrz5aIAk8P7NUrBE1oQ=
+		</data>
 		<key>Headers/ardk_depth_api.h</key>
 		<data>
-		KhDvbd/XV/FRMw25yuWbkh3GLHo=
+		IkoyZ9jF+GUC5aL4hdvR/WwP8Wc=
 		</data>
 		<key>Headers/ardk_depth_buffer.h</key>
 		<data>
@@ -102,7 +110,7 @@
 		</data>
 		<key>Headers/ardk_feature_status.h</key>
 		<data>
-		+v1h6JceiS8FxpA0NLJP8wmPmE4=
+		2fScI1ljizUEVKelpnGQ5D5JzsU=
 		</data>
 		<key>Headers/ardk_float_image.h</key>
 		<data>
@@ -112,13 +120,17 @@
 		<data>
 		r3D4uZMTb+mZZ0fpOkewm0zKXJ0=
 		</data>
+		<key>Headers/ardk_frame_pacing_clock.h</key>
+		<data>
+		NRd4OoScq64YnOz6RHqYLHXQjTw=
+		</data>
 		<key>Headers/ardk_geolocation_data.h</key>
 		<data>
-		DcwkuNs+zqZGJaxwKj2DifWGxFs=
+		4ENKEMBaAnMVwKoqrA8On30mwjk=
 		</data>
 		<key>Headers/ardk_gps_data.h</key>
 		<data>
-		34+FbmVMJkx1fiCpqs6FrV932kA=
+		20ykqkaJqLhqz1yGuqrnCm071Yk=
 		</data>
 		<key>Headers/ardk_half_image.h</key>
 		<data>
@@ -131,6 +143,10 @@
 		<key>Headers/ardk_hint_image_result.h</key>
 		<data>
 		XExSg6fG8DaeTc37Eo9OUVZlG34=
+		</data>
+		<key>Headers/ardk_id_string.h</key>
+		<data>
+		gzTquvqScW6C/WmwusgvEOcCGLA=
 		</data>
 		<key>Headers/ardk_image.h</key>
 		<data>
@@ -162,7 +178,7 @@
 		</data>
 		<key>Headers/ardk_localization_target.h</key>
 		<data>
-		PU/sVXivn8Ifp4Sy+0wbOb3dohY=
+		++3e5dCyz+8E+uUnx/RmS42sCos=
 		</data>
 		<key>Headers/ardk_localization_target_result.h</key>
 		<data>
@@ -206,11 +222,19 @@
 		</data>
 		<key>Headers/ardk_mesh_data.h</key>
 		<data>
-		md71iP/iHYH5vJ2ZcpJRjhiEkkk=
+		o5S/FnIE23of0WRzzWeflpkJQkA=
 		</data>
 		<key>Headers/ardk_mesh_downloader_api.h</key>
 		<data>
-		Lq5z0ufGHFJSdTy0iNZ57IoJPKM=
+		LGzJevKvIao9L0ToTTWyRxcYPK4=
+		</data>
+		<key>Headers/ardk_mesh_downloader_chunk.h</key>
+		<data>
+		9pBdKnJsB54OXhO9ByT84Msk9Lg=
+		</data>
+		<key>Headers/ardk_mesh_downloader_configuration.h</key>
+		<data>
+		77pkFUzn5AXjFXsezAEgM5muEAA=
 		</data>
 		<key>Headers/ardk_mesh_downloader_error.h</key>
 		<data>
@@ -222,7 +246,11 @@
 		</data>
 		<key>Headers/ardk_mesh_downloader_results.h</key>
 		<data>
-		+ANzESbS13rUHNdYd/kjKUH0R5I=
+		b5BpJdQnSTbeWbmdmkqy9En8zQU=
+		</data>
+		<key>Headers/ardk_mesh_geo_reference.h</key>
+		<data>
+		PyXcu6B97PiWZBIu3UsorT10Mmo=
 		</data>
 		<key>Headers/ardk_meshing_api.h</key>
 		<data>
@@ -271,6 +299,10 @@
 		<key>Headers/ardk_path_config.h</key>
 		<data>
 		OhXQJHNtkixVmASE1+DFi98L8w8=
+		</data>
+		<key>Headers/ardk_playback_api.h</key>
+		<data>
+		oGSzHEvnPUuuCFkICxrlycUUP+Q=
 		</data>
 		<key>Headers/ardk_recording_export_paths.h</key>
 		<data>
@@ -326,7 +358,7 @@
 		</data>
 		<key>Headers/ardk_semantics_api.h</key>
 		<data>
-		uGG/t6e31K/esCLRmp1uZzVjxXo=
+		l/LfX8fdRJo8l7SyEh383/erGDM=
 		</data>
 		<key>Headers/ardk_semantics_channel.h</key>
 		<data>
@@ -354,11 +386,11 @@
 		</data>
 		<key>Headers/ardk_sites_manager_api.h</key>
 		<data>
-		JPGktqUlszVr04J0EUxGg9LpyJY=
+		8z0XOqs/vhVdx2+yO5uyed0yyq0=
 		</data>
 		<key>Headers/ardk_sites_manager_error_code.h</key>
 		<data>
-		ur+6c53FEfO1dTvrAJFzKhOyi/s=
+		o1u79mHXBnOHI/inkRQs2Duemto=
 		</data>
 		<key>Headers/ardk_sites_manager_request_status.h</key>
 		<data>
@@ -366,7 +398,7 @@
 		</data>
 		<key>Headers/ardk_sites_manager_types.h</key>
 		<data>
-		57yiDcPo5RtAHbc9SZDaTny9pWU=
+		sVv+rm3nPW27ONQCMhZgwoP1bD4=
 		</data>
 		<key>Headers/ardk_status.h</key>
 		<data>
@@ -374,7 +406,7 @@
 		</data>
 		<key>Headers/ardk_string.h</key>
 		<data>
-		7Lzg/MQGeEBaWr3hobled7qgMbs=
+		fWMu63oQ/6VzrA9SGbpKseEw6jg=
 		</data>
 		<key>Headers/ardk_tracking_state.h</key>
 		<data>
@@ -382,11 +414,11 @@
 		</data>
 		<key>Headers/ardk_transform.h</key>
 		<data>
-		csH+uywh2wuQZM24p/ASwO81mP4=
+		+13a4oQkMar28nT15egzyWNtobk=
 		</data>
 		<key>Headers/ardk_user_config.h</key>
 		<data>
-		WgUXWlWL/vwbeNPEofx/F2Qd4NY=
+		On80UErC+ONMZSO72sppEVL9bm0=
 		</data>
 		<key>Headers/ardk_uuid.h</key>
 		<data>
@@ -394,11 +426,19 @@
 		</data>
 		<key>Headers/ardk_vps2_api.h</key>
 		<data>
-		0vUGxnkF5opCzMxAbOKQspjPq0Y=
+		Wti75mijnabGFeRdgk77n2ipgWI=
+		</data>
+		<key>Headers/ardk_vps2_asset_identifier.h</key>
+		<data>
+		bmRcmPTckhUevGZUNCB5W/IUcf0=
+		</data>
+		<key>Headers/ardk_vps2_asset_tracking_data.h</key>
+		<data>
+		HIU1pst5iHtuixsVOnz/R3PKqKs=
 		</data>
 		<key>Headers/ardk_vps2_config.h</key>
 		<data>
-		ZrHbLDMHlq7teYBGwEGY9e6RWXg=
+		vrFC8/Z5UcQiipwa3lRe4uFxgpM=
 		</data>
 		<key>Headers/ardk_vps2_geolocation.h</key>
 		<data>
@@ -406,11 +446,11 @@
 		</data>
 		<key>Headers/ardk_vps2_localization.h</key>
 		<data>
-		frW+jRkVzazdH8Ug+6DVyPRM8Tk=
+		6Eq7Q9Xp/0J/Rw8Eu1po2vgxl1k=
 		</data>
 		<key>Headers/ardk_vps2_localization_error.h</key>
 		<data>
-		qC4p+O8dcOk3AEIC09CoSZj7Yv8=
+		VLJ90qrf02zKtmdNxMGK1M5ht8c=
 		</data>
 		<key>Headers/ardk_vps2_localization_request_record.h</key>
 		<data>
@@ -422,15 +462,15 @@
 		</data>
 		<key>Headers/ardk_vps2_localization_request_status.h</key>
 		<data>
-		T8zXgfl7GJnbJJ+lfx+BTbqwG34=
+		17oavKXjT2WzUQeEwFa3Efkqvf0=
 		</data>
 		<key>Headers/ardk_vps2_localization_request_type.h</key>
 		<data>
-		YhUzpS/ZqEj9O7CZtDfioxgflRE=
+		A0tpf5gkl7YsvRC+AvFFqXyBvhA=
 		</data>
 		<key>Headers/ardk_vps2_pose.h</key>
 		<data>
-		vkR+5cyCC+LLdeQJUikQ32WWazA=
+		BCj2WxINSzIa+ZkzzbzMV0uU4K4=
 		</data>
 		<key>Headers/ardk_vps2_tracking_state.h</key>
 		<data>
@@ -438,15 +478,7 @@
 		</data>
 		<key>Headers/ardk_vps_anchor_update.h</key>
 		<data>
-		GB7HawgiTxtZEw6DGLXqjB/dRWs=
-		</data>
-		<key>Headers/ardk_vps_api.h</key>
-		<data>
-		3VRBWVBD9KQQmbg2/Ex/mDZwikg=
-		</data>
-		<key>Headers/ardk_vps_config.h</key>
-		<data>
-		q/bvtTN8IOymN/7HZeUr+AN+fcc=
+		bjdMJNqX8gG8rFzMBX/BBsyhBaM=
 		</data>
 		<key>Headers/ardk_vps_coverage_api.h</key>
 		<data>
@@ -464,37 +496,9 @@
 		<data>
 		rKCNKnk3G/G/GlUua+GAwAt2cJE=
 		</data>
-		<key>Headers/ardk_vps_geolocation_data.h</key>
-		<data>
-		nNSk/wNMurNvEuHmQOZ+qkDL884=
-		</data>
-		<key>Headers/ardk_vps_graph_operation_error.h</key>
-		<data>
-		02CHo+JKjiUpt0YebFSHw4zZuow=
-		</data>
 		<key>Headers/ardk_vps_tracking_state.h</key>
 		<data>
-		nT0rmL8CAFWstks8FwkG9rozSHQ=
-		</data>
-		<key>Headers/ardk_wps_api.h</key>
-		<data>
-		Za1IKBtqqppacpDlYapDsTXDqfk=
-		</data>
-		<key>Headers/ardk_wps_configuration.h</key>
-		<data>
-		jdulhSxw3qjt0H8Oe6+VPVn4Ofc=
-		</data>
-		<key>Headers/ardk_wps_geolocation_data.h</key>
-		<data>
-		c3G/wCwMhhlGh9YJtv3/ywmAv/0=
-		</data>
-		<key>Headers/ardk_wps_location.h</key>
-		<data>
-		CUGHkLwT7rFpTGFwzUK8E0RS0rk=
-		</data>
-		<key>Headers/ardk_wps_status.h</key>
-		<data>
-		5Cfgaz+i6+TSnVKre1bjSW+gDrE=
+		+J/MwVPtyErcWEjcJ44D/dElKe4=
 		</data>
 		<key>Headers/capi_common.h</key>
 		<data>
@@ -502,19 +506,19 @@
 		</data>
 		<key>Headers/cardk.h</key>
 		<data>
-		2zNdsX44mqurXCk2G4AA/TH4ST0=
+		9Se8Fxi0Tp8/yWm4G080Wb3XsSY=
 		</data>
 		<key>Headers/nsdk_camera_frame.h</key>
 		<data>
-		rNNAryLuca9Knz33Y6Q88b5jUO8=
+		kQ1/AsGzBgDgoSq8ZajjhO3XfAQ=
 		</data>
 		<key>Headers/nsdk_depth_frame.h</key>
 		<data>
-		XFYoK+ENJSMXgSjOjEmrZPOvBDU=
+		5jn1wOVQg4YbRbuN8gXGe70O2iY=
 		</data>
 		<key>Headers/telemetry_publishing_api.h</key>
 		<data>
-		ph9cLxBA/aaV5dEJuTSxGQOBC98=
+		5AIHsyMrJb4a746bMqsZjCvTt1k=
 		</data>
 		<key>Headers/telemetry_sink_api.h</key>
 		<data>
@@ -522,7 +526,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		UStCkK+RxmKXvSmHeA6NStBfCi0=
+		EnexbQNFmaiTpeuRydrnn8l0Rvw=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -535,18 +539,11 @@
 	</dict>
 	<key>files2</key>
 	<dict>
-		<key>Headers/ardk_age_level.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			80sne6orrku0KFhQhde/qZbn2GzfY1Gaa0fH7Q/PFc0=
-			</data>
-		</dict>
 		<key>Headers/ardk_api.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			fYMZ0RbGdJRRG50+0E/+UGsq9NwCatQc8upQqiQ59xM=
+			5eh4S3mB7a++B6h0syjGI0U20T8TV3/rlLEl3mOQi9E=
 			</data>
 		</dict>
 		<key>Headers/ardk_area_target.h</key>
@@ -567,7 +564,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			trE50v2CdKcYMjImbdBLsfStMDIkFAL+i8K9f+Kk7Cc=
+			hBTqxmpp1MGZ/W/XINdYKoum0f53vLRStbU5PcJc8Dg=
 			</data>
 		</dict>
 		<key>Headers/ardk_auth_manager_types.h</key>
@@ -626,6 +623,13 @@
 			r3n+jogEREOO2N4cBOUT3L+41kuHz0zSgjyzP+ZuDMs=
 			</data>
 		</dict>
+		<key>Headers/ardk_clock_base.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			1Wt+p+MnFyUUBFSYJZEGWKSjHO3Xk4CHyHaPlDhaiAQ=
+			</data>
+		</dict>
 		<key>Headers/ardk_cloud_env_config.h</key>
 		<dict>
 			<key>hash2</key>
@@ -637,7 +641,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Ye9FN+uoXpxFPR4hoycHvdbj/V66JFyqClELtNoSUuc=
+			529wGNs2WX2vtHpvR4HSQj0QEkLmUM3wmrOA3ULN6mU=
 			</data>
 		</dict>
 		<key>Headers/ardk_config.h</key>
@@ -661,11 +665,25 @@
 			adByN5olypbzYBBP6PNN9jDhOt4wN8g2lCFbENA5Hz8=
 			</data>
 		</dict>
+		<key>Headers/ardk_dashcam.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			V8EFq/iwPBMHkiaw+qJiEW8FonUTkXUk5P1zKqNttH0=
+			</data>
+		</dict>
+		<key>Headers/ardk_dashcam_config.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			+grD9vkO6rtW/qhnXFHefqVog0j0r5aaMn6UtM8CjeM=
+			</data>
+		</dict>
 		<key>Headers/ardk_depth_api.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ry047eVv/ZKzsWH3CaELurIZh3Jg3fB1GDh1vJrfgJg=
+			PmZZdYkJSfWuR74GEBO7zu1e48UFSzSgz/h5N9Ibn8Y=
 			</data>
 		</dict>
 		<key>Headers/ardk_depth_buffer.h</key>
@@ -707,7 +725,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			frKVvSzqyfLqwRPssD11mu7NoaZalrar6aayPJ6DP6Q=
+			ZnT/+PExSurpUIUafqkSqqBnQx0z4e7KlyctuKQp7TA=
 			</data>
 		</dict>
 		<key>Headers/ardk_float_image.h</key>
@@ -724,18 +742,25 @@
 			lmP8FUm/Qk8q5v/klYkXhJWOKvThfZ1TJnjn8gyVcpM=
 			</data>
 		</dict>
+		<key>Headers/ardk_frame_pacing_clock.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			WpGHQsLYbbJYpI/ZgXuWe8cl7BlkcrXujevXDlBnjG0=
+			</data>
+		</dict>
 		<key>Headers/ardk_geolocation_data.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			MyhxLKs8syzrY7VBRJPfeHsjKVErj7mu0uYwEs6XmNM=
+			RYCtAlwMzJhv0W3vjykjTeGnciPmFHxaVvoGHCDGFdk=
 			</data>
 		</dict>
 		<key>Headers/ardk_gps_data.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			bDmFCXAoCyKaJHe9AZghVA3CdgTZkn9kdie104w1WkQ=
+			h0wLrwa3DqB2JYC0LciKM2JlMWn1IKJqO/+Z9sWqX3o=
 			</data>
 		</dict>
 		<key>Headers/ardk_half_image.h</key>
@@ -757,6 +782,13 @@
 			<key>hash2</key>
 			<data>
 			WZLUamIc2FtA7gIN8wyTwSsAlEiLDYo4q9EDlM1e3bw=
+			</data>
+		</dict>
+		<key>Headers/ardk_id_string.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			tZJgUaCDQjFAsks4HdFzUpiJcaxgSQD6sq6hrDCSLEg=
 			</data>
 		</dict>
 		<key>Headers/ardk_image.h</key>
@@ -812,7 +844,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			LWLEdTd7WRMZ3FNIL1MeJX8GpySvZUmVoViylie0Fyw=
+			zlAMlQ0YopWuxvxNjr8R9MWwnoMRDdh+agcL7Z3cqPs=
 			</data>
 		</dict>
 		<key>Headers/ardk_localization_target_result.h</key>
@@ -889,14 +921,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			bva9wAYb7uSSryYsqclPgO+ofYOf4q++XG7cypw0Lmk=
+			pFXem4vv2fn2Jq5i24FHluVd++YnTPR5LVcFZ1E6wIQ=
 			</data>
 		</dict>
 		<key>Headers/ardk_mesh_downloader_api.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			5tX3FkTM2Eox3cGePOVebgBVCjEfEU/wQ0D6tWvTRkU=
+			som0FnyxCZlA6m5RF5N0pAMdM0XTCo38yTlvboK+jno=
+			</data>
+		</dict>
+		<key>Headers/ardk_mesh_downloader_chunk.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			D9MfaKHsg34OUvky7mkRiZKmp1SwLi1kofZyUFakn94=
+			</data>
+		</dict>
+		<key>Headers/ardk_mesh_downloader_configuration.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			Ax+U59lZ4p5lpaxl+300zXIWQwtVXjNI+DIXh376SFw=
 			</data>
 		</dict>
 		<key>Headers/ardk_mesh_downloader_error.h</key>
@@ -917,7 +963,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			pLeOc2eeDNWZV9l6C28xsHUknSPjyzmArivUADRpRwg=
+			ntltn2+8dG510wtIIQzeYhqm2fwODWIeC2OwUvHJbIs=
+			</data>
+		</dict>
+		<key>Headers/ardk_mesh_geo_reference.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			RpCxYheiB0KNZNJpSWY2zevJf8w65VmRuZTYItPaFoU=
 			</data>
 		</dict>
 		<key>Headers/ardk_meshing_api.h</key>
@@ -1002,6 +1055,13 @@
 			<key>hash2</key>
 			<data>
 			31Wlkft22ho4NFjHWqjA4EOywqgraf5LFJi4Cebwp3g=
+			</data>
+		</dict>
+		<key>Headers/ardk_playback_api.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			NCnZrjasy5aKeLhcF7vUCKpIpDEcfN6o2YvqYLWxNfE=
 			</data>
 		</dict>
 		<key>Headers/ardk_recording_export_paths.h</key>
@@ -1099,7 +1159,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			PjvqkrKWohDobCHueW34U4CL/cXvYQbT5SGpKY74n+s=
+			kxmcTIG1FDjLrdhToN1w2g9PElhOBaTueIdV6FEhWKI=
 			</data>
 		</dict>
 		<key>Headers/ardk_semantics_channel.h</key>
@@ -1148,14 +1208,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			JELjlf9+nqjVkD3ktpJR72K2h5PxTKgUcsjJxIE8R0A=
+			n2G+m2Dsi0QGSfagrNyr0ZbPOIDiGeg4t3sjXCF0o8s=
 			</data>
 		</dict>
 		<key>Headers/ardk_sites_manager_error_code.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Yz3/v4o0Ls/LWFh/8gR1o1Kra6jSaT/ol9F0d0aOIvA=
+			sH/I67SoWZZ7Z9pQ6BTLu+g5yVngG+NtUCZ2BDIi7nE=
 			</data>
 		</dict>
 		<key>Headers/ardk_sites_manager_request_status.h</key>
@@ -1169,7 +1229,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			A0q4Mz+IF5Su7t3AnuC0z0ho51VvZEp2/3Jw20Xd8D8=
+			LEgBb1uV2ch0aHDBhiPTnj3oBw1+J2Pu8aZgvFI+Npc=
 			</data>
 		</dict>
 		<key>Headers/ardk_status.h</key>
@@ -1183,7 +1243,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			CwJJ1fFcFktr9hdWQJ9PithvrhhG+spUCv6y5xO/lM8=
+			wVTXx8efjrZ8L8JEzE28Qs8wecxgz8hclydo0vVgvdo=
 			</data>
 		</dict>
 		<key>Headers/ardk_tracking_state.h</key>
@@ -1197,14 +1257,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			OgyZ15/TraGssGGucT+pUjQViTzqwnynxj0LtmQYcvg=
+			PpaLtXiYbamWpg8RbirPhZ08BghJmBEpFQzouqkvXZ0=
 			</data>
 		</dict>
 		<key>Headers/ardk_user_config.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			nphTNwUT+FkAFcPesPAyHVN20+A5dM6qki06pBUjkT0=
+			659T5dQnAvcgJmbBzjXHggZ53m5rH5w+JbKNmlqjVzs=
 			</data>
 		</dict>
 		<key>Headers/ardk_uuid.h</key>
@@ -1218,14 +1278,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			3fpvLiEjEG91X2KA+llt3XN6EOATTQ5y/OUH1bBFxmQ=
+			O7hf72G2xgb184T2alTkqdyHVKq+uq7HXgtRc4105s4=
+			</data>
+		</dict>
+		<key>Headers/ardk_vps2_asset_identifier.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			puJ1rtUctcT8xuey/EWs+eSR3cT7p9mA8o4pqvteXQI=
+			</data>
+		</dict>
+		<key>Headers/ardk_vps2_asset_tracking_data.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			aeEme/bHZCYsn70dCSLmgJkkLhEFjzEz3Ggn4nhVsc4=
 			</data>
 		</dict>
 		<key>Headers/ardk_vps2_config.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			q8EoHm2wiy5vFOg3wbIeSgJHt72HtEBfKMf3hIoKT8E=
+			5UZar5eEx9eoBCCGqcB2+SqEYXr/sZvuQpDvtVI6Oe8=
 			</data>
 		</dict>
 		<key>Headers/ardk_vps2_geolocation.h</key>
@@ -1239,14 +1313,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			0rxgHSpIcpYo1b1JyWKJ62EdhFE7ZCw6wWPseon9WF0=
+			mg0VV48Emjsjo9Fxp3tVoyPa2ygsi8H5rhl53pCvCZk=
 			</data>
 		</dict>
 		<key>Headers/ardk_vps2_localization_error.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			TvDPnZD8FmwhepdTyq36FwTkn9Avev3Od9IrZn6bO60=
+			fC95zJGcZjaHYoWCWNhOy0Nc0ctxX55y9dBznv5CzwE=
 			</data>
 		</dict>
 		<key>Headers/ardk_vps2_localization_request_record.h</key>
@@ -1267,21 +1341,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			oXf3AhaAftFx345Sv9cOecwojlnju9nvSz1nteFx6GQ=
+			x/h1kqR3IBYm3Xn7xJDpkYWEdiPaeQ92jAYN4Auo/Io=
 			</data>
 		</dict>
 		<key>Headers/ardk_vps2_localization_request_type.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			wDsLmoVADdcTU0dd7eL/u3ALM0NMEpJioeLAlgwgA5A=
+			tVlc+DyHXBjYReYDZHRxKZO6Zbb3Fr1Ga8TKWxn3kEI=
 			</data>
 		</dict>
 		<key>Headers/ardk_vps2_pose.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			dGcKjf+hfuqY75xp9uZGqagjSUBbh90k7xDhNAwLGcQ=
+			5THs8GBSlIKXFUB2lfrmJZ1OedO/6z2ExSyWr+xfJeA=
 			</data>
 		</dict>
 		<key>Headers/ardk_vps2_tracking_state.h</key>
@@ -1295,21 +1369,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			tXQs70H6UJ5uWmjc+cXmwyH2tWkf4GiC52r+1MGC3mc=
-			</data>
-		</dict>
-		<key>Headers/ardk_vps_api.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			IriNf5NnwIp80zyewBsU199+ul/qh+QJU2BVxIAqLWA=
-			</data>
-		</dict>
-		<key>Headers/ardk_vps_config.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			Z2EMzcyVxj9u0TedvwLPUsM2KlssNxMdcsSOG23yjZY=
+			UlnVT49dEWZtqkfxKaqXeva+xInbEjg+ggQFaCW2lgo=
 			</data>
 		</dict>
 		<key>Headers/ardk_vps_coverage_api.h</key>
@@ -1340,60 +1400,11 @@
 			8NI7+y999gwBtx63IkxsjhD9Mcew8NBSYO9bSHoqQy8=
 			</data>
 		</dict>
-		<key>Headers/ardk_vps_geolocation_data.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			tIzarJ3FeOlEJ5ExfxWx77H6FSb2wvOJW3fyzo5pESQ=
-			</data>
-		</dict>
-		<key>Headers/ardk_vps_graph_operation_error.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			fzx0sEUetuYgk/HHoGt6oFmeGjhRIFG8+nYqw0eMw5M=
-			</data>
-		</dict>
 		<key>Headers/ardk_vps_tracking_state.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			L99T2juLinnWyUZEcTMSOnGFcmW7P+P/7OcO1xua7X8=
-			</data>
-		</dict>
-		<key>Headers/ardk_wps_api.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			Z55jSv8YYO+1/KSRdT/gBXt1IQCcEsK25xtcLVSofaA=
-			</data>
-		</dict>
-		<key>Headers/ardk_wps_configuration.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			5Gpb34jk47KMLBTjqfQW7Vf+GrUw7+5mjilFB6ouemI=
-			</data>
-		</dict>
-		<key>Headers/ardk_wps_geolocation_data.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			sb0lMYC4e4Kr8bd9IPoiufuhqBmF/ouvJmI8UAW10ck=
-			</data>
-		</dict>
-		<key>Headers/ardk_wps_location.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			3T0dFPxC1RW9WywOuM3wvwUpsrhp465gI8Z6ek3U/g4=
-			</data>
-		</dict>
-		<key>Headers/ardk_wps_status.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			F3iUP9yfsm5XiirHqPOaropA8SrDKRQHGwPkN6e8Oto=
+			u9EPTOffDMHtwQHt8w7oTOyJelvYnDKTtibTL+oMyKI=
 			</data>
 		</dict>
 		<key>Headers/capi_common.h</key>
@@ -1407,28 +1418,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			P31k8tOcOvdsfpugEHIYLuObpmlz7C4EV8L31cIUO9w=
+			z2rq8WWDRMXac1ajpNkyBd4ShQ/gvsUzCyYDkcgZzoE=
 			</data>
 		</dict>
 		<key>Headers/nsdk_camera_frame.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			IdfNROc6WrU+fgdcaZKqyZREGSTHd6OK49Bo71NM9bo=
+			t6YlMPqgdTM6qaJQcuglkpYGg/tSqzxBpIZK1ybuHa0=
 			</data>
 		</dict>
 		<key>Headers/nsdk_depth_frame.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			K3gfPZCWIs/vNxzvo1rPBCGR0PB+z0Dx4V4dtdFmYv0=
+			khQ/vqeIAIrrapTYa6BHYZ3RktpttMKeDfTEPAx2+UE=
 			</data>
 		</dict>
 		<key>Headers/telemetry_publishing_api.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			tnNfx8exF+M/DzfMCA0OGYj2YRMACdApKIsiuKoUgpQ=
+			QESauujw3yUSTVIiF0FbiinJOENtUX7HflidwLXfrBA=
 			</data>
 		</dict>
 		<key>Headers/telemetry_sink_api.h</key>

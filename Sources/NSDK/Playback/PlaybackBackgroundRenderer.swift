@@ -4,7 +4,8 @@ import Metal
 @MainActor
 public class PlaybackBackgroundRenderer
 {
-    private let device: MTLDevice
+    /// `nil` when the system has no Metal device. The renderer then draws nothing.
+    private let device: MTLDevice?
     private var cachedTexture: MTLTexture?
     private var cachedTextureWidth: Int = 0
     private var cachedTextureHeight: Int = 0
@@ -13,8 +14,13 @@ public class PlaybackBackgroundRenderer
     public init(frame: CGRect)
     {
         // Initialize Metal device
-        guard let device = MTLCreateSystemDefaultDevice() else {
-            fatalError("Failed to create Metal device")
+        let device = MTLCreateSystemDefaultDevice()
+        if device == nil {
+            nsdkUnexpected(
+                "NSDK Playback requires a Metal device, which this system does not provide. "
+                + "Playback rendering is disabled.",
+                returning: ()
+            )
         }
         self.device = device
         self.backgroundImageView  = PlaybackTextureView(
@@ -67,7 +73,7 @@ public class PlaybackBackgroundRenderer
             textureDescriptor.usage = [.shaderRead]
             textureDescriptor.storageMode = .shared
             
-            guard let texture = device.makeTexture(descriptor: textureDescriptor) else {
+            guard let texture = device?.makeTexture(descriptor: textureDescriptor) else {
                 print("Failed to create Metal texture")
                 return nil
             }

@@ -37,6 +37,12 @@ fragment float4 playbackFragmentShader(VertexOut in [[stage_in]],
     
     // Sample the texture with perspective-correct UV coordinates
     float2 uv = in.texCoord.xy / in.texCoord.z;
+
+    // Fill areas outside the image with dark gray instead of repeating edge pixels
+    if (any(uv < 0.0) || any(uv > 1.0)) {
+        return float4(0.2, 0.2, 0.2, 1.0) * uniforms.tint;
+    }
+
     float4 color = imageTexture.sample(textureSampler, uv);
     
     // Apply tint and opacity

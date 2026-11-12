@@ -75,10 +75,6 @@ ARDK_CAPI_VISIBLE ARDK_Status ARDK_Semantics_Configure(ARDK_Handle ardk_handle,
 /// @return       \c ARDK_Status value indicating success or failure.
 ///               \c ARDK_Status_OK (0) means the function executed successfully. A non-zero value
 ///               means an error occurred, see \c ARDK_Status for details.
-///
-/// @note         This method begins the process of collecing some local device
-///               sensor data that is needed for localization. In order to actually
-///               localize, you must next call the \c ARDK_Semantics_TrackAnchor method.
 ARDK_CAPI_VISIBLE ARDK_Status ARDK_Semantics_Start(ARDK_Handle ardk_handle);
 
 /// @brief        Stop semantics.

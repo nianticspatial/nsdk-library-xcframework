@@ -1,8 +1,8 @@
 // Copyright 2022-2025 Niantic.
 #pragma once
 
-#include "ardk_lat_lng.h"
 #include "ardk_string.h"
+#include "ardk_lat_lng.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -26,7 +26,12 @@ typedef struct ARDK_VPSCoverage_LocalizationTarget {
   ///           localize.
   ARDK_String image_url;
 
-  /// @brief  Anchor payload that can be used to localize at this target.
+  /// @brief       [Deprecated] Anchor payload that can be used to localize at this
+  ///              target.
+  /// @deprecated  An anchor payload is no longer the preferred method to identify the
+  ///              map to localize against: pass a site ID to
+  ///              \c ARDK_VPS2_LocalizeToSite or a coordinate to
+  ///              \c ARDK_VPS2_LocalizeToNearbySites.
   ARDK_String default_anchor_payload;
 } ARDK_VPSCoverage_LocalizationTarget;
 

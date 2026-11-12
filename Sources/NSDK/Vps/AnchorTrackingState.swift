@@ -6,6 +6,11 @@ public extension VpsAnchorUpdate {
     ///
     /// The tracking state indicates how well the system is able to track an anchor's position
     /// and orientation in the current environment.
+    ///
+    /// Note: `tracked` can persist while a device is disturbed, such as a covered camera or a
+    /// dark room, and persists indefinitely while the device stays still. It changes once
+    /// confidence drops low enough. Use `VpsAnchorUpdate.TrackingData.confidence` and the
+    /// `Reason` on this state to react more sensitively to device disturbances.
     enum AnchorTrackingState: Equatable, CustomStringConvertible {
         /// Provides additional context about why an anchor is in either the `notTracked`
         /// or `limited` tracking states.

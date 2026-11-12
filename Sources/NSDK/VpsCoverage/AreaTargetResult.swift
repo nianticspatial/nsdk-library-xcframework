@@ -3,6 +3,7 @@ import CoreLocation
 
 public struct AreaTargetResult: Sendable, CustomDebugStringConvertible {
     public let location: CLLocationCoordinate2D
+    /// Radius of the queried area around `location`, in meters.
     public let radius: Int
     public let areaTargets: [AreaTarget]
 

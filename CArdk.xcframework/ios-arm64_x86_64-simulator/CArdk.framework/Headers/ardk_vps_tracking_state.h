@@ -49,7 +49,9 @@ typedef enum ARDK_VPS_AnchorTrackingStateReason : uint8_t {
   ARDK_VPS_AnchorTrackingStateReason_PermissionDenied,
 
   /// @brief    Anchor tracking has failed due to an unrecoverable network error.
-  /// @details  See \c ARDK_VPS_GetFeatureStatus for more information.
+  /// @details  Read \c ARDK_VPS2_GetLocalizationRequestRecords to find the failing request.
+  ///           Each record carries a request type and an error, so the failure can be
+  ///           attributed to the service that produced it.
   ARDK_VPS_AnchorTrackingStateReason_FatalNetworkError,
 
   /// @brief    The device has not localized to a VPS location

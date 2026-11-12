@@ -69,6 +69,11 @@ public struct AssetSplatData: CustomDebugStringConvertible, Sendable {
 public struct AssetVpsData: CustomDebugStringConvertible, Sendable {
     /// Default anchor payload used by VPS Service.
     /// Base64 encoded protobuf of ManagedPoseData.
+    ///
+    /// - Note: A legacy map identifier. An anchor payload is no longer the preferred method to
+    ///   identify the map to localize against: pass a site ID to
+    ///   `NSDKVps2Session.localize(siteId:)` or a coordinate to
+    ///   `localize(latitude:longitude:radiusMeters:)`.
     public let anchorPayload: String
     
     public init?(fromC cValue: UnsafePointer<ARDK_SitesManager_AssetVpsData>?) {

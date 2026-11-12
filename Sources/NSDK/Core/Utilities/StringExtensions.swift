@@ -21,4 +21,23 @@ extension String {
         }
         self.init(ptr: data, len: nsdkStr.data_size)
     }
+
+    /// Reads a NUL-terminated string out of a fixed-size C char buffer, which
+    /// Swift imports as a tuple. Returns `nil` for an empty string, or for a
+    /// buffer holding no terminator at all: a fixed C string buffer always
+    /// contains one, while the bytes of an unrelated value passed by accident
+    /// usually do not, so this also rejects most misuse the unconstrained
+    /// generic cannot catch at compile time.
+    init?<Buffer>(fixedCString buffer: Buffer) {
+        let value: String? = withUnsafeBytes(of: buffer) { buf in
+            guard let nulIndex = buf.firstIndex(of: 0) else {
+                return nil
+            }
+            return String(decoding: buf.prefix(upTo: nulIndex), as: UTF8.self)
+        }
+        guard let value, !value.isEmpty else {
+            return nil
+        }
+        self = value
+    }
 }

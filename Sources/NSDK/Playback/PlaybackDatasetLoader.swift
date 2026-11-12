@@ -10,6 +10,7 @@ import ImageIO
 /// 
 /// Implementations are used for on-demand frame loading - the loader is passed to
 /// `PlaybackDataset` which calls these methods when frames are requested.
+@available(*, deprecated, message: "Will be removed in a future release. Use PlaybackDataset.open(), which reads the dataset through native playback.")
 public protocol PlaybackDatasetSource {
     /// Loads the capture JSON data from the data source.
     /// 
@@ -56,54 +57,59 @@ public protocol PlaybackDatasetSource {
 /// images/depth data are loaded when requested by `PlaybackDataset`.
 ///
 /// - Note: This class acts as an abstract base class. Do not instantiate directly.
+@available(*, deprecated, message: "Will be removed in a future release. Use PlaybackDataset.open(), which reads the dataset through native playback.")
 open class PlaybackDatasetLoader: PlaybackDatasetSource {
     
     public init() {}
     
     /// Loads the capture JSON data from the data source.
     ///
-    /// This method must be overridden by subclasses. The base implementation will crash if called.
+    /// This method must be overridden by subclasses. The base implementation reports the
+    /// missing override and returns `nil`.
     ///
     /// - Returns: The JSON data as `Data`, or `nil` if loading fails
     /// - Important: Subclasses must override this method. Do not call the base implementation.
     open func loadCaptureJSON() -> Data? {
-        fatalError("loadCaptureJSON() must be overridden by subclass")
+        nsdkUnexpected("loadCaptureJSON() must be overridden by a subclass", returning: nil)
     }
     
     /// Loads an image from the data source.
     ///
-    /// This method must be overridden by subclasses. The base implementation will crash if called.
+    /// This method must be overridden by subclasses. The base implementation reports the
+    /// missing override and returns `nil`.
     /// Called on-demand when a frame image is requested.
     ///
     /// - Parameter imageName: The filename of the image (e.g., "frame_00000000.jpg")
     /// - Returns: The image as a `CGImage`, or `nil` if loading fails
     /// - Important: Subclasses must override this method. Do not call the base implementation.
     open func loadImage(imageName: String) -> CGImage? {
-        fatalError("loadImage(imageName:) must be overridden by subclass")
+        nsdkUnexpected("loadImage(imageName:) must be overridden by a subclass", returning: nil)
     }
     
     /// Loads depth data from the data source.
     ///
-    /// This method must be overridden by subclasses. The base implementation will crash if called.
+    /// This method must be overridden by subclasses. The base implementation reports the
+    /// missing override and returns `nil`.
     /// Called on-demand when depth data is requested.
     ///
     /// - Parameter depthFileName: The filename of the depth data file (e.g., "depth_00000000.bin")
     /// - Returns: The depth data as `Data`, or `nil` if loading fails or depth data is not available
     /// - Important: Subclasses must override this method. Do not call the base implementation.
     open func loadDepthData(depthFileName: String) -> Data? {
-        fatalError("loadDepthData(depthFileName:) must be overridden by subclass")
+        nsdkUnexpected("loadDepthData(depthFileName:) must be overridden by a subclass", returning: nil)
     }
     
     /// Loads depth confidence data from the data source.
     ///
-    /// This method must be overridden by subclasses. The base implementation will crash if called.
+    /// This method must be overridden by subclasses. The base implementation reports the
+    /// missing override and returns `nil`.
     /// Called on-demand when confidence data is requested.
     ///
     /// - Parameter confidenceFileName: The filename of the confidence data file (e.g., "confidence_00000000.bin")
     /// - Returns: The confidence data as `Data`, or `nil` if loading fails or confidence data is not available
     /// - Important: Subclasses must override this method. Do not call the base implementation.
     open func loadDepthConfidence(confidenceFileName: String) -> Data? {
-        fatalError("loadDepthConfidence(confidenceFileName:) must be overridden by subclass")
+        nsdkUnexpected("loadDepthConfidence(confidenceFileName:) must be overridden by a subclass", returning: nil)
     }
     
     open func info() -> String {
@@ -161,6 +167,7 @@ public enum PlaybackDatasetConstants {
 /// 
 /// This is the default implementation for loading datasets from `Bundle.main`.
 /// Frame images and depth data are loaded on-demand when requested.
+@available(*, deprecated, message: "Will be removed in a future release. Use PlaybackDataset.open(directory:bundle:), which reads the dataset through native playback.")
 public class BundlePlaybackDatasetLoader: PlaybackDatasetLoader {
     private let bundle: Bundle
     private let directory: String

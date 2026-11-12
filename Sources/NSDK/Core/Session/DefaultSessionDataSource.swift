@@ -4,7 +4,7 @@ import CoreVideo
 import ARKit
 import NSDK
 
-// Proxy for acquiring the UI orientation
+/// A provider of the current UI orientation.
 public protocol UIOrientationReporter: AnyObject {
     var currentOrientation: NSDKScreenOrientation { get }
 }

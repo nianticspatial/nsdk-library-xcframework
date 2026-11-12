@@ -31,7 +31,9 @@ public class AwarenessResult {
         owner: ResourceOwner? = nil
     ) {
         if type(of: self) == AwarenessResult.self {
-            fatalError("AwarenessResult cannot be initialized directly")
+            // Building the base class directly is a programming error, but the instance is
+            // still well-formed, so report it rather than terminating.
+            nsdkUnexpected("AwarenessResult cannot be initialized directly", returning: ())
         }
 
         self.frameId = context.frame_id

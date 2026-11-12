@@ -20,7 +20,10 @@ extension NSDKSession {
 /// The map storage feature provides capabilities for capturing, storing, and managing
 /// map data from AR sessions. This data can be persisted and used for Visual Positioning
 /// System (VPS) localization and map updates.
-public final class NSDKMapStorage: NSDKSession.IDisposable {
+///
+/// Holds only immutable handles into the native layer, so its methods may be called from any
+/// thread or task.
+public final class NSDKMapStorage: NSDKSession.IDisposable, @unchecked Sendable {
     private let nsdkHandle: NSDKHandle
     private let api: MapStorageApi
 
@@ -29,14 +32,15 @@ public final class NSDKMapStorage: NSDKSession.IDisposable {
         self.api = mapStorageApi
         let cStatus = mapStorageApi.create(nsdkHandle: nsdkHandle)
         if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            nsdkUnexpected(cStatus, returning: ())
+            return
         }
     }
 
     internal func destroy() {
         let cStatus = api.destroy(nsdkHandle: nsdkHandle)
         if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            return nsdkUnexpected(cStatus, returning: ())
         }
     }
 
@@ -52,7 +56,7 @@ public final class NSDKMapStorage: NSDKSession.IDisposable {
 
 
         if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            return nsdkUnexpected(cStatus, returning: nil)
         }
 
         if externalBuffer.data_size == 0 {
@@ -75,7 +79,7 @@ public final class NSDKMapStorage: NSDKSession.IDisposable {
         let cStatus = api.getMapUpdate(nsdkHandle: nsdkHandle, mapUpdateOut: &externalBuffer)
 
         if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            return nsdkUnexpected(cStatus, returning: nil)
         }
 
         if externalBuffer.data_size == 0 {
@@ -98,7 +102,7 @@ public final class NSDKMapStorage: NSDKSession.IDisposable {
         let cStatus = api.createRootAnchor(nsdkHandle: nsdkHandle, anchorPayloadOut: &externalBuffer)
 
         if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            return nsdkUnexpected(cStatus, returning: nil)
         }
 
         if externalBuffer.data_size == 0 {
@@ -112,7 +116,10 @@ public final class NSDKMapStorage: NSDKSession.IDisposable {
             return base64String
         } else {
             // Shouldn't happen.
-            fatalError("Failed to convert anchor payload from NSDK C API to Swift String")
+            return nsdkUnexpected(
+                "failed to convert anchor payload from the C API to a Swift String",
+                returning: nil
+            )
         }
     }
 
@@ -134,7 +141,7 @@ public final class NSDKMapStorage: NSDKSession.IDisposable {
             if cStatus.isArgumentError {
                 throw NSDKError(fromC: cStatus)
             }
-            unexpectedNSDKStatus(cStatus)
+            throw nsdkUnexpectedError(cStatus)
         }
     }
 
@@ -148,7 +155,7 @@ public final class NSDKMapStorage: NSDKSession.IDisposable {
     public func clear() {
         let cStatus = api.clear(nsdkHandle: nsdkHandle)
         if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            return nsdkUnexpected(cStatus, returning: ())
         }
     }
 
@@ -180,7 +187,7 @@ public final class NSDKMapStorage: NSDKSession.IDisposable {
             if cStatus.isArgumentError {
                 throw NSDKError(fromC: cStatus)
             }
-            unexpectedNSDKStatus(cStatus)
+            throw nsdkUnexpectedError(cStatus)
         }
 
         if mapMetadata.handle == nil {
@@ -212,7 +219,7 @@ public final class NSDKMapStorage: NSDKSession.IDisposable {
             if cStatus.isInvalidArgument {
                 throw NSDKError.invalidArgument
             }
-            unexpectedNSDKStatus(cStatus)
+            throw nsdkUnexpectedError(cStatus)
         }
 
         let owner = api.createResourceOwner(handle: externalBuffer.handle)

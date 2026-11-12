@@ -95,7 +95,7 @@ internal class LoggingApi {
         logLevel: NSDKLogLevel
     ) {
         let cStatus = ARDK_Logging_SetStdoutLogLevel(nsdkHandle, logLevel.cValue)
-        if cStatus.isError { unexpectedNSDKStatus(cStatus) }
+        if cStatus.isError { return nsdkUnexpected(cStatus, returning: ()) }
     }
 
     /// Sets the logging level for file output.
@@ -111,7 +111,7 @@ internal class LoggingApi {
         logLevel: NSDKLogLevel
     ) {
         let cStatus = ARDK_Logging_SetFileLogLevel(nsdkHandle, logLevel.cValue)
-        if cStatus.isError { unexpectedNSDKStatus(cStatus) }
+        if cStatus.isError { return nsdkUnexpected(cStatus, returning: ()) }
     }
 
     /// Sets the logging level for callback functions.
@@ -127,7 +127,7 @@ internal class LoggingApi {
         logLevel: NSDKLogLevel
     ) {
         let cStatus = ARDK_Logging_SetCallbackLogLevel(nsdkHandle, logLevel.cValue)
-        if cStatus.isError { unexpectedNSDKStatus(cStatus) }
+        if cStatus.isError { return nsdkUnexpected(cStatus, returning: ()) }
     }
 
     /// Enables or disables log throttling globally.

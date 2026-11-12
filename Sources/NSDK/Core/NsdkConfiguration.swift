@@ -48,7 +48,7 @@ public extension NSDKSession {
     /// ## Example Usage
     ///
     /// ```swift
-    /// let config = NSDKSession.Configuration(apiKey: "your-key", logCallback: myCallback)
+    /// let config = NSDKSession.Configuration(accessToken: "your-token", logCallback: myCallback)
     /// let (handle, bridge) = config.withCStruct { configPtr in
     ///     return ARDK_Create(configPtr)
     /// }
@@ -231,24 +231,20 @@ public extension NSDKSession {
     
     struct UserConfig {
         public var accessToken: String?
-        public var refreshToken: String?
         public var featureFlagFilePath: String?
-        
+
         public init(
             accessToken: String? = nil,
-            refreshToken: String? = nil,
             featureFlagFilePath: String? = nil
         ) {
             self.accessToken = accessToken
-            self.refreshToken = refreshToken
             self.featureFlagFilePath = featureFlagFilePath
         }
-        
+
         func withCStruct<Result>(_ body: (UnsafePointer<ARDK_UserConfig>) throws -> Result) rethrows -> Result {
             return try NSDKUtils.withNSDKStrings { createString in
                 var config = ARDK_UserConfig()
                 config.access_token = createString(accessToken)
-                config.refresh_token = createString(refreshToken)
                 config.feature_flag_file_path = createString(featureFlagFilePath)
                 return try withUnsafePointer(to: config) { pointer in
                     try body(pointer)

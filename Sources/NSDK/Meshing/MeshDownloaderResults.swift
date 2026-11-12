@@ -8,8 +8,12 @@ public struct MeshDownloaderResult {
     public let meshData: MeshData
     /// The texture image data for the mesh, or an empty buffer if texture was not requested.
     public let imageData: NSDKBuffer
-    /// The transform matrix that positions this mesh in world space.
+    /// Transform from this mesh's local vertex space into the asset's origin space, in ARKit axes
+    /// with translation in meters. See ``MeshDownloaderChunk/transform``.
     public let transform: simd_float4x4
+    /// The georeference of the asset this result belongs to. Always `.unavailable`: this
+    /// deprecated payload-based path never resolves a georeference.
+    public let geoReference: MeshGeoReference
 
     public init(fromC cResult: ARDK_MeshDownloader_Data, owner: ResourceOwner?) {
         self.meshData = MeshData(fromC: cResult.mesh_data, owner: owner)
@@ -17,13 +21,15 @@ public struct MeshDownloaderResult {
         self.resourceOwner = owner
         let nsdkTransform = simd_float4x4(fromColumnMajorArray: cResult.transform)
         self.transform = nsdkTransform.fromNSDKToARKit()
+        self.geoReference = MeshGeoReference(fromC: cResult.geo_reference)
     }
 }
 
 /// Contains the downloaded mesh geometry data for a VPS location.
 ///
 /// This object holds an array of mesh results, where each result includes mesh geometry,
-/// texture data (if requested), and the transform matrix that positions the mesh in world space.
+/// texture data (if requested), and the transform matrix that positions the mesh in the asset's
+/// origin space.
 public final class MeshDownloaderResults: @unchecked Sendable {
     private let resourceOwner: ResourceOwner?
     /// The array of mesh results for the requested location.

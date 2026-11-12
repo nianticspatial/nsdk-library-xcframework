@@ -19,9 +19,11 @@ typedef struct ARDK_VPS_AnchorUpdate {
   /// @brief   Unique identifier of this anchor.
   char anchor_identifier[32];
 
-  /// @brief   Transform of this anchor in the local AR coordinate system
-  ///          represented as a flattened column-major matrix. This is only
-  ///          valid if the anchor is being tracked.
+  /// @brief   Transform from this anchor's coordinate space to the local AR
+  ///          tracking space (the anchor's pose in tracking space), represented
+  ///          as a flattened column-major matrix with translation in meters.
+  ///          Independent of the current camera pose. This is only valid if the
+  ///          anchor is being tracked.
   float anchor_to_local_tracking_transform[16];
 
   /// @brief   Tracking state of this anchor.

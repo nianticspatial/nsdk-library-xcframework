@@ -28,7 +28,7 @@ final class PlaybackTextureView: MTKView, MTKViewDelegate {
     /// The transparency of the rendered image
     public var opacity: Float = 1.0
     
-    // The color tint of the view
+    /// The color tint applied to the view.
     public var colorTint = simd_float3(x: 1, y: 1, z: 1)
     
     // Shader uniforms
@@ -73,7 +73,7 @@ final class PlaybackTextureView: MTKView, MTKViewDelegate {
         guard let library = try? device.makeDefaultLibrary(bundle: .module),
               let vertexFunc = library.makeFunction(name: vertexShaderName),
               let fragmentFunc = library.makeFunction(name: fragmentShaderName) else {
-            fatalError("Failed to load Metal shader functions")
+            return nsdkUnexpected("failed to load Metal shader functions", returning: ())
         }
         
         // Create the command queue

@@ -20,7 +20,7 @@ import Foundation
 /// }
 ///
 /// let callback = MyLogCallback()
-/// let session = NSDKSession(apiKey: "your-key", logCallback: callback)
+/// let session = NSDKSession(accessToken: "your-token", logCallback: callback)
 /// ```
 public protocol NSDKLogCallback: AnyObject {
     /// Called when NSDK generates a log message.

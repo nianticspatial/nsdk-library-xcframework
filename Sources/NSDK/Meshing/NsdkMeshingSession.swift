@@ -60,14 +60,15 @@ public final class NSDKMeshingSession: NSDKSession.IDisposable, NSDKUpdatableSes
         self.meshingApi = meshingApi
         let cStatus = meshingApi.create(nsdkHandle: nsdkHandle)
         if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            nsdkUnexpected(cStatus, returning: ())
+            return
         }
     }
 
     internal func destroy() {
         let cStatus = meshingApi.destroy(nsdkHandle: nsdkHandle)
         if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            return nsdkUnexpected(cStatus, returning: ())
         }
     }
 
@@ -124,9 +125,18 @@ public final class NSDKMeshingSession: NSDKSession.IDisposable, NSDKUpdatableSes
     /// The feature will begin processing AR frame data and building a mesh according to the
     /// currently applied configuration.
     public func start() {
+        // A second start() without an intervening stop() is not supported.
+        guard !isActive else {
+            return nsdkUnexpected(
+                "session is already started; call stop() before starting it again",
+                returning: ()
+            )
+        }
+
         let cStatus = meshingApi.start(nsdkHandle: nsdkHandle)
         if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            // Leave `isActive` false: the session did not start.
+            return nsdkUnexpected(cStatus, returning: ())
         }
         isActive = true
     }
@@ -135,13 +145,16 @@ public final class NSDKMeshingSession: NSDKSession.IDisposable, NSDKUpdatableSes
     ///
     /// - Note: This will clear previously generated mesh data.
     public func stop() {
-        let cStatus = meshingApi.stop(nsdkHandle: nsdkHandle)
-        if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
-        }
+        // Reset state first, so a failed stop cannot leave the session permanently
+        // unable to start again.
         isActive = false
         lastUpdateTime = nil
         chunkIds = []
+
+        let cStatus = meshingApi.stop(nsdkHandle: nsdkHandle)
+        if cStatus.isError {
+            return nsdkUnexpected(cStatus, returning: ())
+        }
     }
 
     // MARK: - Private helpers
@@ -149,14 +162,14 @@ public final class NSDKMeshingSession: NSDKSession.IDisposable, NSDKUpdatableSes
     internal func lastMeshUpdateTime() -> UInt64? {
         var timestampMs: UInt64 = 0
         let cStatus = meshingApi.getLastMeshUpdateTime(nsdkHandle: nsdkHandle, timestampMsOut: &timestampMs)
-        if cStatus.isError { unexpectedNSDKStatus(cStatus) }
+        if cStatus.isError { return nsdkUnexpected(cStatus, returning: nil) }
         return timestampMs == 0 ? nil : timestampMs
     }
 
     internal func updatedMeshInfos() -> NSDKMeshingSession.MeshUpdateInfo? {
         var cInfo = ARDK_Meshing_UpdateInfo()
         let cStatus = meshingApi.getUpdatedMeshInfos(nsdkHandle: nsdkHandle, infoOut: &cInfo)
-        if cStatus.isError { unexpectedNSDKStatus(cStatus) }
+        if cStatus.isError { return nsdkUnexpected(cStatus, returning: nil) }
         if cInfo.numIds == 0 { return nil }
         let owner = meshingApi.createResourceOwner(handle: cInfo.handle!)
         return NSDKMeshingSession.MeshUpdateInfo(fromC: cInfo, owner: owner)
@@ -172,7 +185,7 @@ public final class NSDKMeshingSession: NSDKSession.IDisposable, NSDKUpdatableSes
         if cStatus == ARDK_Status_InvalidArgument {
             return nil
         }
-        unexpectedNSDKStatus(cStatus)
+        return nsdkUnexpected(cStatus, returning: nil)
     }
 
     private func computeUpdates() -> [NSDKMeshingSession.MeshChunkUpdate] {
@@ -185,10 +198,12 @@ public final class NSDKMeshingSession: NSDKSession.IDisposable, NSDKUpdatableSes
             return []
         }
 
-        precondition(
-            meshInfos.ids.count == meshInfos.updated.count,
-            "meshInfos.ids and meshInfos.updated must have the same count"
-        )
+        guard meshInfos.ids.count == meshInfos.updated.count else {
+            return nsdkUnexpected(
+                "meshInfos.ids and meshInfos.updated must have the same count",
+                returning: []
+            )
+        }
 
         var allChunkIds = chunkIds
         var chunksToRemove = chunkIds

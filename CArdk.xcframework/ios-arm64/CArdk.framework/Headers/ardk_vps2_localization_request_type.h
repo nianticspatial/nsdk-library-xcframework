@@ -19,6 +19,8 @@ typedef enum ARDK_VPS2_LocalizationRequestType : uint8_t {
   ARDK_VPS2_LocalizationRequestType_GetReplacedNodes,
   ARDK_VPS2_LocalizationRequestType_RegisterNode,
   ARDK_VPS2_LocalizationRequestType_UniversalLocalize,
+  /// @brief    Portal asset fetch.
+  ARDK_VPS2_LocalizationRequestType_AssetInfo,
 } ARDK_VPS2_LocalizationRequestType;
 
 #ifdef __cplusplus

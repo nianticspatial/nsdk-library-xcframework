@@ -23,7 +23,7 @@ public typealias NSDKHandle = ARDK_Handle
 ///
 /// ```swift
 /// // Initialize with tokens
-/// let session = NSDKSession(accessToken: "access-token", refreshToken: "refresh-token")
+/// let session = NSDKSession(accessToken: "access-token")
 ///
 /// // Create a VPS2 session for localization
 /// let vps2Session = session.createVps2Session()
@@ -31,9 +31,35 @@ public typealias NSDKHandle = ARDK_Handle
 /// // Send frame data during AR session
 /// let status = session.sendFrame(frameData)
 /// ```
+///
+/// ## Lifecycle
+///
+/// Use one `NSDKSession` at a time. Creating a second one while another is still referenced is
+/// a programming error: the session is still created, and NSDK reports the problem rather than
+/// terminating the app, but the two compete for the camera and overwrite each other's
+/// process-wide configuration, so neither behaves reliably. Release the existing session first.
+///
+/// The session releases its native resources when its last reference goes away. Teardown is
+/// synchronous, so once the previous session has been released a new one can be created
+/// immediately — there is no window in which the old session is still being torn down.
 public final class NSDKSession {
     /// Tracks the currently active session to prevent double initialization.
     @MainActor internal static weak var activeSession: NSDKSession?
+
+    /// Reports an attempt to create a session while another is still active.
+    ///
+    /// Call from every initializer. The second session is still created — NSDK reports the
+    /// problem rather than refusing or terminating — but two sessions running at once will not
+    /// behave correctly.
+    @MainActor
+    private static func reportIfSessionAlreadyActive() {
+        guard activeSession != nil else { return }
+        nsdkUnexpected(
+            "only one NSDKSession should be active at a time. Release the existing session "
+            + "before creating another.",
+            returning: ()
+        )
+    }
 
     /// The native handle to the underlying NSDK C API instance.
     ///
@@ -43,9 +69,13 @@ public final class NSDKSession {
     private let api: NSDKApi
     
     // TODO: remove this
+    /// The most recently received NSDK frame, or `nil` before the first frame is available.
     public private(set) var currentFrame: NSDKFrameData?
     
     /// The component supplying the session with sensory data.
+    ///
+    /// NSDK does not retain the data source. Keep your own reference to it, or it is released
+    /// and no frames are sent.
     public weak var dataSource: (any NSDKSessionDataSource)?
     private var framesSent: UInt32 = 0;
     
@@ -76,9 +106,7 @@ public final class NSDKSession {
     /// ```
     @MainActor
     public convenience init?(withJson configFilePath: String, logCallback: NSDKLogCallback? = nil) {
-        guard NSDKSession.activeSession == nil else {
-            fatalError("An NSDKSession is already active. Destroy it before creating a new one.")
-        }
+        NSDKSession.reportIfSessionAlreadyActive()
         self.init(api: CArdkApi(), withJson: configFilePath, logCallback: logCallback)
         NSDKSession.activeSession = self
     }
@@ -101,9 +129,7 @@ public final class NSDKSession {
     /// ```
     @MainActor
     public convenience init?(withConfig config: Configuration) {
-        guard NSDKSession.activeSession == nil else {
-            fatalError("An NSDKSession is already active. Destroy it before creating a new one.")
-        }
+        NSDKSession.reportIfSessionAlreadyActive()
         self.init(api: CArdkApi(), withConfig: config)
         NSDKSession.activeSession = self
     }
@@ -112,9 +138,7 @@ public final class NSDKSession {
     /// The token is sanitized and passed to native AuthManagerApi immediately via creation call.
     @MainActor
     public convenience init(accessToken: String, useLidar: Bool = true, pathConfig: NSDKPathConfig? = nil, logCallback: NSDKLogCallback? = nil) {
-        guard NSDKSession.activeSession == nil else {
-            fatalError("An NSDKSession is already active. Destroy it before creating a new one.")
-        }
+        NSDKSession.reportIfSessionAlreadyActive()
         self.init(api: CArdkApi(), accessToken: accessToken, useLidar: useLidar, pathConfig: pathConfig, logCallback: logCallback)
         NSDKSession.activeSession = self
     }
@@ -139,9 +163,7 @@ public final class NSDKSession {
                                                 useLidar: useLidar,
                                                 pathConfig: pathConfig,
                                                 sinkCallback: sinkCallback)
-
-        // TODO: Extract environment from config when we handle auth environment in Swift.
-        TelemetryPublishing.start(environment: .prod)
+        TelemetryPublishing.start()
         TelemetryPublishing.publishInitializationEvent()
     }
 
@@ -196,8 +218,7 @@ public final class NSDKSession {
             return nil
         }
 
-        // TODO: Extract environment from config when we handle auth environment in Swift.
-        TelemetryPublishing.start(environment: .prod)
+        TelemetryPublishing.start()
         TelemetryPublishing.publishInitializationEvent()
     }
     
@@ -222,49 +243,37 @@ public final class NSDKSession {
             return nil
         }
 
-        // TODO: Extract environment from config when we handle auth environment in Swift.
-        TelemetryPublishing.start(environment: .prod)
+        TelemetryPublishing.start()
         TelemetryPublishing.publishInitializationEvent()
     }
     
     deinit {
-        // Dispatch all blocking C API calls to a background thread so that releasing an
-        // NSDKSession never stalls the main thread while the native layer winds down.
-        // @unchecked Sendable is required because IDisposable, NSDKLogCallbackBridge, and
-        // NSDKApi are not declared Sendable, so the compiler rejects capturing them directly
-        // in a @Sendable DispatchQueue closure. This is safe because SessionContent is
-        // created once, handed to the background queue, and never accessed concurrently.
-        struct SessionContent: @unchecked Sendable {
-            let disposables: [ObjectIdentifier: IDisposable]
-            let logBridge: NSDKLogCallbackBridge?
-            let handle: NSDKHandle
-            let api: any NSDKApi
-        }
-        let content = SessionContent(
-            disposables: disposables,
-            logBridge: logCallbackBridge,
-            handle: nativeHandle,
-            api: api
-        )
-        DispatchQueue.global(qos: .userInitiated).async {
-            for (_, disposable) in content.disposables {
-                if let featureSession = disposable as? any NSDKFeatureSession {
-                    featureSession.stop()
-                }
-                disposable.destroy()
+        // Teardown runs synchronously so that native resources are fully released by the time the
+        // last reference to this session goes away. Only one session may exist at a time, so a
+        // caller that releases one and immediately creates another must not race a teardown that
+        // is still in flight. This mirrors the Kotlin SDK, where `close()` is also synchronous.
+        for (_, disposable) in disposables {
+            if let featureSession = disposable as? any NSDKFeatureSession {
+                featureSession.stop()
             }
-            content.logBridge?.release()
-            _ = content.api.destroy(handle: content.handle)
+            disposable.destroy()
         }
+        logCallbackBridge?.release()
+        _ = api.destroy(handle: nativeHandle)
     }
     
     /// Collects the latest requested sensor inputs from the assigned
     /// `NsdkSessionDataSource` and submits a single frame for processing.
+    ///
+    /// Call this once per camera frame. Because this is an expensive operation, consider
+    /// throttling the calls if you notice degraded app performance.
     public func update() {
         // Make sure the data source is present
         guard let source = dataSource else {
-            assertionFailure("NsdkSession requires a dataSource before calling update().")
-            return
+            return nsdkUnexpected(
+                "NSDKSession requires a dataSource before calling update().",
+                returning: ()
+            )
         }
         
         // Does the native layer request any input?
@@ -400,9 +409,10 @@ public final class NSDKSession {
         disposables.removeValue(forKey: key)
     }
 
-    /// Destroys all sessions at once, releasing all native resources.
+    /// Destroys all *feature* sessions at once, releasing their native resources.
     ///
-    /// Use this on reset or when the `NSDKSession` is no longer needed.
+    /// This does not release the `NSDKSession` itself — the session stays usable and can create
+    /// new feature sessions afterwards. The session is released when its last reference goes away.
     /// - Important: Must be called from the main thread.
     @MainActor
     public func destroyAll() {
@@ -428,7 +438,7 @@ public final class NSDKSession {
         currentFrame = frameData
         
         if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            return nsdkUnexpected(cStatus, returning: ())
         }
     }
     
@@ -464,7 +474,8 @@ public final class NSDKSession {
         var isAuthorizedOut: Bool = false
         let cStatus = api.isAuthorized(handle: nativeHandle, isAuthorizedOut: &isAuthorizedOut)
         if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            // Fail closed: report unauthorized rather than a value that was never set.
+            return nsdkUnexpected(cStatus, returning: false)
         }
         return isAuthorizedOut
     }
@@ -516,22 +527,13 @@ public final class NSDKSession {
         }
     }
 
-    /// Sets the age level for the NSDK session.
-    ///
-    /// This method sets the age classification for the user
-    ///
-    /// - Parameter ageLevel: The age level to set (unknown, minor, teen, or adult)
-    ///
-    /// ## Example
-    ///
-    /// ```swift
-    /// session.setAgeLevel(.adult)
-    /// ```
-    public func setAgeLevel(_ ageLevel: AgeLevel) {
-        let cAgeLevel = ageLevel.cValue
-        let cStatus = api.setAgeLevel(handle: nativeHandle, ageLevel: cAgeLevel)
-        if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+    /// Sets the diagnostic output folder for log.txt, ardk_trace.log, and future VPS debugger files.
+    /// - Parameter logFolderPath: Directory path. No-op if empty or unchanged.
+    @MainActor
+    public func setLogOutputPath(_ logFolderPath: String) {
+        logFolderPath.withCString { c in
+            let s = ARDK_String(data: c, data_size: UInt32(strlen(c)))
+            _ = api.setLogOutputPath(handle: nativeHandle, logFolderPath: s)
         }
     }
 

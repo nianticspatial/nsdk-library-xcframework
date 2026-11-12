@@ -1,3 +1,6 @@
+// Copyright 2026 Niantic Spatial.
+
+import CArdk
 import Foundation
 import UIKit
 import CoreGraphics
@@ -5,17 +8,57 @@ import CoreVideo
 
 /// A dataset loaded from a capture JSON file containing frame metadata.
 ///
+/// Open with `open(datasetPath:)` or `open(directory:bundle:)`, which read the dataset through
+/// native playback. The `PlaybackDatasetLoader` path is deprecated and will be removed in a future release.
+///
 /// This class uses on-demand loading for frame images and depth data.
 /// Only the currently requested frame is loaded into memory, reducing memory pressure
 /// for large datasets.
 public class PlaybackDataset {
+    /// The fully decoded `capture.json` for this dataset (capture-level metadata plus
+    /// per-frame metadata, including each frame's recorded GPS `location`). Exposed so
+    /// callers can read the recording's metadata — e.g. its location — without running playback.
+    @available(*, deprecated, message: "Capture.json schema type, to be removed in a future release. Use info and getPlaybackFrameMetadataAtIndex(index:). Recording details (device, app, uuid, duration) have no replacement.")
+    public var captureRoot: CaptureRoot { capture }
+    private let capture: CaptureRoot
+
+    /// Clock this dataset's compass `headingTimestamp` values are on. Uses the explicit
+    /// `compassTimestampBase` field when present, otherwise classifies by the first non-zero
+    /// heading timestamp's magnitude (zero timestamps mean "not captured" and are skipped).
+    /// Resolved once at load, like the other SDKs.
+    @available(*, deprecated, message: "Will be removed in a future release. Use PlaybackFrameMetadata.compassData?.base.")
+    public var compassTimestampBase: ClockBase { compassBase }
+    private let compassBase: ClockBase
+
     private let frameMetadata: [FrameMetadata]
-    internal let frameInterval: TimeInterval
-    internal let frameCount: Int
-    private let depthSource: String?
+
+    /// Capture-level facts about this dataset.
+    public let info: PlaybackDatasetInfo
+
+    /// Number of frames in the dataset; `info`'s frame count.
+    internal var frameCount: Int { info.frameCount }
+
+    /// Seconds between frames at the recorded rate.
+    internal var frameInterval: TimeInterval { 1.0 / info.frameRate }
+
+    /// Length of the recording in milliseconds: first to last camera timestamp plus one frame
+    /// interval, or one frame interval when the timestamps are unusable.
+    internal func durationMs() -> UInt64 {
+        let intervalSeconds = frameInterval.isFinite && frameInterval > 0 ? frameInterval : 0
+        let intervalMs = max(UInt64(1), UInt64((intervalSeconds * 1000).rounded()))
+        guard let first = try? getPlaybackFrameMetadataAtIndex(index: 0).timestampMs,
+              let last = try? getPlaybackFrameMetadataAtIndex(index: frameCount - 1).timestampMs,
+              last > first else {
+            return intervalMs
+        }
+        return last - first + intervalMs
+    }
 
     /// Reference to the loader for on-demand frame loading
     private let loader: PlaybackDatasetSource
+
+    /// Native's own frame records, when the dataset was opened with `open`.
+    private var nativeSource: NativePlaybackDatasetLoader? { loader as? NativePlaybackDatasetLoader }
 
     /// Cache for the most recently loaded frame (1-frame cache like Unity)
     private var cachedFrameIndex: Int = -1
@@ -55,6 +98,9 @@ public class PlaybackDataset {
         public let timezone: Int?
         public let depthFormat: String?
         public let depthSource: String?
+        
+        /// The optional compass timestamp base, which is absent from older datasets.
+        public let compassTimestampBase: String?
     }
 
     /// Location metadata structure. All fields are optional so various capture formats (2D-only GPS, no compass, minimal logs) decode without keyNotFound.
@@ -98,12 +144,22 @@ public class PlaybackDataset {
     ///   - captureRoot: The capture root containing frame metadata
     ///   - loader: The loader to use for on-demand frame loading
     internal init(captureRoot: CaptureRoot, loader: PlaybackDatasetSource) {
+        self.capture = captureRoot
         self.frameMetadata = captureRoot.frames
-        self.frameCount = captureRoot.frameCount ?? captureRoot.frames.count
-        let framerate = captureRoot.framerate ?? 30.0
-        self.frameInterval = framerate > 0 ? 1.0 / framerate : 1.0 / 30.0
-        self.depthSource = captureRoot.depthSource
+        // The frames array, not the declared frameCount, since it is what the accessors index.
+        self.info = PlaybackDatasetInfo(
+            frameCount: captureRoot.frames.count,
+            frameRate: captureRoot.framerate.flatMap { $0 > 0 ? $0 : nil } ?? 30.0,
+            hasDepth: captureRoot.depthSource?.lowercased() == "lidar"
+        )
         self.loader = loader
+
+        let firstHeadingTimestamp = captureRoot.frames.lazy
+            .compactMap { $0.location?.headingTimestamp }
+            .first { $0 != 0 }
+        self.compassBase = ClockBase.resolve(
+            explicit: captureRoot.compassTimestampBase,
+            headingTimestampSeconds: firstHeadingTimestamp)
     }
 
     /// Retrieves frame metadata at the specified index.
@@ -260,11 +316,75 @@ public class PlaybackDataset {
         }
     }
 
-    /// Checks if the dataset has depth data from a LiDAR source.
-    ///
-    /// - Returns: `true` if `depthSource` exists and equals "lidar", `false` otherwise
+    /// Checks if the dataset has depth data from a LiDAR source; `info`'s depth flag.
     public func hasDepth() -> Bool {
-        return depthSource?.lowercased() == "lidar"
+        return info.hasDepth
+    }
+
+    /// Returns frame `index`'s recorded data without loading its image or depth.
+    ///
+    /// - Throws: `PlaybackDatasetError.indexOutOfBounds` if the index is invalid
+    public func getPlaybackFrameMetadataAtIndex(index: Int) throws -> PlaybackFrameMetadata {
+        let metadata = try getFrameDataAtIndex(index: index)
+        return nativeSource?.frameMetadataAt(index)
+            ?? metadata.playbackFrameMetadata(hasDepth: hasDepth(), compassTimestampBase: compassBase)
+    }
+
+    /// Opens the dataset directory at `datasetPath`, read through native playback.
+    ///
+    /// - Returns: The dataset, or `nil` if it cannot be opened or parsed
+    public static func open(datasetPath: String) -> PlaybackDataset? {
+        return NativePlaybackDatasetLoader(datasetPath: datasetPath).loadDataset()
+    }
+
+    /// Opens the dataset in `directory` of `bundle`, read through native playback.
+    ///
+    /// - Returns: The dataset, or `nil` if the directory is not in the bundle or cannot be opened
+    public static func open(directory: String, bundle: Bundle = .main) -> PlaybackDataset? {
+        guard let url = bundle.resourceURL?.appendingPathComponent(directory, isDirectory: true) else {
+            return nil
+        }
+        return open(datasetPath: url.path)
+    }
+
+    /// Opens a scan's recording from the Niantic Spatial portal through the active
+    /// `NSDKSession`'s playback cache; see `NSDKPlaybackCacheSession.open(scanId:onProgress:)`.
+    ///
+    /// Uses the most recently created session; create and authorize it first. Releasing it ends
+    /// the open with `PlaybackOpenError.sessionEnded`.
+    ///
+    /// - Throws: `PlaybackOpenError.noSession` if no session is active, and otherwise what
+    ///   `NSDKPlaybackCacheSession.open(scanId:onProgress:)` throws.
+    public static func open(scanId: String, onProgress: (@Sendable (Double) -> Void)? = nil) async throws -> PlaybackDataset {
+        return try await activePlaybackCache().open(scanId: scanId, onProgress: onProgress)
+    }
+
+    /// Deletes a scan's cached recording through the active `NSDKSession`'s playback cache; see
+    /// `NSDKPlaybackCacheSession.deleteCached(scanId:)`.
+    ///
+    /// - Throws: `PlaybackOpenError.noSession` if no session is active, and otherwise what
+    ///   `NSDKPlaybackCacheSession.deleteCached(scanId:)` throws.
+    @MainActor
+    public static func deleteCached(scanId: String) throws {
+        try activePlaybackCache().deleteCached(scanId: scanId)
+    }
+
+    /// Deletes every cached scan recording through the active `NSDKSession`'s playback cache;
+    /// see `NSDKPlaybackCacheSession.clearCache()`.
+    ///
+    /// - Throws: `PlaybackOpenError.noSession` if no session is active, and otherwise what
+    ///   `NSDKPlaybackCacheSession.clearCache()` throws.
+    @MainActor
+    public static func clearCache() throws {
+        try activePlaybackCache().clearCache()
+    }
+
+    @MainActor
+    private static func activePlaybackCache() throws -> NSDKPlaybackCacheSession {
+        guard let session = NSDKSession.activeSession else {
+            throw PlaybackOpenError.noSession
+        }
+        return session.acquirePlaybackCacheSession()
     }
 
     // MARK: - Pixel Buffer Creation

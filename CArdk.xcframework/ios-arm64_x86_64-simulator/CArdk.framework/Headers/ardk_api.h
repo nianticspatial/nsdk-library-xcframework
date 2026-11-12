@@ -7,8 +7,8 @@
 #include "capi_common.h"
 #include "ardk_frame_data.h"
 #include "ardk_status.h"
-#include "ardk_age_level.h"
 #include "ardk_config.h"
+#include "ardk_frame_pacing_clock.h"
 #include "ardk_path_config.h"
 
 #ifdef __cplusplus
@@ -86,12 +86,40 @@ ARDK_GetRequestedDataFormats(ARDK_Handle handle, enum ARDK_InputDataFlags *data_
 /// @return       ARDK_Status_NullArgument if \p user_id data was null.
 ARDK_CAPI_VISIBLE ARDK_Status ARDK_SetUserId(ARDK_Handle handle, ARDK_String user_id);
 
-/// @brief        Set the user Id and age level for the ARDK object.
-/// @param        handle              Handle to the ARDK object.
-/// @param        age_level           The age level of the user.
-/// @return       ARDK_Status_OK if the age level was successfully set.
-/// @return       ARDK_Status_NullArdkHandle if \p ardk_handle was null.
-ARDK_CAPI_VISIBLE ARDK_Status ARDK_SetAgeLevel(ARDK_Handle handle, ARDK_AgeLevel age_level);
+/// @brief        Set the folder for diagnostic output files without destroying ARDK.
+/// @details      Redirects log.txt and ardk_trace.log immediately. VPS debugger output uses
+///               the new folder on the next VPS session; the active session keeps its file.
+///               Does not change public, private, or temporary application paths. Default log
+///               folder at ARDK_Create is the public application path. No-op if
+///               \p log_folder_path is empty or unchanged.
+/// @param        handle            Handle to the ARDK object.
+/// @param        log_folder_path   Directory for diagnostic output files.
+/// @return       ARDK_Status_OK on success.
+/// @return       ARDK_Status_NullArdkHandle if \p handle was null.
+ARDK_CAPI_VISIBLE ARDK_Status ARDK_SetLogOutputPath(ARDK_Handle handle,
+                                                    ARDK_String log_folder_path);
+
+/// @brief        Set the clock that paces the frame rate each feature receives frames at.
+/// @details      With ARDK_FramePacingClock_FrameTimestamp, which frames each feature receives
+///               depends only on the frames' camera timestamps, not on when ARDK_SendFrame is
+///               called. Use it when replaying a recording so repeated replays hand features the
+///               same frames: playback pacing jitter, or replaying faster than real time, no
+///               longer changes them. Live capture should keep ARDK_FramePacingClock_System (the
+///               default). Changing the clock restarts every feature's frame interval. Can be
+///               called at any time; takes effect on the next frame.
+/// @attention    With ARDK_FramePacingClock_FrameTimestamp, \c ARDK_GetRequestedDataFormats
+///               measures intervals up to the last frame sent, not the frame about to be sent, so
+///               it does not yet report a feature that becomes due on that frame. A caller that
+///               leaves data types out of a frame based on that query hands the feature its frame
+///               one frame late on every interval. While this clock is on, send every data type
+///               the active features need in each frame.
+/// @param        handle    Handle to the ARDK object.
+/// @param        clock     The pacing clock.
+/// @return       ARDK_Status_OK on success.
+/// @return       ARDK_Status_NullArdkHandle if \p handle was null.
+/// @return       ARDK_Status_InvalidArgument if \p clock is not a known value.
+ARDK_CAPI_VISIBLE ARDK_Status ARDK_SetFramePacingClock(ARDK_Handle handle,
+                                                       ARDK_FramePacingClock clock);
 
 #ifdef __cplusplus
 }

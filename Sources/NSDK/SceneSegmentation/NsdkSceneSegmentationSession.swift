@@ -149,9 +149,18 @@ public final class NSDKSceneSegmentationSession: NSDKSession.IDisposable, NSDKUp
     /// sceneSegmentationSession.start()
     /// ```
     public func start() {
+        // A second start() without an intervening stop() is not supported.
+        guard !isActive else {
+            return nsdkUnexpected(
+                "session is already started; call stop() before starting it again",
+                returning: ()
+            )
+        }
+
         let cStatus = api.start(nsdkHandle: nsdkHandle)
         if cStatus.isError {
-            fatalError("Unexpected non-ok ARDK_Status: \(cStatus)")
+            // Leave the session inactive: it did not start.
+            return nsdkUnexpected(cStatus, returning: ())
         }
         isActive = true
     }
@@ -161,15 +170,18 @@ public final class NSDKSceneSegmentationSession: NSDKSession.IDisposable, NSDKUp
     /// This halts all semantic processing. The session can be reconfigured and restarted after
     /// stopping. All `@Published` properties are reset to `.inProgress(nil)`.
     public func stop() {
-        let cStatus = api.stop(nsdkHandle: nsdkHandle)
-        if cStatus.isError {
-            fatalError("Unexpected non-ok ARDK_Status: \(cStatus)")
-        }
+        // Reset state first, so a failed stop cannot leave the session permanently
+        // unable to start again.
         isActive = false
         confidenceResult = .inProgress(nil)
         packedChannels = .inProgress(nil)
         suppressionMask = .inProgress(nil)
         imageParams = .inProgress(nil)
+
+        let cStatus = api.stop(nsdkHandle: nsdkHandle)
+        if cStatus.isError {
+            return nsdkUnexpected(cStatus, returning: ())
+        }
     }
 
     // MARK: - NSDKUpdatableSession
@@ -259,7 +271,7 @@ public final class NSDKSceneSegmentationSession: NSDKSession.IDisposable, NSDKUp
         let cStatus = api.getLatestPackedChannels(nsdkHandle: nsdkHandle, packedChannelsOut: &cResult)
 
         if cStatus.isError {
-            fatalError("Unexpected non-ok NSDKStatus: \(cStatus)")
+            return nsdkUnexpected(cStatus, returning: .failure(.internalError))
         }
 
         if cResult.status == ARDK_Awareness_Status_Available {
@@ -298,7 +310,7 @@ public final class NSDKSceneSegmentationSession: NSDKSession.IDisposable, NSDKUp
         let cStatus = api.getLatestSuppressionMask(nsdkHandle: nsdkHandle, suppressionMaskOut: &cResult)
 
         if cStatus.isError {
-            fatalError("Unexpected non-ok NSDKStatus: \(cStatus)")
+            return nsdkUnexpected(cStatus, returning: .failure(.internalError))
         }
 
         if cResult.status == ARDK_Awareness_Status_Available {
@@ -328,7 +340,7 @@ public final class NSDKSceneSegmentationSession: NSDKSession.IDisposable, NSDKUp
         let cStatus = api.getLatestImageParams(nsdkHandle: nsdkHandle, paramsOut: &cResult)
 
         if cStatus.isError {
-            fatalError("Unexpected non-ok NSDKStatus: \(cStatus)")
+            return nsdkUnexpected(cStatus, returning: .failure(.internalError))
         }
 
         if cResult.status == ARDK_Awareness_Status_Available {
@@ -361,7 +373,7 @@ public final class NSDKSceneSegmentationSession: NSDKSession.IDisposable, NSDKUp
         )
 
         if cStatus.isError {
-            fatalError("Unexpected non-ok NSDKStatus: \(cStatus)")
+            return nsdkUnexpected(cStatus, returning: [])
         }
 
         return SceneSegmentationChannels(cChannels: channelsBuffer, count: Int(count))

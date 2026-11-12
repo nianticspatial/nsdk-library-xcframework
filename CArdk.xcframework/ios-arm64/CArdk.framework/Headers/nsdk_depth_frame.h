@@ -14,7 +14,7 @@ extern "C" {
 
 /// @brief        A depth frame with pose and intrinsics
 typedef struct NSDK_DepthFrame {
-  /// @brief      The depth image timestamp in milliseconds since epoch.
+  /// @brief      The depth image timestamp in monotonic milliseconds (e.g. since device boot).
   /// @details    This is equivalent to the depth camera pose timestamp.
   /// @note       Currently, NSDK only supports depth images that are synced with a camera image;
   ///             i.e. the timestamp of the default depth image needs to be the same as the

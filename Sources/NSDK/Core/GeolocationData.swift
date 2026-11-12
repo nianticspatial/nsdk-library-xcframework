@@ -3,14 +3,18 @@ import simd
 
 /// Struct representing geolocation data including latitude, longitude, altitude,
 /// heading, and orientation.
-public struct GeolocationData: Equatable {
-    /// Geographical device location latitude.
+///
+/// Coordinates use the WGS84 datum. Depending on the API, this describes the
+/// device, a VPS asset's origin, an anchor, or an arbitrary location passed in.
+public struct GeolocationData: Equatable, Sendable {
+    /// WGS84 latitude, in degrees.
     public let latitude: Double
     
-    /// Geographical device location longitude.
+    /// WGS84 longitude, in degrees.
     public let longitude: Double
     
-    /// Ellipsoidal device location altitude, measured in meters.
+    /// Altitude in meters above the WGS84 ellipsoid (not mean sea level), as
+    /// in `CLLocation.ellipsoidalAltitude`.
     public let altitude: Double
     
     /// Heading in degrees relative to true north.
@@ -20,6 +24,12 @@ public struct GeolocationData: Equatable {
     private let orientationEDN: simd_quatf
     
     /// Creates geolocation data from a latitude, longitude, and altitude.
+    ///
+    /// - Parameters:
+    ///   - latitude: WGS84 latitude, in degrees.
+    ///   - longitude: WGS84 longitude, in degrees.
+    ///   - altitude: Altitude in meters above the WGS84 ellipsoid. When taking it from a
+    ///     `CLLocation`, use `ellipsoidalAltitude`, not `altitude` (mean sea level).
     public init(latitude: Double, longitude: Double, altitude: Double) {
         self.latitude = latitude
         self.longitude = longitude

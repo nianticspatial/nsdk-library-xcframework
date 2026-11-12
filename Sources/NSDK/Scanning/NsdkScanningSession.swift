@@ -96,14 +96,15 @@ public final class NSDKScanningSession: NSDKSession.IDisposable, NSDKUpdatableSe
         self.api = api
         let cStatus = api.create(nsdkHandle: nsdkHandle)
         if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            nsdkUnexpected(cStatus, returning: ())
+            return
         }
     }
 
     internal func destroy() {
         let cStatus = api.destroy(nsdkHandle: nsdkHandle)
         if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            return nsdkUnexpected(cStatus, returning: ())
         }
     }
 
@@ -139,7 +140,7 @@ public final class NSDKScanningSession: NSDKSession.IDisposable, NSDKUpdatableSe
             if cStatus.isInvalidArgument {
                 throw NSDKError.invalidArgument
             } else {
-                unexpectedNSDKStatus(cStatus)
+                throw nsdkUnexpectedError(cStatus)
             }
         }
         lastConfig = config
@@ -156,9 +157,18 @@ public final class NSDKScanningSession: NSDKSession.IDisposable, NSDKUpdatableSe
     /// - SeeAlso: `stop()`
     /// - SeeAlso: `configure(_:)`
     public func start() {
+        // A second start() without an intervening stop() is not supported.
+        guard !isActive else {
+            return nsdkUnexpected(
+                "session is already started; call stop() before starting it again",
+                returning: ()
+            )
+        }
+
         let cStatus = api.start(nsdkHandle: nsdkHandle)
         if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            // Leave `isActive` false: the session did not start.
+            return nsdkUnexpected(cStatus, returning: ())
         }
         isActive = true
     }
@@ -170,12 +180,14 @@ public final class NSDKScanningSession: NSDKSession.IDisposable, NSDKUpdatableSe
     ///
     /// - SeeAlso: `start()`
     public func stop() {
+        // Reset state first, so a failed stop cannot leave the session permanently
+        // unable to start again.
         latestRaycastBuffer = nil
         latestVoxelBuffer = nil
         isActive = false
         let cStatus = api.stop(nsdkHandle: nsdkHandle)
         if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            return nsdkUnexpected(cStatus, returning: ())
         }
     }
 
@@ -213,7 +225,8 @@ public final class NSDKScanningSession: NSDKSession.IDisposable, NSDKUpdatableSe
         var cRecordingInfo = ARDK_Scanning_RecordingInfo()
         let cStatus = api.getRecordingInfo(nsdkHandle: nsdkHandle, recordingOut: &cRecordingInfo)
         if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            // `cRecordingInfo` was never written, so do not convert it.
+            return nsdkUnexpected(cStatus, returning: .empty)
         }
         return NSDKScanningSession.RecordingInfo(fromC: cRecordingInfo)
     }
@@ -237,6 +250,8 @@ public final class NSDKScanningSession: NSDKSession.IDisposable, NSDKUpdatableSe
     /// - SeeAlso:
     ///   - ``stop``
     ///   - ``configure(with:)``
+    /// - Important: Runs on the main actor, where the session is created and updated.
+    @MainActor
     public func saveCurrentScan(
         timeout: Double = 10.0,
         pollingInterval: TimeInterval = 0.1
@@ -288,7 +303,7 @@ public final class NSDKScanningSession: NSDKSession.IDisposable, NSDKUpdatableSe
         if cStatus == ARDK_Status_InvalidOperation {
             throw NSDKError.invalidOperation
         } else if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            throw nsdkUnexpectedError(cStatus)
         }
 
         if cArchive.handle != nil {
@@ -342,7 +357,7 @@ public final class NSDKScanningSession: NSDKSession.IDisposable, NSDKUpdatableSe
         if cStatus == ARDK_Status_InvalidOperation {
             throw NSDKError.invalidOperation
         } else if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            throw nsdkUnexpectedError(cStatus)
         }
 
         guard cSplitExport.handle != nil, cSplitExport.export_paths_size > 0 else { return nil }
@@ -362,9 +377,12 @@ public final class NSDKScanningSession: NSDKSession.IDisposable, NSDKUpdatableSe
     public func computeVoxels() {
         let cStatus = api.computeVoxels(nsdkHandle: nsdkHandle)
         if cStatus == ARDK_Status_InvalidOperation {
-            preconditionFailure("Session must have been successfully configured with voxel visualization enabled.")
+            return nsdkUnexpected(
+                "session must have been successfully configured with voxel visualization enabled",
+                returning: ()
+            )
         } else if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            return nsdkUnexpected(cStatus, returning: ())
         }
     }
 
@@ -376,7 +394,7 @@ public final class NSDKScanningSession: NSDKSession.IDisposable, NSDKUpdatableSe
         if saveCode.isInvalidOperation {
             throw NSDKScanningSession.SaveError.noFrames
         } else if saveCode.isError {
-            unexpectedNSDKStatus(saveCode)
+            throw nsdkUnexpectedError(saveCode)
         }
     }
 
@@ -393,7 +411,7 @@ public final class NSDKScanningSession: NSDKSession.IDisposable, NSDKUpdatableSe
         }
         let cStatus = api.getSaveInfo(nsdkHandle: nsdkHandle, saveOut: &cSave)
         if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            return nsdkUnexpected(cStatus, returning: nil)
         }
         guard cSave.state == ARDK_Scanning_SaveState_Saved else { return nil }
         return NSDKScanningSession.SaveInfo(fromC: cSave)
@@ -406,9 +424,12 @@ public final class NSDKScanningSession: NSDKSession.IDisposable, NSDKUpdatableSe
         var cBuffer = ARDK_Scanning_RaycastBuffer()
         let cStatus = api.getRaycastBuffer(nsdkHandle: nsdkHandle, raycastBufferOut: &cBuffer)
         if cStatus == ARDK_Status_InvalidOperation {
-            preconditionFailure("Session was not successfully configured with raycast visualization enabled.")
+            return nsdkUnexpected(
+                "session must have been successfully configured with raycast visualization enabled",
+                returning: nil
+            )
         } else if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            return nsdkUnexpected(cStatus, returning: nil)
         }
         guard cBuffer.handle != nil else { return nil }
         let owner = api.createResourceOwner(handle: cBuffer.handle!)
@@ -423,9 +444,12 @@ public final class NSDKScanningSession: NSDKSession.IDisposable, NSDKUpdatableSe
         var cBuffer = ARDK_Scanning_VoxelBuffer()
         let cStatus = api.getVoxelBuffer(nsdkHandle: nsdkHandle, voxelBufferOut: &cBuffer)
         if cStatus == ARDK_Status_InvalidOperation {
-            preconditionFailure("Session must have been successfully configured with voxel visualization enabled.")
+            return nsdkUnexpected(
+                "session must have been successfully configured with voxel visualization enabled",
+                returning: nil
+            )
         } else if cStatus.isError {
-            unexpectedNSDKStatus(cStatus)
+            return nsdkUnexpected(cStatus, returning: nil)
         }
         guard cBuffer.handle != nil else { return nil }
         let owner = api.createResourceOwner(handle: cBuffer.handle!)
@@ -442,7 +466,11 @@ public final class NSDKScanningSession: NSDKSession.IDisposable, NSDKUpdatableSe
                let str = String(data: jsonData, encoding: .utf8) {
                 jsonString = str
             } else {
-                preconditionFailure("Non-nil value of argument `metadata` must be serializable into a JSON string.")
+                // Continue with empty metadata rather than failing the whole export.
+                nsdkUnexpected(
+                    "a non-nil `metadata` argument must be serializable into a JSON string",
+                    returning: ()
+                )
             }
         }
         return try jsonString.withCString { cStr in
